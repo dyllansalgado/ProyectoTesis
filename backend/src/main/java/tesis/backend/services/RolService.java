@@ -35,7 +35,7 @@ public class RolService {
     }
 
     @PostMapping("/rol/create")
-    ResponseEntity<String> rolCatalogo(@RequestBody String request){
+    ResponseEntity<String> createRol(@RequestBody String request){
         Rol rolCreado = gson.fromJson(request, Rol.class);
         if (rolCreado != null){
             rolCreado = rolRepository.createRol(rolCreado);
@@ -43,6 +43,7 @@ public class RolService {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
     @CrossOrigin(origins = {"http://localhost:8080"})
     @ResponseBody
     @RequestMapping(value ="/rol/{id_rol}",  method =RequestMethod.PUT,consumes="application/json")

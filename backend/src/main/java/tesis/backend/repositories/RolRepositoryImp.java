@@ -66,7 +66,6 @@ public class RolRepositoryImp implements RolRepository{
             Long id = (Long) conn.createQuery(query,true)
                 .addParameter("id_rol", id_rol)
                 .addParameter("tipo_rol", rol.getTipo_rol())
-                .addParameter("tipo_rol", rol.getTipo_rol())
                 .executeUpdate().getKey(Long.class);
             rol.setId_rol(id);
             return rol;
