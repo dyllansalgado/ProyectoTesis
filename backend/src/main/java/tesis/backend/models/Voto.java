@@ -4,7 +4,7 @@ public class Voto {
     private Long id_voto;
     private Long id_pregunta;
     private Boolean tipo_voto;
-    private Boolean deleted;
+    private boolean deleted;
                 
     //Getter and Setter
     public Long getId_voto() {
@@ -28,10 +28,10 @@ public class Voto {
         this.tipo_voto = tipo_voto;
     }
     
-    public Boolean getDeleted() {
+    public boolean getDeleted() {
         return deleted;
     }
-    public void setDeleted(Boolean deleted) {
+    public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
 }

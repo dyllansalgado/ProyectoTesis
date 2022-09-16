@@ -5,7 +5,7 @@ public class Proyecto {
     private Long id_proyecto;
     private String nombre_proyecto;
     private Date fecha_inicio_proyecto;
-    private String estado_proyecto;
+    private Boolean estado_proyecto;
     private String objetivo_proyecto;
     private String contrasena;
     private boolean deleted;
@@ -32,10 +32,10 @@ public class Proyecto {
         this.fecha_inicio_proyecto = fecha_inicio_proyecto;
     }
 
-    public String getEstado_proyecto() {
+    public Boolean getEstado_proyecto() {
         return estado_proyecto;
     }
-    public void setEstado_proyecto(String estado_proyecto) {
+    public void setEstado_proyecto(Boolean estado_proyecto) {
         this.estado_proyecto = estado_proyecto;
     }
 

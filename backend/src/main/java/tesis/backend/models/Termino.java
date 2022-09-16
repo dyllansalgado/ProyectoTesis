@@ -5,7 +5,7 @@ public class Termino {
     private Long id_glosario;
     private String nombre_termino;
     private String descripcion_termino;
-    private Boolean deleted;
+    private boolean deleted;
             
     //Getter and Setter
     public Long getId_termino() {
@@ -36,10 +36,10 @@ public class Termino {
         this.descripcion_termino = descripcion_termino;
     }
 
-    public Boolean getDeleted() {
+    public boolean getDeleted() {
         return deleted;
     }
-    public void setDeleted(Boolean deleted) {
+    public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
 }

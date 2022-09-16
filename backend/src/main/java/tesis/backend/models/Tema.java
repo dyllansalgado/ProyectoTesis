@@ -5,8 +5,8 @@ public class Tema {
     private Long id_reunion;
     private String nombre_tema;
     private String descripcion_tema;
-    private String estado;
-    private Boolean deleted;
+    private Boolean estado;
+    private boolean deleted;
             
     //Getter and Setter
     public Long getId_tema() {
@@ -37,17 +37,17 @@ public class Tema {
         this.descripcion_tema = descripcion_tema;
     }
 
-    public String getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
-    public void setEstado(String estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
-    public Boolean getDeleted() {
+    public boolean getDeleted() {
         return deleted;
     }
-    public void setDeleted(Boolean deleted) {
+    public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
 }
