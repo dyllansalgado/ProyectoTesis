@@ -1,0 +1,36 @@
+INSERT INTO rol(id_rol,tipo_rol)
+VALUES(1,'Jefe de Proyecto'),
+(2,'Usuario');
+
+INSERT INTO usuario(id_usuario,nombre_usuario,apellido_usuario,contrasena_usuario,correo_usuario,id_rol)
+VALUES(1,'juanito armando','salgado perez','123asd','juan_a@gmail.com',2);
+
+INSERT INTO proyecto(id_proyecto,nombre_proyecto,fecha_inicio_proyecto,estado_proyecto,objetivo_proyecto,contrasena)
+VALUES(1,'Toma de requisitos para empresa Home Canter','2022/09/20',true,'Se solicita que se reunan para comnezar el proyecto','contrasena_123');
+
+INSERT INTO glosario(id_glosario,nombre_glosario,descripcion_glosario)
+VALUES(1,'Glosario para toma de requisitos Home Canter','Este glosario muestra algunos terminos que se deberian saber antes de comenzar las reuniones');
+
+INSERT INTO respuesta(id_respuesta,respuesta)
+VALUES(1,'Soy una respuesta para pregunta 1');
+
+INSERT INTO termino(id_termino,nombre_termino,descripcion_termino,id_glosario)
+VALUES(1,'Electro-Domesticos','Esta descripcion es god',1);
+
+INSERT INTO reunion(id_reunion,fecha_reunion,lugar_reunion,hora_reunion,estado,id_proyecto,id_glosario)
+VALUES(1,'2022/09/20','zoom','8 AM',true,1,1);
+
+INSERT INTO tema(id_tema,nombre_tema,descripcion_tema,estado,id_reunion)
+VALUES(1,'Revision preguntas x','soy descripcion',false,1);
+
+INSERT INTO pregunta(id_pregunta,pregunta,estado,id_tema,id_respuesta)
+VALUES(1,'¿Hola?',true,1,1);
+
+INSERT INTO voto(id_voto,tipo_voto,id_pregunta)
+VALUES(1,false,1);
+
+INSERT INTO usuario_pregunta(id_usuario_pregunta,id_usuario,id_pregunta)
+VALUES(1,1,1);
+
+INSERT INTO usuario_proyecto(id_usuario_proyecto,id_usuario,id_proyecto)
+VALUES(1,1,1);
