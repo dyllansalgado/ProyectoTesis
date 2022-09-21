@@ -75,4 +75,15 @@ public class UsuarioService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @PostMapping("/login/")
+    @ResponseBody
+    public Usuario loginUsuario(@RequestBody Usuario usuario){
+        Usuario resultado =  usuarioRepository.loginUsuario(usuario);
+        if (resultado == null){
+            return null;
+        }else{
+            return resultado;
+        }
+    }
+
 }
