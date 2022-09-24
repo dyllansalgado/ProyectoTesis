@@ -59,3 +59,53 @@ img {
 .navbar-text{
     padding: 10px;
 }
+
+Button[type=submit]{
+    background-color:#CECFC9 ;
+    border-radius: 30px;
+    cursor:pointer;
+    width: 60%;
+    padding: 15px 20px;
+}
+
+.botonIngresar{
+    background-color:#CECFC9 ;
+    border-radius: 30px;
+    cursor:pointer;
+    width: 60%;
+    position: relative; 
+    padding: 15px 20px;
+    bottom: -20px; right: 50px;
+}
+
+.botonRegistrarse{
+    background-color:#CECFC9 ;
+    border-radius: 30px;
+    cursor:pointer;
+    width: 60%;
+    padding: 12px 20px;
+    position: relative;
+    color:black;
+    text-decoration:none;
+    bottom: 15px; right: -100px;
+}
+
+.botonInicio{
+    background-color:#CECFC9 ;
+    border-radius: 20px;
+    cursor:pointer;
+    width: 20%;
+    padding: 10px 15px;
+    position: relative; 
+    bottom: 15px; right: -100px;
+}
+
+.botonAyuda{
+    background-color:#CECFC9 ;
+    border-radius: 20px;
+    cursor:pointer;
+    width: 20%;
+    padding: 10px 15px;
+    position: relative; 
+    bottom: 15px; right: -200px;
+}

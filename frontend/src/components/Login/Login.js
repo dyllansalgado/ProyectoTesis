@@ -102,11 +102,11 @@ class Login extends Component {
                     />
                   </label>
                 </div>
-                <Button type="submit" value="Submit">
+                <Button className="botonIngresar" type="submit" value="Submit">
                   {" "}
                   Ingresar
                 </Button>
-                <Button variant="primary">Registrarse</Button>
+                <Button className="botonRegistrarse" href="/registrarse/">Registrarse</Button>
                 {""}
               </div>
             </form>

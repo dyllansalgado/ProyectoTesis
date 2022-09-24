@@ -1,6 +1,7 @@
 import React from "react";
 import image from "../../assets/Logo.png";
-import { Navbar } from "react-bootstrap";
+import { Navbar} from "react-bootstrap";
+import Button from 'react-bootstrap/Button';
 import "./Login.css";
 
 
@@ -11,6 +12,12 @@ const NavbarInicio = () => {
                 <Navbar.Brand href="/">
   <img src={image} className="logo" alt="LogoTesis" />{" "}
                 </Navbar.Brand>
+                <Button className="botonInicio" size="lg">
+                    Inicio
+                </Button>
+                <Button className="botonAyuda" size="lg">
+                    ¿Necesitas ayuda?
+                </Button>
             </Navbar>
         </>
     );
