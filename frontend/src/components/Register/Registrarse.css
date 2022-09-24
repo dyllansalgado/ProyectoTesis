@@ -1,0 +1,29 @@
+.fondo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #D9D9D9
+}
+
+.container_register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.registrarseForm {
+    width: 420px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    background-color: #276E90
+}
+
+.inputRegister{
+    height: 20px;
+    width: 200px;
+}

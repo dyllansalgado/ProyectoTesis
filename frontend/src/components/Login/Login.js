@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./Login.css";
 import swal from "sweetalert";
 import { Button, Container } from "react-bootstrap";
+import NavbarInicio from "./NavbarInicio.js";
 
 
 class Login extends Component {
@@ -69,15 +71,18 @@ class Login extends Component {
     render() {
     return (
       <div>
+        <NavbarInicio />
         <Container fluid>
-          <div className="center">
+        <div className="fondo">
+          <div className="container_login">
             <form className="loginForm" onSubmit={this.handleSubmit}>
               <div className="center">
-                <h3 className="color-custom">Inicio de sesión</h3>
+                <h3 className="titulo">Inicio de sesión</h3>
                 <div className="form-group">
                   <label>
                     Nombre de usuario:
                     <input
+                      className="inputLogin"
                       type="text"
                       value={this.state.nombre_usuario}
                       onChange={this.changeName}
@@ -89,6 +94,7 @@ class Login extends Component {
                   <label>
                     Contraseña:
                     <input
+                      className="inputLogin"
                       type="password"
                       value={this.state.contrasena_usuario}
                       onChange={this.changeContrasena}
@@ -96,13 +102,16 @@ class Login extends Component {
                     />
                   </label>
                 </div>
-                <Button variant="outline-dark" type="submit" value="Submit">
+                <Button type="submit" value="Submit">
                   {" "}
                   Ingresar
                 </Button>
+                <Button variant="primary">Registrarse</Button>
+                {""}
               </div>
             </form>
           </div>
+        </div>
         </Container>
       </div>
     );

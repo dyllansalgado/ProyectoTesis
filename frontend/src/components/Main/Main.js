@@ -10,7 +10,7 @@ class Main extends Component {
           <div>
             <Container fluid>
               <div className="center">
-                <form className="loginForm" >
+                <form className="tituloUsers" >
                   <div className="center">
                     <h3 className="color-custom">bienvenido jefe de proyecto</h3>
                   </div>
