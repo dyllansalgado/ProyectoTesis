@@ -12,10 +12,10 @@ const NavbarInicio = () => {
                 <Navbar.Brand href="/">
   <img src={image} className="logo" alt="LogoTesis" />{" "}
                 </Navbar.Brand>
-                <Button className="botonInicio" size="lg">
+                <Button className="botonInicio"  href="/" size="lg">
                     Inicio
                 </Button>
-                <Button className="botonAyuda" size="lg">
+                <Button className="botonAyuda"  href="/" size="lg">
                     ¿Necesitas ayuda?
                 </Button>
             </Navbar>

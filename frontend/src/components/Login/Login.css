@@ -16,8 +16,8 @@
 }
 .loginForm {
     width: 420px;
-    padding-top: 30px;
-    padding-bottom: 20px;
+    padding-top: 2px;
+    padding-bottom: 30px;
     border-radius: 8px;
     background-color: #276E90
 }
@@ -95,8 +95,10 @@ Button[type=submit]{
     border-radius: 20px;
     cursor:pointer;
     width: 20%;
-    padding: 10px 15px;
+    padding: 10px 100px;
     position: relative; 
+    color:black;
+    text-decoration:none;
     bottom: 15px; right: -100px;
 }
 
@@ -105,7 +107,9 @@ Button[type=submit]{
     border-radius: 20px;
     cursor:pointer;
     width: 20%;
-    padding: 10px 15px;
+    padding: 10px 70px;
     position: relative; 
+    text-decoration:none;
+    color:black;
     bottom: 15px; right: -200px;
 }

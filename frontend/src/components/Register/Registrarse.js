@@ -45,7 +45,7 @@ class Registrarse extends Component {
           icon: "success",
         });
         setTimeout(() => {
-          window.location.replace("http://localhost:3000/login");
+          window.location.replace("http://localhost:3000/");
         }, 2000);
       }
     else {
