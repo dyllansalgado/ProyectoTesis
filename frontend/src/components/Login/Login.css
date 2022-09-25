@@ -5,6 +5,7 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
+    
 }
 .fondo {
     display: flex;
@@ -48,12 +49,12 @@
 
 .navbarInicio{
     background-color: #276E90;
-    
+    display: flex;
 }
 
 img {
-    max-width: 4%;
-    max-height: 4%;
+    height:70px;
+    width:70px;
 }
 
 .navbar-text{
@@ -95,15 +96,19 @@ Button[type=submit]{
     border-radius: 20px;
     cursor:pointer;
     width: 20%;
-    padding: 10px 100px;
+    margin: 20px;
     position: relative; 
     color:black;
+    padding: 10px 70px;
+    text-align: center;
     text-decoration:none;
-    bottom: 15px; right: -100px;
+    bottom: -5px; right: -100px;
 }
 
 .botonAyuda{
     background-color:#CECFC9 ;
+    margin: 20px;
+    text-align: center;
     border-radius: 20px;
     cursor:pointer;
     width: 20%;
@@ -111,5 +116,5 @@ Button[type=submit]{
     position: relative; 
     text-decoration:none;
     color:black;
-    bottom: 15px; right: -200px;
+    bottom: -5px; right: -200px;
 }
