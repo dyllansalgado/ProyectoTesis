@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
 import Login from "./components/Login/Login";
-import Main from "./components/Main/Main";
+import MainJefeProyecto from "./components/Main/MainJefeProyecto";
 import MainUsuario from "./components/Main/MainUsuario";
 import Registrarse from "./components/Register/Registrarse";
 import './App.css';
@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/main" element={<Main />} />
+        <Route path="/mainJefeProyecto" element={<MainJefeProyecto />} />
         <Route path="/mainUsuario" element={<MainUsuario />} />
         <Route path="/registrarse" element={<Registrarse />} />
       </Routes>
