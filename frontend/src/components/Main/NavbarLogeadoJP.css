@@ -1,6 +1,7 @@
 .navbarLogeado{
     background-color: #276E90;
     display: flex;
+    width: 100vw;
 }
 
 img {
@@ -23,7 +24,7 @@ img {
 }
 
 .InformacionCentral{
-    position: absolute;
+    position: absolute ;
     width: 1000px;
     margin: auto;
     height: 70px;
@@ -94,3 +95,38 @@ img {
     text-align: center;
 }
 
+@media screen and (max-width: 300px){
+    .InformacionCentral{
+        display: inline-block;
+    }
+    .botonCrearProyecto{
+        display: inline-block;
+    }
+    .botonMisProyectos{
+        display: inline-block;
+    }
+    .table{
+        display: inline-block;
+    }
+    .centertable{
+        display: inline-block;
+    }
+    .centerTitulo{
+        display: inline-block;
+    }
+    .filterBlock{
+        display: inline-block;
+    }
+    .botonAyudaLogeado{
+        display: inline-block;
+    }
+    .navbarLogeado{
+        display: inline-block;
+    }
+    .fondoA{
+        display: inline-block;
+    }
+    .img{
+        display: inline-block;
+    }
+}

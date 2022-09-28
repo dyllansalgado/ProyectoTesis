@@ -97,6 +97,7 @@ class Registrarse extends Component {
                       value={nombre_usuario}
                       name="nombre_usuario"
                       onChange={this.changeHandler}
+                      placeholder="Nombre de Usuario"
                       required
                     />
                   </label>
@@ -110,6 +111,7 @@ class Registrarse extends Component {
                       value={apellido_usuario}
                       name="apellido_usuario"
                       onChange={this.changeHandler}
+                      placeholder="Apellido de Usuario"
                       required
                     />
                   </label>
@@ -123,6 +125,7 @@ class Registrarse extends Component {
                       value={correo_usuario}
                       name="correo_usuario"
                       onChange={this.changeHandler}
+                      placeholder="ejemplo@gmail.com"
                       required
                     />
                   </label>
@@ -136,6 +139,7 @@ class Registrarse extends Component {
                       value={contrasena_usuario}
                       name="contrasena_usuario"
                       onChange={this.changeHandler}
+                      placeholder="*****"
                       required
                     />
                   </label>

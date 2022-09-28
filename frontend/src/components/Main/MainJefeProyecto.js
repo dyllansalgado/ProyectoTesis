@@ -49,7 +49,6 @@ class MainJefeProyecto extends Component {
                   </tr>
                 </thead>
             </table>
-            
             </Container>
             </div>
           </div>

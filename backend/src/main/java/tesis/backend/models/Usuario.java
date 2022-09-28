@@ -7,6 +7,7 @@ public class Usuario {
     private String apellido_usuario;
     private String contrasena_usuario;
     private String correo_usuario;
+    private Integer token_usuario;
     private boolean deleted;
     
     //Getter and Setter
@@ -58,6 +59,10 @@ public class Usuario {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
-
-
+    public Integer getToken_usuario() {
+        return token_usuario;
+    }
+    public void setToken_usuario(Integer token_usuario) {
+        this.token_usuario = token_usuario;
+    }
 }

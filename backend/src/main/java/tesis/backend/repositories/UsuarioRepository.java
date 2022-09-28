@@ -10,6 +10,7 @@ public interface UsuarioRepository {
     public boolean deleteUsuario(Long id_usuario);
 
     public Usuario loginUsuario(Usuario usuario);
-
+    public String logOut(Usuario usuario);
     public Long countUsuario();
+    public Usuario getUserToken(String token_usuario);
 }

@@ -1,0 +1,24 @@
+.InformacionCentralUsuario{
+    position: absolute;
+    width: 1000px;
+    margin: auto;
+    height: 70px;
+    left: 162px;
+    top: 150px;
+    background: #276E90;
+    border-radius: 100px;
+    display: flex;
+}
+
+.filterBlockUsuario{
+    position: relative;
+    right: 40%;
+    top: 25px;
+    display: inline-block;
+}
+
+.navbarLogeadoUsuario{
+    background-color: #276E90;
+    display: flex;
+    width: 100vw;
+}

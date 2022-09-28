@@ -9,10 +9,20 @@ import NavbarInicio from "./NavbarInicio.js";
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = { nombre_usuario: "", contrasena_usuario: "", id_rol: ""};
+        this.state = { usuario: localStorage.getItem("token"), nombre_usuario: "", contrasena_usuario: "", id_rol: "", token_usuario:""};
         this.changeName = this.changeName.bind(this);
         this.changeContrasena = this.changeContrasena.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    
+    componentDidMount() {
+      console.log("compnment didmount")
+      if (localStorage.getItem("token") && localStorage.getItem("id_rol") === 2 ){
+        window.location.replace("http://localhost:3000/mainUsuario/");
+      }
+      else if (localStorage.getItem("token") && localStorage.getItem("id_rol") === 1 ){
+        window.location.replace("http://localhost:3000/mainJefeProyecto/");
+      }
     }
     changeName(event) {
         this.setState({ nombre_usuario: event.target.value });
@@ -20,10 +30,12 @@ class Login extends Component {
     changeContrasena(event) {
         this.setState({ contrasena_usuario: event.target.value });
     }
+    Desconectarse= (e) => {
 
+
+    }
     handleSubmit(event) {
         event.preventDefault();
-    
         axios
           .post("http://localhost:8080/login/", {
             nombre_usuario: this.state.nombre_usuario,
@@ -31,26 +43,30 @@ class Login extends Component {
           })
           .then((response) => {
             console.log("1");
-            if (response.data.contrasena_usuario === this.state.contrasena_usuario && response.data.id_rol === 2) {
-                //console.log(response.data);
-                swal({
+            if (response.data.token_usuario === 1 && response.data.contrasena_usuario === this.state.contrasena_usuario && response.data.id_rol === 2 ) {
+              console.log(response.data);  
+              localStorage.setItem('usuario', response.data.id_usuario);
+              localStorage.setItem('id_rol', response.data.id_rol);
+              swal({
                 title: "Ingreso Exitoso",
                 text: "Bienvenido usuario",
                 icon: "success",
               });
               setTimeout(() => {
                 window.location.replace("http://localhost:3000/mainUsuario/");
-              }, 2000);
+              }, 1000);
             }
-            else if(response.data.contrasena_usuario === this.state.contrasena_usuario && response.data.id_rol === 1) {
-              //console.log(response.data);
+            else if(response.data.token_usuario === 1 && response.data.contrasena_usuario === this.state.contrasena_usuario && response.data.id_rol === 1) {
+              //¿console.log(response.data);
+              localStorage.setItem('usuario', response.data.id_usuario);
+              localStorage.setItem('id_rol', response.data.id_rol);
               swal({
               title: "Ingreso Exitoso",
               text: "Bienvenido jefe de proyecto",
               icon: "success",
             });
             setTimeout(() => {
-              window.location.replace("http://localhost:3000/main/");
+              window.location.replace("http://localhost:3000/mainJefeProyecto/");
             }, 2000);
             }
             else {
@@ -74,6 +90,9 @@ class Login extends Component {
         <div>
           <NavbarInicio />
         </div>
+        <div>
+        <h3> value={this.state.usuario} </h3>
+        </div>
         <Container fluid>
         <div className="fondo">
           <div className="container_login">
@@ -88,6 +107,7 @@ class Login extends Component {
                       type="text"
                       value={this.state.nombre_usuario}
                       onChange={this.changeName}
+                      placeholder="Usuario...."
                       required
                     />
                   </label>
@@ -100,6 +120,7 @@ class Login extends Component {
                       type="password"
                       value={this.state.contrasena_usuario}
                       onChange={this.changeContrasena}
+                      placeholder="*****"
                       required
                     />
                   </label>
