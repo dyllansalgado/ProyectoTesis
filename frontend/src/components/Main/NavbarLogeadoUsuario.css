@@ -22,3 +22,22 @@
     display: flex;
     width: 100vw;
 }
+.centerTituloUsuario{
+    margin: auto;
+    width: 700px;
+    padding: 20px;
+    text-align: center;
+ }
+.botonCerrarSesion{
+    background-color:#CECFC9 ;
+    margin: 20px;
+    text-align: center;
+    border-radius: 20px;
+    cursor:pointer;
+    width: 20%;
+    padding: 10px 0px;
+    position: relative; 
+    text-decoration:none;
+    color:black;
+    bottom: -5px; right: -200px;
+}

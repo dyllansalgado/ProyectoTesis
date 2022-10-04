@@ -5,93 +5,85 @@ import swal from "sweetalert";
 import { Button, Container } from "react-bootstrap";
 import NavbarInicio from "./NavbarInicio.js";
 
-
 class Login extends Component {
-    constructor(props) {
+  constructor(props) {
         super(props);
         this.state = { usuario: localStorage.getItem("token"), nombre_usuario: "", contrasena_usuario: "", id_rol: "", token_usuario:""};
         this.changeName = this.changeName.bind(this);
         this.changeContrasena = this.changeContrasena.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+  }
+    
+  componentDidMount() {
+    console.log("compnment didmount")
+    if (localStorage.getItem("token") && localStorage.getItem("id_rol") === 2 ){
+      window.location.replace("http://localhost:3000/mainUsuario/");
+    }
+    else if (localStorage.getItem("token") && localStorage.getItem("id_rol") === 1 ){
+      window.location.replace("http://localhost:3000/mainJefeProyecto/");
+    }
+  }
+  changeName(event) {
+      this.setState({ nombre_usuario: event.target.value });
+  }
+  changeContrasena(event) {
+      this.setState({ contrasena_usuario: event.target.value });
+  }
+  handleSubmit(event) {
+    event.preventDefault();
+    axios
+      .post("http://localhost:8080/login/", {
+        nombre_usuario: this.state.nombre_usuario,
+        contrasena_usuario: this.state.contrasena_usuario
+      })
+      .then((response) => {
+        console.log("1");
+        if (response.data.token_usuario === 1 && response.data.contrasena_usuario === this.state.contrasena_usuario && response.data.id_rol === 2 ) {
+          console.log(response.data);  
+          localStorage.setItem('usuario', response.data.id_usuario);
+          localStorage.setItem('id_rol', response.data.id_rol);
+          swal({
+            title: "Ingreso Exitoso",
+            text: "Bienvenido usuario",
+            icon: "success",
+          });
+          setTimeout(() => {
+            window.location.replace("http://localhost:3000/mainUsuario/");
+          }, 1000);
+        }
+        else if(response.data.token_usuario === 1 && response.data.contrasena_usuario === this.state.contrasena_usuario && response.data.id_rol === 1) {
+          //¿console.log(response.data);
+          localStorage.setItem('usuario', response.data.id_usuario);
+          localStorage.setItem('id_rol', response.data.id_rol);
+          swal({
+          title: "Ingreso Exitoso",
+          text: "Bienvenido jefe de proyecto",
+          icon: "success",
+        });
+        setTimeout(() => {
+          window.location.replace("http://localhost:3000/mainJefeProyecto/");
+        }, 2000);
+        }
+        else {
+          swal({
+            title: "Atención",
+            text: "Contraseña o Usuario incorrecto",
+            icon: "warning",
+            button: "Aceptar",
+            timer: "2000",
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     }
     
-    componentDidMount() {
-      console.log("compnment didmount")
-      if (localStorage.getItem("token") && localStorage.getItem("id_rol") === 2 ){
-        window.location.replace("http://localhost:3000/mainUsuario/");
-      }
-      else if (localStorage.getItem("token") && localStorage.getItem("id_rol") === 1 ){
-        window.location.replace("http://localhost:3000/mainJefeProyecto/");
-      }
-    }
-    changeName(event) {
-        this.setState({ nombre_usuario: event.target.value });
-    }
-    changeContrasena(event) {
-        this.setState({ contrasena_usuario: event.target.value });
-    }
-    Desconectarse= (e) => {
-
-
-    }
-    handleSubmit(event) {
-        event.preventDefault();
-        axios
-          .post("http://localhost:8080/login/", {
-            nombre_usuario: this.state.nombre_usuario,
-            contrasena_usuario: this.state.contrasena_usuario
-          })
-          .then((response) => {
-            console.log("1");
-            if (response.data.token_usuario === 1 && response.data.contrasena_usuario === this.state.contrasena_usuario && response.data.id_rol === 2 ) {
-              console.log(response.data);  
-              localStorage.setItem('usuario', response.data.id_usuario);
-              localStorage.setItem('id_rol', response.data.id_rol);
-              swal({
-                title: "Ingreso Exitoso",
-                text: "Bienvenido usuario",
-                icon: "success",
-              });
-              setTimeout(() => {
-                window.location.replace("http://localhost:3000/mainUsuario/");
-              }, 1000);
-            }
-            else if(response.data.token_usuario === 1 && response.data.contrasena_usuario === this.state.contrasena_usuario && response.data.id_rol === 1) {
-              //¿console.log(response.data);
-              localStorage.setItem('usuario', response.data.id_usuario);
-              localStorage.setItem('id_rol', response.data.id_rol);
-              swal({
-              title: "Ingreso Exitoso",
-              text: "Bienvenido jefe de proyecto",
-              icon: "success",
-            });
-            setTimeout(() => {
-              window.location.replace("http://localhost:3000/mainJefeProyecto/");
-            }, 2000);
-            }
-            else {
-              swal({
-                title: "Atención",
-                text: "Contraseña o Usuario incorrecto",
-                icon: "warning",
-                button: "Aceptar",
-                timer: "2000",
-              });
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-
-    render() {
+  render() {
     return (
       <div>
         <div>
           <NavbarInicio />
-        </div>
-        <div>
-        <h3> value={this.state.usuario} </h3>
         </div>
         <Container fluid>
         <div className="fondo">

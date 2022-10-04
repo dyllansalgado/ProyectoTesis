@@ -3,7 +3,28 @@ import image from "../../assets/Logo.png";
 import { Navbar} from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import "./NavbarLogeadoUsuario.css";
+import swal from "sweetalert";
 
+const cerrarSesion = () => {
+  localStorage.clear();
+  swal({
+    title: "Atención",
+    text: "¿Desea Cerrar Sesión?",
+    icon: "warning",
+    buttons: ["No", "Si"],
+  }).then((respuesta) => {
+    if (respuesta) {
+      swal({
+        title: "Sesion Cerrada",
+        text: "Su sesión está siendo cerrada",
+        icon: "success",
+      });
+      setTimeout(() => {
+        window.location.replace("http://localhost:3000/");
+      }, 2000);
+    }
+  });
+};
 
 const NavbarLogeadoUsuario = () => {
   return (
@@ -12,12 +33,14 @@ const NavbarLogeadoUsuario = () => {
             <Navbar.Brand href="/mainUsuario">
               <img src={image} className="logo" alt="LogoTesis" />{" "}
             </Navbar.Brand>
-            <Button className="botonAyudaLogeado"  href="/ayuda" size="lg">
+            <Button className="botonAyudaLogeado"  href="/ayuda" size="sm">
                 ¿Necesitas ayuda?
             </Button>
-            
-            <Button className="botonAyudaLogeado"  href="/" size="lg">
-                desconectarse
+            <Button className="botonCerrarSesion"  o href="/verPerfil" size="sm">
+                Ver perfil
+            </Button>
+            <Button className="botonCerrarSesion"  onClick={() => cerrarSesion()} size="sm">
+                Cerrar sesión
             </Button>
         </Navbar>
       </>
