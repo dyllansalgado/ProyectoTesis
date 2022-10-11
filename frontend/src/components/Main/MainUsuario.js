@@ -1,6 +1,8 @@
 import React, { Component} from "react";
-import {Container, Col, Row } from "react-bootstrap";
+import {Button,Container, Col, Row, Card} from "react-bootstrap";
 import NavbarLogeadoUsuario from "./NavbarLogeadoUsuario.js";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./MainUsuario.css";
 import axios from "axios";
 
 class MainUsuario extends Component {
@@ -9,23 +11,38 @@ class MainUsuario extends Component {
       this.state = {
         usuario: [],
         id: null,
+        proyectos: [],
       };
       this.node = React.createRef();
     }
   
     componentDidMount() {
       const id = localStorage.getItem('usuario');
-      axios
-        .get(
-          "http://localhost:8080/usuario/"+id)
-        .then((res) => {
-          const usuario = res.data;
-          this.setState({usuario});
-        });
+      axios.all([
+        axios
+          .get(
+            "http://localhost:8080/usuario/"+id)
+          .then((res) => {
+            const usuario = res.data;
+            this.setState({usuario});
+          }),
+        axios
+          .get("http://localhost:8080/proyectos/")
+          .then((res) => {
+            const proyectos = res.data;
+            //console.log(proyectos);
+          
+            this.setState({proyectos});
+          })
+          .catch((error) => {
+            console.log(error);
+          }),
+      ]);
     }
 
   render() {
     const {usuario} = this.state;
+    const {proyectos} = this.state;
     return (
       <div>
         <div>
@@ -33,36 +50,52 @@ class MainUsuario extends Component {
         </div>
         <div className="fondoA" >
         <Container fluid>
-            <Row>
-              <Col>
-                <h3 className="centerTituloUsuario"> Bienvenido Usuario {usuario.nombre_usuario}</h3>
-              </Col>
-            </Row>
-            <div className="InformacionCentralUsuario">
-            <h3 className="centerTitulo"> Proyectos disponibles</h3>
+          <Row>
             <Col>
-                <div className="filterBlockUsuario">
-                  <input
-                    type="text"
-                    onClick={this.onChange}
-                    onChange={this.onUserChange}
-                    placeholder="Buscar Proyecto..."
-                    ref={this.node}
-                  />
-                </div>
-              </Col>
+              <h3 className="centerTituloUsuario"> Bienvenido Usuario: {usuario.nombre_usuario}</h3>
+            </Col>
+          </Row>
+          <div className="InformacionCentralUsuario">
+          <h3 className="centerTitulo"> Proyectos disponibles</h3>
+            <Col>
+              <div className="filterBlockUsuario">
+                <input
+                  type="text"
+                  onClick={this.onChange}
+                  onChange={this.onUserChange}
+                  placeholder="Buscar Proyecto..."
+                  ref={this.node}
+                />
+              </div>
+            </Col>
           </div>
-          <div className="centertable"></div>
-            <table responsive ALIGN="center" className="table" id="listaProyectos">
-            <thead>
-              <tr>
-                <th width="100">Nombre proyecto</th>
-                <th width="100">Fecha de Inicio</th>
-                <th width="100">Estado</th>
-              </tr>
-            </thead>
-        </table>
-        </Container>
+        
+          <Row className="ProyectosList">
+            {proyectos.map((proyectos) => (
+                  <Col className="col">
+                    <Card style={{ width: "18rem" }}>
+                      <Card.Body>
+                        <Card.Title>{proyectos.nombre_proyecto}</Card.Title>
+                        <Card.Subtitle>Fecha de inicio: {proyectos.fecha_inicio_proyecto}</Card.Subtitle>
+                        <p>
+                          Objetivo: {proyectos.objetivo_proyecto}
+                        </p>
+                        <p>
+                          Estado: {this.state.estado_text}
+                        </p>
+                        <div className="center">
+                          <Button
+                            variant="outline-primary"
+                          >
+                            Ver más
+                          </Button>
+                        </div>
+                      </Card.Body>
+                    </Card>
+                </Col>
+              ))}
+              </Row>
+          </Container>
         </div>
       </div>
     );

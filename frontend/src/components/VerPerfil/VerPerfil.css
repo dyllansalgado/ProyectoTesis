@@ -1,0 +1,34 @@
+.verDatos {
+    width: 790px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    background-color: #CECFC9
+}
+
+.botonVolver{
+    background-color:#8F9090 ;
+    margin: 20px;
+    text-align: center;
+    border-radius: 20px;
+    cursor:pointer;
+    width:200px;
+    padding: 10px 10px;
+    position: relative; 
+    text-decoration:none;
+    color:black;
+    bottom: 40px; right: -250px;
+}
+
+.editarDatos{
+    margin: 20px;
+    text-align: center;
+    border-radius: 20px;
+    cursor:pointer;
+    padding: 10px;
+    position: relative; 
+    text-decoration:none;
+    color:black;
+    bottom: -39px; right: 40px;
+}
+

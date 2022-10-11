@@ -71,7 +71,6 @@ class Registrarse extends Component {
     })
   }
 
-
   render() {
     const nombre_usuario = this.state.nombre_usuario;
     const apellido_usuario = this.state.apellido_usuario;

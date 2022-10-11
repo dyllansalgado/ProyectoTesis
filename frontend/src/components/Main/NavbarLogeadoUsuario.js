@@ -36,7 +36,7 @@ const NavbarLogeadoUsuario = () => {
             <Button className="botonAyudaLogeado"  href="/ayuda" size="sm">
                 ¿Necesitas ayuda?
             </Button>
-            <Button className="botonCerrarSesion"  o href="/verPerfil" size="sm">
+            <Button className="botonCerrarSesion"  href="/verPerfil" size="sm">
                 Ver perfil
             </Button>
             <Button className="botonCerrarSesion"  onClick={() => cerrarSesion()} size="sm">
