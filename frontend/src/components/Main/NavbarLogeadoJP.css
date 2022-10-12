@@ -11,12 +11,12 @@ img {
 
 .botonAyudaLogeado{
     background-color:#CECFC9 ;
-    margin: 20px;
+    margin: 5px;
     text-align: center;
     border-radius: 20px;
     cursor:pointer;
     width: 20%;
-    padding: 10px 70px;
+    padding: 10px 0px;
     position: relative; 
     text-decoration:none;
     color:black;
@@ -25,27 +25,26 @@ img {
 
 .InformacionCentral{
     position: absolute ;
-    width: 1000px;
-    margin: auto;
-    height: 70px;
-    left: 162px;
-    top: 150px;
+    width: 80%;
+    height: 15%;
+    left: 12%;
+    top: 160px;
     background: #276E90;
     border-radius: 100px;
-    display: flex;
+    display: flex;  
 }
 
 .centerTitulo{
    margin: auto;
    width: 700px;
-   padding: 20px;
+   padding: 10px;
    text-align: center;
 }
 
 .filterBlock{
     position: relative;
-    right: -74%;
-    top: 100px;
+    right: -70%;
+    top: 25px;
     display: inline-block;
 }
 
@@ -94,40 +93,4 @@ img {
     padding: 15px;
     width: 90vw;
     text-align: center;
-}
-
-@media screen and (max-width: 300px){
-    .InformacionCentral{
-        display: inline-block;
-    }
-    .botonCrearProyecto{
-        display: inline-block;
-    }
-    .botonMisProyectos{
-        display: inline-block;
-    }
-    .table{
-        display: inline-block;
-    }
-    .centertable{
-        display: inline-block;
-    }
-    .centerTitulo{
-        display: inline-block;
-    }
-    .filterBlock{
-        display: inline-block;
-    }
-    .botonAyudaLogeado{
-        display: inline-block;
-    }
-    .navbarLogeado{
-        display: inline-block;
-    }
-    .fondoA{
-        display: inline-block;
-    }
-    .img{
-        display: inline-block;
-    }
 }

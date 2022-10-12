@@ -81,8 +81,8 @@ class Registrarse extends Component {
     return (
       <div>
         <NavbarInicio />
-        <Container fluid>
         <div className="fondo">
+        <Container fluid>
           <div className="container_register">
           <form className="registrarseForm" onSubmit={this.RegistrarUsuario}>
               <div className="center">
@@ -167,8 +167,8 @@ class Registrarse extends Component {
               </div>
             </form>
           </div>
-        </div>
         </Container>
+        </div>
       </div>
     );
   }

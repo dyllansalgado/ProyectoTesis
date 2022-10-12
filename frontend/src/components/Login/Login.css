@@ -5,7 +5,6 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    
 }
 .fondo {
     display: flex;
@@ -13,7 +12,7 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: #D9D9D9
+    background-color: #D9D9D9;
 }
 .loginForm {
     width: 420px;
@@ -41,15 +40,23 @@
     padding: 10px;
 }
 
-
-.inputLogin{
-    height: 20px;
-    width: 180px;
+input[type=text]{
+    display: block;
+    background-color: white;
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+}
+input[type=password]{
+    display: block;
+        background-color: white;
+        width: 100%;
+        padding: 8px;
+        margin: 8px 0;
 }
 
 .navbarInicio{
     background-color: #276E90;
-    display: flex;
 }
 
 img {
@@ -61,22 +68,13 @@ img {
     padding: 10px;
 }
 
-Button[type=submit]{
-    background-color:#CECFC9 ;
-    border-radius: 30px;
-    cursor:pointer;
-    width: 60%;
-    padding: 15px 20px;
-}
-
 .botonIngresar{
-    background-color:#CECFC9 ;
     border-radius: 30px;
     cursor:pointer;
     width: 60%;
     position: relative; 
     padding: 15px 20px;
-    bottom: -20px; right: 50px;
+    bottom: -22px; right: 50px;
 }
 
 .botonRegistrarse{
@@ -104,6 +102,7 @@ Button[type=submit]{
     text-decoration:none;
     bottom: -5px; right: -100px;
 }
+
 
 .botonAyuda{
     background-color:#CECFC9 ;

@@ -54,30 +54,31 @@ class MainJefeProyecto extends Component {
               <Col>
                 <h3 className="centerTitulo"> Bienvenido Jefe de Proyectos: {usuario.nombre_usuario}</h3>
               </Col>
-              <Col>
-                <div className="filterBlock">
-                  <input
-                    type="text"
-                    onClick={this.onChange}
-                    onChange={this.onUserChange}
-                    placeholder="Buscar Proyecto..."
-                    ref={this.node}
-                  />
-                </div>
-              </Col>
             </Row>
             <div className="InformacionCentral">
-            <Button className="botonCrearProyecto"  href="/crearProyecto" size="lg">
-            Crear Proyecto
-            </Button>
-            <Button className="botonMisProyectos"  href="/misProyectosJP" size="lg">
-            Mis proyectos
-            </Button>
-          </div>          <Row className="ProyectosList">
-            {proyectos.map((proyectos) => (
-                  <Col className="col">
-                    <Card style={{ width: "18rem" }}>
-                      <Card.Body>
+              <Button className="botonCrearProyecto"  href="/crearProyecto" size="lg">
+              Crear Proyecto
+              </Button>
+              <Button className="botonMisProyectos"  href="/misProyectosJP" size="lg">
+              Mis proyectos
+              </Button>
+            </div>
+            <Col>
+              <div className="filterBlock">
+                <input
+                  type="text"
+                  onClick={this.onChange}
+                  onChange={this.onUserChange}
+                  placeholder="Buscar Proyecto..."
+                  ref={this.node}
+                />
+              </div>
+            </Col>   
+            <Row className="ProyectosList">
+              {proyectos.map((proyectos) => (
+                <Col className="col">
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Body>
                         <Card.Title>{proyectos.nombre_proyecto}</Card.Title>
                         <Card.Subtitle>Fecha de inicio: {proyectos.fecha_inicio_proyecto}</Card.Subtitle>
                         <p>
@@ -97,7 +98,7 @@ class MainJefeProyecto extends Component {
                     </Card>
                 </Col>
               ))}
-              </Row>
+            </Row>
         </Container>
         </div>
       </div>

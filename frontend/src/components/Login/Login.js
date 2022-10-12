@@ -78,15 +78,12 @@ class Login extends Component {
         console.log(error);
       });
     }
-    
   render() {
     return (
       <div>
-        <div>
-          <NavbarInicio />
-        </div>
+        <NavbarInicio />
+        <div className="fondoA">
         <Container fluid>
-        <div className="fondo">
           <div className="container_login">
             <form className="loginForm" onSubmit={this.handleSubmit}>
               <div className="center">
@@ -117,17 +114,17 @@ class Login extends Component {
                     />
                   </label>
                 </div>
-                <Button className="botonIngresar" type="submit" value="Submit">
+                <Button variant="secondary" className="botonIngresar" type="submit" value="Submit">
                   {" "}
                   Ingresar
                 </Button>
-                <Button className="botonRegistrarse" href="/registrarse/">Registrarse</Button>
+                <Button variant="secondary" className="botonRegistrarse" href="/registrarse/">Registrarse</Button>
                 {""}
               </div>
             </form>
           </div>
+          </Container>
         </div>
-        </Container>
       </div>
     );
   }

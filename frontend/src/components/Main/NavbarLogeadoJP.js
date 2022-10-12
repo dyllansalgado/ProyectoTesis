@@ -33,7 +33,7 @@ const NavbarLogeadoJP = () => {
             <Navbar.Brand href="/mainJefeProyecto">
               <img src={image} className="logo" alt="LogoTesis" />{" "}
             </Navbar.Brand>
-            <Button className="botonAyudaLogeado"  href="/ayuda" size="lg">
+            <Button className="botonAyudaLogeado"  href="/ayuda" size="sm">
                 ¿Necesitas ayuda?
             </Button>
             <Button className="botonCerrarSesion"  href="/verPerfil" size="sm">
