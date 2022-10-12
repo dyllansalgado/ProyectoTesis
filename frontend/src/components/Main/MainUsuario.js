@@ -85,7 +85,7 @@ class MainUsuario extends Component {
                         </p>
                         <div className="center">
                           <Button
-                            variant="outline-primary"
+                            variant="outline-primary" href={`/verProyecto/${proyectos.id_proyecto}`}
                           >
                             Ver más
                           </Button>

@@ -1,16 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import {
-    Button,
-    Row,
-    Dropdown,
-    Col,
-    Form,
-    Container,
-    Modal,
-    ModalHeader,
-    ModalBody,
-} from "react-bootstrap";
+import {Button,Container} from "react-bootstrap";
 import swal from "sweetalert";
 import NavbarLogeadoJP from "../Main/NavbarLogeadoJP.js";
 
