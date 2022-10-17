@@ -11,6 +11,8 @@ class CrearProyecto extends Component {
       fecha_inicio_proyecto: "", 
       objetivo_proyecto: "",
       contrasena: "",
+      usuario: [],
+      id: null,
       estado_proyecto: true,
       };
     }
@@ -18,7 +20,7 @@ class CrearProyecto extends Component {
     changeHandler = (e) => {
       this.setState({ [e.target.name]: e.target.value });
     };
-  
+
     CrearProyecto = (e) => {
       e.preventDefault();
       if (
@@ -27,22 +29,41 @@ class CrearProyecto extends Component {
         this.state.objetivo_proyecto !== "" &&
         this.state.contrasena !== "")
         {
-          axios.post("http://localhost:8080/proyecto/create", {
-          nombre_proyecto: this.state.nombre_proyecto,
-          fecha_inicio_proyecto: this.state.fecha_inicio_proyecto,
-          objetivo_proyecto: this.state.objetivo_proyecto,
-          contrasena: this.state.contrasena,
-          estado_proyecto: this.state.estado_proyecto,
-          });
-  
-          swal({
-            title: "Proyecto creado con exito",
-            text: "Se ha creado correctamente el proyecto",
-            icon: "success",
-          });
-          setTimeout(() => {
-            window.location.replace("http://localhost:3000/mainJefeProyecto/");
-          }, 2000);
+          axios.all([
+            axios.post("http://localhost:8080/proyecto/create", {
+            nombre_proyecto: this.state.nombre_proyecto,
+            fecha_inicio_proyecto: this.state.fecha_inicio_proyecto,
+            objetivo_proyecto: this.state.objetivo_proyecto,
+            contrasena: this.state.contrasena,
+            estado_proyecto: this.state.estado_proyecto,
+            }),
+          
+            swal({
+              title: "Proyecto creado con exito",
+              text: "Se ha creado correctamente el proyecto",
+              icon: "success",
+            }),
+            setTimeout(() => {
+              window.location.replace("http://localhost:3000/mainJefeProyecto/");
+            }, 2000),
+
+            axios
+              .get("http://localhost:8080/proyectos/")
+              .then((res) => {
+                const proyectos = res.data;
+                console.log(proyectos);
+                this.setState({proyectos});
+              })
+              .catch((error) => {
+                console.log(error);
+              }),
+            axios
+              .post("http://localhost:8080/usuario_proyecto/create/",
+              {
+                //id_usuario: localStorage.getItem('usuario') ,
+                //id_proyecto: this.getState.proyectos.id_proyecto,
+              }),
+          ]);  
         }
       else {
         swal({
@@ -50,7 +71,6 @@ class CrearProyecto extends Component {
           text: "falla",
           icon: "warning",
         });
-  
       }
     };
 
@@ -125,6 +145,7 @@ class CrearProyecto extends Component {
                       />
                     </label>
                   </div>
+                  
                   <Button type="submit" value="Submit">
                     {" "}
                     Crear Proyecto

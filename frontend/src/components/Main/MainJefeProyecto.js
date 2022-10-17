@@ -30,9 +30,9 @@ class MainJefeProyecto extends Component {
         .get("http://localhost:8080/proyectos/")
         .then((res) => {
           const proyectos = res.data;
-          //console.log(proyectos);
         
           this.setState({proyectos});
+          console.log(proyectos);
         })
         .catch((error) => {
           console.log(error);
@@ -62,18 +62,18 @@ class MainJefeProyecto extends Component {
               <Button className="botonMisProyectos"  href="/misProyectosJP" size="lg">
               Mis proyectos
               </Button>
-            </div>
-            <Col>
-              <div className="filterBlock">
-                <input
-                  type="text"
-                  onClick={this.onChange}
-                  onChange={this.onUserChange}
-                  placeholder="Buscar Proyecto..."
-                  ref={this.node}
-                />
-              </div>
-            </Col>   
+              <Col>
+                <div className="filterBlock">
+                  <input
+                    type="text"
+                    onClick={this.onChange}
+                    onChange={this.onUserChange}
+                    placeholder="Buscar Proyecto..."
+                    ref={this.node}
+                  />
+                </div>
+              </Col> 
+            </div> 
             <Row className="ProyectosList">
               {proyectos.map((proyectos) => (
                 <Col className="col">
@@ -85,7 +85,7 @@ class MainJefeProyecto extends Component {
                           Objetivo: {proyectos.objetivo_proyecto}
                         </p>
                         <p>
-                          Estado: {this.state.estado_text}
+                          Estado: {proyectos.estado_proyecto}
                         </p>
                         <div className="center">
                           <Button

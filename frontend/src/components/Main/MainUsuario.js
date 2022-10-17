@@ -69,7 +69,6 @@ class MainUsuario extends Component {
               </div>
             </Col>
           </div>
-        
           <Row className="ProyectosList">
             {proyectos.map((proyectos) => (
                   <Col className="col">
@@ -81,7 +80,7 @@ class MainUsuario extends Component {
                           Objetivo: {proyectos.objetivo_proyecto}
                         </p>
                         <p>
-                          Estado: {this.state.estado_text}
+                          Estado: {proyectos.estado_proyecto}
                         </p>
                         <div className="center">
                           <Button

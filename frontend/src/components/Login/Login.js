@@ -81,7 +81,9 @@ class Login extends Component {
   render() {
     return (
       <div>
+        <div>
         <NavbarInicio />
+        </div>
         <div className="fondoA">
         <Container fluid>
           <div className="container_login">

@@ -24,14 +24,15 @@ img {
 }
 
 .InformacionCentral{
-    position: absolute ;
-    width: 80%;
-    height: 15%;
-    left: 12%;
-    top: 160px;
+    position: absolute;
+    width: 1000px;
+    margin: auto;
+    height: 70px;
+    left: 162px;
+    top: 150px;
     background: #276E90;
     border-radius: 100px;
-    display: flex;  
+    display: flex;
 }
 
 .centerTitulo{
@@ -43,43 +44,35 @@ img {
 
 .filterBlock{
     position: relative;
-    right: -70%;
-    top: 25px;
+    right: -50%;
+    top: 8px;
     display: inline-block;
 }
 
 .botonCrearProyecto{
-    background-color:#CECFC9 ;
-    border-radius: 20px;
     cursor:pointer;
     width: 20%;
-    margin: 20px;
+    margin: 1%;
     position: relative; 
     color:black;
-    padding: 5px 70px;
     text-align: center;
-    text-decoration:none;
-    bottom: -5px; right: -100px;
+    bottom: -1%; right: -10%;
 }
 
 .botonMisProyectos{
-    background-color:#CECFC9 ;
-    margin: 20px;
+    margin: 1%;
     text-align: center;
-    border-radius: 20px;
     cursor:pointer;
     width: 20%;
     padding: 5px 70px;
     position: relative; 
-    text-decoration:none;
-    color:black;
-    bottom: -5px; right: -200px;
+    bottom: -1%; right: -20%;
 }
 
 .fondoA {
     background-color: #D9D9D9;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
 .centertable{
