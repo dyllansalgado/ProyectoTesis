@@ -12,8 +12,9 @@
 
 .filterBlockUsuario{
     position: relative;
-    right: 10%;
+    right: 80%;
     top: 7px;
+    width: 150%;
     display: inline-block;
 }
 

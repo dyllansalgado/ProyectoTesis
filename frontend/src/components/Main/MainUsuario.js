@@ -57,6 +57,9 @@ class MainUsuario extends Component {
           </Row>
           <div className="InformacionCentralUsuario">
           <h3 className="centerTitulo"> Proyectos disponibles</h3>
+          <Button className="botonMisProyectosUsuario"  href="/misProyectosJP" size="lg">
+                Mis proyectos
+            </Button>
             <Col>
               <div className="filterBlockUsuario">
                 <input
