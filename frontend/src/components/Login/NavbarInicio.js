@@ -10,7 +10,7 @@ const NavbarInicio = () => {
         <>
             <Navbar collapseOnSelect className="navbarInicio">
                 <Navbar.Brand href="/">
-  <img src={image} className="logo" alt="LogoTesis" />{" "}
+                    <img src={image} className="logo" alt="LogoTesis" />{" "}
                 </Navbar.Brand>
                 <Button className="botonInicio"  href="/" size="lg">
                     Inicio

@@ -3,6 +3,11 @@ import axios from "axios";
 import {Button,Container} from "react-bootstrap";
 import swal from "sweetalert";
 import NavbarLogeadoJP from "../Main/NavbarLogeadoJP.js";
+import DatePicker, { registerLocale } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import "./CrearProyecto.css";
+import es from "date-fns/locale/es"
+registerLocale("es",es);
 
 class CrearProyecto extends Component {
     constructor(props) {
@@ -14,6 +19,7 @@ class CrearProyecto extends Component {
       usuario: [],
       id: null,
       estado_proyecto: true,
+      fecha: new Date("2018", "06", "22"),
       };
     }
   
@@ -21,6 +27,10 @@ class CrearProyecto extends Component {
       this.setState({ [e.target.name]: e.target.value });
     };
 
+    onChange=fecha=>{
+      this.setState({fecha_inicio_proyecto: fecha});
+    }
+    
     CrearProyecto = (e) => {
       e.preventDefault();
       if (
@@ -30,12 +40,13 @@ class CrearProyecto extends Component {
         this.state.contrasena !== "")
         {
           axios.all([
-            axios.post("http://localhost:8080/proyecto/create", {
+            axios.post("http://localhost:8080/proyecto/create/"+localStorage.getItem('usuario'), {
             nombre_proyecto: this.state.nombre_proyecto,
             fecha_inicio_proyecto: this.state.fecha_inicio_proyecto,
             objetivo_proyecto: this.state.objetivo_proyecto,
             contrasena: this.state.contrasena,
             estado_proyecto: this.state.estado_proyecto,
+            id_usuario: localStorage.getItem('usuario'),
             }),
           
             swal({
@@ -76,7 +87,6 @@ class CrearProyecto extends Component {
 
     render() {
       const nombre_proyecto = this.state.nombre_proyecto;
-      const fecha_inicio_proyecto = this.state.fecha_inicio_proyecto;
       const objetivo_proyecto = this.state.objetivo_proyecto;
       const contrasena = this.state.contrasena;
   
@@ -106,15 +116,11 @@ class CrearProyecto extends Component {
                   <div className="form-group">
                     <label>
                       Fecha de inicio proyecto:
-                      <input
-                        className="inputRegister"
-                        type="text"
-                        value={fecha_inicio_proyecto}
-                        name="fecha_inicio_proyecto"
-                        onChange={this.changeHandler}
-                        placeholder="agosto"
-                        required
-                      />
+                      <div className="contenedorDate">
+                        <div className="centerDate">
+                        <DatePicker selected={this.state.fecha_inicio_proyecto} onChange={this.onChange} locale = "es" className="pickers" dateFormat="dd-MM-yyyy"/>
+                        </div>
+                      </div>
                     </label>
                   </div>
                   <div className="form-group">
@@ -145,7 +151,6 @@ class CrearProyecto extends Component {
                       />
                     </label>
                   </div>
-                  
                   <Button type="submit" value="Submit">
                     {" "}
                     Crear Proyecto

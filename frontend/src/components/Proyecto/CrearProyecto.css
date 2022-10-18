@@ -1,0 +1,11 @@
+.contenedor {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+.centerDate {
+    width: 100%;
+    text-align: center;
+}

@@ -7,6 +7,7 @@ import Registrarse from "./components/Register/Registrarse";
 import VerPerfil from "./components/VerPerfil/VerPerfil";
 import CrearProyecto from "./components/Proyecto/CrearProyecto";
 import VerProyecto from "./components/Proyecto/VerProyecto";
+import MisProyectosJP from "./components/MisProyectos/MisProyectosJP";
 import './App.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/registrarse" element={<Registrarse />} />
         <Route path="/verPerfil" element={<VerPerfil />} />
         <Route path="/crearProyecto" element={<CrearProyecto />} />
+        <Route path="/misproyectosjp" element={<MisProyectosJP />} />
         <Route exact path="/verProyecto/:idP" element={<VerProyecto />} />
       </Routes>
     </BrowserRouter>

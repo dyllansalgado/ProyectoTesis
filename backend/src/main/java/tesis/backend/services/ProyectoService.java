@@ -25,6 +25,12 @@ public class ProyectoService {
         return new ResponseEntity<>(gson.toJson(proyecto), HttpStatus.OK);
     }
 
+    @GetMapping("/usuarioProyectos/{idUsuario}")
+    ResponseEntity<String> getListUsuarioProyectos(@PathVariable Long idUsuario) {
+        List<Proyecto> proyectos = proyectoRepository.getListUsuarioProyectos(idUsuario);
+        return new ResponseEntity<>(gson.toJson(proyectos), HttpStatus.OK);
+    }
+
     @GetMapping("/proyecto/{id_proyecto}")
     ResponseEntity<String> getProyecto(@PathVariable Long id_proyecto){
         Proyecto proyecto = proyectoRepository.getProyecto(id_proyecto);
@@ -34,11 +40,12 @@ public class ProyectoService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/proyecto/create")
-    ResponseEntity<String> createProyecto(@RequestBody String request){
+    @PostMapping("/proyecto/create/{id_usuario}")
+    ResponseEntity<String> createProyecto(@RequestBody String request, @PathVariable Long id_usuario){
         Proyecto proyectoCreado = gson.fromJson(request, Proyecto.class);
+
         if (proyectoCreado!= null){
-            proyectoCreado = proyectoRepository.createProyecto(proyectoCreado);
+            proyectoCreado = proyectoRepository.createProyecto(proyectoCreado, id_usuario);
             return new ResponseEntity<>(gson.toJson(proyectoCreado),HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

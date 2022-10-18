@@ -19,24 +19,41 @@ public class ProyectoRepositoryImp implements ProyectoRepository {
         return resultado + 1; 
     }
 
-    public Proyecto createProyecto(Proyecto proyecto){
+    @Override
+    public Long countUsuarioProyecto() {
+        String query = "select count(*) from usuario_proyecto";
+        Connection conn = sql2o.open();
+        Long resultado = (Long) conn.createQuery(query, true).executeAndFetchFirst(Long.class);
+        return resultado + 1;
+    }
+
+
+    public Proyecto createProyecto(Proyecto proyecto, Long id_usuario ){
         Long id_count = countProyecto();
+        Long id_CountProyectoUsuario= countUsuarioProyecto();
         String query = "INSERT into proyecto (id_proyecto, nombre_proyecto, fecha_inicio_proyecto, estado_proyecto, objetivo_proyecto, contrasena) values (:id_proyecto,:nombre_proyecto,:fecha_inicio_proyecto,:estado_proyecto,:objetivo_proyecto,:contrasena)";
-        try(Connection conn = sql2o.open()){
-            conn.createQuery(query,true).addParameter("id_proyecto",id_count)
+        String queryproyecto_usuario = "INSERT into usuario_proyecto (id_usuario_proyecto, id_usuario, id_proyecto)" +
+        " values (:id_usuario_proyecto,:id_usuario,:id_proyecto)";
+
+        Connection conn = sql2o.open();
+        conn.createQuery(query,true).addParameter("id_proyecto",id_count)
                 .addParameter("nombre_proyecto", proyecto.getNombre_proyecto())
                 .addParameter("fecha_inicio_proyecto", proyecto.getFecha_inicio_proyecto())
                 .addParameter("estado_proyecto", proyecto.getEstado_proyecto())
                 .addParameter("objetivo_proyecto", proyecto.getObjetivo_proyecto())
                 .addParameter("contrasena", proyecto.getContrasena())
                 .executeUpdate().getKey();
-            proyecto.setId_proyecto(id_count);
-            return proyecto;
-        } 
-        catch(Exception e){
-            System.out.println(e.getMessage());
-            return null;
-        }
+        proyecto.setId_proyecto(id_count);
+            //Crear table proyecto usuario
+  
+        conn.createQuery(queryproyecto_usuario,true).addParameter("id_usuario_proyecto",id_CountProyectoUsuario)
+                .addParameter("id_usuario", id_usuario)
+                .addParameter("id_proyecto",id_count)
+                .executeUpdate().getKey();
+        proyecto.setId_proyecto(id_CountProyectoUsuario);
+        
+        return proyecto;
+
     }
 
     @Override
@@ -51,11 +68,26 @@ public class ProyectoRepositoryImp implements ProyectoRepository {
         }
     }
 
+
     @Override
     public  List<Proyecto> getListProyecto() {
         String query = "select * from proyecto";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(query).executeAndFetch(Proyecto.class);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+
+    @Override
+    public  List<Proyecto> getListUsuarioProyectos(Long id_usuario) {
+        String query = "select p.* from usuario_proyecto up, usuario u , proyecto p"+
+        " where u.id_usuario=:id_usuario and u.id_usuario = up.id_usuario and up.id_proyecto = p.id_proyecto";
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery(query).addParameter("id_usuario", id_usuario).executeAndFetch(Proyecto.class);
         }
         catch (Exception e){
             System.out.println(e.getMessage());

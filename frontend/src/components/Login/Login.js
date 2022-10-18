@@ -52,7 +52,7 @@ class Login extends Component {
           }, 1000);
         }
         else if(response.data.token_usuario === 1 && response.data.contrasena_usuario === this.state.contrasena_usuario && response.data.id_rol === 1) {
-          //¿console.log(response.data);
+          //console.log(response.data);
           localStorage.setItem('usuario', response.data.id_usuario);
           localStorage.setItem('id_rol', response.data.id_rol);
           swal({
