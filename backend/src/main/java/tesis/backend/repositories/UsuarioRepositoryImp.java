@@ -134,10 +134,6 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
         }
     }
 
-
-
-
-    //AÑADIDA AHORA SI FALLA BORRAR
     @Override
     public String logOut(Usuario usuario){
         try(Connection conn = sql2o.open()){

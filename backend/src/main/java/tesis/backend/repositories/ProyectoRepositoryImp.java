@@ -81,7 +81,6 @@ public class ProyectoRepositoryImp implements ProyectoRepository {
         }
     }
 
-
     @Override
     public  List<Proyecto> getListUsuarioProyectos(Long id_usuario) {
         String query = "select p.* from usuario_proyecto up, usuario u , proyecto p"+
