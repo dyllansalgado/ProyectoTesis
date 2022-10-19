@@ -68,6 +68,35 @@ public class ProyectoRepositoryImp implements ProyectoRepository {
         }
     }
 
+    public Proyecto ingresarUsuarioAProyecto(Proyecto proyecto, Long id_usuario, Long id_proyecto){
+        Long id_CountProyectoUsuario= countUsuarioProyecto();
+        String query = "select * from proyecto where id_proyecto=:id_proyecto and contrasena=:contrasena";
+        String queryproyecto_usuario = "INSERT into usuario_proyecto (id_usuario_proyecto, id_usuario, id_proyecto)" +
+        " values (:id_usuario_proyecto,:id_usuario,:id_proyecto)";
+        try(Connection conn = sql2o.open()){
+            List<Proyecto> findProyecto = conn.createQuery(query)
+                .addParameter("id_proyecto", proyecto.getId_proyecto())
+                .addParameter("contrasena", proyecto.getContrasena())
+                .executeAndFetch(Proyecto.class);
+            if(findProyecto.size() == 1){
+                System.out.println("Proyecto ingresado con exito");
+                Proyecto proyectoRespuesta = findProyecto.get(0);
+                return proyectoRespuesta;
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+        Connection conn = sql2o.open();
+        conn.createQuery(queryproyecto_usuario,true).addParameter("id_usuario_proyecto",id_CountProyectoUsuario)
+            .addParameter("id_usuario", id_usuario)
+            .addParameter("id_proyecto",id_proyecto)
+            .executeUpdate().getKey();
+        proyecto.setId_proyecto(id_CountProyectoUsuario);
+        
+        return proyecto;
+
+    }
 
     @Override
     public  List<Proyecto> getListProyecto() {
@@ -85,6 +114,19 @@ public class ProyectoRepositoryImp implements ProyectoRepository {
     public  List<Proyecto> getListUsuarioProyectos(Long id_usuario) {
         String query = "select p.* from usuario_proyecto up, usuario u , proyecto p"+
         " where u.id_usuario=:id_usuario and u.id_usuario = up.id_usuario and up.id_proyecto = p.id_proyecto";
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery(query).addParameter("id_usuario", id_usuario).executeAndFetch(Proyecto.class);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public  List<Proyecto> getListUsuarioProyectosNoPertenece(Long id_usuario) {
+        String query = "select p.* from usuario_proyecto up, usuario u , proyecto p"+
+        " where u.id_usuario=:id_usuario and u.id_usuario != up.id_usuario and up.id_proyecto = p.id_proyecto";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(query).addParameter("id_usuario", id_usuario).executeAndFetch(Proyecto.class);
         }

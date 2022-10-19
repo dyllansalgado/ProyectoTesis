@@ -27,7 +27,7 @@ class MainJefeProyecto extends Component {
           this.setState({usuario});
         }),
       axios
-        .get("http://localhost:8080/proyectos/")
+        .get("http://localhost:8080/usuarioProyectosGeneral/"+id)
         .then((res) => {
           const proyectos = res.data;
         
@@ -39,7 +39,6 @@ class MainJefeProyecto extends Component {
         }),
     ]);
   }
-
   //Barra de busqueda
   onChange = (e) => {
     if (this.node.current.contains(e.target)) {
@@ -50,8 +49,9 @@ class MainJefeProyecto extends Component {
     });
   };
   onUserChange = async (e) => {
+    const id = localStorage.getItem('usuario');
     await axios
-      .get("http://localhost:8080/proyectos/")
+      .get("http://localhost:8080/usuarioProyectosGeneral/"+id)
       .then((res) => {
         this.setState({
           proyectosFiltro: res.data,
@@ -86,6 +86,8 @@ class MainJefeProyecto extends Component {
   render() {
     const {usuario} = this.state;
     const {proyectos} = this.state;
+
+
     return (
       <div>
         <div>

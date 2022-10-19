@@ -31,6 +31,12 @@ public class ProyectoService {
         return new ResponseEntity<>(gson.toJson(proyectos), HttpStatus.OK);
     }
 
+    @GetMapping("/usuarioProyectosGeneral/{idUsuario}")
+    ResponseEntity<String> getListUsuarioProyectosNoPertenece(@PathVariable Long idUsuario) {
+        List<Proyecto> proyectos = proyectoRepository.getListUsuarioProyectosNoPertenece(idUsuario);
+        return new ResponseEntity<>(gson.toJson(proyectos), HttpStatus.OK);
+    }
+
     @GetMapping("/proyecto/{id_proyecto}")
     ResponseEntity<String> getProyecto(@PathVariable Long id_proyecto){
         Proyecto proyecto = proyectoRepository.getProyecto(id_proyecto);

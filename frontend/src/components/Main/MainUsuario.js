@@ -27,7 +27,7 @@ class MainUsuario extends Component {
           this.setState({usuario});
         }),
       axios
-        .get("http://localhost:8080/proyectos/")
+        .get("http://localhost:8080/usuarioProyectosGeneral/"+id)
         .then((res) => {
           const proyectos = res.data;
           this.setState({proyectos});
@@ -47,8 +47,9 @@ class MainUsuario extends Component {
     });
   };
   onUserChange = async (e) => {
+    const id = localStorage.getItem('usuario');
     await axios
-      .get("http://localhost:8080/proyectos/")
+      .get("http://localhost:8080/usuarioProyectosGeneral/"+id)
       .then((res) => {
         this.setState({
           proyectosFiltro: res.data,
