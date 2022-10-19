@@ -40,6 +40,49 @@ class MainJefeProyecto extends Component {
     ]);
   }
 
+  //Barra de busqueda
+  onChange = (e) => {
+    if (this.node.current.contains(e.target)) {
+      return;
+    }
+    this.setState({
+      proyectosFiltro: [],
+    });
+  };
+  onUserChange = async (e) => {
+    await axios
+      .get("http://localhost:8080/proyectos/")
+      .then((res) => {
+        this.setState({
+          proyectosFiltro: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+      let filter = e.target.value.toLowerCase();
+      let filtroProyectos = this.state.proyectosFiltro.filter((e) => {
+
+        let dataFilter = e.nombre_proyecto.toLowerCase();
+        let dataFecha = e.fecha_inicio_proyecto.toLowerCase();
+        return (
+          dataFilter
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .indexOf(filter) !== -1 ||
+          dataFecha
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .indexOf(filter) !== -1
+          );
+      });
+
+    this.setState({
+      proyectos: filtroProyectos,
+    });
+  };
+
   render() {
     const {usuario} = this.state;
     const {proyectos} = this.state;
@@ -89,7 +132,7 @@ class MainJefeProyecto extends Component {
                         </p>
                         <div className="center">
                           <Button
-                            variant="outline-primary"
+                            variant="outline-primary" href={`/verMasProyecto/${proyectos.id_proyecto}`}
                           >
                             Ver más
                           </Button>

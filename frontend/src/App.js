@@ -6,8 +6,9 @@ import MainUsuario from "./components/Main/MainUsuario";
 import Registrarse from "./components/Register/Registrarse";
 import VerPerfil from "./components/VerPerfil/VerPerfil";
 import CrearProyecto from "./components/Proyecto/CrearProyecto";
-import VerProyecto from "./components/Proyecto/VerProyecto";
+import VerMasProyecto from "./components/Proyecto/VerMasProyecto";
 import MisProyectosJP from "./components/MisProyectos/MisProyectosJP";
+import MisProyectosUsuario from "./components/MisProyectos/MisProyectosUsuario";
 import './App.css';
 
 function App() {
@@ -21,8 +22,9 @@ function App() {
         <Route path="/registrarse" element={<Registrarse />} />
         <Route path="/verPerfil" element={<VerPerfil />} />
         <Route path="/crearProyecto" element={<CrearProyecto />} />
-        <Route path="/misproyectosjp" element={<MisProyectosJP />} />
-        <Route exact path="/verProyecto/:idP" element={<VerProyecto />} />
+        <Route path="/misProyectosJP" element={<MisProyectosJP />} />
+        <Route path="/misProyectosUsuario" element={<MisProyectosUsuario />} />
+        <Route exact path="/verMasProyecto/:idP" element={<VerMasProyecto />} />
       </Routes>
     </BrowserRouter>
     </>

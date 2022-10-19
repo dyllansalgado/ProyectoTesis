@@ -6,40 +6,79 @@ import "./MainUsuario.css";
 import axios from "axios";
 
 class MainUsuario extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        usuario: [],
-        id: null,
-        proyectos: [],
-      };
-      this.node = React.createRef();
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      usuario: [],
+      id: null,
+      proyectos: [],
+    };
+    this.node = React.createRef();
+  }
   
-    componentDidMount() {
-      const id = localStorage.getItem('usuario');
-      axios.all([
-        axios
-          .get(
-            "http://localhost:8080/usuario/"+id)
-          .then((res) => {
-            const usuario = res.data;
-            this.setState({usuario});
-          }),
-        axios
-          .get("http://localhost:8080/proyectos/")
-          .then((res) => {
-            const proyectos = res.data;
-            //console.log(proyectos);
-          
-            this.setState({proyectos});
-          })
-          .catch((error) => {
-            console.log(error);
-          }),
-      ]);
+  componentDidMount() {
+    const id = localStorage.getItem('usuario');
+    axios.all([
+      axios
+        .get(
+          "http://localhost:8080/usuario/"+id)
+        .then((res) => {
+          const usuario = res.data;
+          this.setState({usuario});
+        }),
+      axios
+        .get("http://localhost:8080/proyectos/")
+        .then((res) => {
+          const proyectos = res.data;
+          this.setState({proyectos});
+        })
+        .catch((error) => {
+          console.log(error);
+        }),
+    ]);
+  }
+  //Barra de busqueda
+  onChange = (e) => {
+    if (this.node.current.contains(e.target)) {
+      return;
     }
+    this.setState({
+      proyectosFiltro: [],
+    });
+  };
+  onUserChange = async (e) => {
+    await axios
+      .get("http://localhost:8080/proyectos/")
+      .then((res) => {
+        this.setState({
+          proyectosFiltro: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
+      let filter = e.target.value.toLowerCase();
+      let filtroProyectos = this.state.proyectosFiltro.filter((e) => {
+
+        let dataFilter = e.nombre_proyecto.toLowerCase();
+        let dataFecha = e.fecha_inicio_proyecto.toLowerCase();
+        return (
+          dataFilter
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .indexOf(filter) !== -1 ||
+          dataFecha
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .indexOf(filter) !== -1
+          );
+      });
+
+    this.setState({
+      proyectos: filtroProyectos,
+    });
+  };
   render() {
     const {usuario} = this.state;
     const {proyectos} = this.state;
@@ -57,7 +96,7 @@ class MainUsuario extends Component {
           </Row>
           <div className="InformacionCentralUsuario">
           <h3 className="centerTitulo"> Proyectos disponibles</h3>
-          <Button className="botonMisProyectosUsuario"  href="/misProyectos" size="lg">
+          <Button className="botonMisProyectosUsuario"  href="/misProyectosUsuario" size="lg">
                 Mis proyectos
             </Button>
             <Col>
@@ -87,7 +126,7 @@ class MainUsuario extends Component {
                         </p>
                         <div className="center">
                           <Button
-                            variant="outline-primary" href={`/verProyecto/${proyectos.id_proyecto}`}
+                            variant="outline-primary" href={`/verMasProyecto/${proyectos.id_proyecto}`}
                           >
                             Ver más
                           </Button>

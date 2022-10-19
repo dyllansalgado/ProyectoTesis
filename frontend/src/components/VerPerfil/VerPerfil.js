@@ -45,9 +45,11 @@ class VerPerfil extends Component {
         }
         return (
           <div>
+            <div>
             <NavbarLogeadoUsuario />
-            <Container fluid>
+            </div>
             <div className="fondo">
+            <Container fluid>
               <div className="container_register">
               <form className="verDatos">
                   <div className="center">
@@ -87,8 +89,8 @@ class VerPerfil extends Component {
                   </div>
                 </form>
               </div>
-            </div>
             </Container>
+            </div>
           </div>
         );
       }

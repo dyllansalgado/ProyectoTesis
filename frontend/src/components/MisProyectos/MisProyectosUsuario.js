@@ -1,16 +1,16 @@
 import React, { Component} from "react";
 import {Container, Col, Row, Card } from "react-bootstrap";
-import NavbarLogeadoJP from "../Main/NavbarLogeadoJP.js";
+import NavbarLogeadoUsuario from "../Main/NavbarLogeadoUsuario.js";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
 
-class MisProyectosJP extends Component {
+class MisProyectosUsuario extends Component {
   constructor(props) {
     super(props);
     this.state = {
       usuario: [],
       id: null,
-      proyectosJefe: [],
+      proyectosUsuario: [],
     };
     this.node = React.createRef();
   }
@@ -28,10 +28,10 @@ class MisProyectosJP extends Component {
       axios
         .get("http://localhost:8080/usuarioProyectos/"+id)
         .then((res) => {
-          const proyectosJefe = res.data;
+          const proyectosUsuario = res.data;
         
-          this.setState({proyectosJefe});
-          console.log(proyectosJefe);
+          this.setState({proyectosUsuario});
+          console.log(proyectosUsuario);
         })
         .catch((error) => {
           console.log(error);
@@ -79,56 +79,54 @@ class MisProyectosJP extends Component {
       });
 
     this.setState({
-      proyectosJefe: filtroProyectos,
+      proyectosUsuario: filtroProyectos,
     });
   };
-  
+
   render() {
     const {usuario} = this.state;
-    const {proyectosJefe} = this.state;
+    const {proyectosUsuario} = this.state;
     return (
       <div>
         <div>
-          <NavbarLogeadoJP />
+          <NavbarLogeadoUsuario />
         </div>
         <div class="fondoA" >
         <Container fluid>
             <Row>
               <Col>
-                <h3 className="centerTitulo"> Bienvenido Jefe de Proyectos: {usuario.nombre_usuario}</h3>
+                <h3 className="centerTitulo"> Bienvenido Usuario: {usuario.nombre_usuario}</h3>
               </Col>
             </Row>
-            <div className="InformacionCentral">
-              <Button className="botonCrearProyecto"  href="/crearProyecto" size="lg">
-              Crear Proyecto
-              </Button>
-              <Button className="botonMisProyectos"  href="/mainJefeProyecto/" size="lg">
-              Volver
-              </Button>
-              <Col>
-                <div className="filterBlock">
-                  <input
-                    type="text"
-                    onClick={this.onChange}
-                    onChange={this.onUserChange}
-                    placeholder="Buscar Proyecto..."
-                    ref={this.node}
-                  />
-                </div>
-              </Col> 
-            </div> 
+            <div className="InformacionCentralUsuario">
+              <h3 className="centerTitulo"> Proyectos disponibles</h3>
+              <Button className="botonMisProyectosUsuario"  href="/mainUsuario" size="lg">
+                    Volver
+                </Button>
+                <Col>
+                  <div className="filterBlockUsuario">
+                    <input
+                      type="text"
+                      onClick={this.onChange}
+                      onChange={this.onUserChange}
+                      placeholder="Buscar Proyecto..."
+                      ref={this.node}
+                    />
+                  </div>
+                </Col>
+            </div>
             <Row className="ProyectosList">
-              {proyectosJefe.map((proyectosJefe) => (
+              {proyectosUsuario.map((proyectosUsuario) => (
                 <Col className="col">
                   <Card style={{ width: "18rem" }}>
                     <Card.Body>
-                        <Card.Title>{proyectosJefe.nombre_proyecto}</Card.Title>
-                        <Card.Subtitle>Fecha de inicio: {proyectosJefe.fecha_inicio_proyecto}</Card.Subtitle>
+                        <Card.Title>{proyectosUsuario.nombre_proyecto}</Card.Title>
+                        <Card.Subtitle>Fecha de inicio: {proyectosUsuario.fecha_inicio_proyecto}</Card.Subtitle>
                         <p>
-                          Objetivo: {proyectosJefe.objetivo_proyecto}
+                          Objetivo: {proyectosUsuario.objetivo_proyecto}
                         </p>
                         <p>
-                          Estado: {proyectosJefe.estado_proyecto}
+                          Estado: {proyectosUsuario.estado_proyecto}
                         </p>
                         <div className="center">
                           <Button
@@ -149,4 +147,4 @@ class MisProyectosJP extends Component {
   }
 }
 
-export default MisProyectosJP;
+export default MisProyectosUsuario;

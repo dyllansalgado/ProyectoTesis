@@ -7,28 +7,20 @@
 }
 
 .botonVolver{
-    background-color:#8F9090 ;
-    margin: 20px;
-    text-align: center;
-    border-radius: 20px;
+    border-radius: 30px;
     cursor:pointer;
-    width:200px;
-    padding: 10px 10px;
+    width: 50%;
     position: relative; 
-    text-decoration:none;
-    color:black;
-    bottom: 40px; right: -250px;
+    padding: 10px 20px;
+    bottom: -1%; right: 4%;
 }
 
 .editarDatos{
-    margin: 20px;
-    text-align: center;
-    border-radius: 20px;
+    border-radius: 30px;
     cursor:pointer;
-    padding: 10px;
+    width: 50%;
     position: relative; 
-    text-decoration:none;
-    color:black;
-    bottom: -39px; right: 40px;
+    padding: 10px 20px;
+    bottom: -1%; right: 10%;
 }
 
