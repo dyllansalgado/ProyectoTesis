@@ -14,15 +14,11 @@ class VerMasProyecto extends Component {
             rol: "",
             contrasena: "",
         };
-        this.changeName = this.changeName.bind(this);
+        this.changeContrasenaaa = this.changeContrasenaaa.bind(this);
     }
 
-    changeHandler = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
-    };
-
-    changeName(event) {
-        this.setState({ contrasena: event.target.value });
+    changeContrasenaaa(event) {
+        this.setState({contrasena: event.target.value});
     }
     componentDidMount() {
         const id = localStorage.getItem('usuario');
@@ -64,8 +60,7 @@ class VerMasProyecto extends Component {
 
     render() { 
         const {usuario} = this.state;
-        const {proyecto} = this.state;  
-        const contrasena = this.state.contrasena;
+        const {proyecto} = this.state; 
         if (usuario.id_rol === 1) {
           const rol = "Jefe de Proyecto";
           this.setState({rol});
@@ -88,7 +83,7 @@ class VerMasProyecto extends Component {
         <div className="fondo">
         <Container fluid>
             <div className="container_register">
-                <form className="verDatosProyectos" onSubmit={this.RegistrarProyectoUsuario}>
+                <form className="verDatosProyectos">
                     <div className="center">
                     <h3 className="tituloUsuario"> Bienvenido {this.state.rol}: {usuario.nombre_usuario}</h3>
                         <h3 className="titulo">Datos de Proyecto</h3>
@@ -113,15 +108,14 @@ class VerMasProyecto extends Component {
                             </label>
                         </div>
                         <div className="form-group">
-                          <label>
-                            Contraseña:
+                        <label>
+                            Nombre de usuario:
                             <input
-                              className="inputRegister"
+                              className="inputLogin"
                               type="text"
-                              value={contrasena}
-                              name="contrasena"
-                              onChange={this.changeHandler}
-                              placeholder="aa"
+                              value= {this.state.contrasena}
+                              onChange={this.changeContrasenaaa}
+                              placeholder="Usuario...."
                               required
                             />
                           </label>
