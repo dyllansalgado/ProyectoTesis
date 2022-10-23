@@ -31,9 +31,9 @@ public class ProyectoService {
         return new ResponseEntity<>(gson.toJson(proyectos), HttpStatus.OK);
     }
 
-    @GetMapping("/usuarioProyectosGeneral/{idUsuario}")
-    ResponseEntity<String> getListUsuarioProyectosNoPertenece(@PathVariable Long idUsuario) {
-        List<Proyecto> proyectos = proyectoRepository.getListUsuarioProyectosNoPertenece(idUsuario);
+    @GetMapping("/usuarioProyectosGeneral/{id_usuario}")
+    ResponseEntity<String> getListUsuarioProyectosNoPertenece(@PathVariable Long id_usuario) {
+        List<Proyecto> proyectos = proyectoRepository.getListUsuarioProyectosNoPertenece(id_usuario);
         return new ResponseEntity<>(gson.toJson(proyectos), HttpStatus.OK);
     }
 
@@ -44,6 +44,17 @@ public class ProyectoService {
             return new ResponseEntity<>(gson.toJson(proyecto),HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/ingresarUsuarioProyecto/create/{id_usuario}/{id_proyecto}")
+    ResponseEntity<String> ingresarUsuarioAProyecto(@RequestBody String request, @PathVariable Long id_usuario,@PathVariable Long id_proyecto){
+        Proyecto proyectoCreado = gson.fromJson(request, Proyecto.class);
+
+        if (proyectoCreado!= null){
+            proyectoCreado = proyectoRepository.ingresarUsuarioAProyecto(proyectoCreado,id_usuario,id_proyecto);
+            return new ResponseEntity<>(gson.toJson(true),HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/proyecto/create/{id_usuario}")

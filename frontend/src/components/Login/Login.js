@@ -7,15 +7,14 @@ import NavbarInicio from "./NavbarInicio.js";
 
 class Login extends Component {
   constructor(props) {
-        super(props);
-        this.state = { usuario: localStorage.getItem("token"), nombre_usuario: "", contrasena_usuario: "", id_rol: "", token_usuario:""};
-        this.changeName = this.changeName.bind(this);
-        this.changeContrasena = this.changeContrasena.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+    super(props);
+    this.state = { usuario: localStorage.getItem("token"), nombre_usuario: "", contrasena_usuario: "", id_rol: "", token_usuario:""};
+    this.changeName = this.changeName.bind(this);
+    this.changeContrasena = this.changeContrasena.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
     
   componentDidMount() {
-    console.log("compnment didmount")
     if (localStorage.getItem("token") && localStorage.getItem("id_rol") === 2 ){
       window.location.replace("http://localhost:3000/mainUsuario/");
     }

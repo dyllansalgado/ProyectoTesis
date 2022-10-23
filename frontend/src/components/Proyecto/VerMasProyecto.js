@@ -3,21 +3,27 @@ import {Button, Container} from "react-bootstrap";
 import axios from "axios";
 import "./VerMasProyectos.css";
 import NavbarLogeadoUsuario from "../Main/NavbarLogeadoUsuario.js";
-class VerMasProyecto extends Component { 
 
+
+class VerMasProyecto extends Component { 
     constructor(props) {
         super(props);
         this.state = {  usuario: [],
             proyecto:[],
             id: null,
             rol: "",
+            contrasena: "",
         };
+        this.changeName = this.changeName.bind(this);
     }
 
-    changeContrasena(event) {
-        this.setState({ contrasena_proyecto: event.target.value });
-    }
+    changeHandler = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    };
 
+    changeName(event) {
+        this.setState({ contrasena: event.target.value });
+    }
     componentDidMount() {
         const id = localStorage.getItem('usuario');
         let idPath = window.location.pathname.split("/");
@@ -34,7 +40,6 @@ class VerMasProyecto extends Component {
                 .get("http://localhost:8080/proyecto/"+ idPath[2])
                 .then((res) => {
                   const proyecto = res.data;
-                  console.log(proyecto);
                 
                   this.setState({proyecto});
                 })
@@ -43,9 +48,24 @@ class VerMasProyecto extends Component {
             }),
         ]);
     }
+
+    RegistrarProyectoUsuario = (e) => {
+        e.preventDefault();
+        const id = localStorage.getItem('usuario');
+        let idPath = window.location.pathname.split("/");
+        axios
+          .post("http://localhost:8080/ingresarUsuarioProyecto/create/" + id + "/" + idPath[2] , {
+            contrasena: this.state.contrasena
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    }
+
     render() { 
         const {usuario} = this.state;
-        const {proyecto} = this.state;
+        const {proyecto} = this.state;  
+        const contrasena = this.state.contrasena;
         if (usuario.id_rol === 1) {
           const rol = "Jefe de Proyecto";
           this.setState({rol});
@@ -68,7 +88,7 @@ class VerMasProyecto extends Component {
         <div className="fondo">
         <Container fluid>
             <div className="container_register">
-                <form className="verDatosProyectos">
+                <form className="verDatosProyectos" onSubmit={this.RegistrarProyectoUsuario}>
                     <div className="center">
                     <h3 className="tituloUsuario"> Bienvenido {this.state.rol}: {usuario.nombre_usuario}</h3>
                         <h3 className="titulo">Datos de Proyecto</h3>
@@ -93,17 +113,18 @@ class VerMasProyecto extends Component {
                             </label>
                         </div>
                         <div className="form-group">
-                            <label>
-                                Contraseña Proyecto:
+                          <label>
+                            Contraseña:
                             <input
-                              className="inputLogin"
-                              type="password"
-                              value={this.state.contrasena_proyecto}
-                              onChange={this.changeContrasena}
-                              placeholder="*****"
+                              className="inputRegister"
+                              type="text"
+                              value={contrasena}
+                              name="contrasena"
+                              onChange={this.changeHandler}
+                              placeholder="aa"
                               required
                             />
-                            </label>
+                          </label>
                         </div>
                         <Button className="ingresarProyecto" type="submit" value="Submit">
                             {" "}

@@ -68,12 +68,6 @@ class CrearProyecto extends Component {
               .catch((error) => {
                 console.log(error);
               }),
-            axios
-              .post("http://localhost:8080/usuario_proyecto/create/",
-              {
-                //id_usuario: localStorage.getItem('usuario') ,
-                //id_proyecto: this.getState.proyectos.id_proyecto,
-              }),
           ]);  
         }
       else {

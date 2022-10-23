@@ -67,37 +67,32 @@ public class ProyectoRepositoryImp implements ProyectoRepository {
             return null;
         }
     }
-
+    @Override
     public Proyecto ingresarUsuarioAProyecto(Proyecto proyecto, Long id_usuario, Long id_proyecto){
         Long id_CountProyectoUsuario= countUsuarioProyecto();
-        String query = "select * from proyecto where id_proyecto=:id_proyecto and contrasena=:contrasena";
         String queryproyecto_usuario = "INSERT into usuario_proyecto (id_usuario_proyecto, id_usuario, id_proyecto)" +
         " values (:id_usuario_proyecto,:id_usuario,:id_proyecto)";
         try(Connection conn = sql2o.open()){
-            List<Proyecto> findProyecto = conn.createQuery(query)
-                .addParameter("id_proyecto", proyecto.getId_proyecto())
+            List<Proyecto> findProyecto = conn.createQuery("select * from proyecto where id_proyecto=:id_proyecto and contrasena=:contrasena")
+                .addParameter("id_proyecto", id_proyecto)
                 .addParameter("contrasena", proyecto.getContrasena())
                 .executeAndFetch(Proyecto.class);
             if(findProyecto.size() == 1){
-                System.out.println("Proyecto ingresado con exito");
                 Proyecto proyectoRespuesta = findProyecto.get(0);
+                    conn.createQuery(queryproyecto_usuario,true).addParameter("id_usuario_proyecto",id_CountProyectoUsuario)
+                    .addParameter("id_usuario", id_usuario)
+                    .addParameter("id_proyecto",id_proyecto)
+                    .executeUpdate().getKey();
+                    proyectoRespuesta.setId_proyecto(id_CountProyectoUsuario);
                 return proyectoRespuesta;
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
             return null;
         }
-        Connection conn = sql2o.open();
-        conn.createQuery(queryproyecto_usuario,true).addParameter("id_usuario_proyecto",id_CountProyectoUsuario)
-            .addParameter("id_usuario", id_usuario)
-            .addParameter("id_proyecto",id_proyecto)
-            .executeUpdate().getKey();
-        proyecto.setId_proyecto(id_CountProyectoUsuario);
-        
         return proyecto;
-
     }
-
+    
     @Override
     public  List<Proyecto> getListProyecto() {
         String query = "select * from proyecto";
