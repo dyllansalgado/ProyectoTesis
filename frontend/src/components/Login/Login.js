@@ -36,7 +36,6 @@ class Login extends Component {
         contrasena_usuario: this.state.contrasena_usuario
       })
       .then((response) => {
-        console.log("1");
         if (response.data.token_usuario === 1 && response.data.contrasena_usuario === this.state.contrasena_usuario && response.data.id_rol === 2 ) {
           console.log(response.data);  
           localStorage.setItem('usuario', response.data.id_usuario);

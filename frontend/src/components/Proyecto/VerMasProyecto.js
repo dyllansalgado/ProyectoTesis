@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Button, Container} from "react-bootstrap";
 import axios from "axios";
+import swal from "sweetalert";
 import "./VerMasProyectos.css";
 import NavbarLogeadoUsuario from "../Main/NavbarLogeadoUsuario.js";
 
@@ -12,32 +13,41 @@ class VerMasProyecto extends Component {
             proyecto:[],
             id: null,
             rol: "",
-            contrasena: "",
+            contrasena: ""
         };
-        this.changeContrasenaaa = this.changeContrasenaaa.bind(this);
+        this.changeName = this.changeName.bind(this);
     }
 
-    changeContrasenaaa(event) {
-        this.setState({contrasena: event.target.value});
+    changeName(event) {
+        this.setState({ contrasena: event.target.value });
     }
+
     componentDidMount() {
         const id = localStorage.getItem('usuario');
         let idPath = window.location.pathname.split("/");
-        console.log(idPath);
         axios.all([
             axios
-              .get(
-                "http://localhost:8080/usuario/"+id)
-              .then((res) => {
+                .get(
+                  "http://localhost:8080/usuario/"+id)
+                .then((res) => {
                 const usuario = res.data;
                 this.setState({usuario});
+                if(usuario.id_rol === 1){
+                    const rol = "Jefe de Proyecto";
+                    this.setState({rol});
+                }else if(usuario.id_rol === 2){
+                    const rol = "Usuario";
+                    this.setState({rol});
+                }
+                })
+                .catch((error) => {
+                  console.log(error);
             }),
             axios
                 .get("http://localhost:8080/proyecto/"+ idPath[2])
                 .then((res) => {
                   const proyecto = res.data;
-                
-                  this.setState({proyecto});
+                  this.setState({ proyecto});
                 })
                 .catch((error) => {
                   console.log(error);
@@ -45,29 +55,54 @@ class VerMasProyecto extends Component {
         ]);
     }
 
-    RegistrarProyectoUsuario = (e) => {
-        e.preventDefault();
+    RegistrarProyectoUsuario () {
         const id = localStorage.getItem('usuario');
         let idPath = window.location.pathname.split("/");
         axios
-          .post("http://localhost:8080/ingresarUsuarioProyecto/create/" + id + "/" + idPath[2] , {
-            contrasena: this.state.contrasena
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        .post("http://localhost:8080/ingresarUsuarioProyecto/create/" + id + "/" + idPath[2] , {
+          contrasena: this.state.contrasena
+        })
+        .then((response) => {
+            console.log("soy el id " +id);
+            if (response.data.contrasena === this.state.contrasena && id === 1 ) {
+              swal({
+                title: "Contraseña correcta",
+                text: "Se ha asignado el proyecto en sus proyectos",
+                icon: "success",
+              });
+              setTimeout(() => {
+                window.location.replace("http://localhost:3000/mainJefeProyecto/");
+              }, 1000);
+            }
+            else if(response.data.contrasena === this.state.contrasena && id  === 2) {
+              swal({
+                  title: "Contraseña correcta",
+                  text: "Se ha asignado el proyecto en sus proyectos",
+                  icon: "success",
+              });
+              setTimeout(() => {
+                window.location.replace("http://localhost:3000/mainUsuario/");
+              }, 2000);
+            }
+            else {
+              swal({
+                title: "Atención",
+                text: "La contraseña del proyecto es incorrecta",
+                icon: "warning",
+                button: "Aceptar",
+                timer: "2000",
+              });
+            }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-
     render() { 
         const {usuario} = this.state;
-        const {proyecto} = this.state; 
-        if (usuario.id_rol === 1) {
-          const rol = "Jefe de Proyecto";
-          this.setState({rol});
-        }else if (usuario.id_rol === 2) {
-          const rol = "Usuario";
-          this.setState({rol});
-        } 
+        const {rol} = this.state;
+        const contrasena = this.state.contrasena;
+        const {proyecto} = this.state;
         const volver = () => {
             if (usuario.id_rol === 1) {
               window.location.replace("http://localhost:3000/mainJefeProyecto/");
@@ -85,7 +120,7 @@ class VerMasProyecto extends Component {
             <div className="container_register">
                 <form className="verDatosProyectos">
                     <div className="center">
-                    <h3 className="tituloUsuario"> Bienvenido {this.state.rol}: {usuario.nombre_usuario}</h3>
+                    <h3 className="tituloUsuario"> Bienvenido {rol} :{usuario.nombre_usuario}</h3>
                         <h3 className="titulo">Datos de Proyecto</h3>
                         <div className="form-group">
                             <label>
@@ -109,18 +144,19 @@ class VerMasProyecto extends Component {
                         </div>
                         <div className="form-group">
                         <label>
-                            Nombre de usuario:
+                            Ingrese Contraseña:
                             <input
-                              className="inputLogin"
-                              type="text"
-                              value= {this.state.contrasena}
-                              onChange={this.changeContrasenaaa}
-                              placeholder="Usuario...."
-                              required
+                                className="inputRegister"
+                                type="password"
+                                value={contrasena}
+                                name="contrasena"
+                                onChange={this.changeName}
+                                placeholder="*****"
+                                required
                             />
                           </label>
                         </div>
-                        <Button className="ingresarProyecto" type="submit" value="Submit">
+                        <Button className="ingresarProyecto" onClick={() => this.RegistrarProyectoUsuario()}>
                             {" "}
                             Ingresar Proyecto
                         </Button>
