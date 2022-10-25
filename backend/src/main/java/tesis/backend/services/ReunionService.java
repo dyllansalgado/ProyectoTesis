@@ -58,9 +58,6 @@ public class ReunionService {
             if(ok.getLugar_reunion() != null){
                 reunionCreado.setLugar_reunion(ok.getLugar_reunion());
             }
-            if(ok.getHora_reunion() != null){
-                reunionCreado.setHora_reunion(ok.getHora_reunion());
-            }
             if(ok.getEstado() != null){
                 reunionCreado.setEstado(ok.getEstado());
             }

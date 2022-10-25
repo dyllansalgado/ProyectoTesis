@@ -7,7 +7,6 @@ public class Reunion {
     private Long id_glosario;
     private Date fecha_reunion;
     private String lugar_reunion;
-    private String hora_reunion;
     private Boolean estado;
     private boolean deleted;
         
@@ -46,14 +45,6 @@ public class Reunion {
     public void setLugar_reunion(String lugar_reunion) {
         this.lugar_reunion = lugar_reunion;
     }
-
-    public String getHora_reunion() {
-        return hora_reunion;
-    }
-    public void setHora_reunion(String hora_reunion) {
-        this.hora_reunion = hora_reunion;
-    }
-
     public Boolean getEstado() {
         return estado;
     }

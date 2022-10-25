@@ -83,7 +83,6 @@ CREATE TABLE reunion(
     id_reunion serial,
     fecha_reunion date,
     lugar_reunion varchar(50),
-    hora_reunion varchar(20),
     estado boolean,
     id_proyecto integer NOT NULL,
     id_glosario integer NOT NULL,
