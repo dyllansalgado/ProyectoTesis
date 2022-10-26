@@ -4,6 +4,7 @@ public class Glosario {
     private Long id_glosario;
     private String nombre_glosario;
     private String descripcion_glosario;
+    private Long id_reunion;
     private boolean deleted;
             
     //Getter and Setter
@@ -33,5 +34,11 @@ public class Glosario {
     }
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+    public Long getId_reunion() {
+        return id_reunion;
+    }
+    public void setId_reunion(Long id_reunion) {
+        this.id_reunion = id_reunion;
     }
 }

@@ -4,7 +4,6 @@ import java.util.Date;
 public class Reunion {
     private Long id_reunion;
     private Long id_proyecto;
-    private Long id_glosario;
     private Date fecha_reunion;
     private String lugar_reunion;
     private Boolean estado;
@@ -23,13 +22,6 @@ public class Reunion {
     }
     public void setId_proyecto(Long id_proyecto) {
         this.id_proyecto = id_proyecto;
-    }
-
-    public Long getId_glosario() {
-        return id_glosario;
-    }
-    public void setId_glosario(Long id_glosario) {
-        this.id_glosario = id_glosario;
     }
 
     public Date getFecha_reunion() {

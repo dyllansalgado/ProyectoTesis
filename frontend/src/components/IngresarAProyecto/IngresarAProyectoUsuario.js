@@ -6,7 +6,7 @@ import "./IngresarAProyecto.css";
 import axios from "axios";
 
 
-class IngresarAProyectoJP extends Component {
+class IngresarAProyectoUsuario extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -58,9 +58,8 @@ class IngresarAProyectoJP extends Component {
             .catch((error) => {
               console.log(error);
         }),
-      ]);
+        ]);
     }
-
     render() {
         const {usuario} = this.state;
         const {proyecto} = this.state;
@@ -82,10 +81,7 @@ class IngresarAProyectoJP extends Component {
                         </div>
                     </Row>
                         <div className="InformacionCentralIngresarProyecto">
-                        <Button className="botonCrearReunion"  href="/misProyectosUsuario" size="lg">
-                              Crear Reunion
-                        </Button>
-                        <Button className="botonIrAGlosario"  href="/misProyectosUsuario" size="lg">
+                        <Button className="botonIrAGlosarioUser"  href="/" size="lg">
                               Ir a glosario
                         </Button>
                         <div className= "nombreProyecto">
@@ -109,4 +105,4 @@ class IngresarAProyectoJP extends Component {
         );
     }
 }
-export default IngresarAProyectoJP;
+export default IngresarAProyectoUsuario;

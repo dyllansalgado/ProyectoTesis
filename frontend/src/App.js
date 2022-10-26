@@ -10,6 +10,7 @@ import VerMasProyecto from "./components/Proyecto/VerMasProyecto";
 import MisProyectosJP from "./components/MisProyectos/MisProyectosJP";
 import MisProyectosUsuario from "./components/MisProyectos/MisProyectosUsuario";
 import IngresarAProyectoJP from "./components/IngresarAProyecto/IngresarAProyectoJP";
+import IngresarAProyectoUsuario from "./components/IngresarAProyecto/IngresarAProyectoUsuario";
 import './App.css';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/misProyectosUsuario" element={<MisProyectosUsuario />} />
         <Route exact path="/verMasProyecto/:idP" element={<VerMasProyecto />} />
         <Route exact path="/ingresarAProyectoJP/:idP" element={<IngresarAProyectoJP />} />
+        <Route exact path="/ingresarAProyectoUsuario/:idP" element={<IngresarAProyectoUsuario />} />
       </Routes>
     </BrowserRouter>
     </>

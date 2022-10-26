@@ -21,11 +21,12 @@ public class GlosarioRepositoryImp implements GlosarioRepository {
 
     public Glosario createGlosario(Glosario glosario){
         Long id_count = countGlosario();
-        String query = "INSERT into glosario (id_glosario, nombre_glosario, descripcion_glosario) values (:id_glosario,:nombre_glosario,:descripcion_glosario)";
+        String query = "INSERT into glosario (id_glosario, nombre_glosario, descripcion_glosario, id_reunion) values (:id_glosario,:nombre_glosario,:descripcion_glosario,:id_reunion)";
         try(Connection conn = sql2o.open()){
             conn.createQuery(query,true).addParameter("id_glosario",id_count)
                 .addParameter("nombre_glosario", glosario.getNombre_glosario())
                 .addParameter("descripcion_glosario", glosario.getDescripcion_glosario())
+                .addParameter("id_reunion", glosario.getId_reunion())
                 .executeUpdate().getKey();
             glosario.setId_glosario(id_count);
             return glosario;

@@ -27,7 +27,7 @@ CREATE TABLE usuario(
     contrasena_usuario varchar(50),
     correo_usuario varchar(40),
     id_rol integer NOT NULL,
-    token_usuario boolean,
+    token_usuario integer NOT NULL,
     PRIMARY KEY (id_usuario),
     deleted boolean NOT NULL DEFAULT false,
     FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
@@ -59,12 +59,26 @@ CREATE TABLE usuario_proyecto(
     
 );
 
+CREATE TABLE reunion(
+    
+    id_reunion serial,
+    fecha_reunion date,
+    lugar_reunion varchar(50),
+    estado boolean,
+    id_proyecto integer NOT NULL,
+    PRIMARY KEY (id_reunion),
+    deleted boolean NOT NULL DEFAULT false,
+    FOREIGN KEY (id_proyecto) REFERENCES proyecto(id_proyecto)
+);
+
 CREATE TABLE glosario(
     id_glosario serial,
     nombre_glosario varchar(50),
     descripcion_glosario text,
+    id_reunion integer NOT NULL,
     PRIMARY KEY (id_glosario),
-    deleted boolean NOT NULL DEFAULT false
+    deleted boolean NOT NULL DEFAULT false,
+    FOREIGN KEY (id_reunion) REFERENCES reunion(id_reunion)
 );
 
 CREATE TABLE termino(
@@ -77,21 +91,6 @@ CREATE TABLE termino(
     deleted boolean NOT NULL DEFAULT false,
     FOREIGN KEY (id_glosario) REFERENCES glosario(id_glosario)
 );
-
-CREATE TABLE reunion(
-    
-    id_reunion serial,
-    fecha_reunion date,
-    lugar_reunion varchar(50),
-    estado boolean,
-    id_proyecto integer NOT NULL,
-    id_glosario integer NOT NULL,
-    PRIMARY KEY (id_reunion),
-    deleted boolean NOT NULL DEFAULT false,
-    FOREIGN KEY (id_proyecto) REFERENCES proyecto(id_proyecto),
-    FOREIGN KEY (id_glosario) REFERENCES glosario(id_glosario)
-);
-
 CREATE TABLE tema(
     
     id_tema serial,

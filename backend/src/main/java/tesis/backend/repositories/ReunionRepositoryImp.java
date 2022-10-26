@@ -21,14 +21,13 @@ public class ReunionRepositoryImp implements ReunionRepository {
 
     public Reunion createReunion(Reunion reunion){
         Long id_count = countReunion();
-        String query = "INSERT into reunion (id_reunion, fecha_reunion, lugar_reunion, estado, id_proyecto, id_glosario) values (:id_reunion,:fecha_reunion,:lugar_reunion,:estado,:id_proyecto,:id_glosario)";
+        String query = "INSERT into reunion (id_reunion, fecha_reunion, lugar_reunion, estado, id_proyecto) values (:id_reunion,:fecha_reunion,:lugar_reunion,:estado,:id_proyecto)";
         try(Connection conn = sql2o.open()){
             conn.createQuery(query,true).addParameter("id_reunion",id_count)
                 .addParameter("fecha_reunion", reunion.getFecha_reunion())
                 .addParameter("lugar_reunion", reunion.getLugar_reunion())
                 .addParameter("estado", reunion.getEstado())
                 .addParameter("id_proyecto", reunion.getId_proyecto())
-                .addParameter("id_glosario", reunion.getId_glosario())
                 .executeUpdate().getKey();
             reunion.setId_reunion(id_count);
             return reunion;
