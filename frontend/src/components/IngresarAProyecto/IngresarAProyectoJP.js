@@ -39,7 +39,7 @@ class IngresarAProyectoJP extends Component {
                   console.log(error);
             }),
             axios
-              .get("http://localhost:8080/usuarioProyectos/"+id)
+              .get("http://localhost:8080/reuniones/")
               .then((res) => {
                 const proyectosUsuario = res.data;
             
@@ -82,7 +82,7 @@ class IngresarAProyectoJP extends Component {
                         </div>
                     </Row>
                         <div className="InformacionCentralIngresarProyecto">
-                        <Button className="botonCrearReunion"  href="/misProyectosUsuario" size="lg">
+                        <Button className="botonCrearReunion"   href={`/crearReunion/${proyecto.id_proyecto}`} size="lg">
                               Crear Reunion
                         </Button>
                         <Button className="botonIrAGlosario"  href="/misProyectosUsuario" size="lg">

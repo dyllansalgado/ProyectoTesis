@@ -11,6 +11,7 @@ import MisProyectosJP from "./components/MisProyectos/MisProyectosJP";
 import MisProyectosUsuario from "./components/MisProyectos/MisProyectosUsuario";
 import IngresarAProyectoJP from "./components/IngresarAProyecto/IngresarAProyectoJP";
 import IngresarAProyectoUsuario from "./components/IngresarAProyecto/IngresarAProyectoUsuario";
+import CrearReunion from "./components/Reunion/CrearReunion";
 import './App.css';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route exact path="/verMasProyecto/:idP" element={<VerMasProyecto />} />
         <Route exact path="/ingresarAProyectoJP/:idP" element={<IngresarAProyectoJP />} />
         <Route exact path="/ingresarAProyectoUsuario/:idP" element={<IngresarAProyectoUsuario />} />
+        <Route exact path="/crearReunion/:idP" element={<CrearReunion />} />
       </Routes>
     </BrowserRouter>
     </>
