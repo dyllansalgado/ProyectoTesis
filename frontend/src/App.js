@@ -9,6 +9,7 @@ import CrearProyecto from "./components/Proyecto/CrearProyecto";
 import VerMasProyecto from "./components/Proyecto/VerMasProyecto";
 import MisProyectosJP from "./components/MisProyectos/MisProyectosJP";
 import MisProyectosUsuario from "./components/MisProyectos/MisProyectosUsuario";
+import IngresarAProyectoJP from "./components/IngresarAProyecto/IngresarAProyectoJP";
 import './App.css';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/misProyectosJP" element={<MisProyectosJP />} />
         <Route path="/misProyectosUsuario" element={<MisProyectosUsuario />} />
         <Route exact path="/verMasProyecto/:idP" element={<VerMasProyecto />} />
+        <Route exact path="/ingresarAProyectoJP/:idP" element={<IngresarAProyectoJP />} />
       </Routes>
     </BrowserRouter>
     </>

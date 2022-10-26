@@ -91,7 +91,7 @@ class MisProyectosUsuario extends Component {
         <div>
           <NavbarLogeadoUsuario />
         </div>
-        <div class="fondoA" >
+        <div class="fondoB" >
         <Container fluid>
             <Row>
               <Col>
@@ -130,7 +130,7 @@ class MisProyectosUsuario extends Component {
                         </p>
                         <div className="center">
                           <Button
-                            variant="outline-primary"
+                            variant="outline-primary" href={`/ingresarAProyectoUsuario/${proyectosUsuario.id_proyecto}`}
                           >
                             Ingresar a proyecto
                           </Button>

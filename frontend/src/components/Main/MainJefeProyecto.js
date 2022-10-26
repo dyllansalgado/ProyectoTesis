@@ -93,7 +93,7 @@ class MainJefeProyecto extends Component {
         <div>
           <NavbarLogeadoJP />
         </div>
-        <div className="fondoA" >
+        <div className="fondoB" >
         <Container fluid>
             <Row>
               <Col>

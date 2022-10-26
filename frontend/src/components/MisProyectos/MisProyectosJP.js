@@ -91,7 +91,7 @@ class MisProyectosJP extends Component {
         <div>
           <NavbarLogeadoJP />
         </div>
-        <div className="fondoA" >
+        <div className="fondoB" >
         <Container fluid>
             <Row>
               <Col>
@@ -132,7 +132,7 @@ class MisProyectosJP extends Component {
                         </p>
                         <div className="center">
                           <Button
-                            variant="outline-primary"
+                            variant="outline-primary" href={`/ingresarAProyectoJP/${proyectosJefe.id_proyecto}`}
                           >
                             Ingresar a proyecto
                           </Button>
