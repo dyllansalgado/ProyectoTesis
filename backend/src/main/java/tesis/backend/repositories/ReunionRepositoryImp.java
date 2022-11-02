@@ -62,6 +62,19 @@ public class ReunionRepositoryImp implements ReunionRepository {
         }
     }
 
+    @Override
+    public  List<Reunion> getListReunionXidProyecto(Long id_proyecto) {
+        String query = "select r.* from reunion r, proyecto p " +
+        "where p.id_proyecto=:id_proyecto and r.id_proyecto = p.id_proyecto";
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery(query).addParameter("id_proyecto", id_proyecto).executeAndFetch(Reunion.class);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     @Override 
     public Reunion updateReunion(Reunion reunion, Long id_reunion){
         String query = "update reunion set fecha_reunion = :fecha_reunion, lugar_reunion = :lugar_reunion, estado = :estado where id_reunion = :id_reunion and deleted = false";

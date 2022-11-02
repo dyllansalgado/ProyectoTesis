@@ -60,3 +60,9 @@
     position: relative; 
     bottom: -1%; right: -2%;
 }
+
+.ReunionList{
+    margin: auto;
+    width: -100px;
+    padding: 12%;
+}

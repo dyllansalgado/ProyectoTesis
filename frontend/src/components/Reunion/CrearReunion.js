@@ -1,5 +1,5 @@
 import React, { Component} from "react";
-import {Container, Col, Row, Card } from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import NavbarLogeadoJP from "../Main/NavbarLogeadoJP.js";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";

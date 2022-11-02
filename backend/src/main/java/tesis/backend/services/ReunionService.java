@@ -34,6 +34,12 @@ public class ReunionService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/reunionProyecto/{id_proyecto}")
+    ResponseEntity<String>getListReunionXidProyecto(@PathVariable Long id_proyecto) {
+        List<Reunion> reunion = reunionRepository.getListReunionXidProyecto(id_proyecto);
+        return new ResponseEntity<>(gson.toJson(reunion), HttpStatus.OK);
+    }
+
     @PostMapping("/reunion/create")
     ResponseEntity<String> createReunion(@RequestBody String request){
         Reunion reunionCreado = gson.fromJson(request, Reunion.class);
