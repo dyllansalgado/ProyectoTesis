@@ -86,11 +86,11 @@ public class ProyectoRepositoryImp implements ProyectoRepository {
                     proyectoRespuesta.setId_proyecto(id_CountProyectoUsuario);
                 return proyectoRespuesta;
             }
+            return null;
         }catch (Exception e){
             System.out.println(e.getMessage());
             return null;
         }
-        return proyecto;
     }
     
     @Override
@@ -120,7 +120,7 @@ public class ProyectoRepositoryImp implements ProyectoRepository {
 
     @Override
     public  List<Proyecto> getListUsuarioProyectosNoPertenece(Long id_usuario) {
-        String query = "select p.* from usuario_proyecto up, usuario u , proyecto p " +
+        String query = "select DISTINCT p.* from usuario_proyecto up, usuario u , proyecto p " +
         "where u.id_usuario =:id_usuario and u.id_usuario != up.id_usuario and up.id_proyecto = p.id_proyecto and " +
         "up.id_proyecto not in (select distinct p2.id_proyecto from usuario_proyecto up2, usuario u2 , proyecto p2 " + 
         "where u2.id_usuario=:id_usuario and u2.id_usuario = up2.id_usuario and up2.id_proyecto = p2.id_proyecto)";

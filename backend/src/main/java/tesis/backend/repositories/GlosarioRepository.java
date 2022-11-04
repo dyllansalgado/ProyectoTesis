@@ -5,6 +5,7 @@ import java.util.List;
 public interface GlosarioRepository {
     public Glosario createGlosario(Glosario glosario);
     public List<Glosario> getListGlosario();  
+    public List<Glosario> getListGlosarioXidReunion(Long id_reunion);
     public Glosario  getGlosario (Long id_glosario);
     public Glosario updateGlosario (Glosario glosario, Long id_glosario);
     public boolean deleteGlosario (Long id_glosario);

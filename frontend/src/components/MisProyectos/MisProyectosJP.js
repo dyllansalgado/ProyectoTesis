@@ -118,21 +118,21 @@ class MisProyectosJP extends Component {
               </Col> 
             </div> 
             <Row className="ProyectosList">
-              {proyectosJefe.map((proyectosJefe) => (
-                <Col className="col">
+              {proyectosJefe.map((proyectos) => (
+                <Col className="col" key={proyectos.id_proyecto}>
                   <Card style={{ width: "18rem" }}>
                     <Card.Body>
-                        <Card.Title>{proyectosJefe.nombre_proyecto}</Card.Title>
-                        <Card.Subtitle>Fecha de inicio: {proyectosJefe.fecha_inicio_proyecto}</Card.Subtitle>
+                        <Card.Title>{proyectos.nombre_proyecto}</Card.Title>
+                        <Card.Subtitle>Fecha de inicio: {proyectos.fecha_inicio_proyecto}</Card.Subtitle>
                         <p>
-                          Objetivo: {proyectosJefe.objetivo_proyecto}
+                          Objetivo: {proyectos.objetivo_proyecto}
                         </p>
                         <p>
-                          Estado: {proyectosJefe.estado_proyecto}
+                          Estado: {proyectos.estado_proyecto.toString()}
                         </p>
                         <div className="center">
                           <Button
-                            variant="outline-primary" href={`/ingresarAProyectoJP/${proyectosJefe.id_proyecto}`}
+                            variant="outline-primary" href={`/ingresarAProyectoJP/${proyectos.id_proyecto}`}
                           >
                             Ingresar a proyecto
                           </Button>

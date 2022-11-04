@@ -103,18 +103,18 @@ class IngresarAProyectoJP extends Component {
                         </Col>
                     </div>
                     <Row className="ReunionList">
-                      {reunion.map((reunion) => (
-                        <Col className="col">
+                      {reunion.map((meet) => (
+                        <Col className="col" key={meet.id_reunion}>
                           <Card style={{ width: "20rem" }}>
                             <Card.Body>
-                                <Card.Title>Fecha de reunion: {reunion.fecha_reunion}</Card.Title>
-                                <Card.Subtitle>Lugar: {reunion.lugar_reunion}</Card.Subtitle>
+                                <Card.Title>Fecha de reunion: {meet.fecha_reunion}</Card.Title>
+                                <Card.Subtitle>Lugar: {meet.lugar_reunion}</Card.Subtitle>
                                 <p>
-                                  Estado: {reunion.estado}
+                                  Estado: {meet.estado}
                                 </p>
                                 <div className="center">
                                   <Button
-                                    variant="outline-primary" href={`/ingresarReunionJP/${proyecto.id_proyecto}/${reunion.id_reunion}`}
+                                    variant="outline-primary" href={`/ingresarReunionJP/${proyecto.id_proyecto}/${meet.id_reunion}`}
                                   >
                                     Ingresar a reunion
                                   </Button>

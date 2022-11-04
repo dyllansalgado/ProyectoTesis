@@ -2,7 +2,8 @@ import React, { Component} from "react";
 import {Container, Col, Row, Card} from "react-bootstrap";
 import NavbarLogeadoJP from "../Main/NavbarLogeadoJP.js";
 import Button from 'react-bootstrap/Button';
-import "./IngresarAProyecto.css";
+import "../IngresarAProyecto/IngresarAProyecto.css";
+import "./Glosario.css";
 import axios from "axios";
 
 
@@ -14,6 +15,7 @@ class GlosarioJP extends Component {
           id: null,
           proyecto:[],
           reunion:[],
+          glosario:[]
         };
         this.node = React.createRef();
     }
@@ -40,17 +42,6 @@ class GlosarioJP extends Component {
               console.log(error);
         }),
         axios
-          .get("http://localhost:8080/reunionProyecto/"+ idPath[2])
-          .then((res) => {
-            const reunion = res.data;
-          
-            this.setState({reunion});
-            console.log(reunion);
-          })
-          .catch((error) => {
-            console.log(error);
-        }),
-        axios
           .get("http://localhost:8080/proyecto/"+ idPath[2])
           .then((res) => {
             const proyecto = res.data;
@@ -59,12 +50,31 @@ class GlosarioJP extends Component {
           .catch((error) => {
             console.log(error);
         }),
+        axios
+        .get("http://localhost:8080/glosarioReunion/"+ idPath[3])
+        .then((res) => {
+          const glosario = res.data;
+          this.setState({glosario});
+        })
+        .catch((error) => {
+          console.log(error);
+        }),
+        axios
+        .get("http://localhost:8080/reunion/"+ idPath[3])
+        .then((res) => {
+          const reunion = res.data;
+          this.setState({reunion});
+        })
+        .catch((error) => {
+          console.log(error);
+        }),
       ]);
     }
 
     render() {
         const {usuario} = this.state;
         const {proyecto} = this.state;
+        const {glosario} = this.state;
         const {reunion} = this.state;
         return ( 
         <div>
@@ -74,7 +84,7 @@ class GlosarioJP extends Component {
             <div className="fondoB">
                 <Container fluid>
                   <Row>
-                      <h2 className="centerTitulo"> Reuniones disponibles: {usuario.nombre_usuario}</h2>
+                      <h2 className="centerTitulo"> Glosarios disponibles: {usuario.nombre_usuario}</h2>
                       <div className="container-fluid cew-9">
                           <div className="row">
                               <div className="col">
@@ -84,11 +94,11 @@ class GlosarioJP extends Component {
                       </div>
                   </Row>
                     <div className="InformacionCentralIngresarProyecto">
-                    <Button className="botonCrearReunion"   href={`/crearReunion/${proyecto.id_proyecto}`} size="lg">
-                          Crear Reunion
+                    <Button className="botonVolverGlosario"   href={`/ingresarReunionJP/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
+                          Volver
                     </Button>
-                    <Button className="botonIrAGlosario"  href="/misProyectosUsuario" size="lg">
-                          Ir a glosario
+                    <Button className="botonIrAGlosario"  href="/GlosarioReunionJP/" size="lg">
+                          Crear Glosario
                     </Button>
                     <div className= "nombreProyecto">
                         Nombre del Proyecto: {proyecto.nombre_proyecto}
@@ -106,18 +116,15 @@ class GlosarioJP extends Component {
                         </Col>
                     </div>
                     <Row className="ReunionList">
-                      {reunion.map((reunion) => (
-                        <Col className="col">
+                      {glosario.map((glosa) => (
+                        <Col className="col" key={glosa.id_glosario}>
                           <Card style={{ width: "20rem" }}>
                             <Card.Body>
-                                <Card.Title>Fecha de reunion: {reunion.fecha_reunion}</Card.Title>
-                                <Card.Subtitle>Lugar: {reunion.lugar_reunion}</Card.Subtitle>
-                                <p>
-                                  Estado: {reunion.estado}
-                                </p>
+                                <Card.Title>Nombre Glosario: {glosa.nombre_glosario}</Card.Title>
+                                <Card.Subtitle>Descripción Glosario: {glosa.descripcion_glosario}</Card.Subtitle>
                                 <div className="center">
                                   <Button
-                                    variant="outline-primary" href={`/ingresarAReunionProyecto/${reunion.id_reunion}`}
+                                    variant="outline-primary"
                                   >
                                     Ingresar a reunion
                                   </Button>

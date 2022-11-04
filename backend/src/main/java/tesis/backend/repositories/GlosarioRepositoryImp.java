@@ -80,6 +80,18 @@ public class GlosarioRepositoryImp implements GlosarioRepository {
     }
 
     @Override
+    public  List<Glosario> getListGlosarioXidReunion(Long id_reunion) {
+        String query = "select g.* from glosario g, reunion r " +
+        "where r.id_reunion=:id_reunion and g.id_reunion = r.id_reunion";
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery(query).addParameter("id_reunion", id_reunion).executeAndFetch(Glosario.class);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+    @Override
     public boolean deleteGlosario(Long id_glosario){
         String query = "update glosario set deleted = true where id_glosario = :id_glosario and deleted = false";
         try(Connection conn = sql2o.open()){

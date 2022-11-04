@@ -30,9 +30,7 @@ class MainJefeProyecto extends Component {
         .get("http://localhost:8080/usuarioProyectosGeneral/"+id)
         .then((res) => {
           const proyectos = res.data;
-        
           this.setState({proyectos});
-          console.log(proyectos);
         })
         .catch((error) => {
           console.log(error);
@@ -120,21 +118,21 @@ class MainJefeProyecto extends Component {
               </Col> 
             </div> 
             <Row className="ProyectosList">
-              {proyectos.map((proyectos) => (
-                <Col className="col">
+              {proyectos.map((proyecto) => (
+                <Col className="col" key={proyecto.id_proyecto}>
                   <Card style={{ width: "18rem" }}>
                     <Card.Body>
-                        <Card.Title>{proyectos.nombre_proyecto}</Card.Title>
-                        <Card.Subtitle>Fecha de inicio: {proyectos.fecha_inicio_proyecto}</Card.Subtitle>
+                        <Card.Title>{proyecto.nombre_proyecto}</Card.Title>
+                        <Card.Subtitle>Fecha de inicio: {proyecto.fecha_inicio_proyecto}</Card.Subtitle>
                         <p>
-                          Objetivo: {proyectos.objetivo_proyecto}
+                          Objetivo: {proyecto.objetivo_proyecto}
                         </p>
                         <p>
-                          Estado: {proyectos.estado_proyecto}
+                          Estado: {proyecto.estado_proyecto}
                         </p>
                         <div className="center">
                           <Button
-                            variant="outline-primary" href={`/verMasProyecto/${proyectos.id_proyecto}`}
+                            variant="outline-primary" href={`/verMasProyecto/${proyecto.id_proyecto}`}
                           >
                             Ver más
                           </Button>

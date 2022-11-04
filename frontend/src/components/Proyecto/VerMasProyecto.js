@@ -63,8 +63,9 @@ class VerMasProyecto extends Component {
           contrasena: this.state.contrasena
         })
         .then((response) => {
-            console.log("soy el id " +id);
-            if (response.data.contrasena === this.state.contrasena && id === 1 ) {
+            console.log(response.data);
+            console.log(this.state.contrasena);
+            if (response.data === true) {
               swal({
                 title: "Contraseña correcta",
                 text: "Se ha asignado el proyecto en sus proyectos",
@@ -74,7 +75,7 @@ class VerMasProyecto extends Component {
                 window.location.replace("http://localhost:3000/mainJefeProyecto/");
               }, 1000);
             }
-            else if(response.data.contrasena === this.state.contrasena && id  === 2) {
+            else if(response.data === true) {
               swal({
                   title: "Contraseña correcta",
                   text: "Se ha asignado el proyecto en sus proyectos",

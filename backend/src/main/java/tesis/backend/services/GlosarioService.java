@@ -44,6 +44,12 @@ public class GlosarioService {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @GetMapping("/glosarioReunion/{id_reunion}")
+    ResponseEntity<String>getListTemaXidReunion(@PathVariable Long id_reunion) {
+        List<Glosario> glosario = glosarioRepository.getListGlosarioXidReunion(id_reunion);
+        return new ResponseEntity<>(gson.toJson(glosario), HttpStatus.OK);
+    }
+
     @CrossOrigin(origins = {"http://localhost:8080"})
     @ResponseBody
     @RequestMapping(value ="/glosario/{id_glosario}",  method =RequestMethod.PUT,consumes="application/json")

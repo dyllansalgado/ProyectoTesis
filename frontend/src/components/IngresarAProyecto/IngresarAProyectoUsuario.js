@@ -43,9 +43,7 @@ class IngresarAProyectoUsuario extends Component {
             .get("http://localhost:8080/usuarioProyectos/"+id)
             .then((res) => {
               const proyectosUsuario = res.data;
-          
               this.setState({proyectosUsuario});
-              console.log(proyectosUsuario);
             })
             .catch((error) => {
               console.log(error);
@@ -65,7 +63,6 @@ class IngresarAProyectoUsuario extends Component {
             .then((res) => {
               const reunion = res.data;
               this.setState({reunion});
-              console.log(reunion);
             })
             .catch((error) => {
               console.log(error);
@@ -94,8 +91,8 @@ class IngresarAProyectoUsuario extends Component {
                       </div>
                   </Row>
                   <div className="InformacionCentralIngresarProyecto">
-                  <Button className="botonIrAGlosarioUser"  href="/" size="lg">
-                        Ir a glosario
+                  <Button className="botonIrAGlosarioUser"  href="/misProyectosUsuario" size="lg">
+                        Volver
                   </Button>
                   <div className= "nombreProyecto">
                       Nombre del Proyecto: {proyecto.nombre_proyecto}
@@ -113,18 +110,18 @@ class IngresarAProyectoUsuario extends Component {
                       </Col>
                   </div>
                   <Row className="ReunionList">
-                      {reunion.map((reunion) => (
-                        <Col className="col">
+                      {reunion.map((meet) => (
+                        <Col className="col" key={meet.id_reunion}>
                           <Card style={{ width: "20rem" }}>
                             <Card.Body>
-                                <Card.Title>Fecha de reunion: {reunion.fecha_reunion}</Card.Title>
-                                <Card.Subtitle>Lugar: {reunion.lugar_reunion}</Card.Subtitle>
+                                <Card.Title>Fecha de reunion: {meet.fecha_reunion}</Card.Title>
+                                <Card.Subtitle>Lugar: {meet.lugar_reunion}</Card.Subtitle>
                                 <p>
-                                  Estado: {reunion.estado}
+                                  Estado: {meet.estado.toString()}
                                 </p>
                                 <div className="center">
                                   <Button
-                                    variant="outline-primary" href={`/ingresarReunionUsuario/${proyecto.id_proyecto}/${reunion.id_reunion}`}
+                                    variant="outline-primary" href={`/ingresarReunionUsuario/${proyecto.id_proyecto}/${meet.id_reunion}`}
                                   >
                                     Ingresar a reunion
                                   </Button>

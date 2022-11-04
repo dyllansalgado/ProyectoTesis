@@ -22,7 +22,6 @@ class IngresarReunionJP extends Component {
         this.handleModal = this.handleModal.bind(this);
       }
 
-
     handleModal() {
         this.setState({ showModal: !this.state.showModal });
     }
@@ -56,12 +55,19 @@ class IngresarReunionJP extends Component {
           .get("http://localhost:8080/temaReunion/"+ idPath[3])
           .then((res) => {
             const tema = res.data;
-          
             this.setState({tema});
-            console.log(tema);
           })
           .catch((error) => {
             console.log(error);
+        }),
+        axios
+        .get("http://localhost:8080/reunion/"+ idPath[3])
+        .then((res) => {
+          const reunion = res.data;
+          this.setState({reunion});
+        })
+        .catch((error) => {
+          console.log(error);
         }),
         axios
           .get("http://localhost:8080/proyecto/"+ idPath[2])
@@ -111,6 +117,7 @@ class IngresarReunionJP extends Component {
         const {tema} = this.state;
         const nombreTema = this.state.nombre_tema;
         const descripcionTema = this.state.descripcion_tema;
+        const {reunion}= this.state;
         return ( 
         <div>
             <div>
@@ -168,7 +175,7 @@ class IngresarReunionJP extends Component {
                             </Form>
                         </ModalBody>
                     </Modal>
-                    <Button className="botonIrAGlosario"  href="/misProyectosUsuario" size="lg">
+                    <Button className="botonIrAGlosario" href= {`/GlosarioReunionJP/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
                           Ir a glosarios
                     </Button>
                     <div className= "nombreProyecto">
@@ -187,18 +194,18 @@ class IngresarReunionJP extends Component {
                         </Col>
                     </div>
                     <Row className="ReunionList">
-                      {tema.map((tema) => (
-                        <Col className="col">
+                      {tema.map((temas) => (
+                        <Col className="col" key={temas.id_tema}>
                           <Card style={{ width: "20rem" }}>
                             <Card.Body>
-                                <Card.Title>Nombre: {tema.nombre_tema}</Card.Title>
-                                <Card.Subtitle>Descripcion: {tema.descripcion_tema}</Card.Subtitle>
+                                <Card.Title>Nombre: {temas.nombre_tema}</Card.Title>
+                                <Card.Subtitle>Descripcion: {temas.descripcion_tema}</Card.Subtitle>
                                 <p>
-                                  Estado: {tema.estado}
+                                  Estado: {temas.estado}
                                 </p>
                                 <div className="center">
                                   <Button
-                                    variant="outline-primary" href={`/ingresarATemaReunion/${tema.id_tema}`}
+                                    variant="outline-primary" href={`/ingresarATemaReunion/${temas.id_tema}`}
                                   >
                                     Ingresar a tema
                                   </Button>

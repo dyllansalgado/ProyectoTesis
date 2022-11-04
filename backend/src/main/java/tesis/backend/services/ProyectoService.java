@@ -50,11 +50,14 @@ public class ProyectoService {
     ResponseEntity<String> ingresarUsuarioAProyecto(@RequestBody String request, @PathVariable Long id_usuario,@PathVariable Long id_proyecto){
         Proyecto proyectoCreado = gson.fromJson(request, Proyecto.class);
 
-        if (proyectoCreado!= null){
-            proyectoCreado = proyectoRepository.ingresarUsuarioAProyecto(proyectoCreado,id_usuario,id_proyecto);
+        if (proyectoCreado != null ){
+            Proyecto proyectoConsulta = proyectoRepository.ingresarUsuarioAProyecto(proyectoCreado,id_usuario,id_proyecto);
+            if(proyectoConsulta == null){
+                return new ResponseEntity<>(gson.toJson(false),HttpStatus.OK);
+            }
             return new ResponseEntity<>(gson.toJson(true),HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(gson.toJson(false),HttpStatus.OK);
     }
 
     @PostMapping("/proyecto/create/{id_usuario}")

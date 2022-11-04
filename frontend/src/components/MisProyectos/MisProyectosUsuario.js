@@ -91,7 +91,7 @@ class MisProyectosUsuario extends Component {
         <div>
           <NavbarLogeadoUsuario />
         </div>
-        <div class="fondoB" >
+        <div className="fondoB" >
         <Container fluid>
             <Row>
               <Col>
@@ -116,21 +116,21 @@ class MisProyectosUsuario extends Component {
                 </Col>
             </div>
             <Row className="ProyectosList">
-              {proyectosUsuario.map((proyectosUsuario) => (
-                <Col className="col">
+              {proyectosUsuario.map((proyectosUser) => (
+                <Col className="col" key={proyectosUser.id_proyecto}>
                   <Card style={{ width: "18rem" }}>
                     <Card.Body>
-                        <Card.Title>{proyectosUsuario.nombre_proyecto}</Card.Title>
-                        <Card.Subtitle>Fecha de inicio: {proyectosUsuario.fecha_inicio_proyecto}</Card.Subtitle>
+                        <Card.Title>{proyectosUser.nombre_proyecto}</Card.Title>
+                        <Card.Subtitle>Fecha de inicio: {proyectosUser.fecha_inicio_proyecto}</Card.Subtitle>
                         <p>
-                          Objetivo: {proyectosUsuario.objetivo_proyecto}
+                          Objetivo: {proyectosUser.objetivo_proyecto}
                         </p>
                         <p>
-                          Estado: {proyectosUsuario.estado_proyecto}
+                          Estado: {proyectosUser.estado_proyecto}
                         </p>
                         <div className="center">
                           <Button
-                            variant="outline-primary" href={`/ingresarAProyectoUsuario/${proyectosUsuario.id_proyecto}`}
+                            variant="outline-primary" href={`/ingresarAProyectoUsuario/${proyectosUser.id_proyecto}`}
                           >
                             Ingresar a proyecto
                           </Button>

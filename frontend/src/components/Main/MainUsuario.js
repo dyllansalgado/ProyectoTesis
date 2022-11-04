@@ -113,21 +113,21 @@ class MainUsuario extends Component {
             </Col>
           </div>
           <Row className="ProyectosList">
-            {proyectos.map((proyectos) => (
-                  <Col className="col">
+            {proyectos.map((proyecto) => (
+                  <Col className="col" key={proyecto.id_proyecto}>
                     <Card style={{ width: "18rem" }}>
                       <Card.Body>
-                        <Card.Title>{proyectos.nombre_proyecto}</Card.Title>
-                        <Card.Subtitle>Fecha de inicio: {proyectos.fecha_inicio_proyecto}</Card.Subtitle>
+                        <Card.Title>{proyecto.nombre_proyecto}</Card.Title>
+                        <Card.Subtitle>Fecha de inicio: {proyecto.fecha_inicio_proyecto}</Card.Subtitle>
                         <p>
-                          Objetivo: {proyectos.objetivo_proyecto}
+                          Objetivo: {proyecto.objetivo_proyecto}
                         </p>
                         <p>
-                          Estado: {proyectos.estado_proyecto}
+                          Estado: {proyecto.estado_proyecto.toString()}
                         </p>
                         <div className="center">
                           <Button
-                            variant="outline-primary" href={`/verMasProyecto/${proyectos.id_proyecto}`}
+                            variant="outline-primary" href={`/verMasProyecto/${proyecto.id_proyecto}`}
                           >
                             Ver más
                           </Button>

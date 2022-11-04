@@ -97,14 +97,14 @@ class IngresarReunionUsuario extends Component {
                         </Col>
                     </div>
                     <Row className="ReunionList">
-                      {tema.map((tema) => (
-                        <Col className="col">
+                      {tema.map((temas) => (
+                        <Col className="col" key={temas.id_tema}>
                           <Card style={{ width: "20rem" }}>
                             <Card.Body>
-                                <Card.Title>Nombre: {tema.nombre_tema}</Card.Title>
-                                <Card.Subtitle>Descripcion: {tema.descripcion_tema}</Card.Subtitle>
+                                <Card.Title>Nombre: {temas.nombre_tema}</Card.Title>
+                                <Card.Subtitle>Descripcion: {temas.descripcion_tema}</Card.Subtitle>
                                 <p>
-                                  Estado: {tema.estado}
+                                  Estado: {temas.estado.toString()}
                                 </p>
                                 <div className="center">
                                   <Button
