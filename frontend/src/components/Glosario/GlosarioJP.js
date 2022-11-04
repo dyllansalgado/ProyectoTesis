@@ -6,23 +6,23 @@ import "./IngresarAProyecto.css";
 import axios from "axios";
 
 
-class IngresarAProyectoUsuario extends Component {
+class GlosarioJP extends Component { 
     constructor(props) {
         super(props);
         this.state = {
           usuario: [],
           id: null,
           proyecto:[],
-          reunion: [],
+          reunion:[],
         };
         this.node = React.createRef();
-      }
-
+    }
+    
     componentDidMount() {
-        const id = localStorage.getItem('usuario');
-        let idPath = window.location.pathname.split("/");
-        axios.all([
-          axios
+      const id = localStorage.getItem('usuario');
+      let idPath = window.location.pathname.split("/");
+      axios.all([
+        axios
             .get(
               "http://localhost:8080/usuario/"+id)
             .then((res) => {
@@ -38,40 +38,30 @@ class IngresarAProyectoUsuario extends Component {
             })
             .catch((error) => {
               console.log(error);
-          }),
-          axios
-            .get("http://localhost:8080/usuarioProyectos/"+id)
-            .then((res) => {
-              const proyectosUsuario = res.data;
+        }),
+        axios
+          .get("http://localhost:8080/reunionProyecto/"+ idPath[2])
+          .then((res) => {
+            const reunion = res.data;
           
-              this.setState({proyectosUsuario});
-              console.log(proyectosUsuario);
-            })
-            .catch((error) => {
-              console.log(error);
-          }),
-          axios
-            .get("http://localhost:8080/proyecto/"+ idPath[2])
-            .then((res) => {
-              const proyecto = res.data;
-              this.setState({ proyecto});
-            })
-            .catch((error) => {
-              console.log(error);
-          }),
-
-          axios
-            .get("http://localhost:8080/reunionProyecto/"+ idPath[2])
-            .then((res) => {
-              const reunion = res.data;
-              this.setState({reunion});
-              console.log(reunion);
-            })
-            .catch((error) => {
-              console.log(error);
-          }),
-        ]);
+            this.setState({reunion});
+            console.log(reunion);
+          })
+          .catch((error) => {
+            console.log(error);
+        }),
+        axios
+          .get("http://localhost:8080/proyecto/"+ idPath[2])
+          .then((res) => {
+            const proyecto = res.data;
+            this.setState({ proyecto});
+          })
+          .catch((error) => {
+            console.log(error);
+        }),
+      ]);
     }
+
     render() {
         const {usuario} = this.state;
         const {proyecto} = this.state;
@@ -93,26 +83,29 @@ class IngresarAProyectoUsuario extends Component {
                           </div>
                       </div>
                   </Row>
-                  <div className="InformacionCentralIngresarProyecto">
-                  <Button className="botonIrAGlosarioUser"  href="/" size="lg">
-                        Ir a glosario
-                  </Button>
-                  <div className= "nombreProyecto">
-                      Nombre del Proyecto: {proyecto.nombre_proyecto}
-                  </div>
-                      <Col>
-                          <div className="filterBlockIngresar">
-                              <input
-                                type="text"
-                                onClick={this.onChange}
-                                onChange={this.onUserChange}
-                                placeholder="Buscar Proyecto..."
-                                ref={this.node}
-                              />
-                          </div>
-                      </Col>
-                  </div>
-                  <Row className="ReunionList">
+                    <div className="InformacionCentralIngresarProyecto">
+                    <Button className="botonCrearReunion"   href={`/crearReunion/${proyecto.id_proyecto}`} size="lg">
+                          Crear Reunion
+                    </Button>
+                    <Button className="botonIrAGlosario"  href="/misProyectosUsuario" size="lg">
+                          Ir a glosario
+                    </Button>
+                    <div className= "nombreProyecto">
+                        Nombre del Proyecto: {proyecto.nombre_proyecto}
+                    </div>
+                        <Col>
+                            <div className="filterBlockIngresar">
+                                <input
+                                  type="text"
+                                  onClick={this.onChange}
+                                  onChange={this.onUserChange}
+                                  placeholder="Buscar Proyecto..."
+                                  ref={this.node}
+                                />
+                            </div>
+                        </Col>
+                    </div>
+                    <Row className="ReunionList">
                       {reunion.map((reunion) => (
                         <Col className="col">
                           <Card style={{ width: "20rem" }}>
@@ -124,7 +117,7 @@ class IngresarAProyectoUsuario extends Component {
                                 </p>
                                 <div className="center">
                                   <Button
-                                    variant="outline-primary" href={`/ingresarReunionUsuario/${proyecto.id_proyecto}/${reunion.id_reunion}`}
+                                    variant="outline-primary" href={`/ingresarAReunionProyecto/${reunion.id_reunion}`}
                                   >
                                     Ingresar a reunion
                                   </Button>
@@ -140,4 +133,5 @@ class IngresarAProyectoUsuario extends Component {
         );
     }
 }
-export default IngresarAProyectoUsuario;
+
+export default GlosarioJP ;

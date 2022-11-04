@@ -8,5 +8,6 @@ public interface TemaRepository {
     public Tema  getTema (Long id_tema);
     public Tema updateTema (Tema tema, Long id_tema);
     public boolean deleteTema(Long id_tema);
+    public List<Tema> getListTemaXidReunion(Long id_reunion);
     public Long countTema ();
 }

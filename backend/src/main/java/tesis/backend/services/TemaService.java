@@ -44,6 +44,12 @@ public class TemaService {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @GetMapping("/temaReunion/{id_reunion}")
+    ResponseEntity<String>getListTemaXidReunion(@PathVariable Long id_reunion) {
+        List<Tema> tema = temaRepository.getListTemaXidReunion(id_reunion);
+        return new ResponseEntity<>(gson.toJson(tema), HttpStatus.OK);
+    }
+
     @CrossOrigin(origins = {"http://localhost:8080"})
     @ResponseBody
     @RequestMapping(value ="/tema/{id_tema}",  method =RequestMethod.PUT,consumes="application/json")

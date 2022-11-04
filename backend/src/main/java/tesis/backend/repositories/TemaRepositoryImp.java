@@ -39,6 +39,19 @@ public class TemaRepositoryImp implements TemaRepository{
     }
 
     @Override
+    public  List<Tema> getListTemaXidReunion(Long id_reunion) {
+        String query = "select t.* from tema t, reunion r " +
+        "where r.id_reunion=:id_reunion and t.id_reunion = r.id_reunion";
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery(query).addParameter("id_reunion", id_reunion).executeAndFetch(Tema.class);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public Tema getTema(Long id_tema){
         String query = "select * from tema where id_tema = :id_tema and deleted = false";
         try(Connection conn = sql2o.open()){

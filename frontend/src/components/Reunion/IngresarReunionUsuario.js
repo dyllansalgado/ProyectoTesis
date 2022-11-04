@@ -1,12 +1,12 @@
 import React, { Component} from "react";
 import {Container, Col, Row, Card} from "react-bootstrap";
-import NavbarLogeadoJP from "../Main/NavbarLogeadoJP.js";
+import NavbarLogeadoUsuario from "../Main/NavbarLogeadoUsuario.js";
 import Button from 'react-bootstrap/Button';
-import "./IngresarAProyecto.css";
+import "../IngresarAProyecto/IngresarAProyecto.css";
+import "./CrearReunion.css";
 import axios from "axios";
 
-
-class IngresarAProyectoJP extends Component {
+class IngresarReunionUsuario extends Component { 
     constructor(props) {
         super(props);
         this.state = {
@@ -14,6 +14,7 @@ class IngresarAProyectoJP extends Component {
           id: null,
           proyecto:[],
           reunion:[],
+          tema:[],
         };
         this.node = React.createRef();
       }
@@ -40,12 +41,12 @@ class IngresarAProyectoJP extends Component {
               console.log(error);
         }),
         axios
-          .get("http://localhost:8080/reunionProyecto/"+ idPath[2])
+          .get("http://localhost:8080/temaReunion/"+ idPath[3])
           .then((res) => {
-            const reunion = res.data;
+            const tema = res.data;
           
-            this.setState({reunion});
-            console.log(reunion);
+            this.setState({tema});
+            console.log(tema);
           })
           .catch((error) => {
             console.log(error);
@@ -65,27 +66,20 @@ class IngresarAProyectoJP extends Component {
     render() {
         const {usuario} = this.state;
         const {proyecto} = this.state;
-        const {reunion} = this.state;
+        const {tema} = this.state;
         return ( 
         <div>
             <div>
-              <NavbarLogeadoJP />
+              <NavbarLogeadoUsuario />
             </div>
             <div className="fondoB">
                 <Container fluid>
                   <Row>
-                      <h2 className="centerTitulo"> Reuniones disponibles: {usuario.nombre_usuario}</h2>
-                      <div className="container-fluid cew-9">
-                          <div className="row">
-                              <div className="col">
-                                  Objetivos: {proyecto.objetivo_proyecto}
-                              </div>
-                          </div>
-                      </div>
+                      <h2 className="centerTitulo"> Temas disponibles: {usuario.nombre_usuario}</h2>
                   </Row>
                     <div className="InformacionCentralIngresarProyecto">
-                    <Button className="botonCrearReunion"   href={`/crearReunion/${proyecto.id_proyecto}`} size="lg">
-                          Crear Reunion
+                    <Button className="botonIrAGlosarioReunion"  href="/misProyectosUsuario" size="lg">
+                          Ir a glosarios
                     </Button>
                     <div className= "nombreProyecto">
                         Nombre del Proyecto: {proyecto.nombre_proyecto}
@@ -103,20 +97,20 @@ class IngresarAProyectoJP extends Component {
                         </Col>
                     </div>
                     <Row className="ReunionList">
-                      {reunion.map((reunion) => (
+                      {tema.map((tema) => (
                         <Col className="col">
                           <Card style={{ width: "20rem" }}>
                             <Card.Body>
-                                <Card.Title>Fecha de reunion: {reunion.fecha_reunion}</Card.Title>
-                                <Card.Subtitle>Lugar: {reunion.lugar_reunion}</Card.Subtitle>
+                                <Card.Title>Nombre: {tema.nombre_tema}</Card.Title>
+                                <Card.Subtitle>Descripcion: {tema.descripcion_tema}</Card.Subtitle>
                                 <p>
-                                  Estado: {reunion.estado}
+                                  Estado: {tema.estado}
                                 </p>
                                 <div className="center">
                                   <Button
-                                    variant="outline-primary" href={`/ingresarReunionJP/${proyecto.id_proyecto}/${reunion.id_reunion}`}
+                                    variant="outline-primary" href={`/ingresarATemaReunion/${tema.id_tema}`}
                                   >
-                                    Ingresar a reunion
+                                    Ingresar a tema
                                   </Button>
                                 </div>
                               </Card.Body>
@@ -130,4 +124,4 @@ class IngresarAProyectoJP extends Component {
         );
     }
 }
-export default IngresarAProyectoJP;
+export default IngresarReunionUsuario ;
