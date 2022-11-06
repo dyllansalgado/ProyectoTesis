@@ -8,6 +8,7 @@ public interface TerminoRepository {
     public Termino  getTermino (Long id_termino);
     public Termino updateTermino (Termino glosario, Long id_termino);
     public boolean deleteTermino (Long id_termino);
+    public List<Termino> getListTerminoXidGlosario(Long id_glosario);
     public Long countTermino ();
     
 }

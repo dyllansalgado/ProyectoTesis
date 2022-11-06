@@ -1,25 +1,38 @@
 import React, { Component} from "react";
-import {Container, Col, Row, Card} from "react-bootstrap";
+import {Container, Col, Row, Card, Modal, Form, ModalHeader, ModalBody,} from "react-bootstrap";
 import NavbarLogeadoJP from "../Main/NavbarLogeadoJP.js";
 import Button from 'react-bootstrap/Button';
 import "../IngresarAProyecto/IngresarAProyecto.css";
 import "./Glosario.css";
 import axios from "axios";
+import swal from "sweetalert";
+import {BsArrowReturnLeft} from "react-icons/bs";
 
 
 class GlosarioJP extends Component { 
     constructor(props) {
-        super(props);
-        this.state = {
-          usuario: [],
-          id: null,
-          proyecto:[],
-          reunion:[],
-          glosario:[]
-        };
-        this.node = React.createRef();
+      super(props);
+      this.state = {
+        usuario: [],
+        id: null,
+        proyecto:[],
+        reunion:[],
+        glosario:[],
+        nombreGlosario: "",
+        descripcionGlosario: "",
+      };
+      this.node = React.createRef();
+      this.handleModal = this.handleModal.bind(this);
     }
-    
+
+    handleModal() {
+      this.setState({ showModal: !this.state.showModal });
+    };
+
+    changeHandler = (e) => {
+      this.setState({ [e.target.name]: e.target.value });
+    };    
+
     componentDidMount() {
       const id = localStorage.getItem('usuario');
       let idPath = window.location.pathname.split("/");
@@ -71,11 +84,43 @@ class GlosarioJP extends Component {
       ]);
     }
 
+    IngresarNuevoGlosario = (e) => {
+      let idPath = window.location.pathname.split("/");
+      e.preventDefault();
+      if (
+          this.state.nombreGlosario !== "" &&
+          this.state.descripcionGlosario !== ""){
+          axios.post("http://localhost:8080/glosario/create", {
+              nombre_glosario: this.state.nombreGlosario,
+              descripcion_glosario: this.state.descripcionGlosario,
+              id_reunion: idPath[3]
+          });
+  
+          swal({
+              title: "Glosario creado con exito",
+              text: "Se ha creado correctamente el Glosario",
+              icon: "success",
+          });
+          setTimeout(() => {
+              window.location.replace("http://localhost:3000/GlosarioReunionJP/"+ idPath[2] + "/" + idPath[3]);
+          }, 2000);
+          }
+          else {
+              swal({
+                title: "Error al crear el glosario",
+                text: "falla",
+                icon: "warning",
+              });
+          }
+      };
+
     render() {
         const {usuario} = this.state;
         const {proyecto} = this.state;
         const {glosario} = this.state;
         const {reunion} = this.state;
+        const nombreGlosario = this.state.nombre_glosario;
+        const descripcionGlosario = this.state.descripcion_glosario;
         return ( 
         <div>
             <div>
@@ -95,11 +140,55 @@ class GlosarioJP extends Component {
                   </Row>
                     <div className="InformacionCentralIngresarProyecto">
                     <Button className="botonVolverGlosario"   href={`/ingresarReunionJP/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
-                          Volver
+                      <BsArrowReturnLeft/> <span></span>
+                        Volver
                     </Button>
-                    <Button className="botonIrAGlosario"  href="/GlosarioReunionJP/" size="lg">
-                          Crear Glosario
+                    <Button
+                        className="botonIrAGlosario"  
+                        onClick={() => this.handleModal()}
+                        size="lg">
+                        Crear Glosario
                     </Button>
+                    <Modal
+                        name="formato"
+                        show={this.state.showModal}
+                        onHide={() => this.handleModal()}
+                    >
+                        <ModalHeader closeButton>
+                            Creando Glosario Proyecto: {proyecto.nombre_proyecto}
+                        </ModalHeader>
+                        <ModalBody>
+                            <Form onSubmit={this.IngresarNuevoGlosario}>
+                                <p> Nombre Glosario </p>
+                                <input
+                                    type="text"
+                                    value={nombreGlosario}
+                                    className="form-control"
+                                    name="nombreGlosario"
+                                    onChange={this.changeHandler}
+                                    placeholder="Nombre de glosario..."
+                                />
+                                <p> Descripción Glosario </p>
+                                <input
+                                    id="descripcion"
+                                    type="text"
+                                    placeholder="Descripción"
+                                    className="form-control"
+                                    value={descripcionGlosario}
+                                    name="descripcionGlosario"
+                                    onChange={this.changeHandler}
+                                />
+                                <Button
+                                    id="crearGlosario"
+                                    name="botonCrearGlosario"
+                                    type="submit"
+                                >
+                                    {" "}
+                                  Crear glosario
+                                </Button>
+                            </Form>
+                        </ModalBody>
+                    </Modal>
                     <div className= "nombreProyecto">
                         Nombre del Proyecto: {proyecto.nombre_proyecto}
                     </div>
@@ -124,9 +213,9 @@ class GlosarioJP extends Component {
                                 <Card.Subtitle>Descripción Glosario: {glosa.descripcion_glosario}</Card.Subtitle>
                                 <div className="center">
                                   <Button
-                                    variant="outline-primary"
+                                    variant="outline-primary" href={`/ingresarAGlosario/${proyecto.id_proyecto}/${reunion.id_reunion}/${glosa.id_glosario}`}
                                   >
-                                    Ingresar a reunion
+                                    Ingresar a glosario
                                   </Button>
                                 </div>
                               </Card.Body>

@@ -18,7 +18,7 @@ class CrearProyecto extends Component {
       contrasena: "",
       usuario: [],
       id: null,
-      estado_proyecto: true,
+      estado_proyecto: false,
       fecha: new Date("2018", "06", "22"),
       };
     }

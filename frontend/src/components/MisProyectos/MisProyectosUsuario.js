@@ -3,6 +3,7 @@ import {Container, Col, Row, Card } from "react-bootstrap";
 import NavbarLogeadoUsuario from "../Main/NavbarLogeadoUsuario.js";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
+import {BsArrowReturnLeft} from "react-icons/bs";
 
 class MisProyectosUsuario extends Component {
   constructor(props) {
@@ -101,7 +102,8 @@ class MisProyectosUsuario extends Component {
             <div className="InformacionCentralUsuario">
               <h3 className="centerTitulo"> Proyectos disponibles</h3>
               <Button className="botonMisProyectosUsuario"  href="/mainUsuario" size="lg">
-                    Volver
+                <BsArrowReturnLeft/> <span></span>
+                  Volver
                 </Button>
                 <Col>
                   <div className="filterBlockUsuario">

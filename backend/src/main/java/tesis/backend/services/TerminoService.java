@@ -64,6 +64,12 @@ public class TerminoService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/terminoGlosario/{id_glosario}")
+    ResponseEntity<String>getListTerminoXidGlosario(@PathVariable Long id_glosario) {
+        List<Termino> termino = terminoRepository.getListTerminoXidGlosario(id_glosario);
+        return new ResponseEntity<>(gson.toJson(termino), HttpStatus.OK);
+    }
+
     @DeleteMapping("/termino/{id_termino}")
     ResponseEntity<String> deleteTermino(@PathVariable Long id_termino) {
         if (terminoRepository.deleteTermino(id_termino)) {

@@ -61,6 +61,18 @@ public class TerminoRepositoryImp implements TerminoRepository {
         }
     }
 
+    @Override
+    public  List<Termino> getListTerminoXidGlosario(Long id_glosario) {
+        String query = "select te.* from termino te, glosario g " +
+        "where g.id_glosario=:id_glosario and te.id_glosario = g.id_glosario";
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery(query).addParameter("id_glosario", id_glosario).executeAndFetch(Termino.class);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
     @Override 
     public Termino updateTermino(Termino termino, Long id_termino){
         String query = "update termino set nombre_termino = :nombre_termino, descripcion_termino = :descripcion_termino where id_termino = :id_termino and deleted = false";

@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import "../IngresarAProyecto/IngresarAProyecto.css";
 import "./CrearReunion.css";
 import axios from "axios";
+import {BsArrowReturnLeft} from "react-icons/bs";
 
 class IngresarReunionUsuario extends Component { 
     constructor(props) {
@@ -60,12 +61,22 @@ class IngresarReunionUsuario extends Component {
           .catch((error) => {
             console.log(error);
         }),
+        axios
+        .get("http://localhost:8080/reunion/"+ idPath[3])
+        .then((res) => {
+          const reunion = res.data;
+          this.setState({reunion});
+        })
+        .catch((error) => {
+          console.log(error);
+        }),
       ]);
     }
 
     render() {
         const {usuario} = this.state;
         const {proyecto} = this.state;
+        const {reunion} = this.state;
         const {tema} = this.state;
         return ( 
         <div>
@@ -78,8 +89,12 @@ class IngresarReunionUsuario extends Component {
                       <h2 className="centerTitulo"> Temas disponibles: {usuario.nombre_usuario}</h2>
                   </Row>
                     <div className="InformacionCentralIngresarProyecto">
-                    <Button className="botonIrAGlosarioReunion"  href="/misProyectosUsuario" size="lg">
+                    <Button className="botonIrAGlosarioReunion"  href= {`/GlosarioReunionUsuario/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
                           Ir a glosarios
+                    </Button>
+                    <Button className="botonIrAGlosarioReunion"  href={`/ingresarAProyectoUsuario/${proyecto.id_proyecto}`} size="lg">  
+                      <BsArrowReturnLeft/> <span></span>
+                          Volver
                     </Button>
                     <div className= "nombreProyecto">
                         Nombre del Proyecto: {proyecto.nombre_proyecto}

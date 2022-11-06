@@ -16,7 +16,7 @@ class CrearReunion extends Component {
         super(props);
         this.state = { fecha_reunion: "", 
         lugar_reunion: "", 
-        estado: true,
+        estado: false,
         proyecto: [],
         fecha: new Date("2018", "06", "22"),
         };

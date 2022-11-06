@@ -24,7 +24,7 @@ class IngresarReunionJP extends Component {
 
     handleModal() {
         this.setState({ showModal: !this.state.showModal });
-    }
+    };
     
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -153,6 +153,7 @@ class IngresarReunionJP extends Component {
                                     name="nombreTema"
                                     onChange={this.changeHandler}
                                     placeholder="Nombre de tema..."
+                                    required
                                 />
                                 <p> Descripción </p>
                                 <input
@@ -163,6 +164,7 @@ class IngresarReunionJP extends Component {
                                     value={descripcionTema}
                                     name="descripcionTema"
                                     onChange={this.changeHandler}
+                                    required
                                 />
                                 <Button
                                     id="crearTema"

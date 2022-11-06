@@ -7,3 +7,41 @@
     position: relative; 
     bottom: -1%; right: -19%;
 }
+
+.botonVolverGlosarioUsuario{
+    margin: 1%;
+    text-align: center;
+    cursor:pointer;
+    width: 150px;
+    padding: 7px;
+    position: relative; 
+    bottom: -1%; right: -2%;
+}
+
+.filterBlockTermino{
+    position: relative;
+    right: -30%;
+    top: 8px;
+    display: inline-block;
+}
+.centrado{
+    margin: auto;
+    padding: 5%;
+}
+
+table.tablaTermino{
+    display:table;
+}
+
+table.tablaTermino tr {
+    border: 1px solid black;
+    width: 100%;
+}
+
+table.tablaTermino th {
+    border: 1px solid black;
+}
+
+table.tablaTermino td{
+    border: 1px solid black;
+}
