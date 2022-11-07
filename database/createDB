@@ -12,7 +12,6 @@ DROP TABLE IF EXISTS voto CASCADE;
 DROP TABLE IF EXISTS usuario_pregunta CASCADE;
 DROP TABLE IF EXISTS voto CASCADE;
 
-
 CREATE TABLE rol(
     id_rol serial,
     tipo_rol varchar(20),

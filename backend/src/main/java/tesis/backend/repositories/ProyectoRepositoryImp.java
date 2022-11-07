@@ -44,8 +44,7 @@ public class ProyectoRepositoryImp implements ProyectoRepository {
                 .addParameter("contrasena", proyecto.getContrasena())
                 .executeUpdate().getKey();
         proyecto.setId_proyecto(id_count);
-            //Crear table proyecto usuario
-  
+        //Crear table proyecto usuario
         conn.createQuery(queryproyecto_usuario,true).addParameter("id_usuario_proyecto",id_CountProyectoUsuario)
                 .addParameter("id_usuario", id_usuario)
                 .addParameter("id_proyecto",id_count)

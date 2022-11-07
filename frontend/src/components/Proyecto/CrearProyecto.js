@@ -87,8 +87,8 @@ class CrearProyecto extends Component {
       return (
         <div>
           <NavbarLogeadoJP />
+          <div className="fondoCrearProyecto">
           <Container fluid>
-          <div className="fondo">
             <div className="container_register">
             <form className="registrarseForm" onSubmit={this.CrearProyecto}>
                 <div className="center">
@@ -152,8 +152,8 @@ class CrearProyecto extends Component {
                 </div>
               </form>
             </div>
-          </div>
           </Container>
+          </div>
         </div>
       );
     }

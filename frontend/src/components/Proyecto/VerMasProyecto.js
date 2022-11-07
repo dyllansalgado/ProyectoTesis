@@ -13,6 +13,7 @@ class VerMasProyecto extends Component {
             proyecto:[],
             id: null,
             rol: "",
+            id_rol: "",
             contrasena: ""
         };
         this.changeName = this.changeName.bind(this);
@@ -57,6 +58,7 @@ class VerMasProyecto extends Component {
 
     RegistrarProyectoUsuario () {
         const id = localStorage.getItem('usuario');
+        const id_rol = localStorage.getItem('id_rol');
         let idPath = window.location.pathname.split("/");
         axios
         .post("http://localhost:8080/ingresarUsuarioProyecto/create/" + id + "/" + idPath[2] , {
@@ -71,19 +73,16 @@ class VerMasProyecto extends Component {
                 text: "Se ha asignado el proyecto en sus proyectos",
                 icon: "success",
               });
-              setTimeout(() => {
-                window.location.replace("http://localhost:3000/mainJefeProyecto/");
-              }, 1000);
-            }
-            else if(response.data === true) {
-              swal({
-                  title: "Contraseña correcta",
-                  text: "Se ha asignado el proyecto en sus proyectos",
-                  icon: "success",
-              });
-              setTimeout(() => {
-                window.location.replace("http://localhost:3000/mainUsuario/");
-              }, 2000);
+              if(id_rol === "1"){
+                setTimeout(() => {
+                    window.location.replace("http://localhost:3000/mainJefeProyecto/");
+                  }, 1000);
+              }
+              else if (id_rol === "2"){
+                setTimeout(() => {
+                    window.location.replace("http://localhost:3000/mainUsuario/");
+                  }, 2000);
+              } 
             }
             else {
               swal({
