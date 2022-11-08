@@ -9,6 +9,7 @@ import "jspdf-autotable";
 import swal from "sweetalert";
 import { BsDownload,BsArrowReturnLeft } from "react-icons/bs";
 
+
 class IngresarAGlosario extends Component {
     constructor(props) {
         super(props);
@@ -60,7 +61,7 @@ class IngresarAGlosario extends Component {
                 .then((res) => {
                     const terminos = res.data;
                     this.setState({terminos});
-                    console.log(terminos);
+                    terminos.sort((a,b) => (a.nombre_termino.toLowerCase() < b.nombre_termino.toLowerCase() ? -1 : 1));
                 })
                 .catch((error) => {
                     console.log(error);
@@ -220,7 +221,7 @@ class IngresarAGlosario extends Component {
                 <div>
                     <NavbarLogeadoJP />
                 </div>
-                <div className="fondoB">
+                <div className="fondoC">
                     <Container fluid>
                         <Row>
                           <h2 className="centerTitulo"> Terminos de: {glosario.nombre_glosario}</h2>
@@ -303,7 +304,7 @@ class IngresarAGlosario extends Component {
                         </div>
                         <Container fluid>
                             <div className="centrado"></div>
-                            <Table className="tablaTermino">
+                            <Table className="tablaTermino" >
                                 <thead>
                                     <tr>
                                         <th width="10">Nombre de término</th>
@@ -311,8 +312,9 @@ class IngresarAGlosario extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {terminos.map((termino) => (
-                                        <tr key={termino.id_termino}>
+                                    {
+                                    terminos.map((termino) => (
+                                        <tr key={termino.id_termino} >
                                             <td> {termino.nombre_termino} </td>
                                             <td> {termino.descripcion_termino} </td>
                                         </tr>
