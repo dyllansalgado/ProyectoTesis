@@ -3,7 +3,6 @@ package tesis.backend.models;
 public class Pregunta {
     private Long id_pregunta;
     private Long id_tema;
-    private Long id_respuesta;
     private String pregunta;
     private Boolean estado;
     private boolean deleted;
@@ -21,13 +20,6 @@ public class Pregunta {
     }
     public void setId_tema(Long id_tema) {
         this.id_tema = id_tema;
-    }
-
-    public Long getId_respuesta() {
-        return id_respuesta;
-    }
-    public void setId_respuesta(Long id_respuesta) {
-        this.id_respuesta = id_respuesta;
     }
 
     public String getPregunta() {

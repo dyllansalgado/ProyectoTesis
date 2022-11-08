@@ -21,13 +21,12 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
 
     public Pregunta createPregunta(Pregunta pregunta){
         Long id_count = countPregunta();
-        String query = "INSERT into pregunta (id_pregunta, pregunta, estado, id_tema, id_respuesta) values (:id_pregunta,:pregunta,:estado,:id_tema,:id_respuesta)";
+        String query = "INSERT into pregunta (id_pregunta, pregunta, estado, id_tema) values (:id_pregunta,:pregunta,:estado,:id_tema)";
         try(Connection conn = sql2o.open()){
             conn.createQuery(query,true).addParameter("id_pregunta",id_count)
                 .addParameter("pregunta", pregunta.getPregunta())
                 .addParameter("estado", pregunta.getEstado())
                 .addParameter("id_tema", pregunta.getId_tema())
-                .addParameter("id_respuesta", pregunta.getId_respuesta())
                 .executeUpdate().getKey();
             pregunta.setId_pregunta(id_count);
             return pregunta;

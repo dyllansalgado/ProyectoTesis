@@ -3,6 +3,7 @@ package tesis.backend.models;
 public class Respuesta {
     private Long id_respuesta;
     private String respuesta;
+    private Long id_pregunta;
     private boolean deleted;
                 
     //Getter and Setter
@@ -20,6 +21,13 @@ public class Respuesta {
         this.respuesta = respuesta;
     }
     
+    public Long getId_pregunta() {
+        return id_pregunta;
+    }
+    public void setId_pregunta(Long id_pregunta) {
+        this.id_pregunta = id_pregunta;
+    }
+
     public boolean getDeleted() {
         return deleted;
     }

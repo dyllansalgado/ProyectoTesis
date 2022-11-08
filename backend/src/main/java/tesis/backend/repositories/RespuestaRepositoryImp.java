@@ -21,10 +21,11 @@ public class RespuestaRepositoryImp implements RespuestaRepository{
 
     public Respuesta createRespuesta(Respuesta respuesta){
         Long id_count = countRespuesta();
-        String query = "INSERT into respuesta (id_respuesta, respuesta) values (:id_respuesta,:respuesta)";
+        String query = "INSERT into respuesta (id_respuesta, respuesta, id_pregunta) values (:id_respuesta,:respuesta,:id_pregunta)";
         try(Connection conn = sql2o.open()){
             conn.createQuery(query,true).addParameter("id_respuesta",id_count)
                 .addParameter("respuesta", respuesta.getRespuesta())
+                .addParameter("id_pregunta", respuesta.getId_pregunta())
                 .executeUpdate().getKey();
             respuesta.setId_respuesta(id_count);
             return respuesta;

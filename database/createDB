@@ -6,8 +6,8 @@ DROP TABLE IF EXISTS glosario CASCADE;
 DROP TABLE IF EXISTS termino CASCADE;
 DROP TABLE IF EXISTS reunion CASCADE;
 DROP TABLE IF EXISTS tema CASCADE;
-DROP TABLE IF EXISTS respuesta CASCADE;
 DROP TABLE IF EXISTS pregunta CASCADE;
+DROP TABLE IF EXISTS respuesta CASCADE;
 DROP TABLE IF EXISTS voto CASCADE;
 DROP TABLE IF EXISTS usuario_pregunta CASCADE;
 DROP TABLE IF EXISTS voto CASCADE;
@@ -102,26 +102,26 @@ CREATE TABLE tema(
     FOREIGN KEY (id_reunion) REFERENCES reunion(id_reunion)
 );
 
-CREATE TABLE respuesta(
-    
-    id_respuesta serial,
-    respuesta text,
-    PRIMARY KEY (id_respuesta),
-    deleted boolean NOT NULL DEFAULT false
-);
-
 CREATE TABLE pregunta(
     
     id_pregunta serial,
     pregunta text,
     estado varchar(12),
     id_tema integer NOT NULL,
-    id_respuesta integer NOT NULL,
     PRIMARY KEY (id_pregunta),
     deleted boolean NOT NULL DEFAULT false,
-    FOREIGN KEY (id_tema) REFERENCES tema(id_tema),
-    FOREIGN KEY (id_respuesta) REFERENCES respuesta(id_respuesta)
+    FOREIGN KEY (id_tema) REFERENCES tema(id_tema)
 );
+
+CREATE TABLE respuesta(
+    id_respuesta serial,
+    respuesta text,
+    id_pregunta integer NOT NULL,
+    PRIMARY KEY (id_respuesta),
+    deleted boolean NOT NULL DEFAULT false,
+    FOREIGN KEY (id_pregunta) REFERENCES pregunta(id_pregunta)
+);
+
 
 CREATE TABLE voto(
 
