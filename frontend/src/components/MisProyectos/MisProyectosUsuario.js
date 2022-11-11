@@ -1,6 +1,7 @@
 import React, { Component} from "react";
 import {Container, Col, Row, Card } from "react-bootstrap";
 import NavbarLogeado from "../Main/NavbarLogeado.js";
+import "../Main/NavbarLogeado.css";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import {BsArrowReturnLeft} from "react-icons/bs";

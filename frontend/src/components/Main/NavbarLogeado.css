@@ -88,3 +88,48 @@ img {
     width: 90vw;
     text-align: center;
 }
+
+.InformacionCentralUsuario{
+    position: absolute;
+    width: 1000px;
+    margin: auto;
+    height: 70px;
+    left: 162px;
+    top: 150px;
+    background: #276E90;
+    border-radius: 100px;
+    display: flex;
+}
+
+.filterBlockUsuario{
+    position: relative;
+    right: 80%;
+    top: 7px;
+    width: 150%;
+    display: inline-block;
+}
+
+.navbarLogeadoUsuario{
+    background-color: #276E90;
+    display: flex;
+    width: 100vw;
+}
+.centerTituloUsuario{
+    margin: auto;
+    width: 700px;
+    padding: 20px;
+    text-align: center;
+ }
+.botonCerrarSesion{
+    background-color:#CECFC9 ;
+    margin: 20px;
+    text-align: center;
+    border-radius: 20px;
+    cursor:pointer;
+    width: 20%;
+    padding: 10px 0px;
+    position: relative; 
+    text-decoration:none;
+    color:black;
+    bottom: -5px; right: -200px;
+}
