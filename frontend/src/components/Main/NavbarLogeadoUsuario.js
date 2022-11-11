@@ -4,6 +4,7 @@ import { Navbar} from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import "./NavbarLogeadoUsuario.css";
 import swal from "sweetalert";
+import './widget-btn.min.js';
 
 const cerrarSesion = () => {
   localStorage.clear();
@@ -42,7 +43,9 @@ const NavbarLogeadoUsuario = () => {
             <Button className="botonCerrarSesion"  onClick={() => cerrarSesion()} size="sm">
                 Cerrar sesión
             </Button>
+            <widget-btn></widget-btn>
         </Navbar>
+
       </>
   );
 };

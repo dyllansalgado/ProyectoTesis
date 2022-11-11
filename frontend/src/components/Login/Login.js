@@ -8,7 +8,7 @@ import NavbarInicio from "./NavbarInicio.js";
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { usuario: localStorage.getItem("token"), nombre_usuario: "", contrasena_usuario: "", id_rol: "", token_usuario:""};
+    this.state = { usuario: localStorage.getItem("token"), correo_usuario: "", contrasena_usuario: "", id_rol: "", token_usuario:""};
     this.changeName = this.changeName.bind(this);
     this.changeContrasena = this.changeContrasena.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,7 +23,7 @@ class Login extends Component {
     }
   }
   changeName(event) {
-      this.setState({ nombre_usuario: event.target.value });
+      this.setState({ correo_usuario: event.target.value });
   }
   changeContrasena(event) {
       this.setState({ contrasena_usuario: event.target.value });
@@ -32,7 +32,7 @@ class Login extends Component {
     event.preventDefault();
     axios
       .post("http://localhost:8080/login/", {
-        nombre_usuario: this.state.nombre_usuario,
+        correo_usuario: this.state.correo_usuario,
         contrasena_usuario: this.state.contrasena_usuario
       })
       .then((response) => {
@@ -53,6 +53,8 @@ class Login extends Component {
           //console.log(response.data);
           localStorage.setItem('usuario', response.data.id_usuario);
           localStorage.setItem('id_rol', response.data.id_rol);
+          localStorage.setItem('nombreUsuario', response.data.nombre_usuario);
+          localStorage.setItem('token', response.data.nombre_usuario);
           swal({
           title: "Ingreso Exitoso",
           text: "Bienvenido jefe de proyecto",
@@ -94,9 +96,9 @@ class Login extends Component {
                     <input
                       className="inputLogin"
                       type="text"
-                      value={this.state.nombre_usuario}
+                      value={this.state.correo_usuario}
                       onChange={this.changeName}
-                      placeholder="Usuario...."
+                      placeholder="Correo Usuario"
                       required
                     />
                   </label>

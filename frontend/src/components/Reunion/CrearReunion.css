@@ -17,3 +17,13 @@
     position: relative; 
     bottom: -1%; right: -18%;
 }
+
+.botonVolver{
+    margin: 1%;
+    text-align: center;
+    cursor:pointer;
+    width: 150px;
+    padding: 7px;
+    position: relative; 
+    bottom: -1%; right: -2%;
+}

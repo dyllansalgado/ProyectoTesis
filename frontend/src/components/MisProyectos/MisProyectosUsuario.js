@@ -102,8 +102,8 @@ class MisProyectosUsuario extends Component {
             <div className="InformacionCentralUsuario">
               <h3 className="centerTitulo"> Proyectos disponibles</h3>
               <Button className="botonMisProyectosUsuario"  href="/mainUsuario" size="lg">
+                Volver
                 <BsArrowReturnLeft/> <span></span>
-                  Volver
                 </Button>
                 <Col>
                   <div className="filterBlockUsuario">

@@ -100,8 +100,8 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
     @Override
     public Usuario loginUsuario(Usuario usuario) {
         try(Connection conn = sql2o.open()){
-            List<Usuario> findUsers = conn.createQuery("select * from usuario where nombre_usuario=:nombre_usuario and contrasena_usuario=:contrasena_usuario")
-                .addParameter("nombre_usuario", usuario.getNombre_usuario())
+            List<Usuario> findUsers = conn.createQuery("select * from usuario where correo_usuario=:correo_usuario and contrasena_usuario=:contrasena_usuario")
+                .addParameter("correo_usuario", usuario.getCorreo_usuario())
                 .addParameter("contrasena_usuario", usuario.getContrasena_usuario())
                 .executeAndFetch(Usuario.class);
             if(findUsers.size() == 1){

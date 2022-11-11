@@ -4,6 +4,7 @@ import NavbarLogeadoJP from "../Main/NavbarLogeadoJP.js";
 import Button from 'react-bootstrap/Button';
 import "./IngresarAProyecto.css";
 import axios from "axios";
+import {BsArrowReturnLeft} from "react-icons/bs";
 
 
 class IngresarAProyectoJP extends Component {
@@ -86,6 +87,10 @@ class IngresarAProyectoJP extends Component {
                     <div className="InformacionCentralIngresarProyecto">
                     <Button className="botonCrearReunion"   href={`/crearReunion/${proyecto.id_proyecto}`} size="lg">
                           Crear Reunion
+                    </Button>
+                    <Button className="botonCrearReunion"   href="/misProyectosJP" size="lg">
+                      Volver
+                      <BsArrowReturnLeft/> <span></span>
                     </Button>
                     <div className= "nombreProyecto">
                         Nombre del Proyecto: {proyecto.nombre_proyecto}

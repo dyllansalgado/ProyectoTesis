@@ -18,10 +18,20 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
         Long resultado = (Long) conn.createQuery(query,true).executeAndFetchFirst(Long.class);
         return resultado + 1; 
     }
+    @Override
+    public Long countUsuarioPregunta() {
+        String query = "select count(*) from usuario_pregunta";
+        Connection conn = sql2o.open();
+        Long resultado = (Long) conn.createQuery(query, true).executeAndFetchFirst(Long.class);
+        return resultado + 1;
+    }
 
-    public Pregunta createPregunta(Pregunta pregunta){
+    public Pregunta createPregunta(Pregunta pregunta, Long id_usuario ){
         Long id_count = countPregunta();
+        Long id_countUsuarioPregunta= countUsuarioPregunta();
         String query = "INSERT into pregunta (id_pregunta, pregunta, estado, id_tema) values (:id_pregunta,:pregunta,:estado,:id_tema)";
+        String queryusuario_pregunta = "INSERT into usuario_pregunta (id_usuario_pregunta, id_usuario, id_pregunta)" +
+        " values (:id_usuario_pregunta,:id_usuario,:id_pregunta)";
         try(Connection conn = sql2o.open()){
             conn.createQuery(query,true).addParameter("id_pregunta",id_count)
                 .addParameter("pregunta", pregunta.getPregunta())
@@ -29,6 +39,12 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
                 .addParameter("id_tema", pregunta.getId_tema())
                 .executeUpdate().getKey();
             pregunta.setId_pregunta(id_count);
+            //Crear tabla usuario_pregunta
+            conn.createQuery(queryusuario_pregunta,true).addParameter("id_usuario_pregunta",id_countUsuarioPregunta)
+            .addParameter("id_usuario", id_usuario)
+            .addParameter("id_pregunta",id_count)
+            .executeUpdate().getKey();
+            pregunta.setId_pregunta(id_countUsuarioPregunta);
             return pregunta;
         } 
         catch(Exception e){
@@ -72,6 +88,19 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
                 .executeUpdate().getKey(Long.class);
             pregunta.setId_pregunta(id);
             return pregunta;
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public  List<Pregunta> getListPreguntaXidTema(Long id_tema) {
+        String query = "select distinct p.* from pregunta p, tema t " +
+        "where p.id_tema=:id_tema and t.id_tema = p.id_tema";
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery(query).addParameter("id_tema", id_tema).executeAndFetch(Pregunta.class);
         }
         catch (Exception e){
             System.out.println(e.getMessage());

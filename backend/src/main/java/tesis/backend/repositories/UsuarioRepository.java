@@ -8,7 +8,6 @@ public interface UsuarioRepository {
     public Usuario getUsuario(Long id_usuario);
     public Usuario updateUsuario(Usuario usuario, Long id_usuario);
     public boolean deleteUsuario(Long id_usuario);
-
     public Usuario loginUsuario(Usuario usuario);
     public String logOut(Usuario usuario);
     public Long countUsuario();

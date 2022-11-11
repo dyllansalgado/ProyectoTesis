@@ -32,10 +32,15 @@
 table.tablaTermino{
     display:table;
     border-radius: 1%;
+    height: calc(98vh - 310px);
+    table-layout: fixed;
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-table.tablaTermino tr {
-    border: 1px solid black;
+table.tablaTermino tr{
+    border: 1px solid black;  
 }
 
 table.tablaTermino th {
@@ -45,7 +50,6 @@ table.tablaTermino th {
 table.tablaTermino td{
     border: 1px solid black; 
 }
-
 .fondoC {
     background-color: #D9D9D9;
     width: 100vw;

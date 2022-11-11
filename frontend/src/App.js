@@ -17,6 +17,8 @@ import IngresarReunionUsuario from "./components/Reunion/IngresarReunionUsuario"
 import GlosarioJP from "./components/Glosario/GlosarioJP";
 import GlosarioUsuario from "./components/Glosario/GlosarioUsuario";
 import IngresarAGlosario from "./components/Glosario/IngresarAGlosario";
+import TemaJP from "./components/Tema/TemaJP";
+import TemaUsuario from "./components/Tema/TemaUsuario";
 import './App.css';
 
 function App() {
@@ -41,6 +43,8 @@ function App() {
         <Route exact path="/GlosarioReunionJP/:idP/:idR" element={<GlosarioJP />} />
         <Route exact path="/GlosarioReunionUsuario/:idP/:idR" element={<GlosarioUsuario />} />
         <Route exact path="/IngresarAGlosario/:idP/:idR/:idG" element={<IngresarAGlosario />} />
+        <Route exact path="/TemaReunionJP/:idP/:idR/:idT" element={<TemaJP/>} />
+        <Route exact path="/TemaReunionUsuario/:idP/:idR/:idT" element={<TemaUsuario/>} />
       </Routes>
     </BrowserRouter>
     </>

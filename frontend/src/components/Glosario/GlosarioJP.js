@@ -38,22 +38,22 @@ class GlosarioJP extends Component {
       let idPath = window.location.pathname.split("/");
       axios.all([
         axios
-            .get(
-              "http://localhost:8080/usuario/"+id)
-            .then((res) => {
+          .get(
+            "http://localhost:8080/usuario/"+id)
+          .then((res) => {
             const usuario = res.data;
             this.setState({usuario});
             if(usuario.id_rol === 1){
-                const rol = "Jefe de Proyecto";
-                this.setState({rol});
+              const rol = "Jefe de Proyecto";
+              this.setState({rol});
             }else if(usuario.id_rol === 2){
-                const rol = "Usuario";
-                this.setState({rol});
+              const rol = "Usuario";
+              this.setState({rol});
             }
-            })
-            .catch((error) => {
-              console.log(error);
-        }),
+          })
+          .catch((error) => {
+            console.log(error);
+          }),
         axios
           .get("http://localhost:8080/proyecto/"+ idPath[2])
           .then((res) => {
@@ -64,22 +64,22 @@ class GlosarioJP extends Component {
             console.log(error);
         }),
         axios
-        .get("http://localhost:8080/glosarioReunion/"+ idPath[3])
-        .then((res) => {
-          const glosario = res.data;
-          this.setState({glosario});
-        })
-        .catch((error) => {
-          console.log(error);
+          .get("http://localhost:8080/glosarioReunion/"+ idPath[3])
+          .then((res) => {
+            const glosario = res.data;
+            this.setState({glosario});
+          })
+          .catch((error) => {
+            console.log(error);
         }),
         axios
-        .get("http://localhost:8080/reunion/"+ idPath[3])
-        .then((res) => {
-          const reunion = res.data;
-          this.setState({reunion});
-        })
-        .catch((error) => {
-          console.log(error);
+          .get("http://localhost:8080/reunion/"+ idPath[3])
+          .then((res) => {
+            const reunion = res.data;
+            this.setState({reunion});
+          })
+          .catch((error) => {
+            console.log(error);
         }),
       ]);
     }
@@ -91,26 +91,26 @@ class GlosarioJP extends Component {
           this.state.nombreGlosario !== "" &&
           this.state.descripcionGlosario !== ""){
           axios.post("http://localhost:8080/glosario/create", {
-              nombre_glosario: this.state.nombreGlosario,
-              descripcion_glosario: this.state.descripcionGlosario,
-              id_reunion: idPath[3]
+            nombre_glosario: this.state.nombreGlosario,
+            descripcion_glosario: this.state.descripcionGlosario,
+            id_reunion: idPath[3]
           });
   
           swal({
-              title: "Glosario creado con exito",
-              text: "Se ha creado correctamente el Glosario",
-              icon: "success",
+            title: "Glosario creado con exito",
+            text: "Se ha creado correctamente el Glosario",
+            icon: "success",
           });
           setTimeout(() => {
               window.location.replace("http://localhost:3000/GlosarioReunionJP/"+ idPath[2] + "/" + idPath[3]);
           }, 2000);
           }
           else {
-              swal({
-                title: "Error al crear el glosario",
-                text: "falla",
-                icon: "warning",
-              });
+            swal({
+              title: "Error al crear el glosario",
+              text: "falla",
+              icon: "warning",
+            });
           }
       };
 
@@ -133,7 +133,7 @@ class GlosarioJP extends Component {
                       <div className="container-fluid cew-9">
                           <div className="row">
                               <div className="col">
-                                  Objetivos: {proyecto.objetivo_proyecto}
+                                Objetivos: {proyecto.objetivo_proyecto}
                               </div>
                           </div>
                       </div>
@@ -144,50 +144,50 @@ class GlosarioJP extends Component {
                         Volver
                     </Button>
                     <Button
-                        className="botonIrAGlosario"  
-                        onClick={() => this.handleModal()}
-                        size="lg">
-                        Crear Glosario
+                      className="botonIrAGlosario"  
+                      onClick={() => this.handleModal()}
+                      size="lg">
+                      Crear Glosario
                     </Button>
                     <Modal
-                        name="formato"
-                        show={this.state.showModal}
-                        onHide={() => this.handleModal()}
+                      name="formato"
+                      show={this.state.showModal}
+                      onHide={() => this.handleModal()}
                     >
-                        <ModalHeader closeButton>
-                            Creando Glosario Proyecto: {proyecto.nombre_proyecto}
-                        </ModalHeader>
-                        <ModalBody>
-                            <Form onSubmit={this.IngresarNuevoGlosario}>
-                                <p> Nombre Glosario </p>
-                                <input
-                                    type="text"
-                                    value={nombreGlosario}
-                                    className="form-control"
-                                    name="nombreGlosario"
-                                    onChange={this.changeHandler}
-                                    placeholder="Nombre de glosario..."
-                                />
-                                <p> Descripción Glosario </p>
-                                <input
-                                    id="descripcion"
-                                    type="text"
-                                    placeholder="Descripción"
-                                    className="form-control"
-                                    value={descripcionGlosario}
-                                    name="descripcionGlosario"
-                                    onChange={this.changeHandler}
-                                />
-                                <Button
-                                    id="crearGlosario"
-                                    name="botonCrearGlosario"
-                                    type="submit"
-                                >
-                                    {" "}
-                                  Crear glosario
-                                </Button>
-                            </Form>
-                        </ModalBody>
+                      <ModalHeader closeButton>
+                        Creando Glosario Proyecto: {proyecto.nombre_proyecto}
+                      </ModalHeader>
+                      <ModalBody>
+                        <Form onSubmit={this.IngresarNuevoGlosario}>
+                          <p> Nombre Glosario </p>
+                          <input
+                            type="text"
+                            value={nombreGlosario}
+                            className="form-control"
+                            name="nombreGlosario"
+                            onChange={this.changeHandler}
+                            placeholder="Nombre de glosario..."
+                          />
+                          <p> Descripción Glosario </p>
+                          <input
+                            id="descripcion"
+                            type="text"
+                            placeholder="Descripción"
+                            className="form-control"
+                            value={descripcionGlosario}
+                            name="descripcionGlosario"
+                            onChange={this.changeHandler}
+                          />
+                          <Button
+                            id="crearGlosario"
+                            name="botonCrearGlosario"
+                            type="submit"
+                          >
+                            {" "}
+                            Crear glosario
+                          </Button>
+                        </Form>
+                      </ModalBody>
                     </Modal>
                     <div className= "nombreProyecto">
                         Nombre del Proyecto: {proyecto.nombre_proyecto}

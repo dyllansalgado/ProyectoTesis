@@ -90,14 +90,14 @@ class IngresarReunionUsuario extends Component {
                   </Row>
                     <div className="InformacionCentralIngresarProyecto">
                     <Button className="botonIrAGlosarioReunion"  href= {`/GlosarioReunionUsuario/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
-                          Ir a glosarios
+                      Ir a glosarios
                     </Button>
                     <Button className="botonIrAGlosarioReunion"  href={`/ingresarAProyectoUsuario/${proyecto.id_proyecto}`} size="lg">  
+                      Volver
                       <BsArrowReturnLeft/> <span></span>
-                          Volver
                     </Button>
                     <div className= "nombreProyecto">
-                        Nombre del Proyecto: {proyecto.nombre_proyecto}
+                      Nombre del Proyecto: {proyecto.nombre_proyecto}
                     </div>
                         <Col>
                             <div className="filterBlockIngresar">
@@ -123,7 +123,7 @@ class IngresarReunionUsuario extends Component {
                                 </p>
                                 <div className="center">
                                   <Button
-                                    variant="outline-primary" href={`/ingresarATemaReunion/${tema.id_tema}`}
+                                    variant="outline-primary" href={`/temaReunionUsuario/${proyecto.id_proyecto}/${reunion.id_reunion}/${temas.id_tema}`}
                                   >
                                     Ingresar a tema
                                   </Button>

@@ -207,7 +207,7 @@ class IngresarReunionJP extends Component {
                                 </p>
                                 <div className="center">
                                   <Button
-                                    variant="outline-primary" href={`/ingresarATemaReunion/${temas.id_tema}`}
+                                    variant="outline-primary" href={`/temaReunionJP/${proyecto.id_proyecto}/${reunion.id_reunion}/${temas.id_tema}`}
                                   >
                                     Ingresar a tema
                                   </Button>

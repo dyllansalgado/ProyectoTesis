@@ -3,6 +3,7 @@ import {Container, Col, Row, Card } from "react-bootstrap";
 import NavbarLogeadoJP from "../Main/NavbarLogeadoJP.js";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
+import {BsArrowReturnLeft} from "react-icons/bs";
 
 class MisProyectosJP extends Component {
   constructor(props) {
@@ -104,6 +105,7 @@ class MisProyectosJP extends Component {
               </Button>
               <Button className="botonMisProyectos"  href="/mainJefeProyecto/" size="lg">
               Volver
+              <BsArrowReturnLeft/> <span></span>
               </Button>
               <Col>
                 <div className="filterBlock">

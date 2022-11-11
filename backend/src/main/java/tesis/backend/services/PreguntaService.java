@@ -34,11 +34,11 @@ public class PreguntaService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/pregunta/create")
-    ResponseEntity<String> createPregunta(@RequestBody String request){
+    @PostMapping("/pregunta/create/{id_usuario}")
+    ResponseEntity<String> createPregunta(@RequestBody String request, @PathVariable Long id_usuario){
         Pregunta preguntaCreado = gson.fromJson(request, Pregunta.class);
         if (preguntaCreado!= null){
-            preguntaCreado = preguntaRepository.createPregunta(preguntaCreado);
+            preguntaCreado = preguntaRepository.createPregunta(preguntaCreado, id_usuario);
             return new ResponseEntity<>(gson.toJson(preguntaCreado),HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -64,6 +64,11 @@ public class PreguntaService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/preguntaTema/{id_tema}")
+    ResponseEntity<String>getListPreguntaXidTema(@PathVariable Long id_tema) {
+        List<Pregunta> pregunta = preguntaRepository.getListPreguntaXidTema(id_tema);
+        return new ResponseEntity<>(gson.toJson(pregunta), HttpStatus.OK);
+    }
     @DeleteMapping("/pregunta/{id_pregunta}")
     ResponseEntity<String> deletePregunta(@PathVariable Long id_pregunta) {
         if (preguntaRepository.deletePregunta(id_pregunta)) {

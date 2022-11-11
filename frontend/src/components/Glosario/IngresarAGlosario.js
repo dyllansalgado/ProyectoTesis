@@ -304,11 +304,11 @@ class IngresarAGlosario extends Component {
                         </div>
                         <Container fluid>
                             <div className="centrado"></div>
-                            <Table className="tablaTermino" >
+                            <Table responsive className="tablaTermino" >
                                 <thead>
                                     <tr>
-                                        <th width="10">Nombre de término</th>
-                                        <th width="200">Descripción</th>
+                                        <th width="200">Nombre de término</th>
+                                        <th width="1500">Descripción</th>
                                     </tr>
                                 </thead>
                                 <tbody>

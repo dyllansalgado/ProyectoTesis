@@ -93,11 +93,11 @@ class IngresarAProyectoUsuario extends Component {
                   </Row>
                   <div className="InformacionCentralIngresarProyecto">
                   <Button className="botonIrAGlosarioUser"  href="/misProyectosUsuario" size="lg">
+                    Volver
                     <BsArrowReturnLeft/> <span></span>
-                      Volver
                   </Button>
                   <div className= "nombreProyecto">
-                      Nombre del Proyecto: {proyecto.nombre_proyecto}
+                    Nombre del Proyecto: {proyecto.nombre_proyecto}
                   </div>
                       <Col>
                           <div className="filterBlockIngresar">
