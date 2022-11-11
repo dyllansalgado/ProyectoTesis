@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import {Container} from "react-bootstrap";
-import NavbarLogeadoJP from "../Main/NavbarLogeadoJP.js";
+import NavbarLogeado from "../Main/NavbarLogeado.js";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import swal from "sweetalert";
@@ -104,7 +104,7 @@ class CrearReunion extends Component {
       const {proyecto} = this.state;
         return (
             <div>
-              <NavbarLogeadoJP />
+              <NavbarLogeado/>
               <Container fluid>
               <h3 className="titulo">{proyecto.nombre_proyecto} </h3>
               <div className="fondo">

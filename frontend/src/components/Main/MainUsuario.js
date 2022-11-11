@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import {Button,Container, Col, Row, Card} from "react-bootstrap";
-import NavbarLogeadoUsuario from "./NavbarLogeadoUsuario.js";
+import NavbarLogeado from "./NavbarLogeado.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./MainUsuario.css";
 import axios from "axios";
@@ -86,7 +86,7 @@ class MainUsuario extends Component {
     return (
       <div>
         <div>
-          <NavbarLogeadoUsuario />
+          <NavbarLogeado />
         </div>
         <div className="fondoA" >
         <Container fluid>

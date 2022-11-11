@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import {Container, Col, Row, Card } from "react-bootstrap";
-import NavbarLogeadoJP from "./NavbarLogeadoJP.js";
+import NavbarLogeado from "./NavbarLogeado.js";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
 
@@ -89,7 +89,7 @@ class MainJefeProyecto extends Component {
     return (
       <div>
         <div>
-          <NavbarLogeadoJP />
+          <NavbarLogeado />
         </div>
         <div className="fondoB" >
         <Container fluid>

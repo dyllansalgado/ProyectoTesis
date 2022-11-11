@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import {Container, Col, Row, Table, Modal, Form, ModalHeader, ModalBody,} from "react-bootstrap";
-import NavbarLogeadoUsuario from "../Main/NavbarLogeadoUsuario.js";
+import NavbarLogeado from "../Main/NavbarLogeado.js";
 import Button from 'react-bootstrap/Button';
 import "../IngresarAProyecto/IngresarAProyecto.css";
 import axios from "axios";
@@ -167,7 +167,7 @@ class TemaJP extends Component {
       return ( 
       <div>
           <div>
-            <NavbarLogeadoUsuario />
+            <NavbarLogeado />
           </div>
           <div className="fondoB">
               <Container fluid>

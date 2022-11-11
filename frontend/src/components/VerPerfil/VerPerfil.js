@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./VerPerfil.css";
 import { Button, Container} from "react-bootstrap";
-import NavbarLogeadoUsuario from "../Main/NavbarLogeadoUsuario.js";
+import NavbarLogeado from "../Main/NavbarLogeado.js";
 
 
 
@@ -46,7 +46,7 @@ class VerPerfil extends Component {
         return (
           <div>
             <div>
-            <NavbarLogeadoUsuario />
+            <NavbarLogeado />
             </div>
             <div className="fondo">
             <Container fluid>

@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import {Container, Col, Row, Card, Modal, Form, ModalHeader, ModalBody,} from "react-bootstrap";
-import NavbarLogeadoJP from "../Main/NavbarLogeadoJP.js";
+import NavbarLogeado from "../Main/NavbarLogeado.js";
 import Button from 'react-bootstrap/Button';
 import "../IngresarAProyecto/IngresarAProyecto.css";
 import axios from "axios";
@@ -121,7 +121,7 @@ class IngresarReunionJP extends Component {
         return ( 
         <div>
             <div>
-              <NavbarLogeadoJP />
+              <NavbarLogeado />
             </div>
             <div className="fondoB">
                 <Container fluid>

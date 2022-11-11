@@ -3,7 +3,7 @@ import {Button, Container} from "react-bootstrap";
 import axios from "axios";
 import swal from "sweetalert";
 import "./VerMasProyectos.css";
-import NavbarLogeadoUsuario from "../Main/NavbarLogeadoUsuario.js";
+import NavbarLogeado from "../Main/NavbarLogeado.js";
 
 
 class VerMasProyecto extends Component { 
@@ -113,7 +113,7 @@ class VerMasProyecto extends Component {
         return (
         <>
         <div>
-            <NavbarLogeadoUsuario />
+            <NavbarLogeado />
         </div>
         <div className="fondo">
         <Container fluid>

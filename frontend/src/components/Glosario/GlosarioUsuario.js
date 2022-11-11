@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import {Container, Col, Row, Card,} from "react-bootstrap";
-import NavbarLogeadoUsuario from "../Main/NavbarLogeadoUsuario.js";
+import NavbarLogeado from "../Main/NavbarLogeado.js";
 import Button from 'react-bootstrap/Button';
 import "../IngresarAProyecto/IngresarAProyecto.css";
 import "./Glosario.css";
@@ -89,7 +89,7 @@ class GlosarioUsuario extends Component {
         return ( 
         <div>
             <div>
-              <NavbarLogeadoUsuario />
+              <NavbarLogeado />
             </div>
             <div className="fondoB">
                 <Container fluid>

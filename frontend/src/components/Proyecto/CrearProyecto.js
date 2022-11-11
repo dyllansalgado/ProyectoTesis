@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import {Button,Container} from "react-bootstrap";
 import swal from "sweetalert";
-import NavbarLogeadoJP from "../Main/NavbarLogeadoJP.js";
+import NavbarLogeado from "../Main/NavbarLogeado.js";
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import "./CrearProyecto.css";
@@ -86,7 +86,7 @@ class CrearProyecto extends Component {
   
       return (
         <div>
-          <NavbarLogeadoJP />
+          <NavbarLogeado />
           <div className="fondoCrearProyecto">
           <Container fluid>
             <div className="container_register">
