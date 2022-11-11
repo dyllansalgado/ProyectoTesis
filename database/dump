@@ -6,10 +6,10 @@ INSERT INTO usuario(id_usuario,nombre_usuario,apellido_usuario,contrasena_usuari
 VALUES(1,'hola','salgado perez','123','juan_a@gmail.com',1,1);
 
 INSERT INTO proyecto(id_proyecto,nombre_proyecto,fecha_inicio_proyecto,estado_proyecto,objetivo_proyecto,contrasena)
-VALUES(1,'Toma de requisitos para empresa Home Canter','2022/09/20',true,'Se solicita que se reunan para comnezar el proyecto','contrasena_123');
+VALUES(1,'Toma de requisitos para empresa Home Canter','2022/09/20',false,'Se solicita que se reunan para comnezar el proyecto','contrasena_123');
 
 INSERT INTO reunion(id_reunion,fecha_reunion,lugar_reunion,estado,id_proyecto)
-VALUES(1,'2022/09/20','zoom',true,1);
+VALUES(1,'2022/09/20','zoom',false,1);
 
 INSERT INTO glosario(id_glosario,nombre_glosario,descripcion_glosario,id_reunion)
 VALUES(1,'Glosario para toma de requisitos Home Canter','Este glosario muestra algunos terminos que se deberian saber antes de comenzar las reuniones',1);
@@ -27,7 +27,7 @@ INSERT INTO tema(id_tema,nombre_tema,descripcion_tema,estado,id_reunion)
 VALUES(2,'tema nuevo id_reunion 1','soy descripcion',false,1);
 
 INSERT INTO pregunta(id_pregunta,pregunta,estado,id_tema)
-VALUES(1,'¿Hola?',true,1);
+VALUES(1,'¿Hola?',false,1);
 
 INSERT INTO respuesta(id_respuesta,respuesta,id_pregunta)
 VALUES(1,'Soy una respuesta para pregunta 1',1);

@@ -106,7 +106,7 @@ CREATE TABLE pregunta(
     
     id_pregunta serial,
     pregunta text,
-    estado varchar(12),
+    estado boolean,
     id_tema integer NOT NULL,
     PRIMARY KEY (id_pregunta),
     deleted boolean NOT NULL DEFAULT false,
