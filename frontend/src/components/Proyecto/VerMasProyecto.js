@@ -134,7 +134,7 @@ class VerMasProyecto extends Component {
                         </div>
                         <div className="form-group">
                             <label>
-                                Estado proyecto: {proyecto.estado_proyecto}
+                                Estado proyecto: {String(proyecto.estado_proyecto) === 'false' ? "Disponible" : "Terminado"}
                             </label>
                         </div>
                         <div className="form-group">

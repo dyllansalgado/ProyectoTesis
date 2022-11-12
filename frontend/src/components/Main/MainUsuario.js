@@ -123,7 +123,7 @@ class MainUsuario extends Component {
                           Objetivo: {proyecto.objetivo_proyecto}
                         </p>
                         <p>
-                          Estado: {proyecto.estado_proyecto.toString()}
+                          Estado: {proyecto.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"} 
                         </p>
                         <div className="center">
                           <Button

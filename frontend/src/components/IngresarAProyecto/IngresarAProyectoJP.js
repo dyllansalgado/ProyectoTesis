@@ -115,7 +115,7 @@ class IngresarAProyectoJP extends Component {
                                 <Card.Title>Fecha de reunion: {meet.fecha_reunion}</Card.Title>
                                 <Card.Subtitle>Lugar: {meet.lugar_reunion}</Card.Subtitle>
                                 <p>
-                                  Estado: {meet.estado}
+                                  Estado: {meet.estado.toString() === 'false' ? "Disponible" : "Terminado"}
                                 </p>
                                 <div className="center">
                                   <Button

@@ -203,7 +203,7 @@ class IngresarReunionJP extends Component {
                                 <Card.Title>Nombre: {temas.nombre_tema}</Card.Title>
                                 <Card.Subtitle>Descripcion: {temas.descripcion_tema}</Card.Subtitle>
                                 <p>
-                                  Estado: {temas.estado.toString()}
+                                  Estado: {temas.estado.toString() === 'false' ? "Disponible" : "Terminado"}
                                 </p>
                                 <div className="center">
                                   <Button

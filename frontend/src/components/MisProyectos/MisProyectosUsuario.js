@@ -31,7 +31,7 @@ class MisProyectosUsuario extends Component {
         .get("http://localhost:8080/usuarioProyectos/"+id)
         .then((res) => {
           const proyectosUsuario = res.data;
-        
+
           this.setState({proyectosUsuario});
           console.log(proyectosUsuario);
         })
@@ -129,7 +129,7 @@ class MisProyectosUsuario extends Component {
                           Objetivo: {proyectosUser.objetivo_proyecto}
                         </p>
                         <p>
-                          Estado: {proyectosUser.estado_proyecto}
+                          Estado: {proyectosUser.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"}
                         </p>
                         <div className="center">
                           <Button

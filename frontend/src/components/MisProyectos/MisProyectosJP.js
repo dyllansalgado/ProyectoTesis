@@ -130,7 +130,7 @@ class MisProyectosJP extends Component {
                           Objetivo: {proyectos.objetivo_proyecto}
                         </p>
                         <p>
-                          Estado: {proyectos.estado_proyecto.toString()}
+                          Estado: {proyectos.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"}
                         </p>
                         <div className="center">
                           <Button
