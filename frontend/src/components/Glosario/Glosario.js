@@ -10,110 +10,145 @@ import {BsArrowReturnLeft} from "react-icons/bs";
 
 
 class Glosario extends Component { 
-    constructor(props) {
-      super(props);
-      this.state = {
-        usuario: [],
-        id: null,
-        proyecto:[],
-        reunion:[],
-        glosario:[],
-        nombreGlosario: "",
-        descripcionGlosario: "",
-      };
-      this.node = React.createRef();
-      this.handleModal = this.handleModal.bind(this);
-    }
-
-    handleModal() {
-      this.setState({ showModal: !this.state.showModal });
+  constructor(props) {
+    super(props);
+    this.state = {
+      usuario: [],
+      id: null,
+      proyecto:[],
+      reunion:[],
+      glosario:[],
+      nombreGlosario: "",
+      descripcionGlosario: "",
     };
+    this.node = React.createRef();
+    this.handleModal = this.handleModal.bind(this);
+  }
 
-    changeHandler = (e) => {
-      this.setState({ [e.target.name]: e.target.value });
-    };    
+  handleModal() {
+    this.setState({ showModal: !this.state.showModal });
+  };
 
-    componentDidMount() {
-      const id = localStorage.getItem('usuario');
-      let idPath = window.location.pathname.split("/");
-      axios.all([
-        axios
-          .get(
-            "http://localhost:8080/usuario/"+id)
-          .then((res) => {
-            const usuario = res.data;
-            this.setState({usuario});
-            if(usuario.id_rol === 1){
-              const rol = "Jefe de Proyecto";
-              this.setState({rol});
-            }else if(usuario.id_rol === 2){
-              const rol = "Usuario";
-              this.setState({rol});
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          }),
-        axios
-          .get("http://localhost:8080/proyecto/"+ idPath[2])
-          .then((res) => {
-            const proyecto = res.data;
-            this.setState({ proyecto});
-          })
-          .catch((error) => {
-            console.log(error);
+  changeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };    
+
+  componentDidMount() {
+    const id = localStorage.getItem('usuario');
+    let idPath = window.location.pathname.split("/");
+    axios.all([
+      axios
+        .get(
+          "http://localhost:8080/usuario/"+id)
+        .then((res) => {
+          const usuario = res.data;
+          this.setState({usuario});
+          if(usuario.id_rol === 1){
+            const rol = "Jefe de Proyecto";
+            this.setState({rol});
+          }else if(usuario.id_rol === 2){
+            const rol = "Usuario";
+            this.setState({rol});
+          }
+        })
+        .catch((error) => {
+          console.log(error);
         }),
-        axios
-          .get("http://localhost:8080/glosarioReunion/"+ idPath[3])
-          .then((res) => {
-            const glosario = res.data;
-            this.setState({glosario});
-          })
-          .catch((error) => {
-            console.log(error);
-        }),
-        axios
-          .get("http://localhost:8080/reunion/"+ idPath[3])
-          .then((res) => {
-            const reunion = res.data;
-            this.setState({reunion});
-          })
-          .catch((error) => {
-            console.log(error);
-        }),
-      ]);
+      axios
+        .get("http://localhost:8080/proyecto/"+ idPath[2])
+        .then((res) => {
+          const proyecto = res.data;
+          this.setState({ proyecto});
+        })
+        .catch((error) => {
+          console.log(error);
+      }),
+      axios
+        .get("http://localhost:8080/glosarioReunion/"+ idPath[3])
+        .then((res) => {
+          const glosario = res.data;
+          this.setState({glosario});
+        })
+        .catch((error) => {
+          console.log(error);
+      }),
+      axios
+        .get("http://localhost:8080/reunion/"+ idPath[3])
+        .then((res) => {
+          const reunion = res.data;
+          this.setState({reunion});
+        })
+        .catch((error) => {
+          console.log(error);
+      }),
+    ]);
+  }
+
+  IngresarNuevoGlosario = (e) => {
+    let idPath = window.location.pathname.split("/");
+    e.preventDefault();
+    if (
+    this.state.nombreGlosario !== "" &&
+    this.state.descripcionGlosario !== ""){
+    axios.post("http://localhost:8080/glosario/create", {
+      nombre_glosario: this.state.nombreGlosario,
+      descripcion_glosario: this.state.descripcionGlosario,
+      id_reunion: idPath[3]
+    })
+    swal({
+      title: "Glosario creado con exito",
+      text: "Se ha creado correctamente el Glosario",
+      icon: "success",
+    });
+    setTimeout(() => {
+        window.location.replace("http://localhost:3000/GlosarioReunion/"+ idPath[2] + "/" + idPath[3]);
+    }, 2000);
     }
+    else {
+      swal({
+        title: "Error al crear el glosario",
+        text: "falla",
+        icon: "warning",
+      });
+    }
+  };
+  //Barra de busqueda
+  onChange = (e) => {
+    if (this.node.current.contains(e.target)) {
+      return;
+    }
+    this.setState({
+      glosarioFiltro: [],
+    });
+  };
+  onUserChange = async (e) => {
+    let idPath = window.location.pathname.split("/");
+    await axios
+      .get("http://localhost:8080/glosarioReunion/"+ idPath[3])
+      .then((res) => {
+        this.setState({
+          glosarioFiltro: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    IngresarNuevoGlosario = (e) => {
-      let idPath = window.location.pathname.split("/");
-      e.preventDefault();
-      if (
-          this.state.nombreGlosario !== "" &&
-          this.state.descripcionGlosario !== ""){
-          axios.post("http://localhost:8080/glosario/create", {
-            nombre_glosario: this.state.nombreGlosario,
-            descripcion_glosario: this.state.descripcionGlosario,
-            id_reunion: idPath[3]
-          });
-  
-          swal({
-            title: "Glosario creado con exito",
-            text: "Se ha creado correctamente el Glosario",
-            icon: "success",
-          });
-          setTimeout(() => {
-              window.location.replace("http://localhost:3000/GlosarioReunion/"+ idPath[2] + "/" + idPath[3]);
-          }, 2000);
-          }
-          else {
-            swal({
-              title: "Error al crear el glosario",
-              text: "falla",
-              icon: "warning",
-            });
-          }
-      };
+      let filter = e.target.value.toLowerCase();
+      let filtroGlosario= this.state.glosarioFiltro.filter((e) => {
 
+        let dataFilter = e.nombre_glosario.toLowerCase();
+        return (
+          dataFilter
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .indexOf(filter) !== -1)
+      });
+
+    this.setState({
+      glosario: filtroGlosario,
+    });
+  };
     render() {
         const {usuario} = this.state;
         const {proyecto} = this.state;
@@ -206,7 +241,7 @@ class Glosario extends Component {
                                   type="text"
                                   onClick={this.onChange}
                                   onChange={this.onUserChange}
-                                  placeholder="Buscar Proyecto..."
+                                  placeholder="Buscar Glosario..."
                                   ref={this.node}
                                 />
                             </div>
