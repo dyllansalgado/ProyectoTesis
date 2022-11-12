@@ -46,7 +46,7 @@ class Login extends Component {
             icon: "success",
           });
           setTimeout(() => {
-            window.location.replace("http://localhost:3000/mainUsuario/");
+            window.location.replace("http://localhost:3000/main");
           }, 1000);
         }
         else if(response.data.token_usuario === 1 && response.data.contrasena_usuario === this.state.contrasena_usuario && response.data.id_rol === 1) {
@@ -61,7 +61,7 @@ class Login extends Component {
           icon: "success",
         });
         setTimeout(() => {
-          window.location.replace("http://localhost:3000/mainJefeProyecto/");
+          window.location.replace("http://localhost:3000/main");
         }, 2000);
         }
         else {
@@ -120,7 +120,7 @@ class Login extends Component {
                   {" "}
                   Ingresar
                 </Button>
-                <Button variant="secondary" className="botonRegistrarse" href="/registrarse/">Registrarse</Button>
+                <Button variant="secondary" className="botonRegistrarse" href="/registrarse">Registrarse</Button>
                 {""}
               </div>
             </form>

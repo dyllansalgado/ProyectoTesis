@@ -133,3 +133,19 @@ img {
     color:black;
     bottom: -5px; right: -200px;
 }
+
+.ProyectosList{
+    margin: auto;
+    width: -100px;
+    padding: 100px;
+}
+
+.botonMisProyectosUsuario{
+    margin: 1%;
+    text-align: center;
+    cursor:pointer;
+    width: 170px;
+    padding: 7px;
+    position: relative; 
+    bottom: -1%; right: 15%;
+}

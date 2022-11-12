@@ -55,7 +55,7 @@ class CrearProyecto extends Component {
               icon: "success",
             }),
             setTimeout(() => {
-              window.location.replace("http://localhost:3000/mainJefeProyecto/");
+              window.location.replace("http://localhost:3000/main/");
             }, 2000),
 
             axios

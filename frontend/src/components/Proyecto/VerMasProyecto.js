@@ -58,7 +58,6 @@ class VerMasProyecto extends Component {
 
     RegistrarProyectoUsuario () {
         const id = localStorage.getItem('usuario');
-        const id_rol = localStorage.getItem('id_rol');
         let idPath = window.location.pathname.split("/");
         axios
         .post("http://localhost:8080/ingresarUsuarioProyecto/create/" + id + "/" + idPath[2] , {
@@ -73,16 +72,9 @@ class VerMasProyecto extends Component {
                 text: "Se ha asignado el proyecto en sus proyectos",
                 icon: "success",
               });
-              if(id_rol === "1"){
                 setTimeout(() => {
-                    window.location.replace("http://localhost:3000/mainJefeProyecto/");
-                  }, 1000);
-              }
-              else if (id_rol === "2"){
-                setTimeout(() => {
-                    window.location.replace("http://localhost:3000/mainUsuario/");
-                  }, 2000);
-              } 
+                    window.location.replace("http://localhost:3000/main/");
+                }, 1000);
             }
             else {
               swal({
@@ -103,13 +95,6 @@ class VerMasProyecto extends Component {
         const {rol} = this.state;
         const contrasena = this.state.contrasena;
         const {proyecto} = this.state;
-        const volver = () => {
-            if (usuario.id_rol === 1) {
-              window.location.replace("http://localhost:3000/mainJefeProyecto/");
-            }else if (usuario.id_rol === 2) {
-              window.location.replace("http://localhost:3000/mainUsuario/");
-            }
-        }
         return (
         <>
         <div>
@@ -160,7 +145,7 @@ class VerMasProyecto extends Component {
                             {" "}
                             Ingresar Proyecto
                         </Button>
-                        <Button className="botonVolverMain"  onClick={() => volver()} >
+                        <Button className="botonVolverMain"  href="/main/" >
                             Volver
                         </Button>
                     </div>

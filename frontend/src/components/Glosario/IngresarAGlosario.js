@@ -207,15 +207,6 @@ class IngresarAGlosario extends Component {
         const {terminos} = this.state;
         const nombreTermino = this.state.nombre_termino;
         const descripcionTermino = this.state.descripcion_termino;
-        const {usuario} = this.state;
-
-        const volver = () => {
-            if (usuario.id_rol === 1) {
-              window.location.replace("http://localhost:3000/GlosarioReunionJP/" + proyecto.id_proyecto + "/" + reunion.id_reunion);
-            }else if (usuario.id_rol === 2) {
-              window.location.replace("http://localhost:3000/GlosarioReunionUsuario/" + proyecto.id_proyecto + "/" + reunion.id_reunion);
-            }
-        }
         return(
             <div>
                 <div>
@@ -286,7 +277,7 @@ class IngresarAGlosario extends Component {
                                 <BsDownload /> <span></span>
                                     Descargar
                             </Button>
-                            <Button className="botonCrearReunion" onClick={() => volver()} size="lg">
+                            <Button className="botonCrearReunion" href={`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
                                 <BsArrowReturnLeft/> <span></span>
                                     Volver
                             </Button>

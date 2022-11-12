@@ -9,7 +9,7 @@ import swal from "sweetalert";
 import {BsArrowReturnLeft} from "react-icons/bs";
 
 
-class GlosarioJP extends Component { 
+class Glosario extends Component { 
     constructor(props) {
       super(props);
       this.state = {
@@ -102,7 +102,7 @@ class GlosarioJP extends Component {
             icon: "success",
           });
           setTimeout(() => {
-              window.location.replace("http://localhost:3000/GlosarioReunionJP/"+ idPath[2] + "/" + idPath[3]);
+              window.location.replace("http://localhost:3000/GlosarioReunion/"+ idPath[2] + "/" + idPath[3]);
           }, 2000);
           }
           else {
@@ -128,27 +128,35 @@ class GlosarioJP extends Component {
             </div>
             <div className="fondoB">
                 <Container fluid>
-                  <Row>
-                      <h2 className="centerTitulo"> Glosarios disponibles: {usuario.nombre_usuario}</h2>
-                      <div className="container-fluid cew-9">
-                          <div className="row">
-                              <div className="col">
-                                Objetivos: {proyecto.objetivo_proyecto}
-                              </div>
-                          </div>
-                      </div>
-                  </Row>
+                    <Row>
+                        <h2 className="centerTitulo"> Glosarios disponibles: {usuario.nombre_usuario}</h2>
+                        <div className="container-fluid cew-9">
+                            <div className="row">
+                                <div className="col">
+                                  Objetivos: {proyecto.objetivo_proyecto}
+                                </div>
+                            </div>
+                        </div>
+                    </Row>
                     <div className="InformacionCentralIngresarProyecto">
-                    <Button className="botonVolverGlosario"   href={`/ingresarReunionJP/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
-                      <BsArrowReturnLeft/> <span></span>
+                    {usuario.id_rol === 1 ?
+                    <Button className="botonVolverGlosario"   href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
+                        <BsArrowReturnLeft/> <span></span>
+                            Volver
+                    </Button>:""
+                    }
+                    {usuario.id_rol === 1 ?
+                    <Button
+                        className="botonIrAGlosario"  
+                        onClick={() => this.handleModal()}
+                        size="lg">
+                        Crear Glosario
+                    </Button>:
+                    <Button className="botonVolverGlosarioUsuario"   href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
+                        <BsArrowReturnLeft/> <span></span>
                         Volver
                     </Button>
-                    <Button
-                      className="botonIrAGlosario"  
-                      onClick={() => this.handleModal()}
-                      size="lg">
-                      Crear Glosario
-                    </Button>
+                    }
                     <Modal
                       name="formato"
                       show={this.state.showModal}
@@ -230,4 +238,4 @@ class GlosarioJP extends Component {
     }
 }
 
-export default GlosarioJP ;
+export default Glosario ;

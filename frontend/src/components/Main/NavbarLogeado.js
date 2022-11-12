@@ -53,11 +53,11 @@ class NavbarLogeado extends Component{
             <>
               <Navbar collapseOnSelect className="navbarLogeado">
                 { usuario.id_rol === 1 ?
-                  <Navbar.Brand href="/mainJefeProyecto/">
+                  <Navbar.Brand href="/main">
                     <img src={image} className="logo" alt="LogoTesis" />{" "}
                   </Navbar.Brand>
                   :
-                  <Navbar.Brand href="/mainUsuario/">
+                  <Navbar.Brand href="/main">
                   <img src={image} className="logo" alt="LogoTesis" />{" "}
                   </Navbar.Brand>
                 }

@@ -7,7 +7,7 @@ import axios from "axios";
 import {BsArrowReturnLeft} from "react-icons/bs";
 
 
-class IngresarAProyectoJP extends Component {
+class IngresarAProyecto extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -85,10 +85,12 @@ class IngresarAProyectoJP extends Component {
                       </div>
                   </Row>
                     <div className="InformacionCentralIngresarProyecto">
+                    {usuario.id_rol === 1 ?
                     <Button className="botonCrearReunion"   href={`/crearReunion/${proyecto.id_proyecto}`} size="lg">
-                          Crear Reunion
-                    </Button>
-                    <Button className="botonCrearReunion"   href="/misProyectosJP" size="lg">
+                            Crear Reunion
+                    </Button>: ""
+                    }
+                    <Button className="botonCrearReunion"   href="/misProyectos/" size="lg">
                       Volver
                       <BsArrowReturnLeft/> <span></span>
                     </Button>
@@ -119,7 +121,7 @@ class IngresarAProyectoJP extends Component {
                                 </p>
                                 <div className="center">
                                   <Button
-                                    variant="outline-primary" href={`/ingresarReunionJP/${proyecto.id_proyecto}/${meet.id_reunion}`}
+                                    variant="outline-primary" href={`/ingresarReunion/${proyecto.id_proyecto}/${meet.id_reunion}`}
                                   >
                                     Ingresar a reunion
                                   </Button>
@@ -135,4 +137,4 @@ class IngresarAProyectoJP extends Component {
         );
     }
 }
-export default IngresarAProyectoJP;
+export default IngresarAProyecto;

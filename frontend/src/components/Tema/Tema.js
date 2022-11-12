@@ -9,8 +9,9 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import "./Tema.css";
 import {AiOutlineCheck} from "react-icons/ai";
 import {BsArrowReturnLeft} from "react-icons/bs";
+import {AiFillLike} from "react-icons/ai";
 
-class TemaJP extends Component { 
+class Tema extends Component { 
     constructor(props) {
       super(props);
       this.state = {
@@ -94,6 +95,13 @@ class TemaJP extends Component {
         .catch((error) => {
           console.log(error);
         }),
+        axios
+        .get(
+            "http://localhost:8080/usuario/"+id)
+          .then((res) => {
+            const usuario = res.data;
+            this.setState({usuario});
+          }),
       ]);
     }
     //Barra de busqueda
@@ -148,7 +156,7 @@ class TemaJP extends Component {
           icon: "success",
         });
         setTimeout(() => {
-          window.location.replace("http://localhost:3000/temaReunionJP/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
+          window.location.replace("http://localhost:3000/temaReunion/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
         }, 2000);
       }
       else {
@@ -178,7 +186,7 @@ class TemaJP extends Component {
             icon: "success",
           });
           setTimeout(() => {
-            window.location.replace("http://localhost:3000/temaReunionJP/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
+            window.location.replace("http://localhost:3000/temaReunion/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
           }, 2000);
         }
       });
@@ -189,7 +197,7 @@ class TemaJP extends Component {
       const preguntaNueva = this.state.pregunta;
       const {preguntas} = this.state;
       const {reunion}= this.state;
-
+      const {usuario}= this.state;
       return ( 
       <div>
           <div>
@@ -268,7 +276,7 @@ class TemaJP extends Component {
               </Button>
               <Button
                 className="botonCrearPregunta"  
-                href={`/ingresarReunionJP/${proyecto.id_proyecto}/${reunion.id_reunion}`}
+                href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`}
                 size="lg">
                 Volver
                 <BsArrowReturnLeft/> <span></span>
@@ -336,9 +344,9 @@ class TemaJP extends Component {
                       <tr key={pregunta.id_pregunta} >
                         <td> {pregunta.pregunta} </td>
                         <td> nombre creador pregunta </td>
+                        {usuario.id_rol === 1 ?
                         <td>
                           {" "}
-
                           {pregunta.estado.toString() === 'false' ?
                             <Button
                               variant="success"
@@ -356,7 +364,18 @@ class TemaJP extends Component {
                             <AiOutlineCheck/> <span></span>
                             </Button>
                           }
+                        </td>:
+                        <td>
+                            {" "}
+                            <Button
+                              variant="success"
+                            >
+                            {" "}
+                                Votar{" "}
+                                <AiFillLike/> <span></span>
+                            </Button>{" "}
                         </td>
+                        }
                         <td>TOTAL DE VOTOS</td>
                       </tr>
                     ))}
@@ -369,4 +388,4 @@ class TemaJP extends Component {
       );
     }
 }
-export default TemaJP ;
+export default Tema ;

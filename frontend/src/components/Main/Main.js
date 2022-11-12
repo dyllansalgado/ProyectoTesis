@@ -1,11 +1,13 @@
 import React, { Component} from "react";
-import {Button,Container, Col, Row, Card} from "react-bootstrap";
+import {Container, Col, Row, Card } from "react-bootstrap";
 import NavbarLogeado from "./NavbarLogeado.js";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./MainUsuario.css";
+import Button from 'react-bootstrap/Button';
 import axios from "axios";
+import "./NavbarLogeado.css"
+import "bootstrap/dist/css/bootstrap.min.css";
 
-class MainUsuario extends Component {
+
+class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +17,7 @@ class MainUsuario extends Component {
     };
     this.node = React.createRef();
   }
-  
+
   componentDidMount() {
     const id = localStorage.getItem('usuario');
     axios.all([
@@ -80,43 +82,74 @@ class MainUsuario extends Component {
       proyectos: filtroProyectos,
     });
   };
+
   render() {
     const {usuario} = this.state;
     const {proyectos} = this.state;
+
+
     return (
       <div>
         <div>
           <NavbarLogeado />
         </div>
-        <div className="fondoA" >
+        <div className="fondoB" >
         <Container fluid>
-          <Row>
-            <Col>
-              <h3 className="centerTituloUsuario"> Bienvenido Usuario: {usuario.nombre_usuario}</h3>
-            </Col>
-          </Row>
-          <div className="InformacionCentralUsuario">
-          <h3 className="centerTitulo"> Proyectos disponibles</h3>
-          <Button className="botonMisProyectosUsuario"  href="/misProyectosUsuario" size="lg">
+            <Row>
+            {usuario.id_rol === 1 ?
+                <Col>
+                  <h3 className="centerTitulo"> Bienvenido Jefe de Proyectos: {usuario.nombre_usuario}</h3>
+                </Col>:
+                <Col>
+                    <h3 className="centerTituloUsuario"> Bienvenido Usuario: {usuario.nombre_usuario}</h3>
+                </Col>
+            }
+            </Row>
+            <div className="InformacionCentral">
+                {usuario.id_rol === 1 ?
+                <Button className="botonCrearProyecto"  href="/crearProyecto" size="lg">
+                Crear Proyecto
+                </Button>:
+                <h3 className="centerTitulo"> Proyectos disponibles</h3>
+                }
+                {usuario.id_rol === 1 ?
+                <Button className="botonMisProyectos"  href="/misProyectos" size="lg">
                 Mis proyectos
-            </Button>
-            <Col>
-              <div className="filterBlockUsuario">
-                <input
-                  type="text"
-                  onClick={this.onChange}
-                  onChange={this.onUserChange}
-                  placeholder="Buscar Proyecto..."
-                  ref={this.node}
-                />
-              </div>
-            </Col>
-          </div>
-          <Row className="ProyectosList">
-            {proyectos.map((proyecto) => (
-                  <Col className="col" key={proyecto.id_proyecto}>
-                    <Card style={{ width: "18rem" }}>
-                      <Card.Body>
+                </Button>:
+                <Button className="botonMisProyectosUsuario"  href="/misProyectos" size="lg">
+                Mis proyectos
+                </Button>
+                }
+                {usuario.id_rol === 1 ?
+                <Col>
+                    <div className="filterBlock">
+                      <input
+                        type="text"
+                        onClick={this.onChange}
+                        onChange={this.onUserChange}
+                        placeholder="Buscar Proyecto..."
+                        ref={this.node}
+                      />
+                    </div>
+                </Col>:
+                <Col>
+                    <div className="filterBlockUsuario">
+                      <input
+                        type="text"
+                        onClick={this.onChange}
+                        onChange={this.onUserChange}
+                        placeholder="Buscar Proyecto..."
+                        ref={this.node}
+                      />
+                    </div>
+                </Col>
+                }
+            </div> 
+            <Row className="ProyectosList">
+              {proyectos.map((proyecto) => (
+                <Col className="col" key={proyecto.id_proyecto}>
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Body>
                         <Card.Title>{proyecto.nombre_proyecto}</Card.Title>
                         <Card.Subtitle>Fecha de inicio: {proyecto.fecha_inicio_proyecto}</Card.Subtitle>
                         <p>
@@ -136,12 +169,12 @@ class MainUsuario extends Component {
                     </Card>
                 </Col>
               ))}
-              </Row>
-          </Container>
+            </Row>
+        </Container>
         </div>
       </div>
     );
   }
 }
 
-export default MainUsuario;
+export default Main;

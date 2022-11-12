@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import {BsArrowReturnLeft} from "react-icons/bs";
 
-class MisProyectosJP extends Component {
+class MisProyectos extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -95,29 +95,56 @@ class MisProyectosJP extends Component {
         <div className="fondoB" >
         <Container fluid>
             <Row>
-              <Col>
-                <h3 className="centerTitulo"> Bienvenido Jefe de Proyectos: {usuario.nombre_usuario}</h3>
-              </Col>
+                {usuario.id_rol === 1 ?
+                <Col>
+                    <h3 className="centerTitulo"> Bienvenido Jefe de Proyectos: {usuario.nombre_usuario}</h3>
+                </Col>:
+                <Col>
+                    <h3 className="centerTitulo"> Bienvenido Usuario: {usuario.nombre_usuario}</h3>
+                </Col>
+                }
             </Row>
             <div className="InformacionCentral">
-              <Button className="botonCrearProyecto"  href="/crearProyecto" size="lg">
-              Crear Proyecto
-              </Button>
-              <Button className="botonMisProyectos"  href="/mainJefeProyecto/" size="lg">
-              Volver
-              <BsArrowReturnLeft/> <span></span>
-              </Button>
-              <Col>
-                <div className="filterBlock">
-                  <input
-                    type="text"
-                    onClick={this.onChange}
-                    onChange={this.onUserChange}
-                    placeholder="Buscar Proyecto..."
-                    ref={this.node}
-                  />
-                </div>
-              </Col> 
+                {usuario.id_rol === 1 ?
+                <Button className="botonCrearProyecto"  href="/crearProyecto" size="lg">
+                Crear Proyecto
+                </Button>:
+                <h3 className="centerTitulo"> Proyectos disponibles</h3>
+                }
+                {usuario.id_rol === 1 ?
+                <Button className="botonMisProyectos"  href="/main" size="lg">
+                    Volver
+                    <BsArrowReturnLeft/> <span></span>
+                </Button>:
+                <Button className="botonMisProyectosUsuario"  href="/main" size="lg">
+                    Volver
+                    <BsArrowReturnLeft/> <span></span>
+                </Button>
+                }
+                {usuario.id_rol === 1 ?
+                <Col>
+                    <div className="filterBlock">
+                        <input
+                            type="text"
+                            onClick={this.onChange}
+                            onChange={this.onUserChange}
+                            placeholder="Buscar Proyecto..."
+                            ref={this.node}
+                        />
+                    </div>
+                </Col>:
+                <Col>
+                    <div className="filterBlockUsuario">
+                        <input
+                            type="text"
+                            onClick={this.onChange}
+                            onChange={this.onUserChange}
+                            placeholder="Buscar Proyecto..."
+                            ref={this.node}
+                        />
+                    </div>
+                </Col>
+                }
             </div> 
             <Row className="ProyectosList">
               {proyectosJefe.map((proyectos) => (
@@ -127,17 +154,24 @@ class MisProyectosJP extends Component {
                         <Card.Title>{proyectos.nombre_proyecto}</Card.Title>
                         <Card.Subtitle>Fecha de inicio: {proyectos.fecha_inicio_proyecto}</Card.Subtitle>
                         <p>
-                          Objetivo: {proyectos.objetivo_proyecto}
+                            Objetivo: {proyectos.objetivo_proyecto}
                         </p>
                         <p>
-                          Estado: {proyectos.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"}
+                            Estado: {proyectos.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"}
                         </p>
                         <div className="center">
-                          <Button
-                            variant="outline-primary" href={`/ingresarAProyectoJP/${proyectos.id_proyecto}`}
-                          >
-                            Ingresar a proyecto
-                          </Button>
+                        {usuario.id_rol === 1 ?
+                            <Button
+                                variant="outline-primary" href={`/ingresarAProyecto/${proyectos.id_proyecto}`}
+                            >
+                                Ingresar a proyecto
+                            </Button>:
+                            <Button
+                              variant="outline-primary" href={`/ingresarAProyecto/${proyectos.id_proyecto}`}
+                            >
+                              Ingresar a proyecto
+                            </Button>
+                        }
                         </div>
                       </Card.Body>
                     </Card>
@@ -151,4 +185,4 @@ class MisProyectosJP extends Component {
   }
 }
 
-export default MisProyectosJP;
+export default MisProyectos;

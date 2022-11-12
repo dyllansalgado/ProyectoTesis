@@ -7,6 +7,7 @@ import swal from "sweetalert";
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import "../Proyecto/CrearProyecto.css";
+import "./CrearReunion.css";
 import es from "date-fns/locale/es"
 registerLocale("es",es);
 
@@ -51,7 +52,7 @@ class CrearReunion extends Component {
             icon: "success",
           });
           setTimeout(() => {
-            window.location.replace("http://localhost:3000/ingresarAProyectoJP/"+idPath[2]);
+            window.location.replace("http://localhost:3000/ingresarAProyecto/"+idPath[2]);
           }, 2000);
         }
       else {
