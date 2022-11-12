@@ -7,3 +7,10 @@
     position: relative; 
     bottom: -1%; right: -2%;
 }
+
+.dropdownTamaño{
+    height: 200px;
+    table-layout: fixed;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

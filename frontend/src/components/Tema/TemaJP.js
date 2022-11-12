@@ -205,7 +205,7 @@ class TemaJP extends Component {
               <Dropdown.Toggle id="dropdown-basic-button">
                 Preguntas Recomendadas
               </Dropdown.Toggle>
-                <Dropdown.Menu>
+                <Dropdown.Menu  className="dropdownTamaño">
                   <Dropdown>* Debes seleccionar la pregunta y se guardará en el portapapeles *</Dropdown>
                   <Dropdown.Divider />
                   <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Cuál es el proceso básico de la empresa?")} >
@@ -328,7 +328,6 @@ class TemaJP extends Component {
                       <th width="250">Creador</th>
                       <th width="170">Aceptar Pregunta</th>
                       <th width="100">Votos</th>
-                      <th width="50">Aceptada</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -353,14 +352,12 @@ class TemaJP extends Component {
                             variant="secondary" disabled
                             >
                             {" "}
-                            Aceptar{" "}
+                            Aceptada{" "}
                             <AiOutlineCheck/> <span></span>
                             </Button>
                           }
                         </td>
                         <td>TOTAL DE VOTOS</td>
-                        <td>{pregunta.estado.toString() === 'false' ? "No" : "Sí"
-                        }</td>
                       </tr>
                     ))}
                   </tbody>

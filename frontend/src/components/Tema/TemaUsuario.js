@@ -179,7 +179,7 @@ class TemaJP extends Component {
                   <Dropdown.Toggle id="dropdown-basic-button">
                     Preguntas Recomendadas
                   </Dropdown.Toggle>
-                    <Dropdown.Menu>
+                    <Dropdown.Menu className="dropdownTamaño">
                       <Dropdown>* Debes seleccionar la pregunta y se guardará en el portapapeles *</Dropdown>
                       <Dropdown.Divider />
                       <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Cuál es el proceso básico de la empresa?")} >
