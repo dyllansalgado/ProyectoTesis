@@ -4,6 +4,7 @@ public class Pregunta {
     private Long id_pregunta;
     private Long id_tema;
     private String pregunta;
+    private String creador;
     private Boolean estado;
     private boolean deleted;
                 
@@ -41,5 +42,12 @@ public class Pregunta {
     }
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+    
+    public String getCreador() {
+        return creador;
+    }
+    public void setCreador(String creador) {
+        this.creador = creador;
     }
 }

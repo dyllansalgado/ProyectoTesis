@@ -34,5 +34,5 @@ public class Usuario_pregunta {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
-    
+
 }

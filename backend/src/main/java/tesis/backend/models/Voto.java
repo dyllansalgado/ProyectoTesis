@@ -3,6 +3,7 @@ package tesis.backend.models;
 public class Voto {
     private Long id_voto;
     private Long id_pregunta;
+    private Long id_usuario;
     private Boolean tipo_voto;
     private boolean deleted;
                 
@@ -33,5 +34,12 @@ public class Voto {
     }
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public Long getId_usuario() {
+        return id_usuario;
+    }
+    public void setId_usuario(Long id_usuario) {
+        this.id_usuario = id_usuario;
     }
 }

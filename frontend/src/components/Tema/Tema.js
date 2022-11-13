@@ -24,6 +24,7 @@ class Tema extends Component {
         preguntaNueva: "",
         preguntas:[],
         idPregunta: null,
+        votos:[]
       };
       this.node = React.createRef();
       this.handleModal = this.handleModal.bind(this);
@@ -75,6 +76,17 @@ class Tema extends Component {
           })
           .catch((error) => {
             console.log(error);
+        }),
+
+        axios
+        .get("http://localhost:8080/votos/")
+        .then((res) => {
+          const votos = res.data;
+          this.setState({ votos});
+          console.log(votos)
+        })
+        .catch((error) => {
+          console.log(error);
         }),
         axios
         .get("http://localhost:8080/preguntaTema/"+ idPath[4])
@@ -190,6 +202,33 @@ class Tema extends Component {
           }, 2000);
         }
       });
+    }
+
+    VotarPregunta(idUsuario,idPregunta){
+      let idPath = window.location.pathname.split("/");
+      swal({
+        title: "Atención",
+        text: "¿Desea votar la pregunta seleccionada?",
+        icon: "warning",
+        buttons: ["No", "Si"],
+      }).then((respuesta) => {
+        if (respuesta) {
+          axios.post("http://localhost:8080/voto/create", {
+            tipo_voto: true ,
+            id_pregunta: idPregunta,
+            id_usuario: idUsuario
+          });
+          swal({
+            title: "Pregunta calificada con éxito",
+            text: "La pregunta ha sido califacada con éxito",
+            icon: "success",
+          });
+          setTimeout(() => {
+            window.location.replace("http://localhost:3000/temaReunion/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
+          }, 2000);
+        }
+      });
+
     }
     render() {
       const {proyecto} = this.state;
@@ -343,7 +382,7 @@ class Tema extends Component {
                     preguntas.map((pregunta) => (
                       <tr key={pregunta.id_pregunta} >
                         <td> {pregunta.pregunta} </td>
-                        <td> nombre creador pregunta </td>
+                        <td> {pregunta.creador} </td>
                         {usuario.id_rol === 1 ?
                         <td>
                           {" "}
@@ -369,6 +408,7 @@ class Tema extends Component {
                             {" "}
                             <Button
                               variant="success"
+                              onClick={() => this.VotarPregunta(usuario.id_usuario,pregunta.id_pregunta)}
                             >
                             {" "}
                                 Votar{" "}
@@ -376,7 +416,7 @@ class Tema extends Component {
                             </Button>{" "}
                         </td>
                         }
-                        <td>TOTAL DE VOTOS</td>
+                        <td>{pregunta.votos}</td>
                       </tr>
                     ))}
                   </tbody>

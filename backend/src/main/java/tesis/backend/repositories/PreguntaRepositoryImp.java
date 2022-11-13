@@ -5,11 +5,18 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import java.util.List;
+import tesis.backend.models.Usuario;
+
 
 @Repository
 public class PreguntaRepositoryImp implements PreguntaRepository{
     @Autowired
     private Sql2o sql2o;
+    @Autowired
+    private final UsuarioRepository usuarioRepository;
+    public PreguntaRepositoryImp(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
     @Override
     public Long countPregunta(){
@@ -29,7 +36,8 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
     public Pregunta createPregunta(Pregunta pregunta, Long id_usuario ){
         Long id_count = countPregunta();
         Long id_countUsuarioPregunta= countUsuarioPregunta();
-        String query = "INSERT into pregunta (id_pregunta, pregunta, estado, id_tema) values (:id_pregunta,:pregunta,:estado,:id_tema)";
+        Usuario usuarioCreador = usuarioRepository.getUsuario(id_usuario);
+        String query = "INSERT into pregunta (id_pregunta, pregunta, estado, id_tema, creador) values (:id_pregunta,:pregunta,:estado,:id_tema,:creador)";
         String queryusuario_pregunta = "INSERT into usuario_pregunta (id_usuario_pregunta, id_usuario, id_pregunta)" +
         " values (:id_usuario_pregunta,:id_usuario,:id_pregunta)";
         try(Connection conn = sql2o.open()){
@@ -37,6 +45,7 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
                 .addParameter("pregunta", pregunta.getPregunta())
                 .addParameter("estado", pregunta.getEstado())
                 .addParameter("id_tema", pregunta.getId_tema())
+                .addParameter("creador", usuarioCreador.getNombre_usuario())
                 .executeUpdate().getKey();
             pregunta.setId_pregunta(id_count);
             //Crear tabla usuario_pregunta
@@ -46,7 +55,7 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
             .executeUpdate().getKey();
             pregunta.setId_pregunta(id_countUsuarioPregunta);
             return pregunta;
-        } 
+        }
         catch(Exception e){
             System.out.println(e.getMessage());
             return null;
@@ -107,6 +116,8 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
             return null;
         }
     }
+
+
 
     @Override
     public boolean deletePregunta(Long id_pregunta){

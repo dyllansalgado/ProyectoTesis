@@ -21,11 +21,12 @@ public class VotoRepositoryImp implements VotoRepository{
 
     public Voto createVoto(Voto voto){
         Long id_count= countVoto();
-        String query = "INSERT into voto (id_voto,tipo_voto,id_pregunta) values (:id_voto,:tipo_voto,:id_pregunta)";
+        String query = "INSERT into voto (id_voto,tipo_voto,id_pregunta,id_usuario) values (:id_voto,:tipo_voto,:id_pregunta,:id_usuario)";
         try(Connection conn = sql2o.open()){
             conn.createQuery(query,true).addParameter("id_voto",id_count)
                 .addParameter("tipo_voto", voto.getTipo_voto())
                 .addParameter("id_pregunta", voto.getId_pregunta())
+                .addParameter("id_usuario", voto.getId_usuario())
                 .executeUpdate().getKey();
             voto.setId_voto(id_count);
             return voto;
@@ -35,7 +36,7 @@ public class VotoRepositoryImp implements VotoRepository{
             return null;
         }
     }
-
+    
     @Override
     public Voto getVoto(Long id_voto){
         String query = "select * from voto where id_voto = :id_voto and deleted = false";
