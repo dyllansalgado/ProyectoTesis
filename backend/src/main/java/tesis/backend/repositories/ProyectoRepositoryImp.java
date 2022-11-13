@@ -1,5 +1,7 @@
 package tesis.backend.repositories;
 import tesis.backend.models.Proyecto;
+import tesis.backend.models.Usuario;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -10,6 +12,12 @@ import java.util.List;
 public class ProyectoRepositoryImp implements ProyectoRepository {
     @Autowired
     private Sql2o sql2o;
+
+    @Autowired
+    private final UsuarioRepository usuarioRepository;
+    public ProyectoRepositoryImp(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
     @Override
     public Long countProyecto(){
@@ -31,7 +39,9 @@ public class ProyectoRepositoryImp implements ProyectoRepository {
     public Proyecto createProyecto(Proyecto proyecto, Long id_usuario ){
         Long id_count = countProyecto();
         Long id_CountProyectoUsuario= countUsuarioProyecto();
-        String query = "INSERT into proyecto (id_proyecto, nombre_proyecto, fecha_inicio_proyecto, estado_proyecto, objetivo_proyecto, contrasena) values (:id_proyecto,:nombre_proyecto,:fecha_inicio_proyecto,:estado_proyecto,:objetivo_proyecto,:contrasena)";
+        Usuario usuarioCreadorProyecto = usuarioRepository.getUsuario(id_usuario);
+
+        String query = "INSERT into proyecto (id_proyecto, nombre_proyecto, fecha_inicio_proyecto, estado_proyecto, objetivo_proyecto, contrasena, creadorProyecto) values (:id_proyecto,:nombre_proyecto,:fecha_inicio_proyecto,:estado_proyecto,:objetivo_proyecto,:contrasena,:creadorProyecto)";
         String queryproyecto_usuario = "INSERT into usuario_proyecto (id_usuario_proyecto, id_usuario, id_proyecto)" +
         " values (:id_usuario_proyecto,:id_usuario,:id_proyecto)";
 
@@ -42,6 +52,7 @@ public class ProyectoRepositoryImp implements ProyectoRepository {
                 .addParameter("estado_proyecto", proyecto.getEstado_proyecto())
                 .addParameter("objetivo_proyecto", proyecto.getObjetivo_proyecto())
                 .addParameter("contrasena", proyecto.getContrasena())
+                .addParameter("creadorProyecto", usuarioCreadorProyecto.getNombre_usuario())
                 .executeUpdate().getKey();
         proyecto.setId_proyecto(id_count);
         //Crear table proyecto usuario

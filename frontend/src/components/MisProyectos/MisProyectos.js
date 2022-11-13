@@ -154,10 +154,13 @@ class MisProyectos extends Component {
                         <Card.Title>{proyectos.nombre_proyecto}</Card.Title>
                         <Card.Subtitle>Fecha de inicio: {proyectos.fecha_inicio_proyecto}</Card.Subtitle>
                         <p>
-                            Objetivo: {proyectos.objetivo_proyecto}
+                          Objetivo: {proyectos.objetivo_proyecto}
                         </p>
                         <p>
-                            Estado: {proyectos.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"}
+                          Estado: {proyectos.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"}
+                        </p>
+                        <p>
+                          Creador Proyecto: {proyectos.creadorProyecto}
                         </p>
                         <div className="center">
                         {usuario.id_rol === 1 ?

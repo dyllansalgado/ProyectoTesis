@@ -31,3 +31,12 @@
     padding: 10px 20px;
     bottom: -1%; right: 4%;
 }
+
+.container_register_proyecto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+

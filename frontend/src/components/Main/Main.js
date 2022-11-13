@@ -158,6 +158,9 @@ class Main extends Component {
                         <p>
                           Estado: {proyecto.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"} 
                         </p>
+                        <p>
+                          Creador: {proyecto.creadorProyecto} 
+                        </p>
                         <div className="center">
                           <Button
                             variant="outline-primary" href={`/verMasProyecto/${proyecto.id_proyecto}`}

@@ -102,32 +102,37 @@ class VerMasProyecto extends Component {
         </div>
         <div className="fondo">
         <Container fluid>
-            <div className="container_register">
+            <div className="container_register_proyecto">
                 <form className="verDatosProyectos">
                     <div className="center">
                     <h3 className="tituloUsuario"> Bienvenido {rol} :{usuario.nombre_usuario}</h3>
                         <h3 className="titulo">Datos de Proyecto</h3>
-                        <div className="form-group">
+                        <div className="form-group-sm">
                             <label>
                                 Nombre de proyecto: {proyecto.nombre_proyecto}
                             </label>
                         </div>
-                        <div className="form-group">
+                        <div className="form-group-sm">
                             <label>
                                 Fecha de inicio: {proyecto.fecha_inicio_proyecto}
                             </label>
                         </div>
-                        <div className="form-group">
+                        <div className="form-group-sm">
                             <label>
                                 Estado proyecto: {String(proyecto.estado_proyecto) === 'false' ? "Disponible" : "Terminado"}
                             </label>
                         </div>
-                        <div className="form-group">
+                        <div className="form-group-sm">
                             <label>
                                 Objetivo: {proyecto.objetivo_proyecto}
                             </label>
                         </div>
-                        <div className="form-group">
+                        <div className="form-group-sm">
+                            <label>
+                                Creador Proyecto: {proyecto.creadorProyecto}
+                            </label>
+                        </div>
+                        <div className="form-group-sm">
                         <label>
                             Ingrese Contraseña:
                             <input
