@@ -1,0 +1,271 @@
+import React, { Component} from "react";
+import {Container, Col, Row, Table,} from "react-bootstrap";
+import NavbarLogeado from "../Main/NavbarLogeado.js";
+import Button from 'react-bootstrap/Button';
+import "../IngresarAProyecto/IngresarAProyecto.css";
+import axios from "axios";
+import "../Tema/Tema.css";
+import "./PreguntasSeleccionadas.css";
+import {BsArrowReturnLeft,BsDownload} from "react-icons/bs";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import swal from "sweetalert";
+
+class PreguntasSeleccionadas extends Component { 
+    constructor(props) {
+      super(props);
+      this.state = {
+        usuario: [],
+        id: null,
+        proyecto:[],
+        reunion:[],
+        tema:[],
+        preguntasSeleccionadas:[],
+        idPregunta: null,
+        respuestaCreada:"",
+      };
+      this.node = React.createRef();
+    }
+
+    componentDidMount() {
+      const id = localStorage.getItem('usuario');
+      let idPath = window.location.pathname.split("/");
+      axios.all([
+        axios
+          .get(
+            "http://localhost:8080/usuario/"+id)
+          .then((res) => {
+          const usuario = res.data;
+          this.setState({usuario});
+          if(usuario.id_rol === 1){
+            const rol = "Jefe de Proyecto";
+            this.setState({rol});
+          }else if(usuario.id_rol === 2){
+            const rol = "Usuario";
+            this.setState({rol});
+          }
+          })
+          .catch((error) => {
+            console.log(error);
+        }),
+        axios
+          .get("http://localhost:8080/tema/"+ idPath[4])
+          .then((res) => {
+            const tema = res.data;
+            this.setState({tema});
+          })
+          .catch((error) => {
+            console.log(error);
+        }),
+        axios
+          .get("http://localhost:8080/proyecto/"+ idPath[2])
+          .then((res) => {
+            const proyecto = res.data;
+            this.setState({ proyecto});
+          })
+          .catch((error) => {
+            console.log(error);
+        }),
+        axios
+        .get("http://localhost:8080/preguntaSeleccionadaTema/"+ idPath[4])
+        .then((res) => {
+          const preguntasSeleccionadas = res.data;
+          this.setState({preguntasSeleccionadas});
+          console.log(preguntasSeleccionadas);
+        })
+        .catch((error) => {
+          console.log(error);
+        }),
+        axios
+        .get("http://localhost:8080/reunion/"+ idPath[3])
+        .then((res) => {
+          const reunion = res.data;
+          this.setState({reunion});
+        })
+        .catch((error) => {
+          console.log(error);
+        }),
+        axios
+        .get(
+            "http://localhost:8080/usuario/"+id)
+          .then((res) => {
+            const usuario = res.data;
+            this.setState({usuario});
+          }),
+      ]);
+    }
+    //Barra de busqueda
+    onChange = (e) => {
+      if (this.node.current.contains(e.target)) {
+        return;
+      }
+      this.setState({
+        preguntasFiltro: [],
+      });
+    };
+    onUserChange = async (e) => {
+      let idPath = window.location.pathname.split("/");
+      await axios
+      .get("http://localhost:8080/preguntaTema/"+ idPath[4])
+      .then((res) => {
+        this.setState({
+          preguntasFiltro: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      let filter = e.target.value.toLowerCase();
+      let filtroPreguntas = this.state.preguntasFiltro.filter((e) => {
+        let dataFilter = e.pregunta.toLowerCase();
+        return (
+          dataFilter
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .indexOf(filter) !== -1
+        );
+      });
+      this.setState({
+        preguntas: filtroPreguntas,
+      });
+    };
+
+    ResponderPregunta(idPregunta) {
+        let idPath = window.location.pathname.split("/");
+        swal({
+          title: "Atención",
+          text: "¿Desea Responder la pregunta seleccionada?",
+          icon: "warning",
+          buttons: ["No", "Si"],
+        }).then((respuesta) => {
+          if (respuesta) {
+            if (
+                this.state.respuestaCreada !== "")
+                {
+                    axios.create("http://localhost:8080/respuesta/create", {
+                      id_pregunta: idPregunta,
+                      respuesta: this.state.respuestaCreada,
+                    });
+                    swal({
+                      title: "Respuesta creada con éxito",
+                      text: "La respuesta ha sido creada con éxito",
+                      icon: "success",
+                    });
+                    setTimeout(() => {
+                      window.location.replace("http://localhost:3000/preguntasSeleccionadas/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
+                    }, 2000);
+                }
+          }
+        });
+      }
+    exportPDF = ()  => {
+        swal({
+        title: "Atención",
+        text: "¿Desea descargar en archivo PDF?",
+        icon: "warning",
+        buttons: ["No", "Si"],
+        }).then((respuesta) => {
+            if (respuesta) {
+                const unit = "pt";
+                const size = "A4";
+                //Orientación 
+                const orientation = "portrait";
+                const marginLeft = 40;
+                const doc = new jsPDF(orientation, unit, size);
+                doc.setFontSize(15);
+                const title = "Nombre de Tema:  " + this.state.tema.nombre_tema;
+                const headers = [["Pregunta", "Respuesta"]];
+                const data = this.state.preguntasSeleccionadas.map(elt=> [elt.pregunta, elt.respuesta]);
+                let content = {
+                  startY: 50,
+                  head: headers,
+                  body: data
+                };
+                doc.text(title, marginLeft, 40);
+                doc.autoTable(content);
+                doc.save("Tema_"+this.state.tema.nombre_tema+".pdf")
+            }
+        });
+    };
+    render() {
+      const {proyecto} = this.state;
+      const {tema} = this.state;
+      const {preguntasSeleccionadas} = this.state;
+      const {reunion}= this.state;
+      return ( 
+      <div>
+          <div>
+            <NavbarLogeado />
+          </div>
+          <div className="fondoPS">
+            <Container fluid className="container-fluid2">
+              <Row>
+                <h3 className="centerTitulo"> Preguntas seleccionadas tema: {tema.nombre_tema}</h3>
+              </Row>
+              <div className="InformacionCentral">
+              <Button className="botonCrearReunion"   onClick={() => this.exportPDF()} size="lg">
+                    <BsDownload /> <span></span>
+                        Descargar
+                    </Button>
+              <Button
+                className="botonCrearPregunta"  
+                href={`/temaReunion/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
+                size="lg">
+                Volver
+                <BsArrowReturnLeft/> <span></span>
+              </Button>
+              <div className= "nombreProyecto">
+                  Nombre del Proyecto: {proyecto.nombre_proyecto}
+              </div>
+                  <Col>
+                      <div className="filterBlockIngresar">
+                          <input
+                            type="text"
+                            onClick={this.onChange}
+                            onChange={this.onUserChange}
+                            placeholder="Buscar pregunta..."
+                            ref={this.node}
+                          />
+                      </div>
+                  </Col>
+              </div>
+              <Container fluid>
+                <div className="centrado2"></div>
+                <Table responsive className="tablaTermino" >
+                  <thead>
+                    <tr>
+                      <th width="900">Pregunta</th>
+                      <th width="180"></th>
+                      <th width="900">Respuesta</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                    preguntasSeleccionadas.map((pregunta) => (
+                      <tr key={pregunta.id_pregunta} >
+                        <td> {pregunta.pregunta} </td>
+                        <td>
+                            <Button className = "botones" size="sm"
+                              variant="success"
+                            >
+                              Responder
+                            </Button>
+
+                            <Button className = "botones" size="sm"
+                              variant="success"
+                            >
+                              Editar
+                            </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </Container>
+            </Container>
+          </div>
+      </div>
+      );
+    }
+}
+export default PreguntasSeleccionadas ;

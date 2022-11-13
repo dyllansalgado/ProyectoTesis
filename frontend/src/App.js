@@ -13,6 +13,7 @@ import IngresarReunion from "./components/Reunion/IngresarReunion";
 import Glosario from "./components/Glosario/Glosario";
 import IngresarAGlosario from "./components/Glosario/IngresarAGlosario";
 import Tema from "./components/Tema/Tema";
+import PreguntaSeleccionadas from "./components/PreguntasSeleccionadas/PreguntasSeleccionadas"
 import './App.css';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/GlosarioReunion/:idP/:idR" element={<Glosario />} />
         <Route exact path="/IngresarAGlosario/:idP/:idR/:idG" element={<IngresarAGlosario />} />
         <Route exact path="/TemaReunion/:idP/:idR/:idT" element={<Tema />} />
+        <Route exact path="/PreguntasSeleccionadas/:idP/:idR/:idT" element={<PreguntaSeleccionadas />} />
       </Routes>
     </BrowserRouter>
     </>

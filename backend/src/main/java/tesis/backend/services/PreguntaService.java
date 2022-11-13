@@ -69,6 +69,13 @@ public class PreguntaService {
         List<Pregunta> pregunta = preguntaRepository.getListPreguntaXidTema(id_tema);
         return new ResponseEntity<>(gson.toJson(pregunta), HttpStatus.OK);
     }
+
+    @GetMapping("/preguntaSeleccionadaTema/{id_tema}")
+    ResponseEntity<String>getListPreguntaSeleccionadaXidTema(@PathVariable Long id_tema) {
+        List<Pregunta> preguntaSeleccionada = preguntaRepository.getListPreguntaSeleccionadaXidTema(id_tema);
+        return new ResponseEntity<>(gson.toJson(preguntaSeleccionada), HttpStatus.OK);
+    }
+    
     @DeleteMapping("/pregunta/{id_pregunta}")
     ResponseEntity<String> deletePregunta(@PathVariable Long id_pregunta) {
         if (preguntaRepository.deletePregunta(id_pregunta)) {

@@ -60,7 +60,7 @@ class Tema extends Component {
             console.log(error);
         }),
         axios
-          .get("http://localhost:8080/tema/"+ idPath[3])
+          .get("http://localhost:8080/tema/"+ idPath[4])
           .then((res) => {
             const tema = res.data;
             this.setState({tema});
@@ -249,6 +249,14 @@ class Tema extends Component {
               </Row>
               <div className="col-md-12 school-options-dropdown text-center">
               <Dropdown>
+              {usuario.id_rol === 1 ?
+              <Button className="botonSeleccionadas"
+                variant="primary" href={`/preguntasSeleccionadas/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
+                >
+                Ingresar a preguntas seleccionadas
+              </Button>:
+              ""
+              }
               <Dropdown.Toggle id="dropdown-basic-button">
                 Preguntas Recomendadas
               </Dropdown.Toggle>
@@ -416,7 +424,7 @@ class Tema extends Component {
                             </Button>{" "}
                         </td>
                         }
-                        <td>{pregunta.votos}</td>
+                        <td>Votos</td>
                       </tr>
                     ))}
                   </tbody>

@@ -117,6 +117,18 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
         }
     }
 
+    public  List<Pregunta> getListPreguntaSeleccionadaXidTema(Long id_tema) {
+        String query = "select distinct p.* from pregunta p, tema t " +
+        "where p.id_tema=:id_tema and p.estado = true and t.id_tema = p.id_tema";
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery(query).addParameter("id_tema", id_tema).executeAndFetch(Pregunta.class);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
 
 
     @Override
