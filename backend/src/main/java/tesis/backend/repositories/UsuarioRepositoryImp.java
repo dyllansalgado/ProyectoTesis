@@ -105,14 +105,12 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                 .addParameter("contrasena_usuario", usuario.getContrasena_usuario())
                 .executeAndFetch(Usuario.class);
             if(findUsers.size() == 1){
-                System.out.println("Usuario ingresado con exito");
                 Usuario usuarioRespuesta = findUsers.get(0);
                 usuarioRespuesta.setToken_usuario(1);
                 updateUsuario(usuarioRespuesta,usuarioRespuesta.getId_usuario());
                 System.out.println(usuarioRespuesta.getToken_usuario());
                 return usuarioRespuesta;
             }else{
-                System.out.println("Clave errada");
                 return null;
             }
         }catch (Exception e){

@@ -116,7 +116,7 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
             return null;
         }
     }
-
+    @Override
     public  List<Pregunta> getListPreguntaSeleccionadaXidTema(Long id_tema) {
         String query = "select distinct p.* from pregunta p, tema t " +
         "where p.id_tema=:id_tema and p.estado = true and t.id_tema = p.id_tema";
@@ -128,9 +128,6 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
             return null;
         }
     }
-
-
-
     @Override
     public boolean deletePregunta(Long id_pregunta){
         String query = "update pregunta set deleted = true where id_pregunta = :id_pregunta and deleted = false";

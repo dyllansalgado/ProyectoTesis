@@ -67,11 +67,10 @@ class PreguntasSeleccionadas extends Component {
             console.log(error);
         }),
         axios
-        .get("http://localhost:8080/preguntaSeleccionadaTema/"+ idPath[4])
+        .get("http://localhost:8080/preguntaSeleccionadaTema2/"+ idPath[4])
         .then((res) => {
           const preguntasSeleccionadas = res.data;
           this.setState({preguntasSeleccionadas});
-          console.log(preguntasSeleccionadas);
         })
         .catch((error) => {
           console.log(error);
@@ -129,35 +128,6 @@ class PreguntasSeleccionadas extends Component {
         preguntas: filtroPreguntas,
       });
     };
-
-    ResponderPregunta(idPregunta) {
-        let idPath = window.location.pathname.split("/");
-        swal({
-          title: "Atención",
-          text: "¿Desea Responder la pregunta seleccionada?",
-          icon: "warning",
-          buttons: ["No", "Si"],
-        }).then((respuesta) => {
-          if (respuesta) {
-            if (
-                this.state.respuestaCreada !== "")
-                {
-                    axios.create("http://localhost:8080/respuesta/create", {
-                      id_pregunta: idPregunta,
-                      respuesta: this.state.respuestaCreada,
-                    });
-                    swal({
-                      title: "Respuesta creada con éxito",
-                      text: "La respuesta ha sido creada con éxito",
-                      icon: "success",
-                    });
-                    setTimeout(() => {
-                      window.location.replace("http://localhost:3000/preguntasSeleccionadas/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
-                    }, 2000);
-                }
-          }
-        });
-      }
     exportPDF = ()  => {
         swal({
         title: "Atención",
@@ -187,6 +157,38 @@ class PreguntasSeleccionadas extends Component {
             }
         });
     };
+
+    IrResponderPregunta(id_pregunta) {
+      let idPath = window.location.pathname.split("/");
+      swal({
+        title: "Atención",
+        text: "¿Desea Responder la pregunta seleccionada?",
+        icon: "warning",
+        buttons: ["No", "Si"],
+      }).then((respuesta) => {
+        if (respuesta) {
+          setTimeout(() => {
+            window.location.replace("http://localhost:3000/PreguntaRespuesta/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4] + "/" + id_pregunta);
+          }, 2000);
+        }
+      });
+    }
+
+    IrEditarRespuesta(id_pregunta,id_respuesta) {
+      let idPath = window.location.pathname.split("/");
+      swal({
+        title: "Atención",
+        text: "¿Desea editar la respuesta de la pregunta seleccionada?",
+        icon: "warning",
+        buttons: ["No", "Si"],
+      }).then((respuesta) => {
+        if (respuesta) {
+          setTimeout(() => {
+            window.location.replace("http://localhost:3000/EditarRespuesta/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4] + "/" + id_pregunta + "/" + id_respuesta);
+          }, 2000);
+        }
+      });
+    }
     render() {
       const {proyecto} = this.state;
       const {tema} = this.state;
@@ -245,18 +247,36 @@ class PreguntasSeleccionadas extends Component {
                       <tr key={pregunta.id_pregunta} >
                         <td> {pregunta.pregunta} </td>
                         <td>
-                            <Button className = "botones" size="sm"
-                              variant="success"
-                            >
+                            {pregunta.respuesta == null ?
+                              <Button className = "botones" size="sm"
+                                variant="success"
+                                onClick={() => this.IrResponderPregunta(pregunta.id_pregunta)}
+                              >
+                                Responder
+                              </Button>
+                              :
+                              <Button className = "botones" size="sm"
+                              variant="secondary" disabled
+                              >
                               Responder
-                            </Button>
-
+                              </Button>
+                             }
+                            {pregunta.respuesta == null ?
                             <Button className = "botones" size="sm"
-                              variant="success"
+                            variant="secondary" disabled
                             >
                               Editar
                             </Button>
+                            :
+                            <Button className = "botones" size="sm"
+                            variant="success"
+                            onClick={() => this.IrEditarRespuesta(pregunta.id_pregunta,pregunta.id_respuesta)}
+                          >
+                            Editar
+                          </Button>
+                            }
                         </td>
+                        <td> {pregunta.respuesta} </td>
                       </tr>
                     ))}
                   </tbody>

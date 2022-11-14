@@ -9,4 +9,5 @@ public interface VotoRepository {
     public Voto updateVoto (Voto voto, Long id_voto);
     public boolean deleteVoto (Long id_voto);
     public Long countVoto ();
+    public Long countVoto2 (Long id_pregunta);
 }

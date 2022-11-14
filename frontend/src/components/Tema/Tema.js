@@ -217,7 +217,19 @@ class Tema extends Component {
             tipo_voto: true ,
             id_pregunta: idPregunta,
             id_usuario: idUsuario
-          });
+          }).then((response) => {
+            console.log(response.data);
+            if (response.data === false) {
+              swal({
+                title: "Ya ha votado por esta pregunta",
+                text: "Por favor vote otra pregunta",
+                icon: "warning",
+              });
+              setTimeout(() => {
+                  window.location.replace("http://localhost:3000/temaReunion/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
+              }, 2000);
+            }
+          })
           swal({
             title: "Pregunta calificada con éxito",
             text: "La pregunta ha sido califacada con éxito",

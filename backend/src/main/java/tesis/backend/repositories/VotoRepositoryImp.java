@@ -19,21 +19,40 @@ public class VotoRepositoryImp implements VotoRepository{
         return resultado + 1; 
     }
 
+    @Override
+    public Long countVoto2(Long id_pregunta){
+        String query = "select count(*) from voto  where id_pregunta=:id_pregunta";
+        Connection conn = sql2o.open();
+        Long resultado = (Long) conn.createQuery(query).addParameter("id_pregunta", id_pregunta).executeAndFetchFirst(Long.class);
+        return resultado; 
+    }
+
     public Voto createVoto(Voto voto){
         Long id_count= countVoto();
-        String query = "INSERT into voto (id_voto,tipo_voto,id_pregunta,id_usuario) values (:id_voto,:tipo_voto,:id_pregunta,:id_usuario)";
-        try(Connection conn = sql2o.open()){
-            conn.createQuery(query,true).addParameter("id_voto",id_count)
-                .addParameter("tipo_voto", voto.getTipo_voto())
-                .addParameter("id_pregunta", voto.getId_pregunta())
+        String query= "";
+        try(Connection conne = sql2o.open()){
+            List<Voto> findVoto = conne.createQuery("select * from voto where id_usuario=:id_usuario and id_pregunta=:id_pregunta")
                 .addParameter("id_usuario", voto.getId_usuario())
-                .executeUpdate().getKey();
-            voto.setId_voto(id_count);
-            return voto;
-        } 
-        catch(Exception e){
-            System.out.println(e.getMessage());
-            return null;
+                .addParameter("id_pregunta", voto.getId_pregunta())
+                .executeAndFetch(Voto.class);
+            if(findVoto.size() == 1){
+                return null;
+            }else{
+                query = "INSERT into voto (id_voto,tipo_voto,id_pregunta,id_usuario) values (:id_voto,:tipo_voto,:id_pregunta,:id_usuario)";
+                try(Connection conn = sql2o.open()){
+                    conn.createQuery(query,true).addParameter("id_voto",id_count)
+                        .addParameter("tipo_voto", voto.getTipo_voto())
+                        .addParameter("id_pregunta", voto.getId_pregunta())
+                        .addParameter("id_usuario", voto.getId_usuario())
+                        .executeUpdate().getKey();
+                    voto.setId_voto(id_count);
+                    return voto;
+                } 
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                    return null;
+                }
+            }
         }
     }
     

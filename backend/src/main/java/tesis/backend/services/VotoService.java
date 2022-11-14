@@ -34,14 +34,23 @@ public class VotoService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/votos/{id_pregunta}")
+    Long countVoto2(@PathVariable Long id_pregunta){
+        Long votos = votoRepository.countVoto2(id_pregunta);
+        return votos;
+    }
+
     @PostMapping("/voto/create")
     ResponseEntity<String> createVoto(@RequestBody String request){
         Voto votoCreado = gson.fromJson(request, Voto.class);
         if (votoCreado != null){
             votoCreado = votoRepository.createVoto(votoCreado);
+            if(votoCreado== null){
+                return new ResponseEntity<>(gson.toJson(false),HttpStatus.OK);
+            }
             return new ResponseEntity<>(gson.toJson(votoCreado),HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(gson.toJson(false),HttpStatus.OK);
     }
 
     @CrossOrigin(origins = {"http://localhost:8080"})

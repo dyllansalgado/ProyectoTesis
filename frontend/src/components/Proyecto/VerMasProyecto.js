@@ -16,10 +16,10 @@ class VerMasProyecto extends Component {
             id_rol: "",
             contrasena: ""
         };
-        this.changeName = this.changeName.bind(this);
+        this.changePass = this.changePass.bind(this);
     }
 
-    changeName(event) {
+    changePass(event) {
         this.setState({ contrasena: event.target.value });
     }
 
@@ -140,7 +140,7 @@ class VerMasProyecto extends Component {
                                 type="password"
                                 value={contrasena}
                                 name="contrasena"
-                                onChange={this.changeName}
+                                onChange={this.changePass}
                                 placeholder="*****"
                                 required
                             />

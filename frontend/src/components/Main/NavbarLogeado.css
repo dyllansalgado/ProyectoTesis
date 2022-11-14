@@ -1,10 +1,9 @@
 .navbarLogeado{
     background-color: #276E90;
-    display: flex;
-    width: 100vw;
+    margin: auto;
 }
 
-img {
+.logo {
     height:70px;
     width:70px;
 }
