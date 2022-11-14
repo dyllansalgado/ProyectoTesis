@@ -84,17 +84,18 @@ class Login extends Component {
         <div>
         <NavbarInicio />
         </div>
-        <div className="fondoA">
         <Container fluid>
-          <div className="container_login">
+        <div className="center">
+        <h1 className="titulo">NOMBRE PROYECTO</h1>
+        </div>
+        <div className="center">
             <form className="loginForm" onSubmit={this.handleSubmit}>
               <div className="center">
-                <h3 className="titulo">Inicio de sesión</h3>
+              <h3 className="color-custom">Inicio de sesión</h3>
                 <div className="form-group">
                   <label>
                     Nombre de usuario:
                     <input
-                      className="inputLogin"
                       type="text"
                       value={this.state.correo_usuario}
                       onChange={this.changeName}
@@ -107,7 +108,6 @@ class Login extends Component {
                   <label>
                     Contraseña:
                     <input
-                      className="inputLogin"
                       type="password"
                       value={this.state.contrasena_usuario}
                       onChange={this.changeContrasena}
@@ -116,18 +116,20 @@ class Login extends Component {
                     />
                   </label>
                 </div>
-                <Button variant="secondary" className="botonIngresar" type="submit" value="Submit">
+                <div class="text-center">
+                <Button variant="secondary" className="botonIngresar" type="submit" value="Submit" size="sm">
+                
                   {" "}
                   Ingresar
                 </Button>
-                <Button variant="secondary" className="botonRegistrarse" href="/registrarse">Registrarse</Button>
+                 </div>
+                <Button variant="secondary" className="botonRegistrarse" href="/registrarse" size="sm">Registrarse</Button>
                 {""}
               </div>
             </form>
-          </div>
+            </div>
           </Container>
         </div>
-      </div>
     );
   }
 }

@@ -15,11 +15,20 @@
     background-color: #D9D9D9;
 }
 .loginForm {
-    width: 420px;
-    padding-top: 2px;
-    padding-bottom: 30px;
-    border-radius: 8px;
+    position: absolute;
+    box-sizing: border-box;
+	padding: 20px 12px 10px 20px;
+    width: 50%;
+    border-radius: 10px;
     background-color: #276E90
+}
+
+label{
+    width: 100%;
+}
+.loginForm .form-group{
+    display: flex;
+    padding: 5px;
 }
 
 .center{
@@ -32,7 +41,7 @@
     text-align: center;
     font-size: 30px;
     color: black;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .form-group{
@@ -49,10 +58,10 @@ input[type=text]{
 }
 input[type=password]{
     display: block;
-        background-color: white;
-        width: 100%;
-        padding: 8px;
-        margin: 8px 0;
+    background-color: white;
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
 }
 
 .navbarInicio{
@@ -76,19 +85,21 @@ img {
     width: 60%;
     position: relative; 
     padding: 15px 20px;
-    bottom: -22px; right: 50px;
+    margin:auto;
+    bottom: -20px ; 
+    right: 40%;
 }
 
 .botonRegistrarse{
-    background-color:#CECFC9 ;
     border-radius: 30px;
     cursor:pointer;
     width: 60%;
     padding: 12px 20px;
     position: relative;
     color:black;
-    text-decoration:none;
-    bottom: 15px; right: -100px;
+    margin:auto;
+    bottom: 11px;
+    right: -50%;
 }
 
 .botonInicio{
@@ -118,4 +129,11 @@ img {
     text-decoration:none;
     color:black;
     bottom: -5px; right: -200px;
+}
+
+
+.color-custom{
+    color: black;
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
