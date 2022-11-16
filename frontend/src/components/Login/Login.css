@@ -69,6 +69,11 @@ input[type=password]{
     display: flex;
     width: 100vw;
 }
+.ContainerNavbar{
+    padding-left: 0px;
+    margin-left: 0px;
+    
+}
 
 img {
     height:70px;
@@ -123,12 +128,11 @@ img {
     text-align: center;
     border-radius: 20px;
     cursor:pointer;
-    width: 20%;
-    padding: 10px 70px;
-    position: relative; 
+    width: 100%;
+    position: flex; 
     text-decoration:none;
     color:black;
-    bottom: -5px; right: -200px;
+    bottom: -5px; right: 100px;
 }
 
 

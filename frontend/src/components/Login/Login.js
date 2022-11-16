@@ -93,7 +93,7 @@ class Login extends Component {
               <div className="center">
               <h3 className="color-custom">Inicio de sesión</h3>
                 <div className="form-group">
-                  <label>
+                  <label responsive>
                     Nombre de usuario:
                     <input
                       type="text"

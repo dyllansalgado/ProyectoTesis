@@ -41,6 +41,7 @@ CREATE TABLE proyecto(
     estado_proyecto boolean,
     objetivo_proyecto text,
     contrasena varchar(20),
+    creadorProyecto varchar(80),
     PRIMARY KEY (id_proyecto),
     deleted boolean NOT NULL DEFAULT false
     
@@ -107,6 +108,7 @@ CREATE TABLE pregunta(
     id_pregunta serial,
     pregunta text,
     estado boolean,
+    creador varchar(80),
     id_tema integer NOT NULL,
     PRIMARY KEY (id_pregunta),
     deleted boolean NOT NULL DEFAULT false,
@@ -128,9 +130,11 @@ CREATE TABLE voto(
     id_voto serial,
     tipo_voto boolean,
     id_pregunta integer NOT NULL,
+    id_usuario integer NOT null,
     PRIMARY KEY (id_voto),
     deleted boolean NOT NULL DEFAULT false,
-    FOREIGN KEY (id_pregunta) REFERENCES pregunta(id_pregunta)
+    FOREIGN KEY (id_pregunta) REFERENCES pregunta(id_pregunta),
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 
 );
 

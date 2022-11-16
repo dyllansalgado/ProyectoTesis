@@ -19,6 +19,9 @@ class IngresarAProyecto extends Component {
       this.node = React.createRef();
     }
   componentDidMount() {
+    if (localStorage.getItem("token") == null && localStorage.getItem("id_rol") === null ){
+      window.location.replace("http://localhost:3000/");
+    }
     const id = localStorage.getItem('usuario');
     let idPath = window.location.pathname.split("/");
     axios.all([
@@ -43,7 +46,6 @@ class IngresarAProyecto extends Component {
         .get("http://localhost:8080/reunionProyecto/"+ idPath[2])
         .then((res) => {
           const reunion = res.data;
-        
           this.setState({reunion});
           console.log(reunion);
         })

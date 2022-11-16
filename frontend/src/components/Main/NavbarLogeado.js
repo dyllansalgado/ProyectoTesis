@@ -6,6 +6,7 @@ import "./NavbarLogeado.css";
 import swal from "sweetalert";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import './widget-btn.min.js';
 
 
 class NavbarLogeado extends Component{

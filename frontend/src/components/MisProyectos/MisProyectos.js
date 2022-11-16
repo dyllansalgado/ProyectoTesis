@@ -17,6 +17,9 @@ class MisProyectos extends Component {
   }
 
   componentDidMount() {
+    if (localStorage.getItem("token") == null && localStorage.getItem("id_rol") === null ){
+      window.location.replace("http://localhost:3000/");
+    }
     const id = localStorage.getItem('usuario');
     axios.all([
       axios
@@ -30,7 +33,6 @@ class MisProyectos extends Component {
         .get("http://localhost:8080/usuarioProyectos/"+id)
         .then((res) => {
           const proyectosJefe = res.data;
-        
           this.setState({proyectosJefe});
           console.log(proyectosJefe);
         })
