@@ -100,39 +100,41 @@ class VerMasProyecto extends Component {
         <div>
             <NavbarLogeado />
         </div>
-        <div className="fondo">
+        <div>
         <Container fluid>
-            <div className="container_register_proyecto">
-                <form className="verDatosProyectos">
+            <div className="center">
+                <h1 className="titulo">Bienvenido {rol} :{usuario.nombre_usuario}</h1>
+            </div>
+            <div className="center">
+                <form className="ProyectoInformacion">
                     <div className="center">
-                    <h3 className="tituloUsuario"> Bienvenido {rol} :{usuario.nombre_usuario}</h3>
                         <h3 className="titulo">Datos de Proyecto</h3>
-                        <div className="form-group-sm">
+                        <div className="form-group2">
                             <label>
                                 Nombre de proyecto: {proyecto.nombre_proyecto}
                             </label>
                         </div>
-                        <div className="form-group-sm">
+                        <div className="form-group2">
                             <label>
                                 Fecha de inicio: {proyecto.fecha_inicio_proyecto}
                             </label>
                         </div>
-                        <div className="form-group-sm">
+                        <div className="form-group2">
                             <label>
                                 Estado proyecto: {String(proyecto.estado_proyecto) === 'false' ? "Disponible" : "Terminado"}
                             </label>
                         </div>
-                        <div className="form-group-sm">
+                        <div className="form-group2">
                             <label>
                                 Objetivo: {proyecto.objetivo_proyecto}
                             </label>
                         </div>
-                        <div className="form-group-sm">
+                        <div className="form-group2">
                             <label>
                                 Creador Proyecto: {proyecto.creadorProyecto}
                             </label>
                         </div>
-                        <div className="form-group-sm">
+                        <div className="form-group2">
                         <label>
                             Ingrese Contraseña:
                             <input
@@ -146,7 +148,7 @@ class VerMasProyecto extends Component {
                             />
                           </label>
                         </div>
-                        <Button className="ingresarProyecto" onClick={() => this.RegistrarProyectoUsuario()}>
+                        <Button className="botonVolverMain" onClick={() => this.RegistrarProyectoUsuario()}>
                             {" "}
                             Ingresar Proyecto
                         </Button>

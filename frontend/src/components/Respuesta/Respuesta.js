@@ -134,14 +134,14 @@ class Respuesta extends Component {
         <div>
           <NavbarLogeado />
         </div>
-        <div className="fondoPreguntaRespuesta">
+        <div>
         <Container fluid className="ContenedorRespuesta">
           <Modal.Dialog>
             <Modal.Header>
               <Modal.Title> Bienvenido: {usuario.nombre_usuario}</Modal.Title>
             </Modal.Header>
             <Modal.Header>
-              <Modal.Title>Respuesta Pregunta Seleccionada</Modal.Title>
+              <Modal.Title>Ingrese respuesta a la pregunta</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <form>

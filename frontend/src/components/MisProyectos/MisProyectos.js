@@ -3,6 +3,7 @@ import {Container, Col, Row, Card } from "react-bootstrap";
 import NavbarLogeado from "../Main/NavbarLogeado.js";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
+import "../Main/NavbarLogeado.css";
 import {BsArrowReturnLeft} from "react-icons/bs";
 
 class MisProyectos extends Component {
@@ -94,16 +95,20 @@ class MisProyectos extends Component {
         <div>
           <NavbarLogeado />
         </div>
-        <div className="fondoB" >
+        <div>
         <Container fluid>
             <Row>
                 {usuario.id_rol === 1 ?
-                <Col>
-                    <h3 className="centerTitulo"> Bienvenido Jefe de Proyectos: {usuario.nombre_usuario}</h3>
-                </Col>:
-                <Col>
-                    <h3 className="centerTitulo"> Bienvenido Usuario: {usuario.nombre_usuario}</h3>
-                </Col>
+                <div className="center">
+                  <Col>
+                      <h3 className="titulo"> Bienvenido Jefe de Proyectos: {usuario.nombre_usuario}</h3>
+                  </Col>
+                </div>:
+                <div className="center">
+                  <Col>
+                      <h3 className="titulo"> Bienvenido Usuario: {usuario.nombre_usuario}</h3>
+                  </Col>
+                </div>
                 }
             </Row>
             <div className="InformacionCentral">
@@ -125,6 +130,7 @@ class MisProyectos extends Component {
                 }
                 {usuario.id_rol === 1 ?
                 <Col>
+                  <div className="filterResponsive">
                     <div className="filterBlock">
                         <input
                             type="text"
@@ -134,6 +140,7 @@ class MisProyectos extends Component {
                             ref={this.node}
                         />
                     </div>
+                  </div>
                 </Col>:
                 <Col>
                     <div className="filterBlockUsuario">
@@ -147,42 +154,44 @@ class MisProyectos extends Component {
                     </div>
                 </Col>
                 }
-            </div> 
-            <Row className="ProyectosList">
-              {proyectosJefe.map((proyectos) => (
-                <Col className="col" key={proyectos.id_proyecto}>
-                  <Card style={{ width: "18rem" }}>
-                    <Card.Body>
-                        <Card.Title>{proyectos.nombre_proyecto}</Card.Title>
-                        <Card.Subtitle>Fecha de inicio: {proyectos.fecha_inicio_proyecto}</Card.Subtitle>
-                        <p>
-                          Objetivo: {proyectos.objetivo_proyecto}
-                        </p>
-                        <p>
-                          Estado: {proyectos.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"}
-                        </p>
-                        <p>
-                          Creador Proyecto: {proyectos.creadorProyecto}
-                        </p>
-                        <div className="center">
-                        {usuario.id_rol === 1 ?
-                            <Button
+            </div>
+            <div>
+              <Row className="ProyectosList">
+                {proyectosJefe.map((proyectos) => (
+                  <Col  lg={4} key={proyectos.id_proyecto}>
+                    <Card className="bg-light text-black">
+                      <Card.Body>
+                          <Card.Title>{proyectos.nombre_proyecto}</Card.Title>
+                          <Card.Subtitle>Fecha de inicio: {proyectos.fecha_inicio_proyecto}</Card.Subtitle>
+                          <p>
+                            Objetivo: {proyectos.objetivo_proyecto}
+                          </p>
+                          <p>
+                            Estado: {proyectos.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"}
+                          </p>
+                          <p>
+                            Creador Proyecto: {proyectos.creadorProyecto}
+                          </p>
+                          <div className="center">
+                          {usuario.id_rol === 1 ?
+                              <Button
+                                  variant="outline-primary" href={`/ingresarAProyecto/${proyectos.id_proyecto}`}
+                              >
+                                  Ingresar a proyecto
+                              </Button>:
+                              <Button
                                 variant="outline-primary" href={`/ingresarAProyecto/${proyectos.id_proyecto}`}
-                            >
+                              >
                                 Ingresar a proyecto
-                            </Button>:
-                            <Button
-                              variant="outline-primary" href={`/ingresarAProyecto/${proyectos.id_proyecto}`}
-                            >
-                              Ingresar a proyecto
-                            </Button>
-                        }
-                        </div>
-                      </Card.Body>
-                    </Card>
-                </Col>
-              ))}
-            </Row>
+                              </Button>
+                          }
+                          </div>
+                        </Card.Body>
+                      </Card>
+                  </Col>
+                ))}
+              </Row>
+            </div>
         </Container>
         </div>
       </div>

@@ -30,10 +30,12 @@
 }
 
 table.tablaTermino{
+    margin-top: 10px;
     display:table;
     border-radius: 1%;
-    height: calc(98vh - 310px);
+    height: 350px;
     table-layout: fixed;
+    position: relative;
     display: block;
     overflow-y: auto;
     overflow-x: hidden;

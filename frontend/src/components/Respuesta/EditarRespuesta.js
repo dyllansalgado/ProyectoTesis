@@ -143,7 +143,7 @@ class EditarRespuesta extends Component {
         <div>
           <NavbarLogeado />
         </div>
-        <div className="fondoPreguntaRespuesta">
+        <div>
         <Container fluid className="ContenedorRespuesta">
           <Modal.Dialog>
             <Modal.Header>

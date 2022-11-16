@@ -36,12 +36,16 @@
 }
 .nombreProyecto{
     text-align: left;
-    margin: 1%;
+    margin:auto;
     width: 40%;
     position: relative;
     padding: 4px;
-    bottom: -1%; right: -1%;
+    bottom: -1%; 
+    right: -1%;
     color:white;
+    font-size: 15px;
+
+
 }
 
 .fondoB {
@@ -64,5 +68,13 @@
 .ReunionList{
     margin: auto;
     width: -100px;
-    padding: 12%;
+    padding: 4%;
+    display: flex;
+    flex-wrap:wrap;
+}
+.subtitulo{
+    text-align: center;
+    font-size: 15px;
+    color: black;
+    font-weight: 500;
 }

@@ -116,7 +116,7 @@ class Login extends Component {
                     />
                   </label>
                 </div>
-                <div class="text-center">
+                <div className="text-center">
                 <Button variant="secondary" className="botonIngresar" type="submit" value="Submit" size="sm">
                 
                   {" "}

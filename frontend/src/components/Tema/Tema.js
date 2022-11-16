@@ -10,6 +10,7 @@ import "./Tema.css";
 import {AiOutlineCheck} from "react-icons/ai";
 import {BsArrowReturnLeft} from "react-icons/bs";
 import {AiFillLike} from "react-icons/ai";
+import "../Main/NavbarLogeado.css";
 
 class Tema extends Component { 
     constructor(props) {
@@ -254,10 +255,17 @@ class Tema extends Component {
           <div>
             <NavbarLogeado />
           </div>
-          <div className="fondoB">
+          <div>
             <Container fluid>
               <Row>
-                <h3 className="centerTitulo"> Tema seleccionado: {tema.nombre_tema}</h3>
+                <h3 className="titulo"> Tema seleccionado: {tema.nombre_tema}</h3>
+                <div className="container-fluid cew-9">
+                  <div className="row">
+                    <div className= "subtitulo">
+                      Nombre del Proyecto: {proyecto.nombre_proyecto}
+                    </div>
+                  </div>
+                </div>
               </Row>
               <div className="col-md-12 school-options-dropdown text-center">
               <Dropdown>
@@ -326,15 +334,15 @@ class Tema extends Component {
                 </Dropdown.Menu>
               </Dropdown>
               </div>
-              <div className="InformacionCentralIngresarProyecto">
+              <div className="InformacionCentral">
               <Button
-                className="botonCrearPregunta"  
+                className="botonCrearProyecto"  
                 onClick={() => this.handleModal()}
                 size="lg">
                 Crear Pregunta
               </Button>
               <Button
-                className="botonCrearPregunta"  
+                className="botonCrearProyecto"  
                 href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`}
                 size="lg">
                 Volver
@@ -371,24 +379,20 @@ class Tema extends Component {
                   </Form>
                 </ModalBody>
               </Modal>
-              <div className= "nombreProyecto">
-                  Nombre del Proyecto: {proyecto.nombre_proyecto}
-              </div>
-                  <Col>
-                      <div className="filterBlockIngresar">
-                          <input
-                            type="text"
-                            onClick={this.onChange}
-                            onChange={this.onUserChange}
-                            placeholder="Buscar pregunta..."
-                            ref={this.node}
-                          />
-                      </div>
-                  </Col>
+                <Col>
+                    <div className="filterBlockUsuario">
+                        <input
+                          type="text"
+                          onClick={this.onChange}
+                          onChange={this.onUserChange}
+                          placeholder="Buscar pregunta..."
+                          ref={this.node}
+                        />
+                    </div>
+                </Col>
               </div>
               <Container fluid>
-                <div className="centrado"></div>
-                <Table responsive className="tablaTermino" >
+                <Table striped bordered hover className="tablaTermino">
                   <thead>
                     <tr>
                       <th width="900">Pregunta</th>

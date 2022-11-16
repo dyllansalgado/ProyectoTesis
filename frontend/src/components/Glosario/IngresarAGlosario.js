@@ -7,6 +7,7 @@ import "./Glosario.css";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import swal from "sweetalert";
+import "../Main/NavbarLogeado.css";
 import { BsDownload,BsArrowReturnLeft } from "react-icons/bs";
 
 
@@ -212,21 +213,21 @@ class IngresarAGlosario extends Component {
                 <div>
                     <NavbarLogeado />
                 </div>
-                <div className="fondoC">
+                <div>
                     <Container fluid>
                         <Row>
-                          <h2 className="centerTitulo"> Terminos de: {glosario.nombre_glosario}</h2>
+                          <h2 className="titulo"> Terminos de: {glosario.nombre_glosario}</h2>
                           <div className="container-fluid cew-9">
                               <div className="row">
-                                  <div className="col">
+                                  <div className="subtitulo">
                                       Fecha de reunion: {reunion.fecha_reunion} / Lugar de reunion : {reunion.lugar_reunion}
                                   </div>
                               </div>
                           </div>
                         </Row>
-                        <div className="InformacionCentralIngresarProyecto">
+                        <div className="InformacionCentral">
                             <Button
-                                className="botonCrearReunion"  
+                                className="botonCrearProyecto"  
                                 onClick={() => this.handleModal()}
                                 size="lg">
                                 Crear Término
@@ -273,29 +274,30 @@ class IngresarAGlosario extends Component {
                                     </Form>
                                 </ModalBody>
                             </Modal>
-                            <Button className="botonCrearReunion"   onClick={() => this.exportPDF()} size="lg">
+                            <Button className="botonCrearProyecto"   onClick={() => this.exportPDF()} size="lg">
                                 <BsDownload /> <span></span>
                                     Descargar
                             </Button>
-                            <Button className="botonCrearReunion" href={`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
+                            <Button className="botonCrearProyecto" href={`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
                                 <BsArrowReturnLeft/> <span></span>
                                     Volver
                             </Button>
                             <Col>
-                                <div className="filterBlockTermino">
-                                    <input
-                                      type="text"
-                                      onClick={this.onChange}
-                                      onChange={this.onUserChange}
-                                      placeholder="Buscar Termino..."
-                                      ref={this.node}
-                                    />
+                                <div className="filterResponsive">
+                                    <div className="filterBlock">
+                                        <input
+                                          type="text"
+                                          onClick={this.onChange}
+                                          onChange={this.onUserChange}
+                                          placeholder="Buscar Termino..."
+                                          ref={this.node}
+                                        />
+                                    </div>
                                 </div>
                             </Col>
                         </div>
                         <Container fluid>
-                            <div className="centrado"></div>
-                            <Table responsive className="tablaTermino" >
+                            <Table striped bordered hover className="tablaTermino" >
                                 <thead>
                                     <tr>
                                         <th width="200">Nombre de término</th>

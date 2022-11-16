@@ -87,12 +87,12 @@ class CrearProyecto extends Component {
       return (
         <div>
           <NavbarLogeado />
-          <div className="fondoCrearProyecto">
+          <div>
           <Container fluid>
-            <div className="container_register">
-            <form className="registrarseForm" onSubmit={this.CrearProyecto}>
+            <div className="center">
+            <form className="loginForm" onSubmit={this.CrearProyecto}>
                 <div className="center">
-                  <h3 className="titulo">Creación de Proyecto</h3>
+                  <h3 className="color-custom">Creación de Proyecto</h3>
                   <div className="form-group">
                     <label>
                       Nombre de Proyecto:
@@ -112,7 +112,11 @@ class CrearProyecto extends Component {
                       Fecha de inicio proyecto:
                       <div className="contenedorDate">
                         <div className="centerDate">
-                        <DatePicker selected={this.state.fecha_inicio_proyecto} onChange={this.onChange} locale = "es" className="pickers" dateFormat="dd-MM-yyyy"/>
+                        <DatePicker selected={this.state.fecha_inicio_proyecto} onChange={this.onChange} 
+                        locale = "es"
+                        className="pickers" 
+                        dateFormat="dd-MM-yyyy"
+                        />
                         </div>
                       </div>
                     </label>
@@ -126,7 +130,7 @@ class CrearProyecto extends Component {
                         value={objetivo_proyecto}
                         name="objetivo_proyecto"
                         onChange={this.changeHandler}
-                        placeholder="aaaa"
+                        placeholder="Objetivos del proyecto"
                         required
                       />
                     </label>
@@ -145,10 +149,14 @@ class CrearProyecto extends Component {
                       />
                     </label>
                   </div>
-                  <Button type="submit" value="Submit">
+                  <div className="text-center">
+                  <Button className="botonIngresar" type ="submit" value="Submit" size="sm">
                     {" "}
                     Crear Proyecto
                   </Button>
+                  <Button className="botonRegistrarse" href="/main/" size="sm">Volver</Button>
+                  {""}
+                  </div>
                 </div>
               </form>
             </div>

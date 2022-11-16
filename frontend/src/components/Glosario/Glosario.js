@@ -6,6 +6,7 @@ import "../IngresarAProyecto/IngresarAProyecto.css";
 import "./Glosario.css";
 import axios from "axios";
 import swal from "sweetalert";
+import "../Main/NavbarLogeado.css";
 import {BsArrowReturnLeft} from "react-icons/bs";
 
 
@@ -161,33 +162,36 @@ class Glosario extends Component {
             <div>
               <NavbarLogeado />
             </div>
-            <div className="fondoB">
+            <div>
                 <Container fluid>
                     <Row>
-                        <h2 className="centerTitulo"> Glosarios disponibles: {usuario.nombre_usuario}</h2>
+                        <h2 className="titulo"> Glosarios disponibles: {usuario.nombre_usuario}</h2>
                         <div className="container-fluid cew-9">
                             <div className="row">
-                                <div className="col">
+                                <div className= "subtitulo">
+                                  Nombre del Proyecto: {proyecto.nombre_proyecto}
+                                </div>
+                                <div className="subtitulo">
                                   Objetivos: {proyecto.objetivo_proyecto}
                                 </div>
                             </div>
                         </div>
                     </Row>
-                    <div className="InformacionCentralIngresarProyecto">
+                    <div className="InformacionCentral">
                     {usuario.id_rol === 1 ?
-                    <Button className="botonVolverGlosario"   href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
-                        <BsArrowReturnLeft/> <span></span>
-                            Volver
+                    <Button
+                      className="botonCrearProyecto"  
+                      onClick={() => this.handleModal()}
+                      size="lg">
+                      Crear Glosario
                     </Button>:""
                     }
                     {usuario.id_rol === 1 ?
-                    <Button
-                        className="botonIrAGlosario"  
-                        onClick={() => this.handleModal()}
-                        size="lg">
-                        Crear Glosario
+                    <Button className="botonCrearProyecto"   href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
+                    <BsArrowReturnLeft/> <span></span>
+                        Volver
                     </Button>:
-                    <Button className="botonVolverGlosarioUsuario"   href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
+                    <Button className="botonCrearProyecto"   href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
                         <BsArrowReturnLeft/> <span></span>
                         Volver
                     </Button>
@@ -232,11 +236,9 @@ class Glosario extends Component {
                         </Form>
                       </ModalBody>
                     </Modal>
-                    <div className= "nombreProyecto">
-                        Nombre del Proyecto: {proyecto.nombre_proyecto}
-                    </div>
                         <Col>
-                            <div className="filterBlockIngresar">
+                          <div className="filterResponsive">
+                            <div className="filterBlockUsuario">
                                 <input
                                   type="text"
                                   onClick={this.onChange}
@@ -245,12 +247,13 @@ class Glosario extends Component {
                                   ref={this.node}
                                 />
                             </div>
+                          </div>
                         </Col>
                     </div>
                     <Row className="ReunionList">
                       {glosario.map((glosa) => (
-                        <Col className="col" key={glosa.id_glosario}>
-                          <Card style={{ width: "20rem" }}>
+                        <Col lg={4} key={glosa.id_glosario}>
+                          <Card className="bg-light text-black">
                             <Card.Body>
                                 <Card.Title>Nombre Glosario: {glosa.nombre_glosario}</Card.Title>
                                 <Card.Subtitle>Descripción Glosario: {glosa.descripcion_glosario}</Card.Subtitle>

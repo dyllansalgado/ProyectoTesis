@@ -9,6 +9,7 @@ import "./PreguntasSeleccionadas.css";
 import {BsArrowReturnLeft,BsDownload} from "react-icons/bs";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import "../Main/NavbarLogeado.css";
 import swal from "sweetalert";
 
 class PreguntasSeleccionadas extends Component { 
@@ -199,41 +200,51 @@ class PreguntasSeleccionadas extends Component {
           <div>
             <NavbarLogeado />
           </div>
-          <div className="fondoPS">
+          <div>
             <Container fluid className="container-fluid2">
               <Row>
-                <h3 className="centerTitulo"> Preguntas seleccionadas tema: {tema.nombre_tema}</h3>
+                <h3 className="titulo"> Preguntas seleccionadas tema: {tema.nombre_tema}</h3>
+                <div className="container-fluid cew-9">
+                      <div className="row">
+                        <div className= "subtitulo">
+                          Nombre del Proyecto: {proyecto.nombre_proyecto}
+                        </div>
+                      </div>
+                  </div>
               </Row>
               <div className="InformacionCentral">
-              <Button className="botonCrearReunion"   onClick={() => this.exportPDF()} size="lg">
-                    <BsDownload /> <span></span>
-                        Descargar
-                    </Button>
+              <Button className="botonCrearProyecto"   onClick={() => this.exportPDF()} size="lg">
+                <BsDownload /> <span></span>
+                  Descargar
+              </Button>
+              <Button className="botonCrearProyecto"  
+                href={`/temaReunion/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
+                size="lg">
+                Ir a requisitos
+              </Button>
               <Button
-                className="botonCrearPregunta"  
+                className="botonCrearProyecto"  
                 href={`/temaReunion/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
                 size="lg">
                 Volver
                 <BsArrowReturnLeft/> <span></span>
               </Button>
-              <div className= "nombreProyecto">
-                  Nombre del Proyecto: {proyecto.nombre_proyecto}
-              </div>
-                  <Col>
-                      <div className="filterBlockIngresar">
-                          <input
-                            type="text"
-                            onClick={this.onChange}
-                            onChange={this.onUserChange}
-                            placeholder="Buscar pregunta..."
-                            ref={this.node}
-                          />
-                      </div>
-                  </Col>
+              <Col>
+                <div className="filterResponsive">
+                  <div className="filterBlock">
+                      <input
+                        type="text"
+                        onClick={this.onChange}
+                        onChange={this.onUserChange}
+                        placeholder="Buscar pregunta..."
+                        ref={this.node}
+                      />
+                  </div>
+                </div>
+              </Col>
               </div>
               <Container fluid>
-                <div className="centrado2"></div>
-                <Table responsive className="tablaTermino" >
+                <Table striped bordered hover className="tablaTermino" >
                   <thead>
                     <tr>
                       <th width="900">Pregunta</th>

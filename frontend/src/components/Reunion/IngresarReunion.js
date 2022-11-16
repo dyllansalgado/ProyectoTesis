@@ -6,6 +6,7 @@ import "../IngresarAProyecto/IngresarAProyecto.css";
 import axios from "axios";
 import swal from "sweetalert";
 import {BsArrowReturnLeft} from "react-icons/bs";
+import "../Main/NavbarLogeado.css";
 
 class IngresarReunion extends Component { 
   constructor(props) {
@@ -159,20 +160,27 @@ class IngresarReunion extends Component {
       <div>
         <NavbarLogeado />
       </div>
-      <div className="fondoB">
+      <div>
           <Container fluid>
               <Row>
-                  <h2 className="centerTitulo"> Temas disponibles: {usuario.nombre_usuario}</h2>
+                  <h2 className="titulo"> Temas disponibles: {usuario.nombre_usuario}</h2>
               </Row>
-              <div className="InformacionCentralIngresarProyecto">
+              <div className="container-fluid cew-9">
+                <div className="row">
+                    <div className= "subtitulo">
+                      Nombre del Proyecto: {proyecto.nombre_proyecto}
+                    </div>
+                </div>
+              </div>
+              <div className="InformacionCentral">
               {usuario.id_rol === 1 ?
               <Button
-                  className="botonCrearTema"  
+                  className="botonCrearProyecto"  
                   onClick={() => this.handleModal()}
                   size="lg">
                   Crear tema
               </Button>:
-              <Button className="botonIrAGlosarioReunion"  href= {`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
+              <Button className="botonCrearProyecto"  href= {`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
                   Ir a glosarios
               </Button>
               }
@@ -219,33 +227,33 @@ class IngresarReunion extends Component {
                   </ModalBody>
               </Modal>
               {usuario.id_rol === 1 ?
-              <Button className="botonIrAGlosario" href= {`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
+              <Button className="botonCrearProyecto" href= {`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
                   Ir a glosarios
               </Button>:
-              <Button className="botonIrAGlosarioReunion"  href={`/ingresarAProyecto/${proyecto.id_proyecto}`} size="lg">  
-                  Volver
-                  <BsArrowReturnLeft/> <span></span>
-              </Button>
+              ""
               }
-              <div className= "nombreProyecto">
-                  Nombre del Proyecto: {proyecto.nombre_proyecto}
-              </div>
-                  <Col>
-                      <div className="filterBlockIngresar">
-                          <input
-                            type="text"
-                            onClick={this.onChange}
-                            onChange={this.onUserChange}
-                            placeholder="Buscar Tema..."
-                            ref={this.node}
-                          />
-                      </div>
-                  </Col>
+              <Button className="botonCrearProyecto"  href={`/ingresarAProyecto/${proyecto.id_proyecto}`} size="lg">  
+                Volver
+                <BsArrowReturnLeft/> <span></span>
+              </Button>
+              <Col>
+                <div className="filterResponsive">
+                  <div className="filterBlock">
+                      <input
+                        type="text"
+                        onClick={this.onChange}
+                        onChange={this.onUserChange}
+                        placeholder="Buscar Tema..."
+                        ref={this.node}
+                      />
+                  </div>
+                </div>
+              </Col>
               </div>
               <Row className="ReunionList">
                 {tema.map((temas) => (
-                  <Col className="col" key={temas.id_tema}>
-                    <Card style={{ width: "20rem" }}>
+                  <Col lg={4} className="col" key={temas.id_tema}>
+                    <Card className="bg-light text-black">
                       <Card.Body>
                           <Card.Title>Nombre: {temas.nombre_tema}</Card.Title>
                           <Card.Subtitle>Descripcion: {temas.descripcion_tema}</Card.Subtitle>

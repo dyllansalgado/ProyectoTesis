@@ -81,17 +81,16 @@ class Registrarse extends Component {
     return (
       <div>
         <NavbarInicio />
-        <div className="fondo">
+        <div>
         <Container fluid>
-          <div className="container_register">
-          <form className="registrarseForm" onSubmit={this.RegistrarUsuario}>
+          <div className="center">
+          <form className="loginForm" onSubmit={this.RegistrarUsuario}>
               <div className="center">
-                <h3 className="titulo">Registrar usuario</h3>
+                <h3 className="color-custom">Registrar usuario</h3>
                 <div className="form-group">
                   <label>
                     Nombre:
                     <input
-                      className="inputRegister"
                       type="text"
                       value={nombre_usuario}
                       name="nombre_usuario"
@@ -105,7 +104,6 @@ class Registrarse extends Component {
                   <label>
                     Apellido:
                     <input
-                      className="inputRegister"
                       type="text"
                       value={apellido_usuario}
                       name="apellido_usuario"
@@ -118,8 +116,8 @@ class Registrarse extends Component {
                 <div className="form-group">
                   <label>
                     Correo:
+                    <div>
                     <input
-                      className="inputRegister"
                       type="email"
                       value={correo_usuario}
                       name="correo_usuario"
@@ -127,13 +125,13 @@ class Registrarse extends Component {
                       placeholder="ejemplo@gmail.com"
                       required
                     />
+                    </div>
                   </label>
                 </div>
                 <div className="form-group">
                   <label>
                     Contraseña:
                     <input
-                      className="inputRegister"
                       type="password"
                       value={contrasena_usuario}
                       name="contrasena_usuario"
@@ -153,17 +151,21 @@ class Registrarse extends Component {
                       required
                     >
                     {roles.map((rol) => (
-                      <option type="number" value={rol.id_rol}>
+                      <option type="text" value={rol.id_rol}>
                         {rol.tipo_rol}
                       </option>
                     ))}
                     </Form.Select>
                   </label>
                 </div>
-                <Button type="submit" value="Submit">
+                <div className="text-center">
+                <Button variant="secondary" className="botonIngresar" type="submit" value="Submit" size="sm">
                   {" "}
                   Registrar usuario
                 </Button>
+                <Button variant="secondary" className="botonRegistrarse" href="/" size="sm">Volver</Button>
+                {""}
+                </div>
               </div>
             </form>
           </div>

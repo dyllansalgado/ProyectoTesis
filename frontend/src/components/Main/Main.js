@@ -96,16 +96,20 @@ class Main extends Component {
         <div>
           <NavbarLogeado />
         </div>
-        <div className="fondoB" >
+        <div>
         <Container fluid>
             <Row>
             {usuario.id_rol === 1 ?
+            <div className="center">
                 <Col>
-                  <h3 className="centerTitulo"> Bienvenido Jefe de Proyectos: {usuario.nombre_usuario}</h3>
-                </Col>:
-                <Col>
-                    <h3 className="centerTituloUsuario"> Bienvenido Usuario: {usuario.nombre_usuario}</h3>
+                  <h3 className="titulo"> Bienvenido Jefe de Proyectos: {usuario.nombre_usuario}</h3>
                 </Col>
+            </div>:
+            <div className="center">
+                <Col>
+                    <h3 className="titulo"> Bienvenido Usuario: {usuario.nombre_usuario}</h3>
+                </Col>
+            </div>
             }
             </Row>
             <div className="InformacionCentral">
@@ -116,15 +120,16 @@ class Main extends Component {
                 <h3 className="centerTitulo"> Proyectos disponibles</h3>
                 }
                 {usuario.id_rol === 1 ?
-                <Button className="botonMisProyectos"  href="/misProyectos" size="lg">
+                <Button className="botonCrearProyecto"  href="/misProyectos" size="lg">
                 Mis proyectos
                 </Button>:
-                <Button className="botonMisProyectosUsuario"  href="/misProyectos" size="lg">
+                <Button className="botonCrearProyectoUsuario"  href="/misProyectos" size="lg">
                 Mis proyectos
                 </Button>
                 }
                 {usuario.id_rol === 1 ?
                 <Col>
+                <div className="filterResponsive">
                     <div className="filterBlock">
                       <input
                         type="text"
@@ -134,8 +139,10 @@ class Main extends Component {
                         ref={this.node}
                       />
                     </div>
+                  </div>
                 </Col>:
                 <Col>
+                  <div className="filterResponsive">
                     <div className="filterBlockUsuario">
                       <input
                         type="text"
@@ -145,13 +152,16 @@ class Main extends Component {
                         ref={this.node}
                       />
                     </div>
+                    </div>
                 </Col>
                 }
             </div> 
+            <div>
+            <Container fluid>
             <Row className="ProyectosList">
               {proyectos.map((proyecto) => (
-                <Col className="col" key={proyecto.id_proyecto}>
-                  <Card style={{ width: "18rem" }}>
+                <Col lg={4} key={proyecto.id_proyecto}>
+                  <Card className="bg-light text-black">
                     <Card.Body>
                         <Card.Title>{proyecto.nombre_proyecto}</Card.Title>
                         <Card.Subtitle>Fecha de inicio: {proyecto.fecha_inicio_proyecto}</Card.Subtitle>
@@ -176,6 +186,8 @@ class Main extends Component {
                 </Col>
               ))}
             </Row>
+            </Container>
+            </div>
         </Container>
         </div>
       </div>

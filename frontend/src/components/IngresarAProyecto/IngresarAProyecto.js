@@ -4,6 +4,7 @@ import NavbarLogeado from "../Main/NavbarLogeado.js";
 import Button from 'react-bootstrap/Button';
 import "./IngresarAProyecto.css";
 import axios from "axios";
+import "../Main/NavbarLogeado.css";
 import {BsArrowReturnLeft} from "react-icons/bs";
 
 
@@ -117,47 +118,50 @@ class IngresarAProyecto extends Component {
         <div>
           <NavbarLogeado/>
         </div>
-        <div className="fondoB">
+        <div>
             <Container fluid>
               <Row>
-                  <h2 className="centerTitulo"> Reuniones disponibles: {usuario.nombre_usuario}</h2>
+                  <h2 className="titulo"> Reuniones disponibles: {usuario.nombre_usuario}</h2>
                   <div className="container-fluid cew-9">
                       <div className="row">
-                          <div className="col">
-                              Objetivos: {proyecto.objetivo_proyecto}
-                          </div>
+                        <div className= "subtitulo">
+                          Nombre del Proyecto: {proyecto.nombre_proyecto}
+                        </div>
+                        <div className="subtitulo">
+                          Objetivos: {proyecto.objetivo_proyecto}
+                        </div>
                       </div>
                   </div>
               </Row>
-                <div className="InformacionCentralIngresarProyecto">
+              <div className="InformacionCentral">
                 {usuario.id_rol === 1 ?
-                <Button className="botonCrearReunion"   href={`/crearReunion/${proyecto.id_proyecto}`} size="lg">
+                <Button className="botonCrearProyecto"   href={`/crearReunion/${proyecto.id_proyecto}`} size="lg">
                         Crear Reunion
                 </Button>: ""
                 }
-                <Button className="botonCrearReunion"   href="/misProyectos/" size="lg">
+                <Button className="botonCrearProyecto"   href="/misProyectos/" size="lg">
                   Volver
                   <BsArrowReturnLeft/> <span></span>
                 </Button>
-                <div className= "nombreProyecto">
-                    Nombre del Proyecto: {proyecto.nombre_proyecto}
-                </div>
-                    <Col>
-                        <div className="filterBlockIngresar">
-                            <input
-                              type="text"
-                              onClick={this.onChange}
-                              onChange={this.onUserChange}
-                              placeholder="Buscar Reunion..."
-                              ref={this.node}
-                            />
-                        </div>
-                    </Col>
-                </div>
+                <Col>
+                  <div className="filterResponsive">
+                    <div className="filterBlock">
+                        <input
+                          type="text"
+                          onClick={this.onChange}
+                          onChange={this.onUserChange}
+                          placeholder="Buscar Reunion..."
+                          ref={this.node}
+                        />
+                    </div>
+                  </div>
+                </Col>
+              </div>
+              <div>
                 <Row className="ReunionList">
                   {reunion.map((meet) => (
-                    <Col className="col" key={meet.id_reunion}>
-                      <Card style={{ width: "20rem" }}>
+                    <Col lg={4} key={meet.id_reunion}>
+                      <Card className="bg-light text-black">
                         <Card.Body>
                             <Card.Title>Fecha de reunion: {meet.fecha_reunion}</Card.Title>
                             <Card.Subtitle>Lugar: {meet.lugar_reunion}</Card.Subtitle>
@@ -175,7 +179,8 @@ class IngresarAProyecto extends Component {
                         </Card>
                     </Col>
                   ))}
-              </Row>
+                </Row>
+              </div>
             </Container>
         </div>
     </div>

@@ -10,21 +10,19 @@
 
 .botonAyudaLogeado{
     background-color:#CECFC9 ;
-    margin: 5px;
+    margin-left: 100px;
     text-align: center;
-    border-radius: 20px;
     cursor:pointer;
-    width: 20%;
-    padding: 10px 0px;
+    width: 140px;
     position: relative; 
     text-decoration:none;
     color:black;
-    bottom: -5px; right: -200px;
+    right: 50px;
 }
 
 .InformacionCentral{
-    position: absolute;
-    width: 1000px;
+    position: flex;
+    width: 80%;
     margin: auto;
     height: 70px;
     left: 162px;
@@ -35,10 +33,9 @@
 }
 
 .centerTitulo{
-   margin: auto;
-   width: 700px;
+   width: 100px;
    padding: 10px;
-   text-align: center;
+   right: -50px;
 }
 
 .filterBlock{
@@ -46,6 +43,7 @@
     right: -50%;
     top: 8px;
     display: inline-block;
+    margin:auto;
 }
 
 .botonCrearProyecto{
@@ -55,9 +53,20 @@
     position: relative; 
     color:black;
     text-align: center;
-    bottom: -1%; right: -10%;
+    bottom: -1%; 
+    right: -10%;
 }
 
+.botonCrearProyectoUsuario{
+    cursor:pointer;
+    width: 20%;
+    margin: 1%;
+    position: relative; 
+    color:black;
+    text-align: center;
+    bottom: -1%; 
+    right: 20%;
+}
 .botonMisProyectos{
     margin: 1%;
     text-align: center;
@@ -101,11 +110,11 @@
 }
 
 .filterBlockUsuario{
-    position: relative;
-    right: 80%;
-    top: 7px;
-    width: 150%;
+    position: absolute;
+    right: 15%;
+    width: 13%;
     display: inline-block;
+    margin-top: 7px;
 }
 
 .navbarLogeadoUsuario{
@@ -136,7 +145,9 @@
 .ProyectosList{
     margin: auto;
     width: -100px;
-    padding: 100px;
+    padding: 4%;
+    display: flex;
+    flex-wrap:wrap;
 }
 
 .botonMisProyectosUsuario{
@@ -148,3 +159,9 @@
     position: relative; 
     bottom: -1%; right: 15%;
 }
+
+.filterResponsive{
+    margin: auto;
+    width: 40%;
+}
+

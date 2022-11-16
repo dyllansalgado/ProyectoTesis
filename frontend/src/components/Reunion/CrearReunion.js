@@ -103,51 +103,57 @@ class CrearReunion extends Component {
       const fecha_reunion = this.state.fecha_reunion;
       const lugar_reunion = this.state.lugar_reunion;
       const {proyecto} = this.state;
-        return (
-            <div>
-              <NavbarLogeado/>
-              <Container fluid>
-              <h3 className="titulo">{proyecto.nombre_proyecto} </h3>
-              <div className="fondo">
-                <div className="container_register">
-                <form className="registrarseForm" onSubmit={this.CrearReunion}>
-                    <div className="center">
-                      <h3 className="titulo">Creación de Reunion</h3>
-                      <div className="form-group">
-                        <label>
-                          Fecha de reunion:
-                          <div className="contenedorDate">
-                            <div className="centerDate">
-                            <DatePicker selected={fecha_reunion} onChange={this.onChange} locale = "es" className="pickers" dateFormat="dd-MM-yyyy"/>
-                            </div>
+      return (
+        <div>
+          <div>
+          <NavbarLogeado/>
+          </div>
+          <div className="center">
+            <h1 className="titulo">{proyecto.nombre_proyecto}</h1>
+          </div>
+          <Container fluid>
+            <div className="center">
+              <form className="loginForm" onSubmit={this.CrearReunion}>
+                <div className="center">
+                  <h3 className="color-custom">Creación de Reunion </h3>
+                    <div className="form-group">
+                      <label>
+                        Fecha de reunion:
+                        <div className="contenedorDate">
+                          <div className="centerDate">
+                          <DatePicker selected={fecha_reunion} onChange={this.onChange} locale = "es" className="pickers" dateFormat="dd-MM-yyyy"/>
                           </div>
-                        </label>
-                      </div>
-                      <div className="form-group">
-                        <label>
-                          Lugar de reunion:
-                          <input
-                            className="inputRegister"
-                            type="text"
-                            value={lugar_reunion}
-                            name="lugar_reunion"
-                            onChange={this.changeHandler}
-                            placeholder="aaaa"
-                            required
-                          />
-                        </label>
-                      </div>
-                      <Button type="submit" value="Submit">
-                        {" "}
-                        Crear Reunion
-                      </Button>
+                        </div>
+                      </label>
                     </div>
-                  </form>
+                    <div className="form-group">
+                      <label>
+                        Lugar de reunion:
+                        <input
+                          className="inputRegister"
+                          type="text"
+                          value={lugar_reunion}
+                          name="lugar_reunion"
+                          onChange={this.changeHandler}
+                          placeholder="aaaa"
+                          required
+                        />
+                      </label>
+                    </div>
+                    <div className="text-center">
+                    <Button variant="secondary" className="botonIngresar" type="submit" value="Submit" size="sm">
+                      {" "}
+                      Crear Reunion
+                    </Button>
+                    <Button variant="secondary" className="botonRegistrarse" href={`/ingresarAProyecto/${proyecto.id_proyecto}`} size="sm">Volver</Button>
+                    {""}
+                    </div>
                 </div>
-              </div>
-              </Container>
+              </form>
             </div>
-          );
+          </Container>
+        </div>
+      );
     }
 }
 export default CrearReunion ;
