@@ -1,7 +1,6 @@
 package tesis.backend.repositories;
 import tesis.backend.models.Requisito;
 import tesis.backend.models.Pregunta;
-import tesis.backend.models.Respuesta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -16,10 +15,8 @@ public class RequisitoRepositoryImp implements RequisitoRepository {
 
     @Autowired
     private final PreguntaRepository preguntaRepository;
-    private final RespuestaRepository respuestaRepository;
-    public RequisitoRepositoryImp(PreguntaRepository preguntaRepository, RespuestaRepository respuestaRepository) {
+    public RequisitoRepositoryImp(PreguntaRepository preguntaRepository) {
         this.preguntaRepository = preguntaRepository;
-        this.respuestaRepository = respuestaRepository;
     }
     @Override
     public Long countRequisito(){
