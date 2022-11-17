@@ -55,5 +55,3 @@ VALUES(4,'Requerimiento de seguridad','Especifican las medidas que el sistema de
 
 INSERT INTO tipo_requisito(id_tipo_requisito,nombre_tipo_requisito,descripcion_tipo_requisito)
 VALUES(5,'Requerimiento de calidad','Estos requisitos deben especificar como se analizará el nivel de calidad que debe cumplir el sistema');
-
-
