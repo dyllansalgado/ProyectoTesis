@@ -190,6 +190,30 @@ class PreguntasSeleccionadas extends Component {
         }
       });
     }
+
+    CrearRequisitoPregunta(id_pregunta, id_respuesta){
+      let idPath = window.location.pathname.split("/");
+      swal({
+        title: "Atención",
+        text: "¿Desea crear un requisito?",
+        icon: "warning",
+        buttons: ["No", "Si"],
+      }).then((respuesta) => {
+        if (respuesta) {
+          if(id_respuesta == null){
+            setTimeout(() => {
+              window.location.replace("http://localhost:3000/CrearRequisitoP/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4] + "/" + id_pregunta);
+            }, 2000);
+          }
+          else if( id_respuesta != null){
+            setTimeout(() => {
+              window.location.replace("http://localhost:3000/CrearRequisitoPR/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4] + "/" + id_pregunta + "/" + id_respuesta);
+            }, 2000);
+          }
+        }
+      });
+    }
+
     render() {
       const {proyecto} = this.state;
       const {tema} = this.state;
@@ -218,7 +242,7 @@ class PreguntasSeleccionadas extends Component {
                   Descargar
               </Button>
               <Button className="botonCrearProyecto"  
-                href={`/temaReunion/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
+                href={`/requisitosCreados/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
                 size="lg">
                 Ir a requisitos
               </Button>
@@ -247,8 +271,8 @@ class PreguntasSeleccionadas extends Component {
                 <Table striped bordered hover className="tablaTermino" >
                   <thead>
                     <tr>
-                      <th width="900">Pregunta</th>
-                      <th width="180"></th>
+                      <th width="700">Pregunta</th>
+                      <th width="400"></th>
                       <th width="900">Respuesta</th>
                     </tr>
                   </thead>
@@ -286,6 +310,13 @@ class PreguntasSeleccionadas extends Component {
                             Editar
                           </Button>
                             }
+                            
+                            <Button className = "botones" size="sm"
+                              variant="success"
+                              onClick={() => this.CrearRequisitoPregunta(pregunta.id_pregunta,pregunta.id_respuesta)}
+                              >
+                              Crear requisito
+                            </Button>
                         </td>
                         <td> {pregunta.respuesta} </td>
                       </tr>

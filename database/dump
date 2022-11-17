@@ -40,3 +40,20 @@ VALUES(1,1,1);
 
 INSERT INTO usuario_proyecto(id_usuario_proyecto,id_usuario,id_proyecto)
 VALUES(1,1,1);
+
+INSERT INTO tipo_requisito(id_tipo_requisito,nombre_tipo_requisito,descripcion_tipo_requisito)
+VALUES(1,'Requerimiento funcional','Describe acciones específicas. A menudo se dividen en casos de uso, el cual definen lo que el sistema debe hacer');
+
+INSERT INTO tipo_requisito(id_tipo_requisito,nombre_tipo_requisito,descripcion_tipo_requisito)
+VALUES(2,'Requerimiento no funcional','Suele especificar criterios para ver la operación de un sistema. Corresponden a características que debe cumplir el sistema para su correcto funcionamiento');
+
+INSERT INTO tipo_requisito(id_tipo_requisito,nombre_tipo_requisito,descripcion_tipo_requisito)
+VALUES(3,'Requerimiento de rendimiento','Corresponden a los requisitos que tienen relacion con el tiempo de respuesta y rendimiento del sistema ');
+
+INSERT INTO tipo_requisito(id_tipo_requisito,nombre_tipo_requisito,descripcion_tipo_requisito)
+VALUES(4,'Requerimiento de seguridad','Especifican las medidas que el sistema debe tener para otorgar seguridad y proteccion de los datos');
+
+INSERT INTO tipo_requisito(id_tipo_requisito,nombre_tipo_requisito,descripcion_tipo_requisito)
+VALUES(5,'Requerimiento de calidad','Estos requisitos deben especificar como se analizará el nivel de calidad que debe cumplir el sistema');
+
+

@@ -22,6 +22,7 @@ class Login extends Component {
       window.location.replace("http://localhost:3000/mainJefeProyecto/");
     }
   }
+  
   changeName(event) {
       this.setState({ correo_usuario: event.target.value });
   }

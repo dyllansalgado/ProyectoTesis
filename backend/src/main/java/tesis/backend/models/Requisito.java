@@ -3,12 +3,34 @@ package tesis.backend.models;
 public class Requisito {
     private Long id_requisito;
     private String nombre_requisito;
-    private boolean estado_requisito;
+    private Boolean estado_requisito;
     private String descripcion_requisito;
     private String prioridad;
     private Long id_tipo_requisito;
-    private Long id_respuesta;
+    private Long id_pregunta;
     
+    public Long getId_pregunta() {
+        return id_pregunta;
+    }
+    public void setId_pregunta(Long id_pregunta) {
+        this.id_pregunta = id_pregunta;
+    }
+    private Boolean deleted;
+    
+    public boolean isDeleted() {
+        return deleted;
+    }
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public Boolean getEstado_requisito() {
+        return estado_requisito;
+    }
+    public void setEstado_requisito(Boolean estado_requisito) {
+        this.estado_requisito = estado_requisito;
+    }
+
     public Long getId_requisito() {
         return id_requisito;
     }
@@ -21,12 +43,7 @@ public class Requisito {
     public void setNombre_requisito(String nombre_requisito) {
         this.nombre_requisito = nombre_requisito;
     }
-    public boolean isEstado_requisito() {
-        return estado_requisito;
-    }
-    public void setEstado_requisito(boolean estado_requisito) {
-        this.estado_requisito = estado_requisito;
-    }
+    
     public String getDescripcion_requisito() {
         return descripcion_requisito;
     }
@@ -44,12 +61,6 @@ public class Requisito {
     }
     public void setId_tipo_requisito(Long id_tipo_requisito) {
         this.id_tipo_requisito = id_tipo_requisito;
-    }
-    public Long getId_respuesta() {
-        return id_respuesta;
-    }
-    public void setId_respuesta(Long id_respuesta) {
-        this.id_respuesta = id_respuesta;
     }
 
 
