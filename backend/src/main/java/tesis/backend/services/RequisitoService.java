@@ -34,11 +34,11 @@ public class RequisitoService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/requisito/create/{id_pregunta}")
-    ResponseEntity<String> createRequisito(@RequestBody String request,@PathVariable Long id_pregunta){
+    @PostMapping("/requisito/create/{id_pregunta}/{id_usuario}")
+    ResponseEntity<String> createRequisito(@RequestBody String request,@PathVariable Long id_pregunta,@PathVariable Long id_usuario){
         Requisito requisitoCreado = gson.fromJson(request, Requisito.class);
         if (requisitoCreado!= null){
-            requisitoCreado = requisitoRepository.createRequisito(requisitoCreado,id_pregunta);
+            requisitoCreado = requisitoRepository.createRequisito(requisitoCreado,id_pregunta,id_usuario);
             return new ResponseEntity<>(gson.toJson(requisitoCreado),HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

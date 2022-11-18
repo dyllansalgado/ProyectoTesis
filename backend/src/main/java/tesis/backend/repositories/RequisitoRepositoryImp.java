@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import java.util.List;
+import tesis.backend.models.Usuario;
 
 @Repository
 public class RequisitoRepositoryImp implements RequisitoRepository {
@@ -15,8 +16,10 @@ public class RequisitoRepositoryImp implements RequisitoRepository {
 
     @Autowired
     private final PreguntaRepository preguntaRepository;
-    public RequisitoRepositoryImp(PreguntaRepository preguntaRepository) {
+    private final UsuarioRepository usuarioRepository;
+    public RequisitoRepositoryImp(PreguntaRepository preguntaRepository, UsuarioRepository usuarioRepository) {
         this.preguntaRepository = preguntaRepository;
+        this.usuarioRepository = usuarioRepository;
     }
     @Override
     public Long countRequisito(){
@@ -26,11 +29,11 @@ public class RequisitoRepositoryImp implements RequisitoRepository {
         return resultado + 1; 
     }
 
-    public Requisito createRequisito(Requisito requisito, Long id_pregunta){
+    public Requisito createRequisito(Requisito requisito, Long id_pregunta, Long id_usuario ){
         Long id_count = countRequisito();
         Pregunta preguntaAsociada = preguntaRepository.getPregunta(id_pregunta);
-
-        String query = "INSERT into requisito (id_requisito, nombre_requisito, estado_requisito, descripcion_requisito, prioridad, id_pregunta, id_tipo_requisito) values (:id_requisito,:nombre_requisito,:estado_requisito,:descripcion_requisito,:prioridad,:id_pregunta,:id_tipo_requisito)";
+        Usuario usuarioCreador = usuarioRepository.getUsuario(id_usuario);
+        String query = "INSERT into requisito (id_requisito, nombre_requisito, estado_requisito, descripcion_requisito, prioridad, id_pregunta, id_tipo_requisito, creador_requisito) values (:id_requisito,:nombre_requisito,:estado_requisito,:descripcion_requisito,:prioridad,:id_pregunta,:id_tipo_requisito,:creador_requisito)";
         try(Connection conn = sql2o.open()){
             conn.createQuery(query,true).addParameter("id_requisito",id_count)
                 .addParameter("nombre_requisito", requisito.getNombre_requisito())
@@ -39,6 +42,7 @@ public class RequisitoRepositoryImp implements RequisitoRepository {
                 .addParameter("prioridad", requisito.getPrioridad())
                 .addParameter("id_pregunta", preguntaAsociada.getId_pregunta())
                 .addParameter("id_tipo_requisito",requisito.getId_tipo_requisito())
+                .addParameter("creador_requisito", usuarioCreador.getNombre_usuario())
                 .executeUpdate().getKey();
             requisito.setId_requisito(id_count);
             return requisito;

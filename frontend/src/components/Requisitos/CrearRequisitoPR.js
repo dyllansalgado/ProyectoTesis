@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Col, Button, Row, Container, Dropdown, Form,} from "react-bootstrap";
+import { Col, Button, Row, Container, Form,} from "react-bootstrap";
 import NavbarLogeado from "../Main/NavbarLogeado.js";
 import swal from "sweetalert";
 import Modal from 'react-bootstrap/Modal';
@@ -22,7 +22,7 @@ class CrearRequisitoPR extends Component {
             id_tipo_requisito:1,
             nombre_requisito: "",
             descripcion_requisito: "",
-            prioridad: "",
+            prioridad: null,
             respuesta: [],
         };
         this.changeNombreR = this.changeNombreR.bind(this);
@@ -133,9 +133,9 @@ class CrearRequisitoPR extends Component {
 
   CrearRequisito = (e) => {
     let idPath = window.location.pathname.split("/");
-    if (this.state.nombre_requisito !== "" && this.state.nombre_descripcion_requisito !== "" && this.state.prioridad !== "")
+    if (this.state.nombre_requisito !== "" && this.state.nombre_descripcion_requisito !== "" && this.state.prioridad > 0 && this.state.prioridad <= 5)
     {
-      axios.post("http://localhost:8080/requisito/create/"+ idPath[5], {
+      axios.post("http://localhost:8080/requisito/create/"+ idPath[5] + "/" + localStorage.getItem('usuario'), {
         nombre_requisito: this.state.nombre_requisito,
         descripcion_requisito: this.state.descripcion_requisito,
         estado_requisito: this.state.estado,
@@ -154,7 +154,7 @@ class CrearRequisitoPR extends Component {
     }else {
       swal({
         title: "Atención",
-        text: "El requisito debe tener todos los campos rellenados",
+        text: "El requisito debe tener todos los campos rellenados correctamente",
         icon: "warning",
         button: "Aceptar",
         timer: "2000",
@@ -212,10 +212,12 @@ class CrearRequisitoPR extends Component {
                         onChange={this.changeDescripcionR}
                         required
                     />
-                    <p>Prioridad: </p>
+                    <p>Prioridad: ( 1:Baja Prioridad / 5:Alta Prioridad ) </p>
                     <input
-                        type="text"
-                        placeholder="Ingrese un valor para prioridad"
+                        type="number"
+                        min="1"
+                        max="5"
+                        placeholder="Ingrese un valor para prioridad (1 a 5)"
                         className="form-control"
                         value={this.state.prioridad}
                         name="Respuesta"

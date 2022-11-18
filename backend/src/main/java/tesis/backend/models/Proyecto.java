@@ -9,12 +9,6 @@ public class Proyecto {
     private String objetivo_proyecto;
     private String contrasena;
     private String creadorProyecto;
-    public String getCreadorProyecto() {
-        return creadorProyecto;
-    }
-    public void setCreadorProyecto(String creadorProyecto) {
-        this.creadorProyecto = creadorProyecto;
-    }
     private boolean deleted;
         
     //Getter and Setter
@@ -23,6 +17,13 @@ public class Proyecto {
     }
     public void setId_proyecto(Long id_proyecto) {
         this.id_proyecto = id_proyecto;
+    }
+    
+    public String getCreadorProyecto() {
+        return creadorProyecto;
+    }
+    public void setCreadorProyecto(String creadorProyecto) {
+        this.creadorProyecto = creadorProyecto;
     }
     
     public String getNombre_proyecto() {
