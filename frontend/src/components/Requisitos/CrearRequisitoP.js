@@ -22,7 +22,7 @@ class CrearRequisitoP extends Component {
             id_tipo_requisito:1,
             nombre_requisito: "",
             descripcion_requisito: "",
-            prioridad: null,
+            prioridad: "",
         };
         this.changeNombreR = this.changeNombreR.bind(this);
         this.changeDescripcionR = this.changeDescripcionR.bind(this);
@@ -45,6 +45,9 @@ class CrearRequisitoP extends Component {
     }
 
     componentDidMount() {
+    if (localStorage.getItem("token") == null && localStorage.getItem("id_rol") === null ){
+      window.location.replace("http://localhost:3000/");
+    }
     const id = localStorage.getItem('usuario');
     let idPath = window.location.pathname.split("/");
     axios.all([
@@ -202,7 +205,7 @@ class CrearRequisitoP extends Component {
                         onChange={this.changeDescripcionR}
                         required
                     />
-                    <p>Prioridad: ( 1:Baja Prioridad / 5:Alta Prioridad )</p>
+                    <p>Prioridad: ( 1:Alta Prioridad / 5:Baja Prioridad )</p>
                     <input
                         type="number"
                         min="1"

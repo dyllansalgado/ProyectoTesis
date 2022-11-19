@@ -17,6 +17,7 @@ import PreguntaSeleccionadas from "./components/PreguntasSeleccionadas/Preguntas
 import Respuesta from "./components/Respuesta/Respuesta";
 import EditarRespuesta from "./components/Respuesta/EditarRespuesta";
 import Requisitos from "./components/Requisitos/Requisitos";
+import RequisitosAceptados from "./components/Requisitos/RequisitosAceptados";
 import CrearRequisitoPR from "./components/Requisitos/CrearRequisitoPR";
 import CrearRequisitoP from "./components/Requisitos/CrearRequisitoP";
 import './App.css';
@@ -45,6 +46,7 @@ function App() {
         <Route exact path="/RequisitosCreados/:idP/:idR/:idT" element={<Requisitos />} />
         <Route exact path="/CrearRequisitoPR/:idP/:idR/:idT/:idPreg/:idResp" element={<CrearRequisitoPR />} />
         <Route exact path="/CrearRequisitoP/:idP/:idR/:idT/:idPreg" element={<CrearRequisitoP />} />
+        <Route exact path="/RequisitosAceptados/:idP/:idR/:idT" element={<RequisitosAceptados />} />
       </Routes>
     </BrowserRouter>
     </>

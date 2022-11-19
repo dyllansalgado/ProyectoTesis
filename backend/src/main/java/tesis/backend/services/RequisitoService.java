@@ -43,4 +43,38 @@ public class RequisitoService {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
+    @CrossOrigin(origins = {"http://localhost:8080"})
+    @ResponseBody
+    @RequestMapping(value ="/requisito/{id_requisito}",  method =RequestMethod.PUT,consumes="application/json")
+    ResponseEntity<String> updateGlosario(@RequestBody String request, @PathVariable Long id_requisito){
+     Requisito ok = gson.fromJson(request,Requisito.class);
+     Requisito requisitoCreado = requisitoRepository.getRequisito(id_requisito);
+
+        if(requisitoCreado != null){
+            if(ok.getNombre_requisito() != null){
+                requisitoCreado.setNombre_requisito(ok.getNombre_requisito());
+            }
+            if(ok.getDescripcion_requisito() != null){
+                requisitoCreado.setDescripcion_requisito(ok.getDescripcion_requisito());
+            }
+            if(ok.getEstado_requisito() != null){
+                requisitoCreado.setEstado_requisito(ok.getEstado_requisito());
+            }
+            if(ok.getPrioridad() != null){
+                requisitoCreado.setPrioridad(ok.getPrioridad());
+            }
+            requisitoCreado = requisitoRepository.updateRequisito(requisitoCreado, id_requisito);
+            return new ResponseEntity<>(gson.toJson(requisitoCreado),HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping("/requisito/{id_requisito}")
+    ResponseEntity<String> deleteRequisito(@PathVariable Long id_requisito) {
+        if (requisitoRepository.deleteRequisito(id_requisito)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

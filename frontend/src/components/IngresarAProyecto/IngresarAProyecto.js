@@ -13,9 +13,10 @@ class IngresarAProyecto extends Component {
       super(props);
       this.state = {
         usuario: [],
-        id: null,
+        id: "",
         proyecto:[],
-        reunion:[]
+        reunion:[],
+        reunionesFiltro: []
       };
       this.node = React.createRef();
     }
@@ -48,7 +49,6 @@ class IngresarAProyecto extends Component {
         .then((res) => {
           const reunion = res.data;
           this.setState({reunion});
-          console.log(reunion);
         })
         .catch((error) => {
           console.log(error);
@@ -71,7 +71,7 @@ class IngresarAProyecto extends Component {
       return;
     }
     this.setState({
-      proyectosFiltro: [],
+      reunionesFiltro: [],
     });
   };
   onUserChange = async (e) => {

@@ -106,8 +106,9 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
 
     @Override
     public  List<Pregunta> getListPreguntaXidTema(Long id_tema) {
-        String query = "select distinct p.* from pregunta p, tema t " +
-        "where p.id_tema=:id_tema and t.id_tema = p.id_tema";
+        String query = "SELECT Pregunta.id_tema, Pregunta.pregunta, Pregunta.id_pregunta, Pregunta.creador, Pregunta.estado, Count(Voto) as votos FROM Pregunta " +
+        "left join Voto on Voto.id_pregunta = Pregunta.id_pregunta where Pregunta.id_tema=:id_tema " + 
+        "group by (Pregunta.id_tema,Pregunta.pregunta, Pregunta.id_pregunta)";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(query).addParameter("id_tema", id_tema).executeAndFetch(Pregunta.class);
         }

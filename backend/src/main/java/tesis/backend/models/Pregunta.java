@@ -6,6 +6,13 @@ public class Pregunta {
     private String pregunta;
     private String creador;
     private Boolean estado;
+    private Long votos;
+    public Long getVotos() {
+        return votos;
+    }
+    public void setVotos(Long votos) {
+        this.votos = votos;
+    }
     private boolean deleted;
                 
     //Getter and Setter

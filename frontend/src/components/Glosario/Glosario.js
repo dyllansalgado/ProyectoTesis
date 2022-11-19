@@ -21,6 +21,7 @@ class Glosario extends Component {
       glosario:[],
       nombreGlosario: "",
       descripcionGlosario: "",
+      glosarioFiltro: [],
     };
     this.node = React.createRef();
     this.handleModal = this.handleModal.bind(this);
@@ -35,6 +36,9 @@ class Glosario extends Component {
   };    
 
   componentDidMount() {
+    if (localStorage.getItem("token") == null && localStorage.getItem("id_rol") === null ){
+      window.location.replace("http://localhost:3000/");
+    }
     const id = localStorage.getItem('usuario');
     let idPath = window.location.pathname.split("/");
     axios.all([

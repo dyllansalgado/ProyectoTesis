@@ -9,8 +9,14 @@ public class Requisito {
     private Long id_tipo_requisito;
     private Long id_pregunta;
     private String creador_requisito;
+    private String correo_creador;
     private Boolean deleted;
-
+    public String getCorreo_creador() {
+        return correo_creador;
+    }
+    public void setCorreo_creador(String correo_creador) {
+        this.correo_creador = correo_creador;
+    }
     public String getCreador_requisito() {
         return creador_requisito;
     }

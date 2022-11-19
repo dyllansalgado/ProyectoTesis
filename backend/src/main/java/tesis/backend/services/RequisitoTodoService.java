@@ -19,8 +19,14 @@ public class RequisitoTodoService {
         this.requisitoTodoRepository = requisitoTodoRepository;
     }
     @GetMapping("/RequisitosTodo/{id_tema}")
-    ResponseEntity<String>getListPreguntaSeleccionadaXidTema2(@PathVariable Long id_tema) {
+    ResponseEntity<String>getListListRequisitosTodo(@PathVariable Long id_tema) {
         List<RequisitoTodo> requisitoSeleccionado = requisitoTodoRepository.getListRequisitosTodo(id_tema);
+        return new ResponseEntity<>(gson.toJson(requisitoSeleccionado), HttpStatus.OK);
+    }
+
+    @GetMapping("/RequisitosTodoAceptados/{id_tema}")
+    ResponseEntity<String>getListRequisitosTodoAceptados(@PathVariable Long id_tema) {
+        List<RequisitoTodo> requisitoSeleccionado = requisitoTodoRepository.getListRequisitosTodoAceptados(id_tema);
         return new ResponseEntity<>(gson.toJson(requisitoSeleccionado), HttpStatus.OK);
     }
 }

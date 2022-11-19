@@ -72,7 +72,6 @@ class Registrarse extends Component {
     .get("http://localhost:8080/roles/")
     .then((res) => {
       const roles = res.data;
-      console.log(roles);
       this.setState({ roles: res.data });
     })
     .catch((error) => {
@@ -160,7 +159,7 @@ class Registrarse extends Component {
                       required
                     >
                     {roles.map((rol) => (
-                      <option type="text" value={rol.id_rol}>
+                      <option key={rol.id_rol} type="text" value={rol.id_rol} >
                         {rol.tipo_rol}
                       </option>
                     ))}

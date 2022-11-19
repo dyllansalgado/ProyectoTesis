@@ -7,4 +7,6 @@ public interface RequisitoRepository {
     public List<Requisito> getListRequisito();  
     public Requisito getRequisito (Long id_requisito);
     public Long countRequisito ();
+    public Requisito updateRequisito (Requisito requisito, Long id_requisito);
+    public boolean deleteRequisito (Long id_requisito);
 }

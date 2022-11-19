@@ -12,11 +12,26 @@ public class RequisitoTodoRepositoryImp implements RequisitoTodoRepository{
     @Autowired
     private Sql2o sql2o;
     public List<RequisitoTodo> getListRequisitosTodo(Long id_tema) {
-        String query = "SELECT Requisito.nombre_requisito, Requisito.estado_requisito, Requisito.creador_requisito, Requisito.descripcion_requisito, Requisito.prioridad, Pregunta.pregunta, Respuesta.respuesta, tipo_requisito.nombre_tipo_requisito, tipo_requisito.descripcion_tipo_requisito " +
+        String query = "SELECT Requisito.id_requisito, Requisito.nombre_requisito, Requisito.estado_requisito, Requisito.creador_requisito, Requisito.descripcion_requisito, Requisito.prioridad, Pregunta.pregunta, Respuesta.respuesta, tipo_requisito.nombre_tipo_requisito, tipo_requisito.descripcion_tipo_requisito, Requisito.correo_creador " +
         "FROM Requisito LEFT JOIN Pregunta on Requisito.id_pregunta = Pregunta.id_pregunta " + 
         "LEFT JOIN Respuesta on Pregunta.id_pregunta = Respuesta.id_pregunta " +
         "LEFT JOIN tipo_requisito on Requisito.id_tipo_requisito = tipo_requisito.id_tipo_requisito " +
-        "where Pregunta.id_tema=:id_tema and Pregunta.estado = true";
+        "where Pregunta.id_tema=:id_tema and Pregunta.estado = true and Requisito.deleted = false";
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery(query).addParameter("id_tema", id_tema).executeAndFetch(RequisitoTodo.class);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public List<RequisitoTodo> getListRequisitosTodoAceptados(Long id_tema) {
+        String query = "SELECT Requisito.id_requisito, Requisito.nombre_requisito, Requisito.estado_requisito, Requisito.creador_requisito, Requisito.descripcion_requisito, Requisito.prioridad, Pregunta.pregunta, Respuesta.respuesta, tipo_requisito.nombre_tipo_requisito, tipo_requisito.descripcion_tipo_requisito, Requisito.correo_creador " +
+        "FROM Requisito LEFT JOIN Pregunta on Requisito.id_pregunta = Pregunta.id_pregunta " + 
+        "LEFT JOIN Respuesta on Pregunta.id_pregunta = Respuesta.id_pregunta " +
+        "LEFT JOIN tipo_requisito on Requisito.id_tipo_requisito = tipo_requisito.id_tipo_requisito " +
+        "where Pregunta.id_tema=:id_tema and Pregunta.estado = true and Requisito.deleted = false and Requisito.estado_requisito = true";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(query).addParameter("id_tema", id_tema).executeAndFetch(RequisitoTodo.class);
         }

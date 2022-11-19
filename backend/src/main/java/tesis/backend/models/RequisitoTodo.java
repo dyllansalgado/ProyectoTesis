@@ -5,6 +5,7 @@ public class RequisitoTodo {
     private Long id_tema;
     private Long id_pregunta;
     private Long id_respuesta;
+    private Long id_requisito;
     private Long id_tipo_requisito;
     private String nombre_requisito;
     private Boolean estado_requisito;
@@ -17,7 +18,20 @@ public class RequisitoTodo {
     private String nombre_tipo_requisito;
     private String descripcion_tipo_requisito;
     private String creador_requisito;
+    private String correo_creador;
     
+    public Long getId_requisito() {
+        return id_requisito;
+    }
+    public void setId_requisito(Long id_requisito) {
+        this.id_requisito = id_requisito;
+    }
+    public String getCorreo_creador() {
+        return correo_creador;
+    }
+    public void setCorreo_creador(String correo_creador) {
+        this.correo_creador = correo_creador;
+    }
     public String getCreador_requisito() {
         return creador_requisito;
     }

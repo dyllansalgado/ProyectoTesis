@@ -12,7 +12,7 @@ import "../Main/NavbarLogeado.css";
 import "../PreguntasSeleccionadas/PreguntasSeleccionadas.css";
 import "jspdf-autotable";
 
-class Requisitos extends Component { 
+class RequisitosAceptados extends Component { 
     constructor(props) {
       super(props);
       this.state = {
@@ -21,7 +21,7 @@ class Requisitos extends Component {
         proyecto:[],
         reunion:[],
         tema:[],
-        requisitosCreados:[],
+        requisitosAceptados:[],
         idPregunta: null,
         respuestaCreada:"",
         requisitosFiltro:[],
@@ -30,9 +30,6 @@ class Requisitos extends Component {
     }
 
     componentDidMount() {
-      if (localStorage.getItem("token") == null && localStorage.getItem("id_rol") === null ){
-        window.location.replace("http://localhost:3000/");
-      }
       const id = localStorage.getItem('usuario');
       let idPath = window.location.pathname.split("/");
       axios.all([
@@ -72,11 +69,11 @@ class Requisitos extends Component {
             console.log(error);
         }),
         axios
-        .get("http://localhost:8080/RequisitosTodo/"+ idPath[4])
+        .get("http://localhost:8080/RequisitosTodoAceptados/"+ idPath[4])
         .then((res) => {
-          const requisitosCreados = res.data;
-          this.setState({requisitosCreados});
-          requisitosCreados.sort((a,b) => a.prioridad - b.prioridad)
+          const requisitosAceptados = res.data;
+          this.setState({requisitosAceptados});
+          requisitosAceptados.sort((a,b) => a.prioridad - b.prioridad)
         })
         .catch((error) => {
           console.log(error);
@@ -111,10 +108,10 @@ class Requisitos extends Component {
     onUserChange = async (e) => {
       let idPath = window.location.pathname.split("/");
       await axios
-      .get("http://localhost:8080/RequisitosTodo/"+ idPath[4])
+      .get("http://localhost:8080/RequisitosTodoAceptados/"+ idPath[4])
       .then((res) => {
         this.setState({
-          requisitosFiltro: res.data,
+            requisitosFiltro: res.data,
         });
       })
       .catch((err) => {
@@ -125,7 +122,7 @@ class Requisitos extends Component {
         let dataFilter = e.nombre_requisito.toLowerCase();
         let dataTipoRequisito = e.nombre_tipo_requisito.toLowerCase();
         return (
-          dataFilter
+            dataFilter
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
             .indexOf(filter) !== -1 ||
@@ -136,7 +133,7 @@ class Requisitos extends Component {
         );
       });
       this.setState({
-        requisitosCreados: filtroRequisitos,
+        requisitosAceptados: filtroRequisitos,
       });
     };
     exportPDF = ()  => {
@@ -156,7 +153,7 @@ class Requisitos extends Component {
           doc.setFontSize(15);
           const title = "Requisitos para tema:  " + this.state.tema.nombre_tema;
           const headers = [["Nombre Requisito ","Descripción Requisito", "Tipo Requerimiento", "Breve Descripción", "Pregunta", "Respuesta", "Prioridad"]];
-          const data = this.state.requisitosCreados.map(elt=> [elt.nombre_requisito, elt.descripcion_requisito, elt.nombre_tipo_requisito,
+          const data = this.state.requisitosAceptados.map(elt=> [elt.nombre_requisito, elt.descripcion_requisito, elt.nombre_tipo_requisito,
           elt.descripcion_tipo_requisito, elt.pregunta, elt.respuesta, elt.prioridad]);
           let content = {
             startY: 50,
@@ -193,36 +190,11 @@ class Requisitos extends Component {
         }
       });
     }
-
-    EliminarRequisito(id_requisito){
-      let idPath = window.location.pathname.split("/");
-      swal({
-        title: "Atención",
-        text: "Está eliminando el requisito seleccionado ¿Desea continuar con la operación?",
-        icon: "warning",
-        buttons: ["No", "Si"],
-      }).then((respuesta) => {
-        if (respuesta) {
-          axios.delete("http://localhost:8080/requisito/" + id_requisito).then((res) => {
-            console.log(res);
-            swal({
-              title: "Requisito eliminado",
-              text: "El Requisito ha sido borrado con éxito",
-              icon: "success",
-            });
-            setTimeout(() => {
-              window.location.replace("http://localhost:3000/requisitosCreados/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
-            }, 2000);
-          });
-        }
-      });
-    }
     render() {
       const {proyecto} = this.state;
       const {tema} = this.state;
-      const {requisitosCreados} = this.state;
+      const {requisitosAceptados} = this.state;
       const {reunion}= this.state;
-      const {usuario} = this.state
       return ( 
       <div>
           <div>
@@ -245,14 +217,9 @@ class Requisitos extends Component {
                 <BsDownload /> <span></span>
                   Descargar
               </Button>
-              <Button className="botonCrearProyecto"  
-                href={`/requisitosAceptados/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
-                size="lg">
-                Req. Aceptados
-              </Button>
               <Button
                 className="botonCrearProyecto"  
-                href={`/preguntasSeleccionadas/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
+                href={`/requisitosCreados/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
                 size="lg">
                 Volver
                 <BsArrowReturnLeft/> <span></span>
@@ -281,14 +248,12 @@ class Requisitos extends Component {
                       <th width="700">Pregunta</th>
                       <th width="900">Respuesta</th>
                       <th width="150">Creador</th>
-                      <th width="100">Prioridad</th>
-                      <th width="500">Acciones</th>
-
+                      <th width="50">Prioridad</th>
                     </tr>
                   </thead>
                   <tbody >
                     {
-                    requisitosCreados.map((requisitos) => (
+                    requisitosAceptados.map((requisitos) => (
                       <tr key={requisitos.id_requisito}>
                         <td> {requisitos.nombre_requisito}</td>
                         <td> {requisitos.descripcion_requisito} </td>
@@ -297,52 +262,6 @@ class Requisitos extends Component {
                         <td> {requisitos.respuesta} </td>
                         <td> {requisitos.creador_requisito}</td>
                         <td> {requisitos.prioridad}</td>
-                        {usuario.id_rol === 1 ?
-                        <td>
-                          {proyecto.estado_proyecto === false && requisitos.estado_requisito === false ?
-                            <Button className = "botones" size="sm"
-                              variant="success"
-                              onClick={() => this.AceptarRequisito(requisitos.id_requisito)}
-                            >
-                              Aceptar
-                            </Button>
-                            :
-                            <Button className = "botones" size="sm"
-                            variant="secondary" disabled
-                            >
-                            Aceptar
-                            </Button>
-                           }
-                          {proyecto.estado_proyecto === false && requisitos.estado_requisito === false?
-                          <Button className = "botones" size="sm"
-                          variant="danger"
-                          onClick={() => this.EliminarRequisito(requisitos.id_requisito)}
-                          >
-                            Rechazar
-                          </Button>:
-                          <Button className = "botones" size="sm"
-                          variant="secondary" disabled
-                          >
-                            Rechazar
-                          </Button>
-                          }                      
-                        </td>:
-                        <td>
-                          {proyecto.estado_proyecto === false && usuario.correo_usuario === requisitos.correo_creador && requisitos.estado_requisito === false ?
-                          <Button className = "botones" size="sm"
-                            variant="danger"
-                            onClick={() => this.EliminarRequisito(requisitos.id_requisito)}
-                            >
-                            Eliminar
-                          </Button>:
-                          <Button className = "botones" size="sm"
-                            variant="secondary" disabled
-                            >
-                            Eliminar
-                          </Button>
-                          }
-                        </td>
-                        }
                       </tr>
                     ))}
                   </tbody>
@@ -354,4 +273,4 @@ class Requisitos extends Component {
       );
     }
 }
-export default Requisitos ;
+export default RequisitosAceptados ;

@@ -14,6 +14,7 @@ class Main extends Component {
       usuario: [],
       id: null,
       proyectos: [],
+      proyectosFiltro: []
     };
     this.node = React.createRef();
   }

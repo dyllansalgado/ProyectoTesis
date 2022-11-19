@@ -25,7 +25,8 @@ class Tema extends Component {
         preguntaNueva: "",
         preguntas:[],
         idPregunta: null,
-        votos:[]
+        votos:[],
+        preguntasFiltro:[],
       };
       this.node = React.createRef();
       this.handleModal = this.handleModal.bind(this);
@@ -40,6 +41,9 @@ class Tema extends Component {
     };
     
     componentDidMount() {
+      if (localStorage.getItem("token") == null && localStorage.getItem("id_rol") === null ){
+        window.location.replace("http://localhost:3000/");
+      }
       const id = localStorage.getItem('usuario');
       let idPath = window.location.pathname.split("/");
       axios.all([
@@ -84,7 +88,6 @@ class Tema extends Component {
         .then((res) => {
           const votos = res.data;
           this.setState({ votos});
-          console.log(votos)
         })
         .catch((error) => {
           console.log(error);
@@ -94,7 +97,6 @@ class Tema extends Component {
         .then((res) => {
           const preguntas = res.data;
           this.setState({preguntas});
-          console.log(preguntas);
         })
         .catch((error) => {
           console.log(error);
@@ -219,7 +221,6 @@ class Tema extends Component {
             id_pregunta: idPregunta,
             id_usuario: idUsuario
           }).then((response) => {
-            console.log(response.data);
             if (response.data === false) {
               swal({
                 title: "Ya ha votado por esta pregunta",
@@ -406,11 +407,11 @@ class Tema extends Component {
                     preguntas.map((pregunta) => (
                       <tr key={pregunta.id_pregunta} >
                         <td> {pregunta.pregunta} </td>
-                        <td> {pregunta.creador} </td>
+                        <td> {pregunta.creador}</td>
                         {usuario.id_rol === 1 ?
                         <td>
                           {" "}
-                          {pregunta.estado.toString() === 'false'?
+                          {pregunta.estado === false ?
                             <Button
                               variant="success"
                               onClick={() => this.AceptarPregunta(pregunta.id_pregunta)}
@@ -435,21 +436,23 @@ class Tema extends Component {
                               onClick={() => this.VotarPregunta(usuario.id_usuario,pregunta.id_pregunta)}
                             >
                             {" "}
-                                Votar{" "}
-                                <AiFillLike/> <span></span>
+                              Votar{" "}
+                              <AiFillLike/> <span></span>
                             </Button>:
                             <Button
                             variant="secondary"
                             disabled
                           >
                           {" "}
-                              Votar{" "}
-                              <AiFillLike/> <span></span>
+                            Votar{" "}
+                            <AiFillLike/> <span></span>
                           </Button>
                             }
                         </td>
                         }
-                        <td>Votos</td>
+                        <td>
+                          {pregunta.votos}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

@@ -14,6 +14,7 @@ class MisProyectos extends Component {
       usuario: [],
       id: null,
       proyectosJefe: [],
+      proyectosFiltro: []
     };
     this.node = React.createRef();
   }
@@ -36,7 +37,6 @@ class MisProyectos extends Component {
         .then((res) => {
           const proyectosJefe = res.data;
           this.setState({proyectosJefe});
-          console.log(proyectosJefe);
         })
         .catch((error) => {
           console.log(error);

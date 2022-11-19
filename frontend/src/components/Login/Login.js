@@ -38,7 +38,6 @@ class Login extends Component {
       })
       .then((response) => {
         if (response.data.token_usuario === 1 && response.data.contrasena_usuario === this.state.contrasena_usuario && response.data.id_rol === 2 ) {
-          console.log(response.data);  
           localStorage.setItem('usuario', response.data.id_usuario);
           localStorage.setItem('id_rol', response.data.id_rol);
           swal({
@@ -51,7 +50,6 @@ class Login extends Component {
           }, 1000);
         }
         else if(response.data.token_usuario === 1 && response.data.contrasena_usuario === this.state.contrasena_usuario && response.data.id_rol === 1) {
-          //console.log(response.data);
           localStorage.setItem('usuario', response.data.id_usuario);
           localStorage.setItem('id_rol', response.data.id_rol);
           localStorage.setItem('nombreUsuario', response.data.nombre_usuario);
@@ -94,7 +92,7 @@ class Login extends Component {
               <div className="center">
               <h3 className="color-custom">Inicio de sesión</h3>
                 <div className="form-group">
-                  <label responsive>
+                  <label>
                     Nombre de usuario:
                     <input
                       type="text"

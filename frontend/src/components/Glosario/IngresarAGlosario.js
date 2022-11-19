@@ -20,6 +20,7 @@ class IngresarAGlosario extends Component {
           proyecto:[],
           terminos:[],
           reunion:[],
+          terminosFiltro:[],
           glosario:[],
           nombreTermino:"",
           descripcionTermino:"",
@@ -37,6 +38,9 @@ class IngresarAGlosario extends Component {
     }; 
 
     componentDidMount() {
+        if (localStorage.getItem("token") == null && localStorage.getItem("id_rol") === null ){
+            window.location.replace("http://localhost:3000/");
+        }
         const id = localStorage.getItem('usuario');
         let idPath = window.location.pathname.split("/");
         axios.all([
@@ -112,9 +116,7 @@ class IngresarAGlosario extends Component {
         await axios
             .get("http://localhost:8080/terminoGlosario/"+ idPath[4])
             .then((res) => {
-              this.setState({
-                terminosFiltro: res.data,
-              });
+              this.setState({terminosFiltro: res.data});
             })
             .catch((err) => {
               console.log(err);
@@ -126,13 +128,13 @@ class IngresarAGlosario extends Component {
                 let dataFecha = e.descripcion_termino.toLowerCase();
                 return (
                     dataFilter
-                      .normalize("NFD")
-                      .replace(/[\u0300-\u036f]/g, "")
-                      .indexOf(filter) !== -1 ||
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .indexOf(filter) !== -1 ||
                     dataFecha
-                      .normalize("NFD")
-                      .replace(/[\u0300-\u036f]/g, "")
-                      .indexOf(filter) !== -1
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .indexOf(filter) !== -1
                 );
             });
         
