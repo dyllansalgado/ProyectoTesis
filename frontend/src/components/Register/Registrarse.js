@@ -37,23 +37,32 @@ class Registrarse extends Component {
         correo_usuario: this.state.correo_usuario,
         contrasena_usuario: this.state.contrasena_usuario,
         id_rol: this.state.id_rol,
-        });
-
-        swal({
-          title: "Usuario creado con exito",
-          text: "Se ha creado correctamente el usuario",
-          icon: "success",
-        });
-        setTimeout(() => {
-          window.location.replace("http://localhost:3000/");
-        }, 2000);
-      }
+        }).then(response => {
+          if(response.data){
+            swal({
+              title: "Usuario creado con exito",
+              text: "Se ha creado correctamente el usuario",
+              icon: "success",
+            });
+            setTimeout(() => {
+              window.location.replace("http://localhost:3000/");
+            }, 2000);
+          }
+          else if(response.data === false){
+            swal({
+              title: "El correo se encuentra utilizado",
+              text: "Por favor utilice un correo nuevo",
+              icon: "warning",
+            });
+          }
+        })
+    }
     else {
-      swal({
-        title: "Error al crear el usuario",
-        text: "falla",
-        icon: "warning",
-      });
+    swal({
+      title: "Error al crear el usuario",
+      text: "falla",
+      icon: "warning",
+    });
 
     }
   };

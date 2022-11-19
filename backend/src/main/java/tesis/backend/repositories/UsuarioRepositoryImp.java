@@ -21,23 +21,32 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 
     public Usuario createUsuario(Usuario usuario){
         Long id_count = countUsuario();
-        String query = "INSERT into usuario (id_usuario, nombre_usuario, apellido_usuario, contrasena_usuario, correo_usuario, id_rol, token_usuario) values (:id_usuario,:nombre_usuario,:apellido_usuario,:contrasena_usuario,:correo_usuario,:id_rol,:token_usuario)";
-        try(Connection conn = sql2o.open()){
-            conn.createQuery(query,true).addParameter("id_usuario",id_count)
-                .addParameter("nombre_usuario", usuario.getNombre_usuario())
-                .addParameter("apellido_usuario", usuario.getApellido_usuario())
-                .addParameter("contrasena_usuario", usuario.getContrasena_usuario())
-                .addParameter("correo_usuario", usuario.getCorreo_usuario())
-                .addParameter("id_rol", usuario.getId_rol())
-                .addParameter("token_usuario", 0)
-                .executeUpdate().getKey();
-            usuario.setId_usuario(id_count);
-            return usuario;
-        } 
-        catch(Exception e){
-            System.out.println(e.getMessage());
-            return null;
-        }
+        try(Connection conne = sql2o.open()){
+            List<Usuario> findCorreoUsuario = conne.createQuery("select * from usuario where correo_usuario=:correo_usuario")
+            .addParameter("correo_usuario", usuario.getCorreo_usuario())
+            .executeAndFetch(Usuario.class);
+            if(findCorreoUsuario.size() == 1){
+                return null;
+            }else{
+                String query = "INSERT into usuario (id_usuario, nombre_usuario, apellido_usuario, contrasena_usuario, correo_usuario, id_rol, token_usuario) values (:id_usuario,:nombre_usuario,:apellido_usuario,:contrasena_usuario,:correo_usuario,:id_rol,:token_usuario)";
+                try(Connection conn = sql2o.open()){
+                    conn.createQuery(query,true).addParameter("id_usuario",id_count)
+                        .addParameter("nombre_usuario", usuario.getNombre_usuario())
+                        .addParameter("apellido_usuario", usuario.getApellido_usuario())
+                        .addParameter("contrasena_usuario", usuario.getContrasena_usuario())
+                        .addParameter("correo_usuario", usuario.getCorreo_usuario())
+                        .addParameter("id_rol", usuario.getId_rol())
+                        .addParameter("token_usuario", 0)
+                        .executeUpdate().getKey();
+                    usuario.setId_usuario(id_count);
+                    return usuario;
+                } 
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                    return null;
+                }
+            }
+        }   
     }
 
     @Override

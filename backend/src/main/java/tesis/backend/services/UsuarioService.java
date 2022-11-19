@@ -39,9 +39,12 @@ public class UsuarioService {
         Usuario usuarioCreado = gson.fromJson(request, Usuario.class);
         if (usuarioCreado != null){
             usuarioCreado = usuarioRepository.createUsuario(usuarioCreado);
+            if(usuarioCreado == null){
+                return new ResponseEntity<>(gson.toJson(false),HttpStatus.OK);
+            }
             return new ResponseEntity<>(gson.toJson(usuarioCreado),HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(gson.toJson(false),HttpStatus.OK);
     }
 
     @CrossOrigin(origins = {"http://localhost:8080"})

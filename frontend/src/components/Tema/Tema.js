@@ -233,7 +233,7 @@ class Tema extends Component {
           })
           swal({
             title: "Pregunta calificada con éxito",
-            text: "La pregunta ha sido califacada con éxito",
+            text: "La pregunta ha sido calificada con éxito",
             icon: "success",
           });
           setTimeout(() => {
