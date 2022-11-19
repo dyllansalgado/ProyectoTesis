@@ -95,7 +95,7 @@ class IngresarAGlosario extends Component {
             })
             .catch((error) => {
                 console.log(error);
-        }),
+            }),
         ]);
     }
     //Barra de busqueda
@@ -226,12 +226,16 @@ class IngresarAGlosario extends Component {
                           </div>
                         </Row>
                         <div className="InformacionCentral">
+                            {proyecto.estado_proyecto === false ?
                             <Button
                                 className="botonCrearProyecto"  
                                 onClick={() => this.handleModal()}
                                 size="lg">
                                 Crear Término
-                            </Button>
+                            </Button>:
+                            ""
+
+                            }
                             <Modal
                                 name="formato"
                                 show={this.state.showModal}

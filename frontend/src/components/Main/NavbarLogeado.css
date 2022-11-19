@@ -165,3 +165,9 @@
     width: 40%;
 }
 
+.botonCerrar{
+    margin: 5%;
+    text-align: center;
+    cursor:pointer;
+    position: relative; 
+}

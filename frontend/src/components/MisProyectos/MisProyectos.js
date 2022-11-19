@@ -3,6 +3,7 @@ import {Container, Col, Row, Card } from "react-bootstrap";
 import NavbarLogeado from "../Main/NavbarLogeado.js";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
+import swal from "sweetalert";
 import "../Main/NavbarLogeado.css";
 import {BsArrowReturnLeft} from "react-icons/bs";
 
@@ -87,6 +88,28 @@ class MisProyectos extends Component {
     });
   };
   
+  CerrarProyecto(id_proyecto){
+    swal({
+      title: "Atención",
+      text: "¿Desea cerrar el proyecto seleccionado?",
+      icon: "warning",
+      buttons: ["No", "Si"],
+    }).then((respuesta) => {
+      if (respuesta) {
+        axios.put("http://localhost:8080/proyecto/" + id_proyecto, {
+          estado_proyecto: true,
+        });
+        swal({
+          title: "Proyecto actualizado con éxito",
+          text: "El proyecto ha sido cerrado con éxito",
+          icon: "success",
+        });
+        setTimeout(() => {
+          window.location.replace("http://localhost:3000/misProyectos");
+        }, 2000);
+      }
+    });
+  }
   render() {
     const {usuario} = this.state;
     const {proyectosJefe} = this.state;
@@ -173,18 +196,28 @@ class MisProyectos extends Component {
                             Creador Proyecto: {proyectos.creadorProyecto}
                           </p>
                           <div className="center">
-                          {usuario.id_rol === 1 ?
-                              <Button
-                                  variant="outline-primary" href={`/ingresarAProyecto/${proyectos.id_proyecto}`}
+                          <Button
+                              variant="outline-primary" href={`/ingresarAProyecto/${proyectos.id_proyecto}`}
+                            >
+                              Ingresar a proyecto
+                            </Button>
+                            {usuario.id_rol === 1 && usuario.correo_usuario === proyectos.correoCreador && proyectos.estado_proyecto.toString() === "false" ?
+                              <Button className= "botonCerrar"
+                                variant="outline-danger" onClick={() => this.CerrarProyecto(proyectos.id_proyecto)}
                               >
-                                  Ingresar a proyecto
+                                Cerrar Proyecto
                               </Button>:
-                              <Button
-                                variant="outline-primary" href={`/ingresarAProyecto/${proyectos.id_proyecto}`}
+                              ""
+                            }
+                            {proyectos.estado_proyecto.toString() === "true" ?
+                              <Button className= "botonCerrar"
+                                variant="danger" disabled
                               >
-                                Ingresar a proyecto
-                              </Button>
-                          }
+                                Estado Cerrado
+                              </Button>:
+                              ""
+                            }
+
                           </div>
                         </Card.Body>
                       </Card>

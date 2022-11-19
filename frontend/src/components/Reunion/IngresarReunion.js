@@ -173,17 +173,16 @@ class IngresarReunion extends Component {
                 </div>
               </div>
               <div className="InformacionCentral">
-              {usuario.id_rol === 1 ?
+              {usuario.id_rol === 1 && proyecto.estado_proyecto.toString() === "false" ?
               <Button
                   className="botonCrearProyecto"  
                   onClick={() => this.handleModal()}
                   size="lg">
                   Crear tema
               </Button>:
-              <Button className="botonCrearProyecto"  href= {`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
-                  Ir a glosarios
-              </Button>
+                ""
               }
+              {usuario.id_rol === 1 }
               <Modal
                   name="formato"
                   show={this.state.showModal}
@@ -226,12 +225,9 @@ class IngresarReunion extends Component {
                       </Form>
                   </ModalBody>
               </Modal>
-              {usuario.id_rol === 1 ?
               <Button className="botonCrearProyecto" href= {`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
                   Ir a glosarios
-              </Button>:
-              ""
-              }
+              </Button>
               <Button className="botonCrearProyecto"  href={`/ingresarAProyecto/${proyecto.id_proyecto}`} size="lg">  
                 Volver
                 <BsArrowReturnLeft/> <span></span>

@@ -134,9 +134,9 @@ class IngresarAProyecto extends Component {
                   </div>
               </Row>
               <div className="InformacionCentral">
-                {usuario.id_rol === 1 ?
+                {usuario.id_rol === 1 && proyecto.estado_proyecto.toString() === "false" ?
                 <Button className="botonCrearProyecto"   href={`/crearReunion/${proyecto.id_proyecto}`} size="lg">
-                        Crear Reunion
+                  Crear Reunion
                 </Button>: ""
                 }
                 <Button className="botonCrearProyecto"   href="/misProyectos/" size="lg">

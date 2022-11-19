@@ -9,6 +9,7 @@ public class Proyecto {
     private String objetivo_proyecto;
     private String contrasena;
     private String creadorProyecto;
+    private String correoCreador;
     private boolean deleted;
         
     //Getter and Setter
@@ -66,5 +67,12 @@ public class Proyecto {
     }
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public String getCorreoCreador() {
+        return correoCreador;
+    }
+    public void setCorreoCreador(String correoCreador) {
+        this.correoCreador = correoCreador;
     }
 }

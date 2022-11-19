@@ -269,14 +269,11 @@ class Tema extends Component {
               </Row>
               <div className="col-md-12 school-options-dropdown text-center">
               <Dropdown>
-              {usuario.id_rol === 1 ?
               <Button className="botonSeleccionadas"
                 variant="primary" href={`/preguntasSeleccionadas/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
                 >
                 Ingresar a preguntas seleccionadas
-              </Button>:
-              ""
-              }
+              </Button>
               <Dropdown.Toggle id="dropdown-basic-button">
                 Preguntas Recomendadas
               </Dropdown.Toggle>
@@ -335,12 +332,15 @@ class Tema extends Component {
               </Dropdown>
               </div>
               <div className="InformacionCentral">
+              {proyecto.estado_proyecto === false ?
               <Button
                 className="botonCrearProyecto"  
                 onClick={() => this.handleModal()}
                 size="lg">
                 Crear Pregunta
-              </Button>
+              </Button>:
+              ""
+              }
               <Button
                 className="botonCrearProyecto"  
                 href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`}
@@ -410,12 +410,12 @@ class Tema extends Component {
                         {usuario.id_rol === 1 ?
                         <td>
                           {" "}
-                          {pregunta.estado.toString() === 'false' ?
+                          {pregunta.estado.toString() === 'false'?
                             <Button
                               variant="success"
                               onClick={() => this.AceptarPregunta(pregunta.id_pregunta)}
                             >
-                              {" "}
+                            {" "}
                               Aceptar{" "}
                               <AiOutlineCheck/> <span></span>
                             </Button>: 
@@ -429,7 +429,7 @@ class Tema extends Component {
                           }
                         </td>:
                         <td>
-                            {" "}
+                          {proyecto.estado_proyecto === false && pregunta.estado === false ?
                             <Button
                               variant="success"
                               onClick={() => this.VotarPregunta(usuario.id_usuario,pregunta.id_pregunta)}
@@ -437,7 +437,16 @@ class Tema extends Component {
                             {" "}
                                 Votar{" "}
                                 <AiFillLike/> <span></span>
-                            </Button>{" "}
+                            </Button>:
+                            <Button
+                            variant="secondary"
+                            disabled
+                          >
+                          {" "}
+                              Votar{" "}
+                              <AiFillLike/> <span></span>
+                          </Button>
+                            }
                         </td>
                         }
                         <td>Votos</td>

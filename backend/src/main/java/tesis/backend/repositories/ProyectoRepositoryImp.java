@@ -41,7 +41,7 @@ public class ProyectoRepositoryImp implements ProyectoRepository {
         Long id_CountProyectoUsuario= countUsuarioProyecto();
         Usuario usuarioCreadorProyecto = usuarioRepository.getUsuario(id_usuario);
 
-        String query = "INSERT into proyecto (id_proyecto, nombre_proyecto, fecha_inicio_proyecto, estado_proyecto, objetivo_proyecto, contrasena, creadorProyecto) values (:id_proyecto,:nombre_proyecto,:fecha_inicio_proyecto,:estado_proyecto,:objetivo_proyecto,:contrasena,:creadorProyecto)";
+        String query = "INSERT into proyecto (id_proyecto, nombre_proyecto, fecha_inicio_proyecto, estado_proyecto, objetivo_proyecto, contrasena, creadorProyecto, correoCreador) values (:id_proyecto,:nombre_proyecto,:fecha_inicio_proyecto,:estado_proyecto,:objetivo_proyecto,:contrasena,:creadorProyecto,:correoCreador)";
         String queryproyecto_usuario = "INSERT into usuario_proyecto (id_usuario_proyecto, id_usuario, id_proyecto)" +
         " values (:id_usuario_proyecto,:id_usuario,:id_proyecto)";
 
@@ -53,6 +53,7 @@ public class ProyectoRepositoryImp implements ProyectoRepository {
                 .addParameter("objetivo_proyecto", proyecto.getObjetivo_proyecto())
                 .addParameter("contrasena", proyecto.getContrasena())
                 .addParameter("creadorProyecto", usuarioCreadorProyecto.getNombre_usuario())
+                .addParameter("correoCreador", usuarioCreadorProyecto.getCorreo_usuario())
                 .executeUpdate().getKey();
         proyecto.setId_proyecto(id_count);
         //Crear table proyecto usuario

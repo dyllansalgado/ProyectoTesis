@@ -219,6 +219,7 @@ class PreguntasSeleccionadas extends Component {
       const {tema} = this.state;
       const {preguntasSeleccionadas} = this.state;
       const {reunion}= this.state;
+      const {usuario}= this.state;
       return ( 
       <div>
           <div>
@@ -281,43 +282,52 @@ class PreguntasSeleccionadas extends Component {
                     preguntasSeleccionadas.map((pregunta) => (
                       <tr key={pregunta.id_pregunta} >
                         <td> {pregunta.pregunta} </td>
+                        {usuario.id_rol === 1 ?
                         <td>
-                            {pregunta.respuesta == null ?
-                              <Button className = "botones" size="sm"
-                                variant="success"
-                                onClick={() => this.IrResponderPregunta(pregunta.id_pregunta)}
-                              >
-                                Responder
-                              </Button>
-                              :
-                              <Button className = "botones" size="sm"
-                              variant="secondary" disabled
-                              >
-                              Responder
-                              </Button>
-                             }
-                            {pregunta.respuesta == null ?
+                          {pregunta.respuesta == null ?
                             <Button className = "botones" size="sm"
-                            variant="secondary" disabled
+                              variant="success"
+                              onClick={() => this.IrResponderPregunta(pregunta.id_pregunta)}
                             >
-                              Editar
+                              Responder
                             </Button>
                             :
                             <Button className = "botones" size="sm"
-                            variant="success"
-                            onClick={() => this.IrEditarRespuesta(pregunta.id_pregunta,pregunta.id_respuesta)}
+                            variant="secondary" disabled
+                            >
+                            Responder
+                            </Button>
+                           }
+                          {pregunta.respuesta == null ?
+                          <Button className = "botones" size="sm"
+                          variant="secondary" disabled
                           >
                             Editar
                           </Button>
-                            }
-                            
-                            <Button className = "botones" size="sm"
-                              variant="success"
-                              onClick={() => this.CrearRequisitoPregunta(pregunta.id_pregunta,pregunta.id_respuesta)}
-                              >
-                              Crear requisito
-                            </Button>
+                          :
+                          <Button className = "botones" size="sm"
+                          variant="success"
+                          onClick={() => this.IrEditarRespuesta(pregunta.id_pregunta,pregunta.id_respuesta)}
+                          >
+                            Editar
+                          </Button>
+                          }
+                          <Button className = "botones" size="sm"
+                            variant="success"
+                            onClick={() => this.CrearRequisitoPregunta(pregunta.id_pregunta,pregunta.id_respuesta)}
+                            >
+                            Crear requisito
+                          </Button>                         
+                        </td>:
+                        <td>
+                          <Button className = "botones" size="sm"
+                            variant="success"
+                            onClick={() => this.CrearRequisitoPregunta(pregunta.id_pregunta,pregunta.id_respuesta)}
+                            >
+                            Crear requisito
+                          </Button>  
                         </td>
+                        }
                         <td> {pregunta.respuesta} </td>
                       </tr>
                     ))}
