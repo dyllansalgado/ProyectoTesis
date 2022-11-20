@@ -217,6 +217,22 @@ class Requisitos extends Component {
         }
       });
     }
+
+    EditarRequisito(id_requisito) {
+      let idPath = window.location.pathname.split("/");
+      swal({
+        title: "Atención",
+        text: "¿Desea editar el requisito seleccionado?",
+        icon: "warning",
+        buttons: ["No", "Si"],
+      }).then((respuesta) => {
+        if (respuesta) {
+          setTimeout(() => {
+            window.location.replace("http://localhost:3000/EditarRequisito/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4] + "/" + id_requisito);
+          }, 2000);
+        }
+      });
+    }
     render() {
       const {proyecto} = this.state;
       const {tema} = this.state;
@@ -330,15 +346,15 @@ class Requisitos extends Component {
                         <td>
                           {proyecto.estado_proyecto === false && usuario.correo_usuario === requisitos.correo_creador && requisitos.estado_requisito === false ?
                           <Button className = "botones" size="sm"
-                            variant="danger"
-                            onClick={() => this.EliminarRequisito(requisitos.id_requisito)}
+                            variant="warning"
+                            onClick={() => this.EditarRequisito(requisitos.id_requisito)}
                             >
-                            Eliminar
+                            Editar Requisito
                           </Button>:
                           <Button className = "botones" size="sm"
                             variant="secondary" disabled
                             >
-                            Eliminar
+                            Editar Requisito
                           </Button>
                           }
                         </td>

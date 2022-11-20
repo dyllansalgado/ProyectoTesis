@@ -195,7 +195,7 @@ class CrearRequisitoPR extends Component {
                     </p>
                     <p>Pregunta: {pregunta.pregunta}</p>
                     <p>Respuesta: {respuesta.respuesta}</p>
-                    <p>Nombre Requisito: </p>
+                    <p>Nombre Requisito* : </p>
                     <input
                         type="text"
                         placeholder="Ingrese un nombre de requisito"
@@ -205,7 +205,7 @@ class CrearRequisitoPR extends Component {
                         onChange={this.changeNombreR}
                         required
                     />
-                    <p>Descripción requisito: </p>
+                    <p>Descripción requisito* : </p>
                     <input
                         type="text"
                         placeholder="Ingrese un breve descripción"
@@ -215,7 +215,7 @@ class CrearRequisitoPR extends Component {
                         onChange={this.changeDescripcionR}
                         required
                     />
-                    <p>Prioridad: ( 1:Alta Prioridad / 5:Baja Prioridad ) </p>
+                    <p>Prioridad* : ( 1:Alta Prioridad / 5:Baja Prioridad ) </p>
                     <input
                         type="number"
                         min="1"
@@ -227,7 +227,7 @@ class CrearRequisitoPR extends Component {
                         onChange={this.changePrioridadR}
                         required
                     />
-                    <p>Tipo de requisito:</p>
+                    <p>Tipo de requisito* :</p>
                         <Form.Select
                           aria-label="Default select example"
                           name="id_tipo_requisito"
@@ -241,6 +241,7 @@ class CrearRequisitoPR extends Component {
                         </Form.Select>
                   </Col>
                 </Row>
+                <p>(*) Campos obligatorios</p>
                 <Modal.Footer>
                   <Button className="Botones"
                     variant="primary"

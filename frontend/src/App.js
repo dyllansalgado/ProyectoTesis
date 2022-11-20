@@ -20,6 +20,7 @@ import Requisitos from "./components/Requisitos/Requisitos";
 import RequisitosAceptados from "./components/Requisitos/RequisitosAceptados";
 import CrearRequisitoPR from "./components/Requisitos/CrearRequisitoPR";
 import CrearRequisitoP from "./components/Requisitos/CrearRequisitoP";
+import EditarRequisito from "./components/Requisitos/EditarRequisito";
 import './App.css';
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         <Route exact path="/CrearRequisitoPR/:idP/:idR/:idT/:idPreg/:idResp" element={<CrearRequisitoPR />} />
         <Route exact path="/CrearRequisitoP/:idP/:idR/:idT/:idPreg" element={<CrearRequisitoP />} />
         <Route exact path="/RequisitosAceptados/:idP/:idR/:idT" element={<RequisitosAceptados />} />
+        <Route exact path="/EditarRequisito/:idP/:idR/:idT/:idReq" element={<EditarRequisito />} />
       </Routes>
     </BrowserRouter>
     </>
