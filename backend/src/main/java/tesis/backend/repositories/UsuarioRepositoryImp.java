@@ -117,7 +117,6 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
                 Usuario usuarioRespuesta = findUsers.get(0);
                 usuarioRespuesta.setToken_usuario(1);
                 updateUsuario(usuarioRespuesta,usuarioRespuesta.getId_usuario());
-                System.out.println(usuarioRespuesta.getToken_usuario());
                 return usuarioRespuesta;
             }else{
                 return null;
