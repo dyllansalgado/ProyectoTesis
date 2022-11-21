@@ -2,6 +2,7 @@ import React from "react";
 import image from "../../assets/Logo.png";
 import { Navbar,Nav,Container} from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
+import {BiHelpCircle} from "react-icons/bi";
 import "./Login.css";
 
 
@@ -17,8 +18,9 @@ const NavbarInicio = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Nav className="mr-auto">
                         <Navbar.Collapse id="basic-navbar-nav">
-                        <Button href="/" size="lg">
-                            ¿Necesitas ayuda?
+                        <Button className="botonAyudaLogeado"  href="/ayuda" size="sm">
+                            ¿Cómo usar?
+                            <BiHelpCircle/> <span></span>
                         </Button>
                         </Navbar.Collapse>
                     </Nav>
