@@ -243,8 +243,8 @@ class PreguntasSeleccionadas extends Component {
               </Row>
               <div className="InformacionCentral">
               <Button className="botonCrearProyecto"   onClick={() => this.exportPDF()} size="lg">
+                Descargar
                 <BsDownload /> <span></span>
-                  Descargar
               </Button>
               <Button className="botonCrearProyecto"  
                 href={`/requisitosCreados/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}

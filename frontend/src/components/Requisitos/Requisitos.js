@@ -4,6 +4,8 @@ import NavbarLogeado from "../Main/NavbarLogeado.js";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import {BsArrowReturnLeft,BsDownload} from "react-icons/bs";
+import {AiOutlineCheck} from "react-icons/ai";
+import {FiXSquare} from "react-icons/fi";
 import jsPDF from "jspdf";
 import swal from "sweetalert";
 import "../IngresarAProyecto/IngresarAProyecto.css";
@@ -258,8 +260,8 @@ class Requisitos extends Component {
               </Row>
               <div className="InformacionCentral">
               <Button className="botonCrearProyecto"   onClick={() => this.exportPDF()} size="lg">
+                Descargar
                 <BsDownload /> <span></span>
-                  Descargar
               </Button>
               <Button className="botonCrearProyecto"  
                 href={`/requisitosAceptados/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
@@ -320,13 +322,15 @@ class Requisitos extends Component {
                               variant="success"
                               onClick={() => this.AceptarRequisito(requisitos.id_requisito)}
                             >
-                              Aceptar
+                            Aceptar
+                            <AiOutlineCheck/> <span></span>
                             </Button>
                             :
                             <Button className = "botones" size="sm"
                             variant="secondary" disabled
                             >
                             Aceptar
+                            <AiOutlineCheck/> <span></span>
                             </Button>
                            }
                           {proyecto.estado_proyecto === false && requisitos.estado_requisito === false?
@@ -335,11 +339,13 @@ class Requisitos extends Component {
                           onClick={() => this.EliminarRequisito(requisitos.id_requisito)}
                           >
                             Rechazar
+                            <FiXSquare/> <span></span>
                           </Button>:
                           <Button className = "botones" size="sm"
                           variant="secondary" disabled
                           >
                             Rechazar
+                            <FiXSquare/> <span></span>
                           </Button>
                           }                      
                         </td>:

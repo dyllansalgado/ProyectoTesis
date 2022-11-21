@@ -93,12 +93,12 @@ class Login extends Component {
               <h3 className="color-custom">Inicio de sesión</h3>
                 <div className="form-group">
                   <label>
-                    Nombre de usuario:
+                    Correo de usuario:
                     <input
                       type="text"
                       value={this.state.correo_usuario}
                       onChange={this.changeName}
-                      placeholder="Correo Usuario"
+                      placeholder="ejemplo@gmail.com"
                       required
                     />
                   </label>

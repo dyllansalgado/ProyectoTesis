@@ -192,12 +192,12 @@ class Glosario extends Component {
                     }
                     {usuario.id_rol === 1 ?
                     <Button className="botonCrearProyecto"   href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
-                    <BsArrowReturnLeft/> <span></span>
-                        Volver
+                      Volver
+                      <BsArrowReturnLeft/> <span></span>
                     </Button>:
                     <Button className="botonCrearProyecto"   href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
-                        <BsArrowReturnLeft/> <span></span>
-                        Volver
+                      Volver
+                      <BsArrowReturnLeft/> <span></span>
                     </Button>
                     }
                     <Modal

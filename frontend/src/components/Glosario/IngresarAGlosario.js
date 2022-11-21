@@ -281,12 +281,12 @@ class IngresarAGlosario extends Component {
                                 </ModalBody>
                             </Modal>
                             <Button className="botonCrearProyecto"   onClick={() => this.exportPDF()} size="lg">
-                                <BsDownload /> <span></span>
                                     Descargar
+                                    <BsDownload /> <span></span>
                             </Button>
                             <Button className="botonCrearProyecto" href={`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
-                                <BsArrowReturnLeft/> <span></span>
                                     Volver
+                                    <BsArrowReturnLeft/> <span></span>
                             </Button>
                             <Col>
                                 <div className="filterResponsive">

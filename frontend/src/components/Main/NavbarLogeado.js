@@ -6,6 +6,9 @@ import "./NavbarLogeado.css";
 import swal from "sweetalert";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {IoMdExit} from "react-icons/io";
+import {BiHelpCircle} from "react-icons/bi";
+import {CgProfile} from "react-icons/cg";
 
 
 class NavbarLogeado extends Component{
@@ -68,13 +71,16 @@ class NavbarLogeado extends Component{
                     <Nav className="mr-auto">
                       <Navbar.Collapse id="basic-navbar-nav">
                       <Button className="botonAyudaLogeado"  href="/ayuda" size="sm">
-                          ¿Necesitas ayuda?
+                        ¿Cómo usar?
+                        <BiHelpCircle/> <span></span>
                       </Button>
                       <Button className="botonAyudaLogeado"  href="/verPerfil" size="sm">
                           Ver perfil
+                          <CgProfile/> <span></span>
                       </Button>
                       <Button className="botonAyudaLogeado"  onClick={() => this.cerrarSesion()} size="sm">
-                          Cerrar sesión
+                        Cerrar sesión
+                        <IoMdExit/> <span></span>
                       </Button>
                       </Navbar.Collapse>
                     </Nav>
