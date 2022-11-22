@@ -14,7 +14,7 @@ const NavbarInicio = () => {
                     <Navbar.Brand href="/">
                         <img src={image} className="logo" alt="LogoTesis" />{" "}
                     </Navbar.Brand>
-                    <Navbar.Brand  className="me-auto" >Proyecto.....</Navbar.Brand>
+                    <Navbar.Brand  className="me-auto">SCAEC</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Nav className="mr-auto">
                         <Navbar.Collapse id="basic-navbar-nav">

@@ -85,7 +85,7 @@ class Login extends Component {
         </div>
         <Container fluid>
         <div className="center">
-        <h1 className="titulo">NOMBRE PROYECTO</h1>
+        <h1 className="titulo">Software Colaborativo de Apoyo para Entrevistas en el proceso de Captura de requisitos</h1>
         </div>
         <div className="center">
             <form className="loginForm" onSubmit={this.handleSubmit}>
