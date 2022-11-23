@@ -110,6 +110,22 @@ class MisProyectos extends Component {
       }
     });
   }
+
+  EditarProyecto(id_proyecto){
+    swal({
+      title: "Atención",
+      text: "¿Desea editar el proyecto seleccionado?",
+      icon: "warning",
+      buttons: ["No", "Si"],
+    }).then((respuesta) => {
+      if (respuesta) {
+        setTimeout(() => {
+          window.location.replace("http://localhost:3000/EditarProyecto/"+ id_proyecto);
+        }, 2000);
+      }
+    });
+  }
+
   render() {
     const {usuario} = this.state;
     const {proyectosJefe} = this.state;
@@ -195,7 +211,7 @@ class MisProyectos extends Component {
                           <p>
                             Creador Proyecto: {proyectos.creadorProyecto}
                           </p>
-                          <div className="center">
+                          <div>
                           <Button
                               variant="outline-primary" href={`/ingresarAProyecto/${proyectos.id_proyecto}`}
                             >
@@ -211,14 +227,24 @@ class MisProyectos extends Component {
                             }
                             {proyectos.estado_proyecto.toString() === "true" ?
                               <Button className= "botonCerrar"
-                                variant="danger" disabled
+                                variant="secondary" disabled
                               >
                                 Estado Cerrado
                               </Button>:
                               ""
                             }
-
                           </div>
+                          <div className="center">
+                          {usuario.id_rol === 1 && usuario.correo_usuario === proyectos.correoCreador && proyectos.estado_proyecto.toString() === "false" ?
+                              <Button className= "botonCerrar" size="sm"
+                                variant="warning" onClick={() => this.EditarProyecto(proyectos.id_proyecto)}
+                              >
+                                Editar Proyecto
+                              </Button>:
+                              ""
+                          }
+                          </div>
+
                         </Card.Body>
                       </Card>
                   </Col>

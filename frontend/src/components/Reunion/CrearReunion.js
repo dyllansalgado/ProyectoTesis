@@ -17,7 +17,6 @@ class CrearReunion extends Component {
         super(props);
         this.state = { fecha_reunion: "", 
         lugar_reunion: "", 
-        estado: false,
         proyecto: [],
         fecha: new Date("2018", "06", "22"),
         };
@@ -42,7 +41,6 @@ class CrearReunion extends Component {
           axios.post("http://localhost:8080/reunion/create", {
           fecha_reunion: this.state.fecha_reunion,
           lugar_reunion: this.state.lugar_reunion,
-          estado: this.state.estado,
           id_proyecto: idPath[2]
           });
   

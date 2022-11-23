@@ -4,6 +4,7 @@ import NavbarLogeado from "../Main/NavbarLogeado.js";
 import Button from 'react-bootstrap/Button';
 import "./IngresarAProyecto.css";
 import axios from "axios";
+import swal from "sweetalert";
 import "../Main/NavbarLogeado.css";
 import {BsArrowReturnLeft} from "react-icons/bs";
 
@@ -109,6 +110,22 @@ class IngresarAProyecto extends Component {
     });
   };
 
+  EditarReunion(id_reunion){
+    let idPath = window.location.pathname.split("/");
+    swal({
+      title: "Atención",
+      text: "¿Desea editar la reunión seleccionada?",
+      icon: "warning",
+      buttons: ["No", "Si"],
+    }).then((respuesta) => {
+      if (respuesta) {
+        setTimeout(() => {
+          window.location.replace("http://localhost:3000/EditarReunion/"+ idPath[2] + "/" + id_reunion);
+        }, 2000);
+      }
+    });
+  }
+
   render() {
     const {usuario} = this.state;
     const {proyecto} = this.state;
@@ -136,7 +153,7 @@ class IngresarAProyecto extends Component {
               <div className="InformacionCentral">
                 {usuario.id_rol === 1 && proyecto.estado_proyecto.toString() === "false" ?
                 <Button className="botonCrearProyecto"   href={`/crearReunion/${proyecto.id_proyecto}`} size="lg">
-                  Crear Reunion
+                  Crear Reunión
                 </Button>: ""
                 }
                 <Button className="botonCrearProyecto"   href="/misProyectos/" size="lg">
@@ -163,17 +180,23 @@ class IngresarAProyecto extends Component {
                     <Col lg={4} key={meet.id_reunion}>
                       <Card className="bg-light text-black">
                         <Card.Body>
-                            <Card.Title>Fecha de reunion: {meet.fecha_reunion}</Card.Title>
+                            <Card.Title>Fecha de reunión: {meet.fecha_reunion}</Card.Title>
                             <Card.Subtitle>Lugar: {meet.lugar_reunion}</Card.Subtitle>
-                            <p>
-                              Estado: {meet.estado.toString() === 'false' ? "Disponible" : "Terminado"}
-                            </p>
+                            Estado Proyecto: {proyecto.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"}
                             <div className="center">
                               <Button
                                 variant="outline-primary" href={`/ingresarReunion/${proyecto.id_proyecto}/${meet.id_reunion}`}
                               >
-                                Ingresar a reunion
+                                Ingresar a reunión
                               </Button>
+                              {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto.toString() === "false" ?
+                              <Button className= "botonCerrar" size="sm"
+                                variant="warning" onClick={() => this.EditarReunion(meet.id_reunion)}
+                              >
+                                Editar Reunión
+                              </Button>:
+                              ""
+                              }
                             </div>
                           </Card.Body>
                         </Card>

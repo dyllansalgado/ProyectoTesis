@@ -17,7 +17,6 @@ class IngresarReunion extends Component {
       proyecto:[],
       reunion:[],
       tema:[],
-      estado: false,
       nombreTema: "",
       descripcionTema: "",
       temasFiltro: [],
@@ -95,7 +94,6 @@ class IngresarReunion extends Component {
       axios.post("http://localhost:8080/tema/create", {
           nombre_tema: this.state.nombreTema,
           descripcion_tema: this.state.descripcionTema,
-          estado: this.state.estado,
           id_reunion: idPath[3]
       });
       swal({
@@ -258,7 +256,7 @@ class IngresarReunion extends Component {
                           <Card.Title>Nombre: {temas.nombre_tema}</Card.Title>
                           <Card.Subtitle>Descripcion: {temas.descripcion_tema}</Card.Subtitle>
                           <p>
-                            Estado: {temas.estado.toString() === 'false' ? "Disponible" : "Terminado"}
+                            Estado Proyecto: {proyecto.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"}
                           </p>
                           <div className="center">
                             <Button

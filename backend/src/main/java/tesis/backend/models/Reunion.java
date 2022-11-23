@@ -6,7 +6,6 @@ public class Reunion {
     private Long id_proyecto;
     private Date fecha_reunion;
     private String lugar_reunion;
-    private Boolean estado;
     private boolean deleted;
         
     //Getter and Setter
@@ -37,13 +36,6 @@ public class Reunion {
     public void setLugar_reunion(String lugar_reunion) {
         this.lugar_reunion = lugar_reunion;
     }
-    public Boolean getEstado() {
-        return estado;
-    }
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
-
     public boolean isDeleted() {
         return deleted;
     }

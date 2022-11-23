@@ -87,16 +87,6 @@ class EditarRequisito extends Component {
                 console.log(error);
             }),
             axios
-            .get("http://localhost:8080/usuario/"+id)
-            .then((res) => {
-                const usuario = res.data;
-                this.setState({usuario});
-
-            })
-            .catch((error) => {
-                console.log(error);
-            }),
-            axios
             .get("http://localhost:8080/requisito/"+ idPath[5])
             .then((res) => {
                 const requisito = res.data;

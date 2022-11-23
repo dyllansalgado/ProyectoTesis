@@ -64,9 +64,6 @@ public class TemaService {
             if(ok.getDescripcion_tema() != null){
                 temaCreado.setDescripcion_tema(ok.getDescripcion_tema());
             }
-            if(ok.getEstado() != null){
-                temaCreado.setEstado(ok.getEstado());
-            }
             temaCreado = temaRepository.updateTema(temaCreado, id_tema);
             return new ResponseEntity<>(gson.toJson(temaCreado),HttpStatus.OK);
         }

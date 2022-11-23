@@ -8,8 +8,8 @@ VALUES(1,'hola','salgado perez','123','juan_a@gmail.com',1,1);
 INSERT INTO proyecto(id_proyecto,nombre_proyecto,fecha_inicio_proyecto,estado_proyecto,objetivo_proyecto,contrasena,creadorProyecto, correoCreador)
 VALUES(1,'Toma de requisitos para empresa Home Canter','2022/09/20',false,'Se solicita que se reunan para comnezar el proyecto','contrasena_123','hola','juan_a@gmail.com');
 
-INSERT INTO reunion(id_reunion,fecha_reunion,lugar_reunion,estado,id_proyecto)
-VALUES(1,'2022/09/20','zoom',false,1);
+INSERT INTO reunion(id_reunion,fecha_reunion,lugar_reunion,id_proyecto)
+VALUES(1,'2022/09/20','zoom',1);
 
 INSERT INTO glosario(id_glosario,nombre_glosario,descripcion_glosario,id_reunion)
 VALUES(1,'Glosario para toma de requisitos Home Canter','Este glosario muestra algunos terminos que se deberian saber antes de comenzar las reuniones',1);
@@ -20,11 +20,11 @@ VALUES(2,'Soy un segundo glosario para reunion 1','a',1);
 INSERT INTO termino(id_termino,nombre_termino,descripcion_termino,id_glosario)
 VALUES(1,'Electro-Domesticos','Esta descripcion es god',1);
 
-INSERT INTO tema(id_tema,nombre_tema,descripcion_tema,estado,id_reunion)
-VALUES(1,'Revision preguntas x','soy descripcion',false,1);
+INSERT INTO tema(id_tema,nombre_tema,descripcion_tema,id_reunion)
+VALUES(1,'Revision preguntas x','soy descripcion',1);
 
-INSERT INTO tema(id_tema,nombre_tema,descripcion_tema,estado,id_reunion)
-VALUES(2,'tema nuevo id_reunion 1','soy descripcion',false,1);
+INSERT INTO tema(id_tema,nombre_tema,descripcion_tema,id_reunion)
+VALUES(2,'tema nuevo id_reunion 1','soy descripcion',1);
 
 INSERT INTO pregunta(id_pregunta,pregunta,estado,id_tema,creador)
 VALUES(1,'¿Hola?',false,1,'hola');
@@ -55,3 +55,5 @@ VALUES(4,'Requerimiento de seguridad','Especifican las medidas que el sistema de
 
 INSERT INTO tipo_requisito(id_tipo_requisito,nombre_tipo_requisito,descripcion_tipo_requisito)
 VALUES(5,'Requerimiento de calidad','Estos requisitos deben especificar como se analizará el nivel de calidad que debe cumplir el sistema');
+
+

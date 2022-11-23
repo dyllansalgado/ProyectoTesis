@@ -21,12 +21,11 @@ public class ReunionRepositoryImp implements ReunionRepository {
 
     public Reunion createReunion(Reunion reunion){
         Long id_count = countReunion();
-        String query = "INSERT into reunion (id_reunion, fecha_reunion, lugar_reunion, estado, id_proyecto) values (:id_reunion,:fecha_reunion,:lugar_reunion,:estado,:id_proyecto)";
+        String query = "INSERT into reunion (id_reunion, fecha_reunion, lugar_reunion, id_proyecto) values (:id_reunion,:fecha_reunion,:lugar_reunion,:id_proyecto)";
         try(Connection conn = sql2o.open()){
             conn.createQuery(query,true).addParameter("id_reunion",id_count)
                 .addParameter("fecha_reunion", reunion.getFecha_reunion())
                 .addParameter("lugar_reunion", reunion.getLugar_reunion())
-                .addParameter("estado", reunion.getEstado())
                 .addParameter("id_proyecto", reunion.getId_proyecto())
                 .executeUpdate().getKey();
             reunion.setId_reunion(id_count);
@@ -77,13 +76,12 @@ public class ReunionRepositoryImp implements ReunionRepository {
 
     @Override 
     public Reunion updateReunion(Reunion reunion, Long id_reunion){
-        String query = "update reunion set fecha_reunion = :fecha_reunion, lugar_reunion = :lugar_reunion, estado = :estado where id_reunion = :id_reunion and deleted = false";
+        String query = "update reunion set fecha_reunion = :fecha_reunion, lugar_reunion = :lugar_reunion where id_reunion = :id_reunion and deleted = false";
         try(Connection conn = sql2o.open()){
             Long id = (Long) conn.createQuery(query,true)
                 .addParameter("id_reunion", id_reunion)
                 .addParameter("fecha_reunion", reunion.getFecha_reunion())
                 .addParameter("lugar_reunion", reunion.getLugar_reunion())
-                .addParameter("estado", reunion.getEstado())
                 .executeUpdate().getKey(Long.class);
             reunion.setId_reunion(id);
             return reunion;
