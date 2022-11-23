@@ -26,8 +26,8 @@ VALUES(1,'Revision preguntas x','soy descripcion',1);
 INSERT INTO tema(id_tema,nombre_tema,descripcion_tema,id_reunion)
 VALUES(2,'tema nuevo id_reunion 1','soy descripcion',1);
 
-INSERT INTO pregunta(id_pregunta,pregunta,estado,id_tema,creador)
-VALUES(1,'¿Hola?',false,1,'hola');
+INSERT INTO pregunta(id_pregunta,pregunta,estado,id_tema,creador,correoCreador)
+VALUES(1,'¿Hola?',false,1,'hola','juan_a@gmail.com');
 
 INSERT INTO respuesta(id_respuesta,respuesta,id_pregunta)
 VALUES(1,'Soy una respuesta para pregunta 1',1);

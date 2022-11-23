@@ -186,7 +186,7 @@ class IngresarAGlosario extends Component {
             });
     
             swal({
-                title: "Término creado con exito",
+                title: "Término creado con éxito",
                 text: "Se ha creado correctamente el término",
                 icon: "success",
             });

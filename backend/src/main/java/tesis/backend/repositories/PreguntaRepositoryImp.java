@@ -37,7 +37,7 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
         Long id_count = countPregunta();
         Long id_countUsuarioPregunta= countUsuarioPregunta();
         Usuario usuarioCreador = usuarioRepository.getUsuario(id_usuario);
-        String query = "INSERT into pregunta (id_pregunta, pregunta, estado, id_tema, creador) values (:id_pregunta,:pregunta,:estado,:id_tema,:creador)";
+        String query = "INSERT into pregunta (id_pregunta, pregunta, estado, id_tema, creador, correoCreador) values (:id_pregunta,:pregunta,:estado,:id_tema,:creador,:correoCreador)";
         String queryusuario_pregunta = "INSERT into usuario_pregunta (id_usuario_pregunta, id_usuario, id_pregunta)" +
         " values (:id_usuario_pregunta,:id_usuario,:id_pregunta)";
         try(Connection conn = sql2o.open()){
@@ -46,6 +46,7 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
                 .addParameter("estado", pregunta.getEstado())
                 .addParameter("id_tema", pregunta.getId_tema())
                 .addParameter("creador", usuarioCreador.getNombre_usuario())
+                .addParameter("correoCreador", usuarioCreador.getCorreo_usuario())
                 .executeUpdate().getKey();
             pregunta.setId_pregunta(id_count);
             //Crear tabla usuario_pregunta
@@ -106,8 +107,8 @@ public class PreguntaRepositoryImp implements PreguntaRepository{
 
     @Override
     public  List<Pregunta> getListPreguntaXidTema(Long id_tema) {
-        String query = "SELECT Pregunta.id_tema, Pregunta.pregunta, Pregunta.id_pregunta, Pregunta.creador, Pregunta.estado, Count(Voto) as votos FROM Pregunta " +
-        "left join Voto on Voto.id_pregunta = Pregunta.id_pregunta where Pregunta.id_tema=:id_tema " + 
+        String query = "SELECT Pregunta.id_tema, Pregunta.pregunta, Pregunta.id_pregunta, Pregunta.creador, Pregunta.correoCreador, Pregunta.estado, Count(Voto) as votos FROM Pregunta " +
+        "left join Voto on Voto.id_pregunta = Pregunta.id_pregunta where Pregunta.id_tema=:id_tema and Pregunta.deleted = false " + 
         "group by (Pregunta.id_tema,Pregunta.pregunta, Pregunta.id_pregunta)";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(query).addParameter("id_tema", id_tema).executeAndFetch(Pregunta.class);

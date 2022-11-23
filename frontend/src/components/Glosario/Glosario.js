@@ -101,7 +101,7 @@ class Glosario extends Component {
       id_reunion: idPath[3]
     })
     swal({
-      title: "Glosario creado con exito",
+      title: "Glosario creado con éxito",
       text: "Se ha creado correctamente el Glosario",
       icon: "success",
     });

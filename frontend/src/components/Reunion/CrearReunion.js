@@ -45,8 +45,8 @@ class CrearReunion extends Component {
           });
   
           swal({
-            title: "Reunion creada con exito",
-            text: "Se ha creado correctamente la reunion",
+            title: "Reunion creada con éxito",
+            text: "Se ha creado correctamente la reunión",
             icon: "success",
           });
           setTimeout(() => {
@@ -55,7 +55,7 @@ class CrearReunion extends Component {
         }
       else {
         swal({
-          title: "Error al crear la reunion",
+          title: "Error al crear la reunión",
           text: "falla",
           icon: "warning",
         });
@@ -113,10 +113,10 @@ class CrearReunion extends Component {
             <div className="center">
               <form className="loginForm" onSubmit={this.CrearReunion}>
                 <div className="center">
-                  <h3 className="color-custom">Creación de Reunion </h3>
+                  <h3 className="color-custom">Creación de Reunión </h3>
                     <div className="form-group">
                       <label>
-                        Fecha de reunion:
+                        Fecha de reunión:
                         <div className="contenedorDate">
                           <div className="centerDate">
                           <DatePicker selected={fecha_reunion} onChange={this.onChange} locale = "es" className="pickers" dateFormat="dd-MM-yyyy"/>
@@ -126,7 +126,7 @@ class CrearReunion extends Component {
                     </div>
                     <div className="form-group">
                       <label>
-                        Lugar de reunion:
+                        Lugar de reunión:
                         <input
                           className="inputRegister"
                           type="text"
@@ -141,7 +141,7 @@ class CrearReunion extends Component {
                     <div className="text-center">
                     <Button variant="secondary" className="botonIngresar" type="submit" value="Submit" size="sm">
                       {" "}
-                      Crear Reunion
+                      Crear Reunión
                     </Button>
                     <Button variant="secondary" className="botonRegistrarse" href={`/ingresarAProyecto/${proyecto.id_proyecto}`} size="sm">Volver</Button>
                     {""}

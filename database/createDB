@@ -39,7 +39,7 @@ CREATE TABLE usuario(
 CREATE TABLE proyecto(
     
     id_proyecto serial,
-    nombre_proyecto varchar(80),
+    nombre_proyecto varchar(128),
     fecha_inicio_proyecto date,
     estado_proyecto boolean,
     objetivo_proyecto text,
@@ -67,7 +67,7 @@ CREATE TABLE reunion(
     
     id_reunion serial,
     fecha_reunion date,
-    lugar_reunion varchar(50),
+    lugar_reunion varchar(256),
     id_proyecto integer NOT NULL,
     PRIMARY KEY (id_reunion),
     deleted boolean NOT NULL DEFAULT false,
@@ -76,7 +76,7 @@ CREATE TABLE reunion(
 
 CREATE TABLE glosario(
     id_glosario serial,
-    nombre_glosario varchar(50),
+    nombre_glosario varchar(256),
     descripcion_glosario text,
     id_reunion integer NOT NULL,
     PRIMARY KEY (id_glosario),
@@ -87,7 +87,7 @@ CREATE TABLE glosario(
 CREATE TABLE termino(
     
     id_termino serial,
-    nombre_termino varchar(50),
+    nombre_termino varchar(128),
     descripcion_termino text,
     id_glosario integer NOT NULL,
     PRIMARY KEY (id_termino),
@@ -97,7 +97,7 @@ CREATE TABLE termino(
 CREATE TABLE tema(
     
     id_tema serial,
-    nombre_tema varchar(50),
+    nombre_tema varchar(128),
     descripcion_tema text,
     id_reunion integer NOT NULL,
     PRIMARY KEY (id_tema),
@@ -111,6 +111,7 @@ CREATE TABLE pregunta(
     pregunta text,
     estado boolean,
     creador varchar(80),
+    correoCreador varchar(80),
     id_tema integer NOT NULL,
     PRIMARY KEY (id_pregunta),
     deleted boolean NOT NULL DEFAULT false,
@@ -165,7 +166,7 @@ CREATE TABLE tipo_requisito(
 CREATE TABLE resultado(
 
     id_resultado serial,
-    respuesta varchar(258),
+    respuesta varchar(500),
     pregunta varchar(258),
     estado boolean,
     id_tema serial,
@@ -182,7 +183,7 @@ CREATE TABLE resultado(
 CREATE TABLE requisito(
 
     id_requisito serial,
-    nombre_requisito varchar(80),
+    nombre_requisito varchar(258),
     estado_requisito boolean,
     descripcion_requisito text,
     prioridad integer,

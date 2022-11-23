@@ -97,7 +97,7 @@ class IngresarReunion extends Component {
           id_reunion: idPath[3]
       });
       swal({
-          title: "Tema creado con exito",
+          title: "Tema creado con éxito",
           text: "Se ha creado correctamente el tema",
           icon: "success",
       });

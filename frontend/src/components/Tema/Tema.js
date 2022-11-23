@@ -166,7 +166,7 @@ class Tema extends Component {
           id_tema: idPath[4]
         });
         swal({
-          title: "Pregunta creada con exito",
+          title: "Pregunta creada con éxito",
           text: "Se ha creado correctamente la nueva pregunta",
           icon: "success",
         });
@@ -242,7 +242,28 @@ class Tema extends Component {
           }, 2000);
         }
       });
-
+    }
+    deletePregunta(id_pregunta) {
+      let idPath = window.location.pathname.split("/");
+      swal({
+        title: "Atención",
+        text: "¿Desea eliminar la pregunta seleccionada?",
+        icon: "warning",
+        buttons: ["No", "Si"],
+      }).then((respuesta) => {
+        if (respuesta) {
+          axios.delete("http://localhost:8080/pregunta/" + id_pregunta).then((res) => {
+            swal({
+              title: "Pregunta borrada",
+              text: "La pregunta ha sido borrada con éxito",
+              icon: "success",
+            });
+            setTimeout(() => {
+              window.location.replace("http://localhost:3000/temaReunion/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
+            }, 2000);
+          });
+        }
+      });
     }
     render() {
       const {proyecto} = this.state;
@@ -398,8 +419,12 @@ class Tema extends Component {
                     <tr>
                       <th width="900">Pregunta</th>
                       <th width="250">Creador</th>
-                      <th width="170">Aceptar Pregunta</th>
+                      {usuario.id_rol === 1 ?
+                      <th width="170">Aceptar Pregunta</th>:
+                      <th width="170">Votar Pregunta</th>
+                      }
                       <th width="100">Votos</th>
+                      <th width="50">Acción</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -407,7 +432,7 @@ class Tema extends Component {
                     preguntas.map((pregunta) => (
                       <tr key={pregunta.id_pregunta} >
                         <td> {pregunta.pregunta} </td>
-                        <td> {pregunta.creador}</td>
+                        <td> {pregunta.creador} </td>
                         {usuario.id_rol === 1 ?
                         <td>
                           {" "}
@@ -452,6 +477,24 @@ class Tema extends Component {
                         }
                         <td>
                           {pregunta.votos}
+                        </td>
+                        <td>
+                          {proyecto.estado_proyecto === false && usuario.correo_usuario === pregunta.correoCreador && pregunta.estado === false ?
+                            <Button
+                              variant="danger"
+                              onClick={() => this.deletePregunta(pregunta.id_pregunta)}
+                            >
+                            {" "}
+                              Eliminar{" "}
+                            </Button>:
+                            <Button
+                            variant="secondary"
+                            disabled
+                          >
+                          {" "}
+                            Eliminar{" "}
+                          </Button>
+                            }
                         </td>
                       </tr>
                     ))}

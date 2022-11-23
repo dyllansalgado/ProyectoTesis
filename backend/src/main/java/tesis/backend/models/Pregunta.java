@@ -5,6 +5,7 @@ public class Pregunta {
     private Long id_tema;
     private String pregunta;
     private String creador;
+    private String correoCreador;
     private Boolean estado;
     private Long votos;
     public Long getVotos() {
@@ -56,5 +57,12 @@ public class Pregunta {
     }
     public void setCreador(String creador) {
         this.creador = creador;
+    }
+
+    public String getCorreoCreador() {
+        return correoCreador;
+    }
+    public void setCorreoCreador(String correoCreador) {
+        this.correoCreador = correoCreador;
     }
 }
