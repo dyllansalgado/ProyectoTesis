@@ -15,7 +15,7 @@ class Glosario extends Component {
     super(props);
     this.state = {
       usuario: [],
-      id: null,
+      id: "",
       proyecto:[],
       reunion:[],
       glosario:[],
@@ -150,10 +150,32 @@ class Glosario extends Component {
             .indexOf(filter) !== -1)
       });
 
-    this.setState({
-      glosario: filtroGlosario,
-    });
-  };
+      this.setState({
+        glosario: filtroGlosario,
+      });
+    };
+    deleteGlosario(id_glosario) {
+      let idPath = window.location.pathname.split("/");
+      swal({
+        title: "Atención",
+        text: "¿Desea eliminar el glosario seleccionado?",
+        icon: "warning",
+        buttons: ["No", "Si"],
+      }).then((respuesta) => {
+        if (respuesta) {
+          axios.delete("http://localhost:8080/glosario/" + id_glosario).then((res) => {
+            swal({
+              title: "Glosario borrado",
+              text: "El glosario ha sido borrado con éxito",
+              icon: "success",
+            });
+            setTimeout(() => {
+              window.location.replace("http://localhost:3000/GlosarioReunion/"+ idPath[2] + "/" + idPath[3]);
+            }, 2000);
+          });
+        }
+      });
+    }
     render() {
         const {usuario} = this.state;
         const {proyecto} = this.state;
@@ -267,6 +289,16 @@ class Glosario extends Component {
                                   >
                                     Ingresar a glosario
                                   </Button>
+                                  <div className="center">
+                                    {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
+                                    <Button  size="sm"
+                                      variant="danger" onClick={() => this.deleteGlosario(glosa.id_glosario)}
+                                    >
+                                      Eliminar
+                                    </Button>:
+                                    ""
+                                    }
+                                    </div>
                                 </div>
                               </Card.Body>
                             </Card>

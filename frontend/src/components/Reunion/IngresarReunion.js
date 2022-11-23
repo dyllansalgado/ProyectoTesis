@@ -150,6 +150,44 @@ class IngresarReunion extends Component {
       tema: filtroTemas,
     });
   };
+
+  EditarTema(id_tema){
+    let idPath = window.location.pathname.split("/");
+    swal({
+      title: "Atención",
+      text: "¿Desea modificar el tema seleccionado?",
+      icon: "warning",
+      buttons: ["No", "Si"],
+    }).then((respuesta) => {
+      if (respuesta) {
+        setTimeout(() => {
+          window.location.replace("http://localhost:3000/EditarTema/"+ idPath[2] + "/" + idPath[3] + "/" + id_tema);
+        }, 2000);
+      }
+    });
+  }
+  deleteTema(id_tema) {
+    let idPath = window.location.pathname.split("/");
+    swal({
+      title: "Atención",
+      text: "¿Desea eliminar el tema seleccionado?",
+      icon: "warning",
+      buttons: ["No", "Si"],
+    }).then((respuesta) => {
+      if (respuesta) {
+        axios.delete("http://localhost:8080/tema/" + id_tema).then((res) => {
+          swal({
+            title: "Tema borrado",
+            text: "El tema ha sido borrado con éxito",
+            icon: "success",
+          });
+          setTimeout(() => {
+            window.location.replace("http://localhost:3000/ingresarReunion/"+ idPath[2] + "/" + idPath[3]);
+          }, 2000);
+        });
+      }
+    });
+  }
   render() {
     const {usuario} = this.state;
     const {proyecto} = this.state;
@@ -264,6 +302,24 @@ class IngresarReunion extends Component {
                             >
                               Ingresar a tema
                             </Button>
+                            <div className="botonescenter">
+                              {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
+                              <Button size="sm"
+                                variant="warning" onClick={() => this.EditarTema(temas.id_tema)}
+                              >
+                                Editar
+                              </Button>:
+                              ""
+                              }
+                              {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
+                              <Button  size="sm"
+                                variant="danger" onClick={() => this.deleteTema(temas.id_tema)}
+                              >
+                                Eliminar
+                              </Button>:
+                              ""
+                              }
+                              </div>
                           </div>
                         </Card.Body>
                       </Card>

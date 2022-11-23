@@ -127,6 +127,7 @@ class IngresarAProyecto extends Component {
   }
 
   deleteReunion(id_reunion) {
+    let idPath = window.location.pathname.split("/");
     swal({
       title: "Atención",
       text: "¿Desea eliminar la reunión seleccionada?",
@@ -141,6 +142,7 @@ class IngresarAProyecto extends Component {
             icon: "success",
           });
           setTimeout(() => {
+            window.location.replace("http://localhost:3000/ingresarAProyecto/"+ idPath[2]);
           }, 2000);
         });
       }

@@ -15,6 +15,7 @@ import EditarReunion from "./components/Reunion/EditarReunion";
 import Glosario from "./components/Glosario/Glosario";
 import IngresarAGlosario from "./components/Glosario/IngresarAGlosario";
 import Tema from "./components/Tema/Tema";
+import EditarTema from "./components/Tema/EditarTema";
 import PreguntaSeleccionadas from "./components/PreguntasSeleccionadas/PreguntasSeleccionadas"
 import Respuesta from "./components/Respuesta/Respuesta";
 import EditarRespuesta from "./components/Respuesta/EditarRespuesta";
@@ -45,6 +46,7 @@ function App() {
         <Route exact path="/GlosarioReunion/:idP/:idR" element={<Glosario />} />
         <Route exact path="/IngresarAGlosario/:idP/:idR/:idG" element={<IngresarAGlosario />} />
         <Route exact path="/TemaReunion/:idP/:idR/:idT" element={<Tema />} />
+        <Route exact path="/EditarTema/:idP/:idR/:idT" element={<EditarTema />} />
         <Route exact path="/PreguntasSeleccionadas/:idP/:idR/:idT" element={<PreguntaSeleccionadas />} />
         <Route exact path="/PreguntaRespuesta/:idP/:idR/:idT/:idPreg" element={<Respuesta />} />
         <Route exact path="/EditarRespuesta/:idP/:idR/:idT/:idPreg/:idResp" element={<EditarRespuesta />} />

@@ -82,7 +82,7 @@ public class GlosarioRepositoryImp implements GlosarioRepository {
     @Override
     public  List<Glosario> getListGlosarioXidReunion(Long id_reunion) {
         String query = "select g.* from glosario g, reunion r " +
-        "where r.id_reunion=:id_reunion and g.id_reunion = r.id_reunion";
+        "where r.id_reunion=:id_reunion and g.id_reunion = r.id_reunion and g.deleted = false";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(query).addParameter("id_reunion", id_reunion).executeAndFetch(Glosario.class);
         }
