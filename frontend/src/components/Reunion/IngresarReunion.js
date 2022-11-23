@@ -175,7 +175,7 @@ class IngresarReunion extends Component {
                 </div>
               </div>
               <div className="InformacionCentral">
-              {usuario.id_rol === 1 && proyecto.estado_proyecto.toString() === "false" ?
+              {usuario.id_rol === 1 && proyecto.estado_proyecto === false ?
               <Button
                   className="botonCrearProyecto"  
                   onClick={() => this.handleModal()}
@@ -256,7 +256,7 @@ class IngresarReunion extends Component {
                           <Card.Title>Nombre: {temas.nombre_tema}</Card.Title>
                           <Card.Subtitle>Descripcion: {temas.descripcion_tema}</Card.Subtitle>
                           <p>
-                            Estado Proyecto: {proyecto.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"}
+                            Estado Proyecto: {proyecto.estado_proyecto === false ? "Disponible" : "Terminado"}
                           </p>
                           <div className="center">
                             <Button

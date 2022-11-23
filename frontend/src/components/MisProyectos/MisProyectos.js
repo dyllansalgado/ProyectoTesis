@@ -206,7 +206,7 @@ class MisProyectos extends Component {
                             Objetivo: {proyectos.objetivo_proyecto}
                           </p>
                           <p>
-                            Estado: {proyectos.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"}
+                            Estado: {proyectos.estado_proyecto === false ? "Disponible" : "Terminado"}
                           </p>
                           <p>
                             Creador Proyecto: {proyectos.creadorProyecto}
@@ -217,7 +217,7 @@ class MisProyectos extends Component {
                             >
                               Ingresar a proyecto
                             </Button>
-                            {usuario.id_rol === 1 && usuario.correo_usuario === proyectos.correoCreador && proyectos.estado_proyecto.toString() === "false" ?
+                            {usuario.id_rol === 1 && usuario.correo_usuario === proyectos.correoCreador && proyectos.estado_proyecto === false ?
                               <Button className= "botonCerrar"
                                 variant="outline-danger" onClick={() => this.CerrarProyecto(proyectos.id_proyecto)}
                               >
@@ -225,7 +225,7 @@ class MisProyectos extends Component {
                               </Button>:
                               ""
                             }
-                            {proyectos.estado_proyecto.toString() === "true" ?
+                            {proyectos.estado_proyecto === true ?
                               <Button className= "botonCerrar"
                                 variant="secondary" disabled
                               >
@@ -235,7 +235,7 @@ class MisProyectos extends Component {
                             }
                           </div>
                           <div className="center">
-                          {usuario.id_rol === 1 && usuario.correo_usuario === proyectos.correoCreador && proyectos.estado_proyecto.toString() === "false" ?
+                          {usuario.id_rol === 1 && usuario.correo_usuario === proyectos.correoCreador && proyectos.estado_proyecto === false ?
                               <Button className= "botonCerrar" size="sm"
                                 variant="warning" onClick={() => this.EditarProyecto(proyectos.id_proyecto)}
                               >
@@ -244,7 +244,6 @@ class MisProyectos extends Component {
                               ""
                           }
                           </div>
-
                         </Card.Body>
                       </Card>
                   </Col>

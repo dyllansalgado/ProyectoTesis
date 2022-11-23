@@ -182,7 +182,7 @@ class Glosario extends Component {
                         </div>
                     </Row>
                     <div className="InformacionCentral">
-                    {usuario.id_rol === 1 && proyecto.estado_proyecto.toString() === "false" ?
+                    {usuario.id_rol === 1 && proyecto.estado_proyecto === false ?
                     <Button
                       className="botonCrearProyecto"  
                       onClick={() => this.handleModal()}

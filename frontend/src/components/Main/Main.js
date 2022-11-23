@@ -170,7 +170,7 @@ class Main extends Component {
                           Objetivo: {proyecto.objetivo_proyecto}
                         </p>
                         <p>
-                          Estado: {proyecto.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"} 
+                          Estado: {proyecto.estado_proyecto === false ? "Disponible" : "Terminado"} 
                         </p>
                         <p>
                           Creador: {proyecto.creadorProyecto} 

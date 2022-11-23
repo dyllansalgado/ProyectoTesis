@@ -126,6 +126,27 @@ class IngresarAProyecto extends Component {
     });
   }
 
+  deleteReunion(id_reunion) {
+    swal({
+      title: "Atención",
+      text: "¿Desea eliminar la reunión seleccionada?",
+      icon: "warning",
+      buttons: ["No", "Si"],
+    }).then((respuesta) => {
+      if (respuesta) {
+        axios.delete("http://localhost:8080/reunion/" + id_reunion).then((res) => {
+          swal({
+            title: "Reunión borrada",
+            text: "La reunión ha sido borrada con éxito",
+            icon: "success",
+          });
+          setTimeout(() => {
+          }, 2000);
+        });
+      }
+    });
+  }
+
   render() {
     const {usuario} = this.state;
     const {proyecto} = this.state;
@@ -151,7 +172,7 @@ class IngresarAProyecto extends Component {
                   </div>
               </Row>
               <div className="InformacionCentral">
-                {usuario.id_rol === 1 && proyecto.estado_proyecto.toString() === "false" ?
+                {usuario.id_rol === 1 && proyecto.estado_proyecto === false ?
                 <Button className="botonCrearProyecto"   href={`/crearReunion/${proyecto.id_proyecto}`} size="lg">
                   Crear Reunión
                 </Button>: ""
@@ -182,21 +203,31 @@ class IngresarAProyecto extends Component {
                         <Card.Body>
                             <Card.Title>Fecha de reunión: {meet.fecha_reunion}</Card.Title>
                             <Card.Subtitle>Lugar: {meet.lugar_reunion}</Card.Subtitle>
-                            Estado Proyecto: {proyecto.estado_proyecto.toString() === 'false' ? "Disponible" : "Terminado"}
+                            Estado Proyecto: {proyecto.estado_proyecto === false ? "Disponible" : "Terminado"}
                             <div className="center">
                               <Button
-                                variant="outline-primary" href={`/ingresarReunion/${proyecto.id_proyecto}/${meet.id_reunion}`}
+                                variant="outline-primary" size="sm" href={`/ingresarReunion/${proyecto.id_proyecto}/${meet.id_reunion}`}
                               >
                                 Ingresar a reunión
                               </Button>
-                              {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto.toString() === "false" ?
-                              <Button className= "botonCerrar" size="sm"
+                              <div className="botonescenter">
+                              {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
+                              <Button size="sm"
                                 variant="warning" onClick={() => this.EditarReunion(meet.id_reunion)}
                               >
-                                Editar Reunión
+                                Editar
                               </Button>:
                               ""
                               }
+                              {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
+                              <Button  size="sm"
+                                variant="danger" onClick={() => this.deleteReunion(meet.id_reunion)}
+                              >
+                                Eliminar
+                              </Button>:
+                              ""
+                              }
+                              </div>
                             </div>
                           </Card.Body>
                         </Card>

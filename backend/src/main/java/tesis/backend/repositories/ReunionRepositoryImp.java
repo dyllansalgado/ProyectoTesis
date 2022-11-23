@@ -64,7 +64,7 @@ public class ReunionRepositoryImp implements ReunionRepository {
     @Override
     public  List<Reunion> getListReunionXidProyecto(Long id_proyecto) {
         String query = "select r.* from reunion r, proyecto p " +
-        "where p.id_proyecto=:id_proyecto and r.id_proyecto = p.id_proyecto";
+        "where p.id_proyecto=:id_proyecto and r.id_proyecto = p.id_proyecto and r.deleted = false";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(query).addParameter("id_proyecto", id_proyecto).executeAndFetch(Reunion.class);
         }
