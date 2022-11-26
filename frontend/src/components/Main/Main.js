@@ -115,16 +115,16 @@ class Main extends Component {
             </Row>
             <div className="InformacionCentral">
                 {usuario.id_rol === 1 ?
-                <Button className="botonCrearProyecto"  href="/crearProyecto" size="lg">
+                <Button id="crearProyecto" className="botonCrearProyecto"  href="/crearProyecto" size="lg">
                 Crear Proyecto
                 </Button>:
                 <h3 className="centerTitulo"> Proyectos disponibles</h3>
                 }
                 {usuario.id_rol === 1 ?
-                <Button className="botonCrearProyecto"  href="/misProyectos" size="lg">
+                <Button id="misProyectos" className="botonCrearProyecto"  href="/misProyectos" size="lg">
                 Mis proyectos
                 </Button>:
-                <Button className="botonCrearProyectoUsuario"  href="/misProyectos" size="lg">
+                <Button id="misProyectos" className="botonCrearProyectoUsuario"  href="/misProyectos" size="lg">
                 Mis proyectos
                 </Button>
                 }

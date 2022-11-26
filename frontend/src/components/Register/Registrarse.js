@@ -167,7 +167,7 @@ class Registrarse extends Component {
                   </label>
                 </div>
                 <div className="text-center">
-                <Button variant="secondary" className="botonIngresar" type="submit" value="Submit" size="sm">
+                <Button title = "registerButton" variant="secondary" className="botonIngresar" type="submit" value="Submit" size="sm">
                   {" "}
                   Registrar usuario
                 </Button>
