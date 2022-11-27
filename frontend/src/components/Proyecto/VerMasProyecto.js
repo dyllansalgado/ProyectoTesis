@@ -148,7 +148,7 @@ class VerMasProyecto extends Component {
                             />
                           </label>
                         </div>
-                        <Button className="botonVolverMain" onClick={() => this.RegistrarProyectoUsuario()}>
+                        <Button id= "botonRegistrarProyecto" className="botonVolverMain" onClick={() => this.RegistrarProyectoUsuario()}>
                             {" "}
                             Ingresar Proyecto
                         </Button>

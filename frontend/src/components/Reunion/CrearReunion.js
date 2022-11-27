@@ -133,17 +133,17 @@ class CrearReunion extends Component {
                           value={lugar_reunion}
                           name="lugar_reunion"
                           onChange={this.changeHandler}
-                          placeholder="aaaa"
+                          placeholder="Ingrese un lugar de reunión"
                           required
                         />
                       </label>
                     </div>
                     <div className="text-center">
-                    <Button variant="secondary" className="botonIngresar" type="submit" value="Submit" size="sm">
+                    <Button id="reunionCrear" variant="secondary" className="botonIngresar" type="submit" value="Submit" size="sm">
                       {" "}
                       Crear Reunión
                     </Button>
-                    <Button variant="secondary" className="botonRegistrarse" href={`/ingresarAProyecto/${proyecto.id_proyecto}`} size="sm">Volver</Button>
+                    <Button id="volver" variant="secondary" className="botonRegistrarse" href={`/ingresarAProyecto/${proyecto.id_proyecto}`} size="sm">Volver</Button>
                     {""}
                     </div>
                 </div>

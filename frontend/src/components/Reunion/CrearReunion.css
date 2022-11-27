@@ -27,3 +27,14 @@
     position: relative; 
     bottom: -1%; right: -2%;
 }
+
+.botonReunion{
+    border-radius: 30px;
+    cursor:pointer;
+    width: 60%;
+    position: relative; 
+    padding: 15px 20px;
+    margin:auto;
+    bottom: -20px ; 
+    right: 40%;
+}

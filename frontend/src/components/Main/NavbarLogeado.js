@@ -41,7 +41,7 @@ class NavbarLogeado extends Component{
         }).then((respuesta) => {
           if (respuesta) {
             swal({
-              title: "Sesion Cerrada",
+              title: "Sesión Cerrada",
               text: "Su sesión está siendo cerrada",
               icon: "success",
             });
@@ -66,7 +66,7 @@ class NavbarLogeado extends Component{
                     <img src={image} className="logo" alt="LogoTesis" />{" "}
                     </Navbar.Brand>
                   }
-                  <Navbar.Brand  className="me-auto" >SCAEC</Navbar.Brand>
+                  <Navbar.Brand  id="nombreProyecto" className="me-auto" >SCAEC</Navbar.Brand>
                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Nav className="mr-auto">
                       <Navbar.Collapse id="basic-navbar-nav">
@@ -78,7 +78,7 @@ class NavbarLogeado extends Component{
                           Ver perfil
                           <CgProfile/> <span></span>
                       </Button>
-                      <Button className="botonAyudaLogeado"  onClick={() => this.cerrarSesion()} size="sm">
+                      <Button id="cerrarSesion" className="botonAyudaLogeado"  onClick={() => this.cerrarSesion()} size="sm">
                         Cerrar sesión
                         <IoMdExit/> <span></span>
                       </Button>

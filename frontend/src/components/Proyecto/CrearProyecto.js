@@ -49,7 +49,7 @@ class CrearProyecto extends Component {
             id_usuario: localStorage.getItem('usuario'),
             }),
             swal({
-              title: "Proyecto creado con exito",
+              title: "Proyecto creado con éxito",
               text: "Se ha creado correctamente el proyecto",
               icon: "success",
             }),

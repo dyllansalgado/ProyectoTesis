@@ -175,11 +175,11 @@ class IngresarAProyecto extends Component {
               </Row>
               <div className="InformacionCentral">
                 {usuario.id_rol === 1 && proyecto.estado_proyecto === false ?
-                <Button className="botonCrearProyecto"   href={`/crearReunion/${proyecto.id_proyecto}`} size="lg">
+                <Button id= "crearReunion" className="botonCrearProyecto"   href={`/crearReunion/${proyecto.id_proyecto}`} size="lg">
                   Crear Reunión
                 </Button>: ""
                 }
-                <Button className="botonCrearProyecto"   href="/misProyectos/" size="lg">
+                <Button id= "volver" className="botonCrearProyecto"   href="/misProyectos/" size="lg">
                   Volver
                   <BsArrowReturnLeft/> <span></span>
                 </Button>
@@ -207,7 +207,7 @@ class IngresarAProyecto extends Component {
                             <Card.Subtitle>Lugar: {meet.lugar_reunion}</Card.Subtitle>
                             Estado Proyecto: {proyecto.estado_proyecto === false ? "Disponible" : "Terminado"}
                             <div className="center">
-                              <Button
+                              <Button 
                                 variant="outline-primary" size="sm" href={`/ingresarReunion/${proyecto.id_proyecto}/${meet.id_reunion}`}
                               >
                                 Ingresar a reunión

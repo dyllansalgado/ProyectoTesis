@@ -176,7 +176,7 @@ class Main extends Component {
                           Creador: {proyecto.creadorProyecto} 
                         </p>
                         <div className="center">
-                          <Button
+                          <Button id= "verMasProyecto"
                             variant="outline-primary" href={`/verMasProyecto/${proyecto.id_proyecto}`}
                           >
                             Ver más

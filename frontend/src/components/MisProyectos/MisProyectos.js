@@ -212,7 +212,7 @@ class MisProyectos extends Component {
                             Creador Proyecto: {proyectos.creadorProyecto}
                           </p>
                           <div>
-                          <Button
+                          <Button id="ingresarAproyecto"
                               variant="outline-primary" href={`/ingresarAProyecto/${proyectos.id_proyecto}`}
                             >
                               Ingresar a proyecto
@@ -236,7 +236,7 @@ class MisProyectos extends Component {
                           </div>
                           <div className="center">
                           {usuario.id_rol === 1 && usuario.correo_usuario === proyectos.correoCreador && proyectos.estado_proyecto === false ?
-                              <Button className= "botonCerrar" size="sm"
+                              <Button id="editarProyecto" className= "botonCerrar" size="sm"
                                 variant="warning" onClick={() => this.EditarProyecto(proyectos.id_proyecto)}
                               >
                                 Editar Proyecto

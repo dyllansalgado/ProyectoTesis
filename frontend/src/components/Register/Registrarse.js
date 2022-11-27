@@ -40,7 +40,7 @@ class Registrarse extends Component {
         }).then(response => {
           if(response.data){
             swal({
-              title: "Usuario creado con exito",
+              title: "Usuario creado con éxito",
               text: "Se ha creado correctamente el usuario",
               icon: "success",
             });

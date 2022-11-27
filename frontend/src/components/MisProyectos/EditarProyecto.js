@@ -158,17 +158,17 @@ class EditarProyecto extends Component {
                 </Row>
                 <p>(*) Campos obligatorios</p>
                 <Modal.Footer>
-                  <Button className="Botones"
+                  <Button id="volver" className="Botones"
                     variant="primary"
                     href="/misProyectos/"
                   >
                     Volver
                   </Button>
-                  <Button className="Botones"
+                  <Button id= "editarProyecto" className="Botones"
                     variant="success"
                     onClick={() => this.CambiarDatos()}
                   >
-                    Editar Requisito
+                    Editar Proyecto
                   </Button>
                 </Modal.Footer>
               </form>
