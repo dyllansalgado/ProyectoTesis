@@ -215,6 +215,7 @@ class IngresarReunion extends Component {
               <div className="InformacionCentral">
               {usuario.id_rol === 1 && proyecto.estado_proyecto === false ?
               <Button
+                  id="crearTema"
                   className="botonCrearProyecto"  
                   onClick={() => this.handleModal()}
                   size="lg">
@@ -255,7 +256,7 @@ class IngresarReunion extends Component {
                               required
                           />
                           <Button
-                              id="crearTema"
+                              id="crear"
                               name="botonCrearTema"
                               type="submit"
                           >
@@ -265,10 +266,10 @@ class IngresarReunion extends Component {
                       </Form>
                   </ModalBody>
               </Modal>
-              <Button className="botonCrearProyecto" href= {`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
+              <Button id="irGlosario" className="botonCrearProyecto" href= {`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
                   Ir a glosarios
               </Button>
-              <Button className="botonCrearProyecto"  href={`/ingresarAProyecto/${proyecto.id_proyecto}`} size="lg">  
+              <Button id="volver" className="botonCrearProyecto"  href={`/ingresarAProyecto/${proyecto.id_proyecto}`} size="lg">  
                 Volver
                 <BsArrowReturnLeft/> <span></span>
               </Button>
@@ -297,14 +298,13 @@ class IngresarReunion extends Component {
                             Estado Proyecto: {proyecto.estado_proyecto === false ? "Disponible" : "Terminado"}
                           </p>
                           <div className="center">
-                            <Button
-                              variant="outline-primary" href={`/temaReunion/${proyecto.id_proyecto}/${reunion.id_reunion}/${temas.id_tema}`}
+                            <Button id="ingresarTema" variant="outline-primary" href={`/temaReunion/${proyecto.id_proyecto}/${reunion.id_reunion}/${temas.id_tema}`}
                             >
                               Ingresar a tema
                             </Button>
                             <div className="botonescenter">
                               {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
-                              <Button size="sm"
+                              <Button id="editarTema" size="sm"
                                 variant="warning" onClick={() => this.EditarTema(temas.id_tema)}
                               >
                                 Editar
@@ -312,7 +312,7 @@ class IngresarReunion extends Component {
                               ""
                               }
                               {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
-                              <Button  size="sm"
+                              <Button id="eliminarTema" size="sm"
                                 variant="danger" onClick={() => this.deleteTema(temas.id_tema)}
                               >
                                 Eliminar

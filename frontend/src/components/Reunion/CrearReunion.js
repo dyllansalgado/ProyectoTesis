@@ -107,7 +107,7 @@ class CrearReunion extends Component {
           <NavbarLogeado/>
           </div>
           <div className="center">
-            <h1 className="titulo">{proyecto.nombre_proyecto}</h1>
+            <h1 className="titulo">Nombre Proyecto: {proyecto.nombre_proyecto}</h1>
           </div>
           <Container fluid>
             <div className="center">

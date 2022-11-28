@@ -207,14 +207,14 @@ class IngresarAProyecto extends Component {
                             <Card.Subtitle>Lugar: {meet.lugar_reunion}</Card.Subtitle>
                             Estado Proyecto: {proyecto.estado_proyecto === false ? "Disponible" : "Terminado"}
                             <div className="center">
-                              <Button 
+                              <Button id="ingresarReunion"
                                 variant="outline-primary" size="sm" href={`/ingresarReunion/${proyecto.id_proyecto}/${meet.id_reunion}`}
                               >
                                 Ingresar a reunión
                               </Button>
                               <div className="botonescenter">
                               {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
-                              <Button size="sm"
+                              <Button id="editarReunion" size="sm"
                                 variant="warning" onClick={() => this.EditarReunion(meet.id_reunion)}
                               >
                                 Editar

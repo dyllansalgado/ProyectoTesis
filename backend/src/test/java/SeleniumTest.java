@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.Select;
 import java.time.Duration;
 import java.util.List;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SeleniumTest {
@@ -40,7 +39,7 @@ public class SeleniumTest {
         catch(InterruptedException ie) {
         }
     }
-    @Test
+    /*@Test
     @Order(1)
     public void pruebaRegister(){
         driver.get("http://localhost:3000/registrarse");
@@ -245,7 +244,7 @@ public class SeleniumTest {
 
     @Test
     @Order(12)
-    public void pruebaCrearIngresarAProyecto(){
+    public void pruebaIngresarAProyecto(){
         driver.get("http://localhost:3000/main");
         driver.navigate().refresh();
         try{
@@ -369,26 +368,27 @@ public class SeleniumTest {
         // Se verifica el mensaje de error debido al campo vacío
         List<WebElement> message= driver.findElements(By.xpath("//*[contains(text(),'Completa este campo')]"));
         Assertions.assertNotNull(message);
-    }
-
-    @Test
-    @Order(17)
-    public void ingresarAProyecto(){
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
             e.printStackTrace();
         }
         // Se hace click en ok
-        WebElement button = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
-        button.click();
+        WebElement button4 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button4.click();
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        WebElement button2 = driver.findElement(By.id("volver"));
-        button2.click();
+        //Se selecciona volver
+        WebElement button5 = driver.findElement(By.id("volver"));
+        button5.click();
+    }
+
+    @Test
+    @Order(17)
+    public void ingresarAProyecto(){
         driver.navigate().refresh();
         try{
             Thread.sleep(3000);
@@ -396,8 +396,8 @@ public class SeleniumTest {
             e.printStackTrace();
         }
         // Se hace click en ingresar a proyecto
-        WebElement button3 = driver.findElement(By.id("ingresarAproyecto"));
-        button3.click();
+        WebElement button = driver.findElement(By.id("ingresarAproyecto"));
+        button.click();
         // Se verifica la redirección a la página de ingresarAProyecto
         String expected = "http://localhost:3000/ingresarAProyecto/2";
         Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
@@ -468,10 +468,524 @@ public class SeleniumTest {
         // Se verifica el mensaje de error debido al campo vacío
         List<WebElement> message= driver.findElements(By.xpath("//*[contains(text(),'Completa este campo')]"));
         Assertions.assertNotNull(message);
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        //Se selecciona volver
+        WebElement button4 = driver.findElement(By.id("volver"));
+        button4.click();
+    }
+    @Test
+    @Order(20)
+    public void EditarReunion(){
+        driver.navigate().refresh();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en editarReunion
+        WebElement button = driver.findElement(By.id("editarReunion"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button2 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un nombre de lugar de reunion nuevo']")).sendKeys("edit selenium lugar de reunion");
+        driver.findElement(By.xpath("//input[@class='pickers']")).sendKeys("30-12-2022");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button3 = driver.findElement(By.id("editarReunion"));
+        button3.click();
+        try{
+            Thread.sleep(2000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se verifica la redirección a la página de ingresarAProyecto
+        String expected = "http://localhost:3000/ingresarAProyecto/2";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
     }
 
-    //AHORA DEBERIA HACER PRUEBA DE VOLVER Y EDITAR REUNION.
+    @Test
+    @Order(21)
+    public void EditarReunionFail(){
+        driver.navigate().refresh();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en editarReunion
+        WebElement button = driver.findElement(By.id("editarReunion"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button2 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@class='pickers']")).sendKeys("30-12-2022");
+        try{
+            Thread.sleep(2000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button3 = driver.findElement(By.id("editarReunion"));
+        button3.click();
+        try{
+            Thread.sleep(2000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se verifica el mensaje de error debido al campo vacío
+        List<WebElement> message= driver.findElements(By.xpath("//*[contains(text(),'Completa este campo')]"));
+        Assertions.assertNotNull(message);
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ok
+        WebElement button4 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button4.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona volver
+        WebElement button5 = driver.findElement(By.id("volver"));
+        button5.click();
+    }
+    @Test
+    @Order(22)
+    public void ingresarReunion(){
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresarReunion
+        WebElement button = driver.findElement(By.id("ingresarReunion"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se verifica la redirección a la página de ingresarReunion
+        String expected = "http://localhost:3000/ingresarReunion/2/2";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
 
+    @Test
+    @Order(23)
+    public void crearTema(){
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en crear tema
+        WebElement button = driver.findElement(By.id("crearTema"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Nombre de tema...']")).sendKeys("Soy un tema de selenium");
+        driver.findElement(By.xpath("//input[@placeholder='Descripción']")).sendKeys("Soy descripcion selenium");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona crear
+        WebElement button2 = driver.findElement(By.id("crear"));
+        button2.click();
+        // Se verifica la redirección a la página de ingresarReunion
+        String expected = "http://localhost:3000/ingresarReunion/2/2";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
 
+    @Test
+    @Order(24)
+    public void crearTemaFail(){
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en crear tema
+        WebElement button = driver.findElement(By.id("crearTema"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Nombre de tema...']")).sendKeys("Soy un tema de selenium");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona crear
+        WebElement button2 = driver.findElement(By.id("crear"));
+        button2.click();
+        // Se verifica el mensaje de error debido al campo vacío
+        List<WebElement> message= driver.findElements(By.xpath("//*[contains(text(),'Completa este campo')]"));
+        Assertions.assertNotNull(message);
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en cerrar
+        WebElement button3 = driver.findElement(By.className("btn-close"));
+        button3.click();
+    }
 
+    @Test
+    @Order(25)
+    public void editarTema(){
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en editar tema
+        WebElement button = driver.findElement(By.id("editarTema"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button3 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button3.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un nombre de tema nuevo']")).sendKeys("Soy un nombre editado de selenium");
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese una descripción de tema nuevo']")).sendKeys("Soy una descripcion editada de selenium");
+        // Se hace click en editar tema
+        WebElement button4 = driver.findElement(By.id("editarTema"));
+        button4.click();
+        // Se verifica la redirección a la página de ingresarReunion
+        String expected = "http://localhost:3000/ingresarReunion/2/2";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
+
+    @Test
+    @Order(26)
+    public void editarTemaFail(){
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en editar tema
+        WebElement button = driver.findElement(By.id("editarTema"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button2 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un nombre de tema nuevo']")).sendKeys("Soy un nombre editado de selenium");
+        // Se hace click en editar tema
+        WebElement button3 = driver.findElement(By.id("editarTema"));
+        button3.click();
+        // Se verifica el mensaje de error debido al campo vacío
+        List<WebElement> message= driver.findElements(By.xpath("//*[contains(text(),'Completa este campo')]"));
+        Assertions.assertNotNull(message);
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ok
+        WebElement button4 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button4.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona volver
+        WebElement button5 = driver.findElement(By.id("volver"));
+        button5.click();
+    }
+    
+    @Test
+    @Order(27)
+    public void irAglosarios(){
+        // Se hace click en ir a glosarios
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button = driver.findElement(By.id("irGlosario"));
+        button.click();
+        String expected = "http://localhost:3000/GlosarioReunion/2/2";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
+
+    @Test
+    @Order(28)
+    public void crearGlosario(){
+        // Se hace click en ir a glosarios
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button = driver.findElement(By.id("crearGlosario"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Nombre de glosario...']")).sendKeys("glosario selenium");
+        driver.findElement(By.xpath("//input[@placeholder='Descripción']")).sendKeys("descripcion selenium");
+        WebElement button2 = driver.findElement(By.id("crear"));
+        button2.click();
+        String expected = "http://localhost:3000/GlosarioReunion/2/2";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
+
+    @Test
+    @Order(29)
+    public void crearGlosarioFail(){
+        // Se hace click en ir a glosarios
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button = driver.findElement(By.id("crearGlosario"));
+        button.click();
+        // Se hace click en ir a glosarios
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Nombre de glosario...']")).sendKeys("glosario selenium");
+        WebElement button2 = driver.findElement(By.id("crear"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se verifica el mensaje de error debido al campo vacío
+        List<WebElement> message= driver.findElements(By.xpath("//*[contains(text(),'Completa este campo')]"));
+        Assertions.assertNotNull(message);
+        // Se hace click en ok
+        WebElement button3 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button3.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en cerrar
+        WebElement button4 = driver.findElement(By.className("btn-close"));
+        button4.click();
+    }
+
+    @Test
+    @Order(30)
+    public void editarGlosario(){
+        // Se hace click en ir a glosarios
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button = driver.findElement(By.id("editarGlosario"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button2 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un nombre de glosario nuevo']")).sendKeys("glosario edit selenium");
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese una descripción de glosario nuevo']")).sendKeys("descripcion edit selenium");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button3 = driver.findElement(By.id("editarGlosario"));
+        button3.click();
+        String expected = "http://localhost:3000/GlosarioReunion/2/2";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
+
+    @Test
+    @Order(31)
+    public void editGlosarioFail(){
+        // Se hace click en ir a glosarios
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button = driver.findElement(By.id("editarGlosario"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button2 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un nombre de glosario nuevo']")).sendKeys("glosario edit selenium");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button3 = driver.findElement(By.id("editarGlosario"));
+        button3.click();
+        // Se verifica el mensaje de error debido al campo vacío
+        List<WebElement> message= driver.findElements(By.xpath("//*[contains(text(),'Completa este campo')]"));
+        Assertions.assertNotNull(message);
+        // Se hace click en ok
+        WebElement button4 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button4.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona volver
+        WebElement button5 = driver.findElement(By.id("volver"));
+        button5.click();
+    }*/
+
+    @Test
+    @Order(1)
+    public void login(){
+        driver.navigate().refresh();
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        // Se verifica la redirección a la página de creación de cuenta
+        // Se hace click en mis proyectos
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button = driver.findElement(By.id("misProyectos"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresar a proyecto
+        WebElement button2 = driver.findElement(By.id("ingresarAproyecto"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresarReunion
+        WebElement button3 = driver.findElement(By.id("ingresarReunion"));
+        button3.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button4 = driver.findElement(By.id("irGlosario"));
+        button4.click();
+        String expected = "http://localhost:3000/GlosarioReunion/2/2";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
+    @Test
+    @Order(32)
+    public void ingresarAGlosario(){
+        // Se hace click en ir a glosarios
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button = driver.findElement(By.id("ingresarAglosario"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        String expected = "http://localhost:3000/ingresarAGlosario/2/2/3";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
+    
 }

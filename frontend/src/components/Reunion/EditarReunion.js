@@ -153,13 +153,13 @@ class EditarReunion extends Component {
                 </Row>
                 <p>(*) Campos obligatorios</p>
                 <Modal.Footer>
-                  <Button className="Botones"
+                  <Button id="volver" className="Botones"
                     variant="primary"
                     href={`/ingresarAProyecto/${proyecto.id_proyecto}`}
                   >
                     Volver
                   </Button>
-                  <Button className="Botones"
+                  <Button id="editarReunion" className="Botones"
                     variant="success"
                     onClick={() => this.CambiarDatos()}
                   >

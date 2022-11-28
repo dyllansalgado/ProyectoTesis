@@ -13,6 +13,7 @@ import CrearReunion from "./components/Reunion/CrearReunion";
 import IngresarReunion from "./components/Reunion/IngresarReunion";
 import EditarReunion from "./components/Reunion/EditarReunion";
 import Glosario from "./components/Glosario/Glosario";
+import EditarGlosario from "./components/Glosario/EditarGlosario";
 import IngresarAGlosario from "./components/Glosario/IngresarAGlosario";
 import Tema from "./components/Tema/Tema";
 import EditarTema from "./components/Tema/EditarTema";
@@ -44,6 +45,7 @@ function App() {
         <Route exact path="/IngresarReunion/:idP/:idR" element={<IngresarReunion />} />
         <Route exact path="/EditarReunion/:idP/:idR" element={<EditarReunion />} />
         <Route exact path="/GlosarioReunion/:idP/:idR" element={<Glosario />} />
+        <Route exact path="/EditarGlosario/:idP/:idR/:idG" element={<EditarGlosario />} />
         <Route exact path="/IngresarAGlosario/:idP/:idR/:idG" element={<IngresarAGlosario />} />
         <Route exact path="/TemaReunion/:idP/:idR/:idT" element={<Tema />} />
         <Route exact path="/EditarTema/:idP/:idR/:idT" element={<EditarTema />} />

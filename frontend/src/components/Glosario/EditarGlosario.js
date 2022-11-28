@@ -8,27 +8,27 @@ import "../Respuesta/Respuesta.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
-class EditarTema extends Component { 
+class EditarGlosario extends Component { 
   constructor(props) {
     super(props);
     this.state = {
         usuario:[],
         proyecto:[],
-        tema:[],
-        nombre_tema:"",
+        glosario:[],
+        nombre_glosario:"",
         reunion:[],
-        descripcion_tema:"",
+        descripcion_glosario:"",
     };
-    this.changeNombreTema = this.changeNombreTema.bind(this);
-    this.changeDescripcionTema = this.changeDescripcionTema.bind(this);
+    this.changeNombreGlosario = this.changeNombreGlosario.bind(this);
+    this.changeDescripcionGlosario = this.changeDescripcionGlosario.bind(this);
     }
 
-    changeNombreTema(event) {
-        this.setState({ nombre_tema: event.target.value });
+    changeNombreGlosario(event) {
+        this.setState({ nombre_glosario: event.target.value });
     }
 
-    changeDescripcionTema(event) {
-        this.setState({ descripcion_tema: event.target.value });
+    changeDescripcionGlosario(event) {
+        this.setState({ descripcion_glosario: event.target.value });
     }
 
     componentDidMount() {
@@ -65,15 +65,6 @@ class EditarTema extends Component {
                 console.log(error);
             }),
             axios
-            .get("http://localhost:8080/tema/"+ idPath[4])
-            .then((res) => {
-                const tema = res.data;
-                this.setState({tema});
-            })
-            .catch((error) => {
-                console.log(error);
-            }),
-            axios
             .get("http://localhost:8080/reunion/"+ idPath[3])
             .then((res) => {
                 const reunion = res.data;
@@ -82,22 +73,28 @@ class EditarTema extends Component {
             .catch((error) => {
                 console.log(error);
             }),
+            axios
+            .get("http://localhost:8080/glosario/"+ idPath[4])
+            .then((res) => {
+                const glosario = res.data;
+                this.setState({glosario});
+            })
         ]);
     }
-    CambiarDatosTema(){
+    CambiarDatosGlosario(){
         let idPath = window.location.pathname.split("/");
-        if(this.state.nombre_tema !== "" && this.state.descripcion_tema !== "") {
-        axios.put("http://localhost:8080/tema/" + idPath[4] ,{
-          nombre_tema: this.state.nombre_tema,
-          descripcion_tema: this.state.descripcion_tema,
+        if(this.state.nombre_glosario !== "" && this.state.descripcion_glosario !== "") {
+        axios.put("http://localhost:8080/glosario/" + idPath[4] ,{
+          nombre_glosario: this.state.nombre_glosario,
+          descripcion_glosario: this.state.descripcion_glosario,
           });
           swal({
-            title: "Información de tema modificada con éxito",
-            text: "El tema ha sido modificado correctamente",
+            title: "Información de glosario modificado con éxito",
+            text: "El glosario ha sido modificado correctamente",
             icon: "success",
           });
           setTimeout(() => {
-            window.location.replace("http://localhost:3000/ingresarReunion/"+ idPath[2] + "/" + idPath[3]);
+            window.location.replace("http://localhost:3000/GlosarioReunion/"+ idPath[2] + "/" + idPath[3]);
           }, 2000);
         }
         else {
@@ -112,10 +109,10 @@ class EditarTema extends Component {
     render() { 
     const {proyecto} = this.state;
     const {usuario} = this.state;
-    const {tema} = this.state;
     const {reunion} = this.state;
-    const nombre_tema = this.state.nombre_tema;
-    const descripcion_tema = this.state.descripcion_tema;
+    const {glosario} = this.state;
+    const nombre_glosario = this.state.nombre_glosario;
+    const descripcion_glosario = this.state.descripcion_glosario;
     return(
      <div>
         <div>
@@ -128,31 +125,31 @@ class EditarTema extends Component {
               <Modal.Title> Bienvenido: {usuario.nombre_usuario}</Modal.Title>
             </Modal.Header>
             <Modal.Header>
-              <Modal.Title>Editando Tema Seleccionado</Modal.Title>
+              <Modal.Title>Editando Glosario Seleccionado</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <form>
                 <p>Lugar de Reunión : {reunion.lugar_reunion}</p>
                 <Row className="justify-content-md-center">
                   <Col>
-                    <p>Nombre Tema* : {tema.nombre_tema}</p>
+                    <p>Nombre Glosario* : {glosario.nombre_glosario}</p>
                     <input
                         type="text"
-                        value={nombre_tema}
-                        placeholder="Ingrese un nombre de tema nuevo"
+                        value={nombre_glosario}
+                        placeholder="Ingrese un nombre de glosario nuevo"
                         className="form-control"
-                        name="NombreTema"
-                        onChange={this.changeNombreTema}
+                        name="NombreGlosario"
+                        onChange={this.changeNombreGlosario}
                         required
                     />
-                    <p>Descripción* : {tema.descripcion_tema} </p>
+                    <p>Descripción* : {glosario.descripcion_glosario} </p>
                     <input
                         type="text"
-                        value={descripcion_tema}
-                        placeholder="Ingrese una descripción de tema nuevo"
+                        value={descripcion_glosario}
+                        placeholder="Ingrese una descripción de glosario nuevo"
                         className="form-control"
-                        name="DescripcionTema"
-                        onChange={this.changeDescripcionTema}
+                        name="DescripcionGlosario"
+                        onChange={this.changeDescripcionGlosario}
                         required
                     />
                   </Col>
@@ -161,15 +158,15 @@ class EditarTema extends Component {
                 <Modal.Footer>
                   <Button id="volver" className="Botones"
                     variant="primary"
-                    href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`}
+                    href={`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`}
                   >
                     Volver
                   </Button>
-                  <Button id="editarTema" className="Botones"
+                  <Button id="editarGlosario" className="Botones"
                     variant="success"
-                    onClick={() => this.CambiarDatosTema()}
+                    onClick={() => this.CambiarDatosGlosario()}
                   >
-                    Editar Tema
+                    Editar Glosario
                   </Button>
                 </Modal.Footer>
               </form>
@@ -183,4 +180,4 @@ class EditarTema extends Component {
 }
 
 
-export default EditarTema;
+export default EditarGlosario;

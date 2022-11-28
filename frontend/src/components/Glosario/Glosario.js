@@ -112,7 +112,7 @@ class Glosario extends Component {
     else {
       swal({
         title: "Error al crear el glosario",
-        text: "falla",
+        text: "Rellene todos los campos correctamente",
         icon: "warning",
       });
     }
@@ -176,6 +176,23 @@ class Glosario extends Component {
         }
       });
     }
+
+    EditarGlosario(id_glosario){
+      let idPath = window.location.pathname.split("/");
+      swal({
+        title: "Atención",
+        text: "¿Desea modificar el glosario seleccionado?",
+        icon: "warning",
+        buttons: ["No", "Si"],
+      }).then((respuesta) => {
+        if (respuesta) {
+          setTimeout(() => {
+            window.location.replace("http://localhost:3000/EditarGlosario/"+ idPath[2] + "/" + idPath[3] + "/" + id_glosario);
+          }, 2000);
+        }
+      });
+    }
+    
     render() {
         const {usuario} = this.state;
         const {proyecto} = this.state;
@@ -206,6 +223,7 @@ class Glosario extends Component {
                     <div className="InformacionCentral">
                     {usuario.id_rol === 1 && proyecto.estado_proyecto === false ?
                     <Button
+                      id= "crearGlosario"
                       className="botonCrearProyecto"  
                       onClick={() => this.handleModal()}
                       size="lg">
@@ -213,11 +231,11 @@ class Glosario extends Component {
                     </Button>:""
                     }
                     {usuario.id_rol === 1 ?
-                    <Button className="botonCrearProyecto"   href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
+                    <Button id= "volver" className="botonCrearProyecto"   href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
                       Volver
                       <BsArrowReturnLeft/> <span></span>
                     </Button>:
-                    <Button className="botonCrearProyecto"   href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
+                    <Button id= "volver" className="botonCrearProyecto"   href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
                       Volver
                       <BsArrowReturnLeft/> <span></span>
                     </Button>
@@ -252,7 +270,7 @@ class Glosario extends Component {
                             onChange={this.changeHandler}
                           />
                           <Button
-                            id="crearGlosario"
+                            id="crear"
                             name="botonCrearGlosario"
                             type="submit"
                           >
@@ -284,14 +302,22 @@ class Glosario extends Component {
                                 <Card.Title>Nombre Glosario: {glosa.nombre_glosario}</Card.Title>
                                 <Card.Subtitle>Descripción Glosario: {glosa.descripcion_glosario}</Card.Subtitle>
                                 <div className="center">
-                                  <Button
+                                  <Button id="ingresarAglosario"
                                     variant="outline-primary" href={`/ingresarAGlosario/${proyecto.id_proyecto}/${reunion.id_reunion}/${glosa.id_glosario}`}
                                   >
                                     Ingresar a glosario
                                   </Button>
-                                  <div className="center">
+                                  <div className="botonescenter">
                                     {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
-                                    <Button  size="sm"
+                                    <Button id="editarGlosario" size="sm"
+                                      variant="warning" onClick={() => this.EditarGlosario(glosa.id_glosario)}
+                                    >
+                                      Editar
+                                    </Button>:
+                                    ""
+                                    }
+                                    {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
+                                    <Button id="deleteGlosario" size="sm"
                                       variant="danger" onClick={() => this.deleteGlosario(glosa.id_glosario)}
                                     >
                                       Eliminar
