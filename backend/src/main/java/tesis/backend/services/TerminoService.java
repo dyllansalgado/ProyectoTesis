@@ -34,11 +34,11 @@ public class TerminoService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/termino/create")
-    ResponseEntity<String> createTermino(@RequestBody String request){
+    @PostMapping("/termino/create/{id_usuario}")
+    ResponseEntity<String> createTermino(@RequestBody String request, @PathVariable Long id_usuario){
         Termino terminoCreado = gson.fromJson(request, Termino.class);
         if (terminoCreado!= null){
-            terminoCreado = terminoRepository.createTermino(terminoCreado);
+            terminoCreado = terminoRepository.createTermino(terminoCreado,id_usuario);
             return new ResponseEntity<>(gson.toJson(terminoCreado),HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

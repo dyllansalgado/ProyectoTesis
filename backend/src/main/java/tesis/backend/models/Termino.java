@@ -5,6 +5,7 @@ public class Termino {
     private Long id_glosario;
     private String nombre_termino;
     private String descripcion_termino;
+    private String correoCreador;
     private boolean deleted;
             
     //Getter and Setter
@@ -41,5 +42,12 @@ public class Termino {
     }
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public String getCorreoCreador() {
+        return correoCreador;
+    }
+    public void setCorreoCreador(String correoCreador) {
+        this.correoCreador = correoCreador;
     }
 }

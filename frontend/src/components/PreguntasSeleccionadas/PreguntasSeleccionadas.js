@@ -277,7 +277,7 @@ class PreguntasSeleccionadas extends Component {
                   <thead>
                     <tr>
                       <th width="700">Pregunta</th>
-                      <th width="400"></th>
+                      <th width="400">Acciones</th>
                       <th width="900">Respuesta</th>
                     </tr>
                   </thead>

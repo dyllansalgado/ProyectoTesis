@@ -90,6 +90,7 @@ CREATE TABLE termino(
     nombre_termino varchar(128),
     descripcion_termino text,
     id_glosario integer NOT NULL,
+    correoCreador varchar(80),
     PRIMARY KEY (id_termino),
     deleted boolean NOT NULL DEFAULT false,
     FOREIGN KEY (id_glosario) REFERENCES glosario(id_glosario)

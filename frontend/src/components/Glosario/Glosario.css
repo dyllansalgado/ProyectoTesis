@@ -58,3 +58,7 @@ table.tablaTermino td{
     height: 100%;
     display: flex;
 }
+
+.botonesGlosario{
+    display: flex;
+}

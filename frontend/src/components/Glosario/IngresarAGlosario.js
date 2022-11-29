@@ -177,37 +177,74 @@ class IngresarAGlosario extends Component {
         let idPath = window.location.pathname.split("/");
         e.preventDefault();
         if (
-            this.state.nombreTermino !== "" &&
-            this.state.descripcionTermino !== ""){
-            axios.post("http://localhost:8080/termino/create", {
-                nombre_termino: this.state.nombreTermino,
-                descripcion_termino: this.state.descripcionTermino,
-                id_glosario: idPath[4]
-            });
-    
+        this.state.nombreTermino !== "" &&
+        this.state.descripcionTermino !== ""){
+        axios.post("http://localhost:8080/termino/create/"+localStorage.getItem('usuario') , {
+            nombre_termino: this.state.nombreTermino,
+            descripcion_termino: this.state.descripcionTermino,
+            id_glosario: idPath[4]
+        });
+        swal({
+            title: "Término creado con éxito",
+            text: "Se ha creado correctamente el término",
+            icon: "success",
+        });
+        setTimeout(() => {
+            window.location.replace("http://localhost:3000/ingresarAGlosario/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
+        }, 2000);
+        }
+        else {
             swal({
-                title: "Término creado con éxito",
-                text: "Se ha creado correctamente el término",
-                icon: "success",
+              title: "Error al crear el término",
+              text: "falla",
+              icon: "warning",
             });
-            setTimeout(() => {
-                window.location.replace("http://localhost:3000/ingresarAGlosario/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
-            }, 2000);
-            }
-            else {
-                swal({
-                  title: "Error al crear el término",
-                  text: "falla",
-                  icon: "warning",
-                });
-            }
-        };
+        }
+    };
 
+    deleteTermino(id_termino) {
+        let idPath = window.location.pathname.split("/");
+        swal({
+          title: "Atención",
+          text: "¿Desea eliminar el término seleccionado?",
+          icon: "warning",
+          buttons: ["No", "Si"],
+        }).then((respuesta) => {
+          if (respuesta) {
+            axios.delete("http://localhost:8080/termino/" + id_termino).then((res) => {
+              swal({
+                title: "Término borrado",
+                text: "El término ha sido borrado con éxito",
+                icon: "success",
+              });
+              setTimeout(() => {
+                window.location.replace("http://localhost:3000/ingresarAGlosario/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
+              }, 2000);
+            });
+          }
+        });
+    }
+    editarTermino(id_termino){
+        let idPath = window.location.pathname.split("/");
+        swal({
+          title: "Atención",
+          text: "¿Desea modificar el termino seleccionado?",
+          icon: "warning",
+          buttons: ["No", "Si"],
+        }).then((respuesta) => {
+          if (respuesta) {
+            setTimeout(() => {
+              window.location.replace("http://localhost:3000/EditarTermino/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]+ "/" + id_termino);
+            }, 2000);
+          }
+        });
+      }
     render() { 
         const {proyecto} = this.state;
         const {glosario} = this.state;
         const {reunion} = this.state;
         const {terminos} = this.state;
+        const {usuario}= this.state;
         const nombreTermino = this.state.nombre_termino;
         const descripcionTermino = this.state.descripcion_termino;
         return(
@@ -308,6 +345,7 @@ class IngresarAGlosario extends Component {
                                     <tr>
                                         <th width="200">Nombre de término</th>
                                         <th width="1500">Descripción</th>
+                                        <th width="200">Acciónes</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -315,7 +353,41 @@ class IngresarAGlosario extends Component {
                                     terminos.map((termino) => (
                                         <tr key={termino.id_termino} >
                                             <td> {termino.nombre_termino} </td>
-                                            <td> {termino.descripcion_termino} </td>
+                                            <td> {termino.descripcion_termino}</td>
+                                            <td> 
+                                                {proyecto.estado_proyecto === false && usuario.correo_usuario === termino.correoCreador ?
+                                                  <Button size="sm"
+                                                    variant="danger"
+                                                    onClick={() => this.deleteTermino(termino.id_termino)}
+                                                  >
+                                                  {" "}
+                                                    Eliminar{" "}
+                                                  </Button>:
+                                                  <Button size="sm"
+                                                  variant="secondary"
+                                                  disabled
+                                                >
+                                                {" "}
+                                                  Eliminar{" "}
+                                                </Button>
+                                                }
+                                                {proyecto.estado_proyecto === false && usuario.correo_usuario === termino.correoCreador ?
+                                                  <Button size="sm"
+                                                    variant="warning"
+                                                    onClick={() => this.editarTermino(termino.id_termino)}
+                                                  >
+                                                  {" "}
+                                                    Editar{" "}
+                                                  </Button>:
+                                                  <Button size="sm"
+                                                  variant="secondary"
+                                                  disabled
+                                                >
+                                                {" "}
+                                                  Editar{" "}
+                                                </Button>
+                                                }
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
