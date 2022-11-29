@@ -267,6 +267,7 @@ class IngresarAGlosario extends Component {
                         <div className="InformacionCentral">
                             {proyecto.estado_proyecto === false ?
                             <Button
+                                id="crearTermino"
                                 className="botonCrearProyecto"  
                                 onClick={() => this.handleModal()}
                                 size="lg">
@@ -307,7 +308,7 @@ class IngresarAGlosario extends Component {
                                             required
                                         />
                                         <Button
-                                            id="crearTermino"
+                                            id="crear"
                                             name="botonCrearTermino"
                                             type="submit"
                                         >
@@ -317,11 +318,11 @@ class IngresarAGlosario extends Component {
                                     </Form>
                                 </ModalBody>
                             </Modal>
-                            <Button className="botonCrearProyecto"   onClick={() => this.exportPDF()} size="lg">
+                            <Button id="descargar" className="botonCrearProyecto"   onClick={() => this.exportPDF()} size="lg">
                                     Descargar
                                     <BsDownload /> <span></span>
                             </Button>
-                            <Button className="botonCrearProyecto" href={`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
+                            <Button id="volver" className="botonCrearProyecto" href={`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
                                     Volver
                                     <BsArrowReturnLeft/> <span></span>
                             </Button>
@@ -345,7 +346,7 @@ class IngresarAGlosario extends Component {
                                     <tr>
                                         <th width="200">Nombre de término</th>
                                         <th width="1500">Descripción</th>
-                                        <th width="200">Acciónes</th>
+                                        <th width="200">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -356,14 +357,14 @@ class IngresarAGlosario extends Component {
                                             <td> {termino.descripcion_termino}</td>
                                             <td> 
                                                 {proyecto.estado_proyecto === false && usuario.correo_usuario === termino.correoCreador ?
-                                                  <Button size="sm"
+                                                  <Button id="eliminarTermino" size="sm"
                                                     variant="danger"
                                                     onClick={() => this.deleteTermino(termino.id_termino)}
                                                   >
                                                   {" "}
                                                     Eliminar{" "}
                                                   </Button>:
-                                                  <Button size="sm"
+                                                  <Button id="eliminarTermino" size="sm"
                                                   variant="secondary"
                                                   disabled
                                                 >
@@ -373,6 +374,7 @@ class IngresarAGlosario extends Component {
                                                 }
                                                 {proyecto.estado_proyecto === false && usuario.correo_usuario === termino.correoCreador ?
                                                   <Button size="sm"
+                                                    id="editarTermino"
                                                     variant="warning"
                                                     onClick={() => this.editarTermino(termino.id_termino)}
                                                   >
@@ -380,6 +382,7 @@ class IngresarAGlosario extends Component {
                                                     Editar{" "}
                                                   </Button>:
                                                   <Button size="sm"
+                                                  id="editarTermino"
                                                   variant="secondary"
                                                   disabled
                                                 >

@@ -71,7 +71,7 @@ public class TerminoRepositoryImp implements TerminoRepository {
     @Override
     public  List<Termino> getListTerminoXidGlosario(Long id_glosario) {
         String query = "select te.* from termino te, glosario g " +
-        "where g.id_glosario=:id_glosario and te.id_glosario = g.id_glosario and te.deleted = false";
+        "where g.id_glosario=:id_glosario and te.id_glosario = g.id_glosario and te.deleted = false and g.deleted = false ";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(query).addParameter("id_glosario", id_glosario).executeAndFetch(Termino.class);
         }

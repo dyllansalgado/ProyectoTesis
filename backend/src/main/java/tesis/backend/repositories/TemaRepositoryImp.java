@@ -40,7 +40,7 @@ public class TemaRepositoryImp implements TemaRepository{
     @Override
     public  List<Tema> getListTemaXidReunion(Long id_reunion) {
         String query = "select t.* from tema t, reunion r " +
-        "where r.id_reunion=:id_reunion and t.id_reunion = r.id_reunion and t.deleted = false";
+        "where r.id_reunion=:id_reunion and t.id_reunion = r.id_reunion and t.deleted = false and r.deleted = false";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(query).addParameter("id_reunion", id_reunion).executeAndFetch(Tema.class);
         }

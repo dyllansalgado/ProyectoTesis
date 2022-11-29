@@ -162,17 +162,18 @@ class Respuesta extends Component {
                       value={respuesta}
                       name="Respuesta"
                       onChange={this.changeRespuesta}
+                      required
                     />
                   </Col>
                 </Row>
                 <Modal.Footer>
-                  <Button className="Botones"
+                  <Button id="volver" className="Botones"
                     variant="primary"
                     href={`/preguntasSeleccionadas/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
                   >
                     Volver
                   </Button>
-                  <Button className="Botones"
+                  <Button id="responderPregunta" className="Botones"
                     variant="success"
                     onClick={() => this.ResponderPregunta()}
                   >

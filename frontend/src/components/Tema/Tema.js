@@ -291,7 +291,7 @@ class Tema extends Component {
               </Row>
               <div className="col-md-12 school-options-dropdown text-center">
               <Dropdown>
-              <Button className="botonSeleccionadas"
+              <Button id="preguntasSeleccionadas" className="botonSeleccionadas"
                 variant="primary" href={`/preguntasSeleccionadas/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
                 >
                 Ingresar a preguntas seleccionadas
@@ -357,6 +357,7 @@ class Tema extends Component {
               {proyecto.estado_proyecto === false ?
               <Button
                 className="botonCrearProyecto"  
+                id="crearPregunta"
                 onClick={() => this.handleModal()}
                 size="lg">
                 Crear Pregunta
@@ -365,6 +366,7 @@ class Tema extends Component {
               }
               <Button
                 className="botonCrearProyecto"  
+                id="volver"
                 href={`/ingresarReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`}
                 size="lg">
                 Volver
@@ -391,7 +393,7 @@ class Tema extends Component {
                         required
                       />
                       <Button
-                        id="crearPregunta"
+                        id="crear"
                         name="botonCrearPregunta"
                         type="submit"
                       >
@@ -437,7 +439,7 @@ class Tema extends Component {
                         <td>
                           {" "}
                           {pregunta.estado === false ?
-                            <Button
+                            <Button id="aceptarPregunta"
                               variant="success"
                               onClick={() => this.AceptarPregunta(pregunta.id_pregunta)}
                             >
@@ -456,7 +458,7 @@ class Tema extends Component {
                         </td>:
                         <td>
                           {proyecto.estado_proyecto === false && pregunta.estado === false ?
-                            <Button
+                            <Button id="votarPregunta"
                               variant="success"
                               onClick={() => this.VotarPregunta(usuario.id_usuario,pregunta.id_pregunta)}
                             >
@@ -481,6 +483,7 @@ class Tema extends Component {
                         <td>
                           {proyecto.estado_proyecto === false && usuario.correo_usuario === pregunta.correoCreador && pregunta.estado === false ?
                             <Button
+                              id="eliminarPregunta"
                               variant="danger"
                               onClick={() => this.deletePregunta(pregunta.id_pregunta)}
                             >

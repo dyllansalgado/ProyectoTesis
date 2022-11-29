@@ -175,13 +175,13 @@ class EditarRespuesta extends Component {
                   </Col>
                 </Row>
                 <Modal.Footer>
-                  <Button className="Botones"
+                  <Button id="volver" className="Botones"
                     variant="primary"
                     href={`/preguntasSeleccionadas/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
                   >
                     Volver
                   </Button>
-                  <Button className="Botones"
+                  <Button id="editarRespuesta" className="Botones"
                     variant="success"
                     onClick={() => this.EditarRespuesta()}
                   >

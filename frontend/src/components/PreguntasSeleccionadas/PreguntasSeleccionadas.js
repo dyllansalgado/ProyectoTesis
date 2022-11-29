@@ -242,16 +242,17 @@ class PreguntasSeleccionadas extends Component {
                   </div>
               </Row>
               <div className="InformacionCentral">
-              <Button className="botonCrearProyecto"   onClick={() => this.exportPDF()} size="lg">
+              <Button id="descargar" className="botonCrearProyecto"   onClick={() => this.exportPDF()} size="lg">
                 Descargar
                 <BsDownload /> <span></span>
               </Button>
-              <Button className="botonCrearProyecto"  
+              <Button id="irRequisitos" className="botonCrearProyecto"  
                 href={`/requisitosCreados/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
                 size="lg">
                 Ir a requisitos
               </Button>
               <Button
+                id="volver"
                 className="botonCrearProyecto"  
                 href={`/temaReunion/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
                 size="lg">
@@ -289,7 +290,7 @@ class PreguntasSeleccionadas extends Component {
                         {usuario.id_rol === 1 ?
                         <td>
                           {pregunta.respuesta == null && proyecto.estado_proyecto === false ?
-                            <Button className = "botones" size="sm"
+                            <Button id="responderPregunta" className = "botones" size="sm"
                               variant="success"
                               onClick={() => this.IrResponderPregunta(pregunta.id_pregunta)}
                             >
@@ -303,7 +304,7 @@ class PreguntasSeleccionadas extends Component {
                             </Button>
                            }
                           {pregunta.respuesta != null && proyecto.estado_proyecto === false?
-                          <Button className = "botones" size="sm"
+                          <Button id="editarRespuesta" className = "botones" size="sm"
                           variant="success"
                           onClick={() => this.IrEditarRespuesta(pregunta.id_pregunta,pregunta.id_respuesta)}
                           >
@@ -316,7 +317,7 @@ class PreguntasSeleccionadas extends Component {
                           </Button>
                           }
                           {proyecto.estado_proyecto === false ?
-                          <Button className = "botones" size="sm"
+                          <Button id="crearRequisito" className = "botones" size="sm"
                             variant="success"
                             onClick={() => this.CrearRequisitoPregunta(pregunta.id_pregunta,pregunta.id_respuesta)}
                             >
@@ -331,7 +332,7 @@ class PreguntasSeleccionadas extends Component {
                         </td>:
                         <td>
                           {proyecto.estado_proyecto === false ?
-                          <Button className = "botones" size="sm"
+                          <Button id="crearRequisito" className = "botones" size="sm"
                             variant="success"
                             onClick={() => this.CrearRequisitoPregunta(pregunta.id_pregunta,pregunta.id_respuesta)}
                             >
