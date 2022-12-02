@@ -18,6 +18,8 @@ import IngresarAGlosario from "./components/Glosario/IngresarAGlosario";
 import EditarTermino from "./components/Glosario/EditarTermino";
 import Tema from "./components/Tema/Tema";
 import EditarTema from "./components/Tema/EditarTema";
+import ComentarPregunta from "./components/Tema/ComentarPregunta";
+import EditarComentario from "./components/Tema/EditarComentario";
 import PreguntaSeleccionadas from "./components/PreguntasSeleccionadas/PreguntasSeleccionadas"
 import Respuesta from "./components/Respuesta/Respuesta";
 import EditarRespuesta from "./components/Respuesta/EditarRespuesta";
@@ -57,6 +59,8 @@ function App() {
         <Route exact path="/RequisitosCreados/:idP/:idR/:idT" element={<Requisitos />} />
         <Route exact path="/CrearRequisitoPR/:idP/:idR/:idT/:idPreg/:idResp" element={<CrearRequisitoPR />} />
         <Route exact path="/CrearRequisitoP/:idP/:idR/:idT/:idPreg" element={<CrearRequisitoP />} />
+        <Route exact path="/comentarPregunta/:idP/:idR/:idT/:idPreg" element={<ComentarPregunta />} />
+        <Route exact path="/editarComentario/:idP/:idR/:idT/:idPreg/:idComent" element={<EditarComentario />} />
         <Route exact path="/RequisitosAceptados/:idP/:idR/:idT" element={<RequisitosAceptados />} />
         <Route exact path="/EditarRequisito/:idP/:idR/:idT/:idReq" element={<EditarRequisito />} />
       </Routes>

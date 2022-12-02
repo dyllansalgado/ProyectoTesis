@@ -214,7 +214,7 @@ class IngresarAProyecto extends Component {
                               </Button>
                               <div className="botonescenter">
                               {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
-                              <Button id="editarReunion" size="sm"
+                              <Button className = "botones" id="editarReunion" size="sm"
                                 variant="warning" onClick={() => this.EditarReunion(meet.id_reunion)}
                               >
                                 Editar
@@ -222,7 +222,7 @@ class IngresarAProyecto extends Component {
                               ""
                               }
                               {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
-                              <Button  size="sm"
+                              <Button className = "botones" size="sm"
                                 variant="danger" onClick={() => this.deleteReunion(meet.id_reunion)}
                               >
                                 Eliminar

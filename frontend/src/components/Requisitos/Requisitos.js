@@ -327,13 +327,14 @@ class Requisitos extends Component {
                             </Button>
                             :
                             <Button className = "botones" size="sm"
-                            variant="secondary" disabled
+                            variant="success" 
+                            onClick={() => this.AceptarRequisito(requisitos.id_requisito)}
                             >
                             Aceptar
                             <AiOutlineCheck/> <span></span>
                             </Button>
                            }
-                          {proyecto.estado_proyecto === false && requisitos.estado_requisito === false?
+                          {proyecto.estado_proyecto === false && requisitos.estado_requisito === false ?
                           <Button className = "botones" size="sm"
                           variant="danger"
                           onClick={() => this.EliminarRequisito(requisitos.id_requisito)}
@@ -342,12 +343,27 @@ class Requisitos extends Component {
                             <FiXSquare/> <span></span>
                           </Button>:
                           <Button className = "botones" size="sm"
-                          variant="secondary" disabled
+                          variant="danger"
+                          onClick={() => this.EliminarRequisito(requisitos.id_requisito)}
                           >
                             Rechazar
                             <FiXSquare/> <span></span>
                           </Button>
-                          }                      
+                          }
+                          {proyecto.estado_proyecto === false && requisitos.estado_requisito === false ?
+                          <Button className = "botones" size="sm"
+                            variant="warning"
+                            onClick={() => this.EditarRequisito(requisitos.id_requisito)}
+                          >
+                          Editar Requisito
+                          </Button>:
+                          <Button className = "botones" size="sm"
+                            variant="warning" 
+                            onClick={() => this.EditarRequisito(requisitos.id_requisito)}
+                            >
+                            Editar Requisito
+                          </Button>
+                          }              
                         </td>:
                         <td>
                           {proyecto.estado_proyecto === false && usuario.correo_usuario === requisitos.correo_creador && requisitos.estado_requisito === false ?

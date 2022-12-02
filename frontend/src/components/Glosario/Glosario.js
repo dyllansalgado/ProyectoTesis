@@ -309,7 +309,7 @@ class Glosario extends Component {
                                   </Button>
                                   <div className="botonescenter">
                                     {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
-                                    <Button id="editarGlosario" size="sm"
+                                    <Button className = "botones" id="editarGlosario" size="sm"
                                       variant="warning" onClick={() => this.EditarGlosario(glosa.id_glosario)}
                                     >
                                       Editar
@@ -317,7 +317,7 @@ class Glosario extends Component {
                                     ""
                                     }
                                     {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
-                                    <Button id="deleteGlosario" size="sm"
+                                    <Button className = "botones" id="deleteGlosario" size="sm"
                                       variant="danger" onClick={() => this.deleteGlosario(glosa.id_glosario)}
                                     >
                                       Eliminar

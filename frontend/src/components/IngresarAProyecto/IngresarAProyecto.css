@@ -84,3 +84,7 @@
     display:flex;
     width: 50%;
 }
+.editarEliminarButtons{
+    margin-left:5px;
+    display:flex;
+}

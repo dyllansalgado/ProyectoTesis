@@ -391,8 +391,10 @@ class Tema extends Component {
                       <th width="170">Aceptar Pregunta</th>:
                       <th width="170">Votar Pregunta</th>
                       }
+                      <th width="170">Estado</th>
                       <th width="100">Votos</th>
                       <th width="50">Acción</th>
+                      <th width="50">Comentarios</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -444,6 +446,13 @@ class Tema extends Component {
                         </td>
                         }
                         <td>
+                          {proyecto.estado_proyecto === false && pregunta.estado === false ?
+                          <p> Aun no Aceptada </p>
+                           :
+                          <p> Aceptada </p>
+                          }
+                        </td>
+                        <td>
                           {pregunta.votos}
                         </td>
                         <td>
@@ -462,6 +471,25 @@ class Tema extends Component {
                           >
                           {" "}
                             Eliminar{" "}
+                          </Button>
+                            }
+                        </td>
+                        <td>
+                          {proyecto.estado_proyecto === false && pregunta.estado === false ?
+                            <Button
+                              id="comentarPregunta"
+                              variant="success"
+                              href={`/comentarPregunta/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}/${pregunta.id_pregunta}`}
+                            >
+                            {" "}
+                              Comentarios{" "}
+                            </Button>:
+                            <Button
+                            variant="secondary"
+                            disabled
+                          >
+                          {" "}
+                            Comentarios{" "}
                           </Button>
                             }
                         </td>

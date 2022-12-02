@@ -3,29 +3,27 @@ import {Container, Col, Row, Table, Modal, Form, ModalHeader, ModalBody,} from "
 import NavbarLogeado from "../Main/NavbarLogeado.js";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
-import "./Glosario.css";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
+import "../Glosario/Glosario.css";
 import swal from "sweetalert";
 import "../Main/NavbarLogeado.css";
-import { BsDownload,BsArrowReturnLeft } from "react-icons/bs";
+import {BsArrowReturnLeft } from "react-icons/bs";
 
 
-class IngresarAGlosario extends Component {
+class ComentarPregunta extends Component {
     constructor(props) {
         super(props);
         this.state = {
           usuario: [],
           id: null,
           proyecto:[],
-          terminos:[],
           reunion:[],
-          terminosFiltro:[],
-          glosario:[],
-          nombreTermino:"",
-          descripcionTermino:"",
+          pregunta:[],
+          comentarios:[],
+          comentario:"",
+          tema:[],
         };
         this.node = React.createRef();
+        this.changeComentario = this.changeComentario.bind(this);
         this.handleModal = this.handleModal.bind(this);
     }
 
@@ -36,6 +34,10 @@ class IngresarAGlosario extends Component {
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value });
     }; 
+
+    changeComentario(event) {
+        this.setState({comentario: event.target.value });
+    }
 
     componentDidMount() {
         if (localStorage.getItem("token") == null && localStorage.getItem("id_rol") === null ){
@@ -62,16 +64,6 @@ class IngresarAGlosario extends Component {
                     console.log(error);
             }),
             axios
-                .get("http://localhost:8080/terminoGlosario/"+ idPath[4])
-                .then((res) => {
-                    const terminos = res.data;
-                    this.setState({terminos});
-                    terminos.sort((a,b) => (a.nombre_termino.toLowerCase() < b.nombre_termino.toLowerCase() ? -1 : 1));
-                })
-                .catch((error) => {
-                    console.log(error);
-            }),
-            axios
                 .get("http://localhost:8080/proyecto/"+ idPath[2])
                 .then((res) => {
                     const proyecto = res.data;
@@ -90,163 +82,106 @@ class IngresarAGlosario extends Component {
                 .catch((error) => {
                     console.log(error);
             }),
-
             axios
-            .get("http://localhost:8080/glosario/"+ idPath[4])
+            .get("http://localhost:8080/tema/"+ idPath[4])
             .then((res) => {
-                const glosario = res.data;
-                this.setState({ glosario});
+              const tema = res.data;
+              this.setState({tema});
+            })
+            .catch((error) => {
+              console.log(error);
+            }),
+            axios
+            .get("http://localhost:8080/comentarioPregunta/"+ idPath[5])
+            .then((res) => {
+              const comentarios = res.data;
+              this.setState({comentarios});
+            })
+            .catch((error) => {
+            console.log(error);
+            }),
+            axios
+            .get("http://localhost:8080/pregunta/"+ idPath[5])
+            .then((res) => {
+                const pregunta = res.data;
+                this.setState({ pregunta});
             })
             .catch((error) => {
                 console.log(error);
-            }),
+            
+        }),
         ]);
     }
-    //Barra de busqueda
-    onChange = (e) => {
-        if (this.node.current.contains(e.target)) {
-          return;
-        }
-        this.setState({
-          terminosFiltro: [],
-        });
-    };
-    onUserChange = async (e) => {
-        let idPath = window.location.pathname.split("/");
-        await axios
-            .get("http://localhost:8080/terminoGlosario/"+ idPath[4])
-            .then((res) => {
-              this.setState({terminosFiltro: res.data});
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        
-            let filter = e.target.value.toLowerCase();
-            let filtroProyectos = this.state.terminosFiltro.filter((e) => {
-                let dataFilter = e.nombre_termino.toLowerCase();
-                let dataFecha = e.descripcion_termino.toLowerCase();
-                return (
-                    dataFilter
-                        .normalize("NFD")
-                        .replace(/[\u0300-\u036f]/g, "")
-                        .indexOf(filter) !== -1 ||
-                    dataFecha
-                        .normalize("NFD")
-                        .replace(/[\u0300-\u036f]/g, "")
-                        .indexOf(filter) !== -1
-                );
-            });
-        
-        this.setState({
-            terminos: filtroProyectos,
-        });
-    };
-    exportPDF = ()  => {
-
-        swal({
-        title: "Atención",
-        text: "¿Desea descargar en archivo PDF?",
-        icon: "warning",
-        buttons: ["No", "Si"],
-        }).then((respuesta) => {
-            if (respuesta) {
-                const unit = "pt";
-                const size = "A4";
-                //Orientación 
-                const orientation = "portrait";
-                const marginLeft = 40;
-                const doc = new jsPDF(orientation, unit, size);
-                doc.setFontSize(15);
-                const title = "Nombre de Glosario:  " + this.state.glosario.nombre_glosario;
-                const headers = [["Nombre de Término", "Descripción"]];
-                const data = this.state.terminos.map(elt=> [elt.nombre_termino, elt.descripcion_termino]);
-                let content = {
-                  startY: 50,
-                  head: headers,
-                  body: data
-                };
-                doc.text(title, marginLeft, 40);
-                doc.autoTable(content);
-                doc.save("Glosario_"+this.state.glosario.nombre_glosario+".pdf")
-            }
-        });
-    };
-
-    IngresarNuevoTermino = (e) => {
+    IngresarNuevoComentario = (e) => {
         let idPath = window.location.pathname.split("/");
         e.preventDefault();
         if (
-        this.state.nombreTermino !== "" &&
-        this.state.descripcionTermino !== ""){
-        axios.post("http://localhost:8080/termino/create/"+localStorage.getItem('usuario') , {
-            nombre_termino: this.state.nombreTermino,
-            descripcion_termino: this.state.descripcionTermino,
-            id_glosario: idPath[4]
+        this.state.comentario !== ""){
+        axios.post("http://localhost:8080/comentario/create/"+ idPath[5] + "/" + localStorage.getItem('usuario'), {
+            comentario: this.state.comentario
         });
         swal({
-            title: "Término creado con éxito",
-            text: "Se ha creado correctamente el término",
+            title: "Comentario creado con éxito",
+            text: "Se ha creado correctamente el comentario",
             icon: "success",
         });
         setTimeout(() => {
-            window.location.replace("http://localhost:3000/ingresarAGlosario/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
+            window.location.replace("http://localhost:3000/comentarPregunta/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4] + "/" + idPath[5] );
         }, 2000);
         }
         else {
             swal({
-              title: "Error al crear el término",
+              title: "Error al crear el comentario",
               text: "falla",
               icon: "warning",
             });
         }
     };
 
-    deleteTermino(id_termino) {
+    deleteComentario(id_comentario) {
         let idPath = window.location.pathname.split("/");
         swal({
           title: "Atención",
-          text: "¿Desea eliminar el término seleccionado?",
+          text: "¿Desea eliminar el comentario seleccionado?",
           icon: "warning",
           buttons: ["No", "Si"],
         }).then((respuesta) => {
           if (respuesta) {
-            axios.delete("http://localhost:8080/termino/" + id_termino).then((res) => {
+            axios.delete("http://localhost:8080/comentario/" + id_comentario).then((res) => {
               swal({
-                title: "Término borrado",
-                text: "El término ha sido borrado con éxito",
+                title: "Comentario borrado",
+                text: "El comentario ha sido borrado con éxito",
                 icon: "success",
               });
               setTimeout(() => {
-                window.location.replace("http://localhost:3000/ingresarAGlosario/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
+                window.location.replace("http://localhost:3000/comentarPregunta/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4] + "/" + idPath[5] );
               }, 2000);
             });
           }
         });
     }
-    editarTermino(id_termino){
+    editarComentario(id_comentario){
         let idPath = window.location.pathname.split("/");
         swal({
           title: "Atención",
-          text: "¿Desea modificar el termino seleccionado?",
+          text: "¿Desea modificar el comentario seleccionado?",
           icon: "warning",
           buttons: ["No", "Si"],
         }).then((respuesta) => {
           if (respuesta) {
             setTimeout(() => {
-              window.location.replace("http://localhost:3000/EditarTermino/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]+ "/" + id_termino);
+              window.location.replace("http://localhost:3000/EditarComentario/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]+ "/" + idPath[5] + "/" + id_comentario);
             }, 2000);
           }
         });
       }
     render() { 
         const {proyecto} = this.state;
-        const {glosario} = this.state;
         const {reunion} = this.state;
-        const {terminos} = this.state;
+        const {pregunta} = this.state;
         const {usuario}= this.state;
-        const nombreTermino = this.state.nombre_termino;
-        const descripcionTermino = this.state.descripcion_termino;
+        const {tema} = this.state;
+        const {comentarios} = this.state;
         return(
             <div>
                 <div>
@@ -255,7 +190,7 @@ class IngresarAGlosario extends Component {
                 <div>
                     <Container fluid>
                         <Row>
-                          <h2 className="titulo"> Terminos de: {glosario.nombre_glosario}</h2>
+                          <h2 className="titulo"> Pregunta seleccionada: {pregunta.pregunta}</h2>
                           <div className="container-fluid cew-9">
                               <div className="row">
                                   <div className="subtitulo">
@@ -271,7 +206,7 @@ class IngresarAGlosario extends Component {
                                 className="botonCrearProyecto"  
                                 onClick={() => this.handleModal()}
                                 size="lg">
-                                Crear Término
+                                Crear Comentario
                             </Button>:
                             ""
 
@@ -282,84 +217,56 @@ class IngresarAGlosario extends Component {
                                 onHide={() => this.handleModal()}
                             >
                                 <ModalHeader closeButton>
-                                    Creando término de glosario: {glosario.nombre_glosario}
+                                    Creando comentario para pregunta: {pregunta.pregunta}
                                 </ModalHeader>
                                 <ModalBody>
-                                    <Form onSubmit={this.IngresarNuevoTermino}>
-                                        <p> Nombre término </p>
+                                    <Form onSubmit={this.IngresarNuevoComentario}>
+                                        <p> Comentario </p>
                                         <input
                                             type="text"
-                                            value={nombreTermino}
+                                            value={this.state.comentario}
                                             className="form-control"
-                                            name="nombreTermino"
+                                            name="comentario"
                                             onChange={this.changeHandler}
-                                            placeholder="Nombre de término..."
-                                            required
-                                        />
-                                        <p> Descripción del Término </p>
-                                        <input
-                                            id="descripcion"
-                                            type="text"
-                                            placeholder="Descripción"
-                                            className="form-control"
-                                            value={descripcionTermino}
-                                            name="descripcionTermino"
-                                            onChange={this.changeHandler}
+                                            placeholder="Ingresar comentario"
                                             required
                                         />
                                         <Button
                                             id="crear"
-                                            name="botonCrearTermino"
+                                            name="botonCrearComentario"
                                             type="submit"
                                         >
                                             {" "}
-                                          Crear término 
+                                          Crear comentario
                                         </Button>
                                     </Form>
                                 </ModalBody>
                             </Modal>
-                            <Button id="descargar" className="botonCrearProyecto"   onClick={() => this.exportPDF()} size="lg">
-                                    Descargar
-                                    <BsDownload /> <span></span>
-                            </Button>
-                            <Button id="volver" className="botonCrearProyecto" href={`/GlosarioReunion/${proyecto.id_proyecto}/${reunion.id_reunion}`} size="lg">
+                            <Button id="volver" className="botonCrearProyecto" href={`/TemaReunion/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`} size="lg">
                                     Volver
                                     <BsArrowReturnLeft/> <span></span>
                             </Button>
-                            <Col>
-                                <div className="filterResponsive">
-                                    <div className="filterBlock">
-                                        <input
-                                          type="text"
-                                          onClick={this.onChange}
-                                          onChange={this.onUserChange}
-                                          placeholder="Buscar Termino..."
-                                          ref={this.node}
-                                        />
-                                    </div>
-                                </div>
-                            </Col>
                         </div>
                         <Container fluid>
                             <Table striped bordered hover className="tablaTermino" >
                                 <thead>
                                     <tr>
-                                        <th width="200">Nombre de término</th>
-                                        <th width="1500">Descripción</th>
+                                        <th width="1500">Comentario</th>
+                                        <th width="200">Creador Comentario</th>
                                         <th width="200">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
-                                    terminos.map((termino) => (
-                                        <tr key={termino.id_termino} >
-                                            <td> {termino.nombre_termino} </td>
-                                            <td> {termino.descripcion_termino}</td>
+                                    comentarios.map((comentario) => (
+                                        <tr key={comentario.id_comentario} >
+                                            <td> {comentario.comentario} </td>
+                                            <td> {comentario.nombre_creador_comentario}</td>
                                             <td> 
-                                                {proyecto.estado_proyecto === false && usuario.correo_usuario === termino.correoCreador ?
-                                                  <Button className = "botones" id="eliminarTermino" size="sm"
+                                                {proyecto.estado_proyecto === false && usuario.correo_usuario === comentario.correo_creador_comentario || usuario.id_rol === 1 ?
+                                                  <Button id="eliminarTermino" size="sm"
                                                     variant="danger"
-                                                    onClick={() => this.deleteTermino(termino.id_termino)}
+                                                    onClick={() => this.deleteComentario(comentario.id_comentario)}
                                                   >
                                                   {" "}
                                                     Eliminar{" "}
@@ -372,11 +279,13 @@ class IngresarAGlosario extends Component {
                                                   Eliminar{" "}
                                                 </Button>
                                                 }
-                                                {proyecto.estado_proyecto === false && usuario.correo_usuario === termino.correoCreador ?
+
+                                                {proyecto.estado_proyecto === false && usuario.correo_usuario === comentario.correo_creador_comentario || usuario.id_rol === 1 ?
                                                   <Button className = "botones" size="sm"
                                                     id="editarTermino"
                                                     variant="warning"
-                                                    onClick={() => this.editarTermino(termino.id_termino)}
+                                                    onClick={() => this.editarComentario(comentario.id_comentario)}
+                                                    
                                                   >
                                                   {" "}
                                                     Editar{" "}
@@ -390,6 +299,7 @@ class IngresarAGlosario extends Component {
                                                   Editar{" "}
                                                 </Button>
                                                 }
+                                                
                                             </td>
                                         </tr>
                                     ))}
@@ -403,4 +313,4 @@ class IngresarAGlosario extends Component {
     }
 }
 
-export default IngresarAGlosario;
+export default ComentarPregunta;

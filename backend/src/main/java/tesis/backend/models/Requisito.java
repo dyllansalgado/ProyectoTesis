@@ -11,6 +11,7 @@ public class Requisito {
     private String creador_requisito;
     private String correo_creador;
     private Boolean deleted;
+    
     public String getCorreo_creador() {
         return correo_creador;
     }

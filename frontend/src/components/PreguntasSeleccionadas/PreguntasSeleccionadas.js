@@ -305,7 +305,7 @@ class PreguntasSeleccionadas extends Component {
                            }
                           {pregunta.respuesta != null && proyecto.estado_proyecto === false?
                           <Button id="editarRespuesta" className = "botones" size="sm"
-                          variant="success"
+                          variant="warning"
                           onClick={() => this.IrEditarRespuesta(pregunta.id_pregunta,pregunta.id_respuesta)}
                           >
                             Editar
