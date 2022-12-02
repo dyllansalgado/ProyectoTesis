@@ -27,6 +27,7 @@ class Tema extends Component {
         idPregunta: null,
         votos:[],
         preguntasFiltro:[],
+        preguntasRecomendadas:[],
       };
       this.node = React.createRef();
       this.handleModal = this.handleModal.bind(this);
@@ -116,6 +117,13 @@ class Tema extends Component {
           .then((res) => {
             const usuario = res.data;
             this.setState({usuario});
+          }),
+        axios
+        .get(
+            "http://localhost:8080/preguntasRecomendadas/")
+          .then((res) => {
+            const preguntasRecomendadas = res.data;
+            this.setState({preguntasRecomendadas});
           }),
       ]);
     }
@@ -272,6 +280,7 @@ class Tema extends Component {
       const {preguntas} = this.state;
       const {reunion}= this.state;
       const {usuario}= this.state;
+      const {preguntasRecomendadas} =this.state;
       return ( 
       <div>
           <div>
@@ -302,54 +311,11 @@ class Tema extends Component {
                 <Dropdown.Menu  className="dropdownTamaño">
                   <Dropdown>* Debes seleccionar la pregunta y se guardará en el portapapeles *</Dropdown>
                   <Dropdown.Divider />
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Cuál es el proceso básico de la empresa?")} >
-                  ¿Cuál es el proceso básico de la empresa?
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Qué datos utiliza o produce este proceso?")} >
-                  ¿Qué datos utiliza o produce este proceso?   
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Cuáles son los límites impuestos por el tiempo y la carga de trabajo?")} >
-                  ¿Cuáles son los límites impuestos por el tiempo y la carga de trabajo?   
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Qué controles de desempeño utiliza?")} >
-                  ¿Qué controles de desempeño utiliza?   
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Cuál es la finalidad de la actividad dentro de la empresa?")} >
-                  ¿Cuál es la finalidad de la actividad dentro de la empresa? 
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Qué pasos se siguen para realizarla?")} >
-                  ¿Qué pasos se siguen para realizarla?   
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Dónde se realizan estos pasos?")} >
-                  ¿Dónde se realizan estos pasos?   
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Quiénes los realizan?")} >
-                  ¿Quiénes los realizan?  
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Cuánto tiempo tardan en efectuarlos?")} >
-                  ¿Cuánto tiempo tardan en efectuarlos?   
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Con cuánta frecuencia lo hacen?")} >
-                  ¿Con cuánta frecuencia lo hacen?  
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Quiénes emplean la información resultante?")} >
-                  ¿Quiénes emplean la información resultante?   
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Cuáles son las personas claves en el sistema? ¿Por qué son importantes?")} >
-                  ¿Cuáles son las personas claves en el sistema? ¿Por qué son importantes?   
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Existen obstáculos o influencias de tipo político que afectan la eficiencia del sistema?")} >
-                  ¿Existen obstáculos o influencias de tipo político que afectan la eficiencia del sistema?  
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Qué criterios se emplean para medir y evaluar el desempeño?")} >
-                  ¿Qué criterios se emplean para medir y evaluar el desempeño?  
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Qué áreas necesitan un control específico?")} >
-                  ¿Qué áreas necesitan un control específico?  
-                  </Dropdown.Item>
-                  <Dropdown.Item onClick={() => navigator.clipboard.writeText("¿Existen métodos para evadir el sistema?, ¿Por qué se presentan?")} >
-                  ¿Existen métodos para evadir el sistema?, ¿Por qué se presentan?
-                  </Dropdown.Item>
+                  {preguntasRecomendadas.map((preguntasReco) => (
+                     <Dropdown.Item onClick={() => navigator.clipboard.writeText(preguntasReco.pregunta_recomendada)} >
+                      {preguntasReco.pregunta_recomendada}
+                      </Dropdown.Item>
+                    ))}
                 </Dropdown.Menu>
               </Dropdown>
               </div>

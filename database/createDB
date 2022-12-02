@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS voto CASCADE;
 DROP TABLE IF EXISTS tipo_requisito CASCADE;
 DROP TABLE IF EXISTS resultado CASCADE;
 DROP TABLE IF EXISTS requisito CASCADE;
+DROP TABLE IF EXISTS preguntas_recomendadas CASCADE;
 
 CREATE TABLE rol(
     id_rol serial,
@@ -196,5 +197,15 @@ CREATE TABLE requisito(
     deleted boolean NOT NULL DEFAULT false,
     FOREIGN KEY (id_pregunta) REFERENCES pregunta(id_pregunta),
     FOREIGN KEY (id_tipo_requisito) REFERENCES tipo_requisito(id_tipo_requisito)
+
+);
+
+
+CREATE TABLE preguntas_recomendadas(
+
+    id_pregunta_recomendada serial,
+    pregunta_recomendada varchar(258),
+    PRIMARY KEY (id_pregunta_recomendada),
+    deleted boolean NOT NULL DEFAULT false
 
 );

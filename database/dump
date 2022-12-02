@@ -53,4 +53,35 @@ VALUES(3,'Requerimiento no funcional de seguridad','Especifican las medidas que 
 INSERT INTO tipo_requisito(id_tipo_requisito,nombre_tipo_requisito,descripcion_tipo_requisito)
 VALUES(4,'Requerimiento no funcional de calidad','Estos requisitos deben especificar como se analizará el nivel de calidad que debe cumplir el sistema');
 
-
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(1,'¿Cuál es el proceso básico de la empresa?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(2,'¿Qué datos utiliza o produce este proceso?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(3,'¿Cuáles son los límites impuestos por el tiempo y la carga de trabajo?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(4,'¿Qué controles de desempeño utiliza?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(5,'¿Cuál es la finalidad de la actividad dentro de la empresa?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(6,'¿Qué pasos se siguen para realizarla?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(7,'¿Dónde se realizan estos pasos?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(8,'¿Quiénes los realizan?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(9,'¿Cuánto tiempo tardan en efectuarlos?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(10,'¿Con cuánta frecuencia lo hacen?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(11,'¿Quiénes emplean la información resultante?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(12,'¿Cuáles son las personas claves en el sistema? ¿Por qué son importantes?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(13,'¿Existen obstáculos o influencias de tipo político que afectan la eficiencia del sistema?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(14,'¿Qué criterios se emplean para medir y evaluar el desempeño?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(15,'¿Qué áreas necesitan un control específico?');
+INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
+VALUES(16,'¿Existen métodos para evadir el sistema?, ¿Por qué se presentan?');

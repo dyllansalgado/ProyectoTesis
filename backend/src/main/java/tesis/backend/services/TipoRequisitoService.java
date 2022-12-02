@@ -20,7 +20,7 @@ public class TipoRequisitoService {
     }
 
     @GetMapping("/tiposRequisitos/")
-    ResponseEntity<String> getListRol(){
+    ResponseEntity<String> getListTipo_Requisitos(){
         List<TipoRequisito> tiposrequisitos = tipoRequisitoRepository.getListTipo_Requisitos();
         return new ResponseEntity<>(gson.toJson(tiposrequisitos),HttpStatus.OK);
     }
