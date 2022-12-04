@@ -289,7 +289,7 @@ class PreguntasSeleccionadas extends Component {
                         <td> {pregunta.pregunta} </td>
                         {usuario.id_rol === 1 ?
                         <td>
-                          {pregunta.respuesta == null && proyecto.estado_proyecto === false ?
+                          {pregunta.respuesta == null ?
                             <Button id="responderPregunta" className = "botones" size="sm"
                               variant="success"
                               onClick={() => this.IrResponderPregunta(pregunta.id_pregunta)}
@@ -303,7 +303,7 @@ class PreguntasSeleccionadas extends Component {
                             Responder
                             </Button>
                            }
-                          {pregunta.respuesta != null && proyecto.estado_proyecto === false?
+                          {pregunta.respuesta != null ?
                           <Button id="editarRespuesta" className = "botones" size="sm"
                           variant="warning"
                           onClick={() => this.IrEditarRespuesta(pregunta.id_pregunta,pregunta.id_respuesta)}
@@ -316,19 +316,12 @@ class PreguntasSeleccionadas extends Component {
                             Editar
                           </Button>
                           }
-                          {proyecto.estado_proyecto === false ?
                           <Button id="crearRequisito" className = "botones" size="sm"
                             variant="success"
                             onClick={() => this.CrearRequisitoPregunta(pregunta.id_pregunta,pregunta.id_respuesta)}
                             >
                             Crear requisito
-                          </Button>:
-                           <Button className = "botones" size="sm"
-                           variant="secondary" disabled
-                           >
-                           Crear requisito
-                         </Button>
-                          }                        
+                          </Button>                   
                         </td>:
                         <td>
                           {proyecto.estado_proyecto === false ?

@@ -446,7 +446,7 @@ class Tema extends Component {
                         </td>
                         }
                         <td>
-                          {proyecto.estado_proyecto === false && pregunta.estado === false ?
+                          {pregunta.estado === false ?
                           <p> Aun no Aceptada </p>
                            :
                           <p> Aceptada </p>
@@ -456,7 +456,7 @@ class Tema extends Component {
                           {pregunta.votos}
                         </td>
                         <td>
-                          {proyecto.estado_proyecto === false && usuario.correo_usuario === pregunta.correoCreador && pregunta.estado === false ?
+                          {proyecto.estado_proyecto === false && usuario.correo_usuario === pregunta.correoCreador && pregunta.estado === false || usuario.id_rol === 1 ?
                             <Button
                               id="eliminarPregunta"
                               variant="danger"
@@ -475,7 +475,7 @@ class Tema extends Component {
                             }
                         </td>
                         <td>
-                          {proyecto.estado_proyecto === false && pregunta.estado === false ?
+                          {pregunta.estado === false ?
                             <Button
                               id="comentarPregunta"
                               variant="success"

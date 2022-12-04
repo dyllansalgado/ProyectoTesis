@@ -301,6 +301,7 @@ class Requisitos extends Component {
                       <th width="150">Creador</th>
                       <th width="100">Prioridad</th>
                       <th width="500">Acciones</th>
+                      <th width="100">Estado</th>
 
                     </tr>
                   </thead>
@@ -317,7 +318,7 @@ class Requisitos extends Component {
                         <td> {requisitos.prioridad}</td>
                         {usuario.id_rol === 1 ?
                         <td>
-                          {proyecto.estado_proyecto === false && requisitos.estado_requisito === false ?
+                          {requisitos.estado_requisito === false ?
                             <Button className = "botones" size="sm"
                               variant="success"
                               onClick={() => this.AceptarRequisito(requisitos.id_requisito)}
@@ -327,14 +328,13 @@ class Requisitos extends Component {
                             </Button>
                             :
                             <Button className = "botones" size="sm"
-                            variant="success" 
-                            onClick={() => this.AceptarRequisito(requisitos.id_requisito)}
+                            variant="secondary" disabled
                             >
                             Aceptar
                             <AiOutlineCheck/> <span></span>
                             </Button>
                            }
-                          {proyecto.estado_proyecto === false && requisitos.estado_requisito === false ?
+                          {requisitos.estado_requisito === false ?
                           <Button className = "botones" size="sm"
                           variant="danger"
                           onClick={() => this.EliminarRequisito(requisitos.id_requisito)}
@@ -343,14 +343,13 @@ class Requisitos extends Component {
                             <FiXSquare/> <span></span>
                           </Button>:
                           <Button className = "botones" size="sm"
-                          variant="danger"
-                          onClick={() => this.EliminarRequisito(requisitos.id_requisito)}
+                          variant="secondary" disabled
                           >
                             Rechazar
                             <FiXSquare/> <span></span>
                           </Button>
                           }
-                          {proyecto.estado_proyecto === false && requisitos.estado_requisito === false ?
+                          {requisitos.estado_requisito === false ?
                           <Button className = "botones" size="sm"
                             variant="warning"
                             onClick={() => this.EditarRequisito(requisitos.id_requisito)}
@@ -358,8 +357,7 @@ class Requisitos extends Component {
                           Editar Requisito
                           </Button>:
                           <Button className = "botones" size="sm"
-                            variant="warning" 
-                            onClick={() => this.EditarRequisito(requisitos.id_requisito)}
+                            variant="secondary" disabled
                             >
                             Editar Requisito
                           </Button>
@@ -381,6 +379,12 @@ class Requisitos extends Component {
                           }
                         </td>
                         }
+                        <td>
+                        {requisitos.estado_requisito === false ? 
+                        <p>Aun no aceptada</p> :
+                        <p>Aceptada</p>
+                        }
+                        </td>
                       </tr>
                     ))}
                   </tbody>
