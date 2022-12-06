@@ -6,15 +6,6 @@
     background-color: #CECFC9
 }
 
-.botonVolver{
-    border-radius: 30px;
-    cursor:pointer;
-    width: 50%;
-    position: relative; 
-    padding: 10px 20px;
-    bottom: -1%; right: 4%;
-}
-
 .editarDatos{
     border-radius: 30px;
     cursor:pointer;

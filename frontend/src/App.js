@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
 import Login from "./components/Login/Login";
+import AcercaDe from "./components/Login/AcercaDe";
+import ComoUsar from "./components/Login/ComoUsar";
 import Main from "./components/Main/Main";
 import MisProyectos from "./components/MisProyectos/MisProyectos";
 import EditarProyecto from "./components/MisProyectos/EditarProyecto";
@@ -36,6 +38,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/acercaDe" element={<AcercaDe />} />
+        <Route path="/comoUsar" element={<ComoUsar />} />
         <Route path="/main" element={<Main />} />
         <Route path="/registrarse" element={<Registrarse />} />
         <Route path="/verPerfil" element={<VerPerfil />} />

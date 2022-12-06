@@ -149,3 +149,58 @@ img {
     text-align: center;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.TituloAcercaDe{
+    text-align: center;
+    font-size: 30px;
+    color: black;
+    font-weight: 700;
+}
+.SubtituloAcercaDe{
+    text-align: center;
+    font-size: 25px;
+    color: black;
+    font-weight: 600;
+}
+
+.FuncionalidadesAcercaDe{
+    margin-top: 35px;
+    text-align: center;
+    font-size: 25px;
+    color: black;
+    font-weight: 700;
+}
+
+.textoAcercaDe{
+    text-align: center;
+    font-size: 15px;
+    color: black;
+    font-weight: 500;
+}
+
+.textoVersion{
+    text-align: center;
+    font-size: 15px;
+    color: black;
+    font-weight: 500;
+    padding-top: 10px;
+
+}
+
+.botonVolver{
+    cursor:pointer;
+    width: 100px;
+    position: relative; 
+}
+
+table.tablaComoUsar{
+    margin-top: 20px;
+    display:table;
+    border-radius: 1%;
+    height: 450px;
+    table-layout: fixed;
+    position: relative;
+    display: block;
+    overflow-y: auto;
+    overflow-x: auto;
+}

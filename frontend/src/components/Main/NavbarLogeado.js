@@ -70,7 +70,7 @@ class NavbarLogeado extends Component{
                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Nav className="mr-auto">
                       <Navbar.Collapse id="basic-navbar-nav">
-                      <Button className="botonAyudaLogeado"  href="/ayuda" size="sm">
+                      <Button className="botonAyudaLogeado"  href="/comoUsar" size="sm">
                         ¿Cómo usar?
                         <BiHelpCircle/> <span></span>
                       </Button>

@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button';
 import {BiHelpCircle} from "react-icons/bi";
 import "./Login.css";
 
-
 const NavbarInicio = () => {
     return (
         <>
@@ -18,9 +17,12 @@ const NavbarInicio = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Nav className="mr-auto">
                         <Navbar.Collapse id="basic-navbar-nav">
-                        <Button className="botonAyudaLogeado"  href="/ayuda" size="sm">
+                        <Button className="botonAyudaLogeado"  href="/comoUsar" size="sm">
                             ¿Cómo usar?
                             <BiHelpCircle/> <span></span>
+                        </Button>
+                        <Button className="botonAyudaLogeado"  href="/acercaDe" size="sm">
+                            Acerca de
                         </Button>
                         </Navbar.Collapse>
                     </Nav>
