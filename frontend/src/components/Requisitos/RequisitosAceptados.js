@@ -203,7 +203,7 @@ class RequisitosAceptados extends Component {
           <div>
             <Container fluid className="container-fluid2">
               <Row>
-                <h3 className="titulo"> Requisitos de Preguntas Aceptadas: {tema.nombre_tema}</h3>
+                <h3 className="titulo"> Requisitos aceptados de preguntas de tema: {tema.nombre_tema}</h3>
                 <div className="container-fluid cew-9">
                       <div className="row">
                         <div className= "subtitulo">

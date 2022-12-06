@@ -11,6 +11,7 @@ import swal from "sweetalert";
 import "../IngresarAProyecto/IngresarAProyecto.css";
 import "../Tema/Tema.css";
 import "../Main/NavbarLogeado.css";
+import "./Requisitos.css";
 import "../PreguntasSeleccionadas/PreguntasSeleccionadas.css";
 import "jspdf-autotable";
 
@@ -249,7 +250,7 @@ class Requisitos extends Component {
           <div>
             <Container fluid className="container-fluid2">
               <Row>
-                <h3 className="titulo"> Requisitos de Preguntas Aceptadas: {tema.nombre_tema}</h3>
+                <h3 className="titulo"> Requisitos de preguntas aceptadas de tema: {tema.nombre_tema}</h3>
                 <div className="container-fluid cew-9">
                       <div className="row">
                         <div className= "subtitulo">
@@ -319,7 +320,7 @@ class Requisitos extends Component {
                         {usuario.id_rol === 1 ?
                         <td>
                           {requisitos.estado_requisito === false ?
-                            <Button className = "botones" size="sm"
+                            <Button className = "botonesRequisitos" size="sm"
                               variant="success"
                               onClick={() => this.AceptarRequisito(requisitos.id_requisito)}
                             >
@@ -327,7 +328,7 @@ class Requisitos extends Component {
                             <AiOutlineCheck/> <span></span>
                             </Button>
                             :
-                            <Button className = "botones" size="sm"
+                            <Button className = "botonesRequisitos" size="sm"
                             variant="secondary" disabled
                             >
                             Aceptar
@@ -335,14 +336,14 @@ class Requisitos extends Component {
                             </Button>
                            }
                           {requisitos.estado_requisito === false ?
-                          <Button className = "botones" size="sm"
+                          <Button className = "botonesRequisitos" size="sm"
                           variant="danger"
                           onClick={() => this.EliminarRequisito(requisitos.id_requisito)}
                           >
                             Rechazar
                             <FiXSquare/> <span></span>
                           </Button>:
-                          <Button className = "botones" size="sm"
+                          <Button className = "botonesRequisitos" size="sm"
                           variant="secondary" disabled
                           >
                             Rechazar
@@ -350,13 +351,13 @@ class Requisitos extends Component {
                           </Button>
                           }
                           {requisitos.estado_requisito === false ?
-                          <Button className = "botones" size="sm"
+                          <Button className = "botonesRequisitos" size="sm"
                             variant="warning"
                             onClick={() => this.EditarRequisito(requisitos.id_requisito)}
                           >
                           Editar Requisito
                           </Button>:
-                          <Button className = "botones" size="sm"
+                          <Button className = "botonesRequisitos" size="sm"
                             variant="secondary" disabled
                             >
                             Editar Requisito
@@ -365,13 +366,13 @@ class Requisitos extends Component {
                         </td>:
                         <td>
                           {proyecto.estado_proyecto === false && usuario.correo_usuario === requisitos.correo_creador && requisitos.estado_requisito === false ?
-                          <Button className = "botones" size="sm"
+                          <Button className = "botonesRequisitos" size="sm"
                             variant="warning"
                             onClick={() => this.EditarRequisito(requisitos.id_requisito)}
                             >
                             Editar Requisito
                           </Button>:
-                          <Button className = "botones" size="sm"
+                          <Button className = "botonesRequisitos" size="sm"
                             variant="secondary" disabled
                             >
                             Editar Requisito

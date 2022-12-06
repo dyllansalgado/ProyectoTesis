@@ -38,7 +38,7 @@ table.tablaTermino{
     position: relative;
     display: block;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: auto;
 }
 
 table.tablaTermino tr{

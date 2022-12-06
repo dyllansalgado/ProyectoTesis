@@ -85,3 +85,6 @@ INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
 VALUES(15,'¿Qué áreas necesitan un control específico?');
 INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
 VALUES(16,'¿Existen métodos para evadir el sistema?, ¿Por qué se presentan?');
+
+INSERT INTO comentario(id_comentario,comentario,nombre_creador_comentario,correo_creador_comentario,id_pregunta)
+VALUES(1,'soy un comentario para pregunta','Hola','juan_a@gmail.com',1);

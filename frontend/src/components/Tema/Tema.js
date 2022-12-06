@@ -319,7 +319,7 @@ class Tema extends Component {
                 </Dropdown.Menu>
               </Dropdown>
               </div>
-              <div className="InformacionCentral">
+              <div className="InformacionCentral_2">
               {proyecto.estado_proyecto === false ?
               <Button
                 className="botonCrearProyecto"  
@@ -455,8 +455,9 @@ class Tema extends Component {
                         <td>
                           {pregunta.votos}
                         </td>
+                        {usuario.id_rol === 1 ?
                         <td>
-                          {proyecto.estado_proyecto === false && usuario.correo_usuario === pregunta.correoCreador && pregunta.estado === false || usuario.id_rol === 1 ?
+                          {pregunta.estado === false ?
                             <Button
                               id="eliminarPregunta"
                               variant="danger"
@@ -473,7 +474,28 @@ class Tema extends Component {
                             Eliminar{" "}
                           </Button>
                             }
-                        </td>
+                        </td>:
+                          <td>
+                          {proyecto.estado_proyecto === false && usuario.correo_usuario === pregunta.correoCreador && pregunta.estado === false ?
+                            <Button
+                              id="eliminarPregunta"
+                              variant="danger"
+                              onClick={() => this.deletePregunta(pregunta.id_pregunta)}
+                            >
+                            {" "}
+                              Eliminar{" "}
+                            </Button>:
+                            <Button
+                            variant="secondary"
+                            disabled
+                          >
+                          {" "}
+                            Eliminar{" "}
+                          </Button>
+                            }
+                          </td> 
+                        }
+
                         <td>
                           {pregunta.estado === false ?
                             <Button

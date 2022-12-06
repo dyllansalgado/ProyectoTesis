@@ -18,3 +18,16 @@
 .botonSeleccionadas{
     margin-right: 10px;
 }
+
+.InformacionCentral_2{
+    position: flex;
+    width: 80%;
+    margin: auto;
+    height: 70px;
+    left: 162px;
+    top: 150px;
+    background: #276E90;
+    border-radius: 100px;
+    display: flex;
+    margin-top: 10px;
+}
