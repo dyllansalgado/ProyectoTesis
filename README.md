@@ -35,6 +35,7 @@ https://www.oracle.com/cl/java/technologies/javase/jdk11-archive-downloads.html
 
 Para su instalación de forma correcta debe seguir los siguientes pasos: 
 #### 2.1 Debe ingresar al siguiente link, descargar el instalador para el sistema operativo que este utilizando, en este caso, Windows 64-bit:
+https://nodejs.org/es/download/
 <p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/Node_01.PNG" width="600"></a></p>
 
 #### 2.2 Al descargar el archivo, debe abrirlo y seguir los siguientes pasos. Seleccione Next:
@@ -88,3 +89,52 @@ Para su instalación de forma correcta debe seguir los siguientes pasos:
 #### 2.18 Una vez seleccionado Aceptar, NodeJS se encontrará instalado de forma correcta en su sistema. Debe reiniciar el computador o PC y para que se actualicen de forma correcta las variables de entorno
 
 3. PostgreSQL
+
+Para su instalación de forma correcta debe seguir los siguientes pasos: 
+#### 3.1 Debe ingresar al siguiente link, descargar el instalador para el sistema operativo que este utilizando, en este caso, Windows 64-bit y la versión 14.6:
+https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_01.PNG" width="600"></a></p>
+
+#### 3.2 Seleccionar Sí
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_02.PNG" width="600"></a></p>
+
+#### 3.3 Seguir los siguientes pasos:
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_03.PNG" width="600"></a></p>
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_04.PNG" width="600"></a></p>
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_05.PNG" width="600"></a></p>
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_06.PNG" width="600"></a></p>
+
+#### 3.4 Ingresar una clave que no se le olvide, en este caso se utiliza como contraseña: 123456789 y luego debe seleccionar siguiente
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_07.PNG" width="600"></a></p>
+
+#### 3.5 Acá debe indicar el puerto en el cuál estará corriendo la base de datos, debe ingresar en el puerto 5432, como indica la imagen
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_08.PNG" width="600"></a></p>
+
+#### 3.6 Seguir nuevamente los pasos:
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_09.PNG" width="600"></a></p>
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_10.PNG" width="600"></a></p>
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_11.PNG" width="600"></a></p>
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_12.PNG" width="600"></a></p>
+
+#### 3.7 Seleccionar Terminar
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_13.PNG" width="600"></a></p>
+
+#### 3.8 Seleccionar Next
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_14.PNG" width="600"></a></p>
+
+#### 3.9 Instalación pack de lenguaje, debe seguir los pasos de las siguientes imágenes
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_15.PNG" width="600"></a></p>
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_16.PNG" width="600"></a></p>
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_17.PNG" width="600"></a></p>
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_18.PNG" width="600"></a></p>
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_19.PNG" width="600"></a></p>
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_20.PNG" width="600"></a></p>
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_21.PNG" width="600"></a></p>
+
+#### 3.10 Seleccionar Finish
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_22.PNG" width="600"></a></p>
+
+#### 3.11 Seleccionar Finish
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_23.PNG" width="600"></a></p>
+
+#### Con estos pasos ya tendría instalado el gestor de la base de datos PostgreSQL.
