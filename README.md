@@ -138,3 +138,10 @@ https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
 <p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/postgresql_23.PNG" width="600"></a></p>
 
 #### Con estos pasos ya tendría instalado el gestor de la base de datos PostgreSQL.
+
+
+## Carga de datos a la base de datos y compilación del software
+
+1. Puede utilizar la herramienta de base de datos que usted desee: pgAdmin4 , Dbeaver, Adminer ,etc. En este caso se va a enseñar la creación y cargado de la base de datos en pgAdmin 4.
+
+#### 1.1 Al tener descargado pgAdmin 4, debe crear la nueva base de datos de la siguiente manera:
