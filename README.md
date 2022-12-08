@@ -10,8 +10,14 @@
 
     1.3 [PostgreSQL](#id1.3)
 
-3. [Carga de datos a la Base de Datos](#id2)
-4. [Compilación Backend y Frontend](#id3)
+2. [Carga de datos a la Base de Datos](#id2)
+3. [Compilación Backend y Frontend](#id3)
+
+    3.1 [Backend](#id3.1)
+  
+    3.2 [Frontend](#id3.2)
+
+4. [Solución de posibles errores](#id4)
 
 <div id='id1' />
 
@@ -168,9 +174,61 @@ https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
 1. Puede utilizar la herramienta de base de datos que usted desee: pgAdmin4 , Dbeaver, Adminer ,etc. En este caso se va a enseñar la creación y cargado de la base de datos en pgAdmin 4.
 
 #### 1.1 Al tener descargado pgAdmin 4, debe crear la nueva base de datos de la siguiente manera:
+Primero le solicitará la contraseña de pgAdmin que usted debe crear y luego la de PostgreSQL, que en este caso era 123456789
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/baseDeDatos_01.PNG" width="600"></a></p>
 
+
+#### 1.2 Crear nueva base de datos, el nombre debe ser scaiec:
+Debe ingresar el nombre de scaiec para su correcto funcionamiento
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/baseDeDatos_02.1.PNG" width="600"></a></p>
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/baseDeDatos_02.PNG" width="600"></a></p>
+
+
+#### 1.3 Seleccion con click derecho la base de datos scaiec e ingresar a Query Tool:
+Debe seleccionar Query Tool para crear el algoritmo que ingrese las tablas y los datos a la base de datos
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/baseDeDatos_03.PNG" width="600"></a></p>
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/baseDeDatos_04.PNG" width="600"></a></p>
+
+#### 1.4 Luego debe ir a las carpetas :
+Debe ir a las carpetas que se encuentran a continuación y copiar toda la información, donde debe ser pegada en el archivo de Query Tool
+https://github.com/dyllansalgado/ProyectoTesis/blob/main/database/createDB
+https://github.com/dyllansalgado/ProyectoTesis/blob/main/database/dump
+Es decir, copia la información de createDB la pega en el archivo creado de Query Tool y luego ingresa a la carpeta dump y nuevamente copia toda la información y la debe pegar a continuación de los datos ya copiados que se encuentran en Query Tool, quedando algo similar a:
+<p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/baseDeDatos_05.PNG" width="600"></a></p>
+Luego selecciona el botón de play o run y la base de datos ya se encontraría creada y cargada con datos
 
 <div id='id3' />
 
 
 ## Compilación Backend y Frontend
+
+Como ultimo paso, tendremos que compilar el backend y el frontend para que el software funcione. Para realizar esta accion usted debe realizar lo siguiente:
+
+
+<div id='id3.1' />
+
+### 3.1 Backend 
+
+En la consola debe ingresar a la carpeta de Backend e ingresar el siguiente comando:
+
+###  `/.gradlew bootrun` o en caso de no funcionar `gradle bootrun`
+
+<div id='id3.2' />
+
+### 3.2 Frontend 
+
+En la consola debe ingresar a la carpeta de Frontend e ingresar el siguiente comando:
+
+### `npm run start` o `npm start`
+
+
+Cabe destacar que al momento de ingresar los comandos, no puede cerrar la consola, por ende debe abrir dos consolas para ingresar un comando en cada una. Al realizar esta acción, se debería abrir una ventana en su navegador con la URL de `localhost:3000`
+
+<div id='id4' />
+
+
+## Solución de posibles errores
+
+Al momento de seguir el siguiente manual de instalación y uso, ha ocurrido solo un error. Al momento de ejecutar el comando `npm run start` o `npm start` en la consola dentro de la carpeta del Frontend aparece este error: `react-scripts: command not found error`.
+La solución consiste en ingresar el siguiente comando `npm install react-scripts --save` en la consola dentro de la carpeta del Frontend, esperar su instalación y volver a ingresar el comando `npm run start` o `npm start`. Con esto ya se encuentra solucionado el error.
+
