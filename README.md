@@ -1,6 +1,25 @@
 # Software Colaborativo de Apoyo para Entrevistas en el proceso de Captura de requisitos
+
+<center> <h2>Índice</h2> </center>
+
+1. [Instrucciones de Instalación](#id1)
+
+    1.1 [Java versión 11](#id1.1)
+  
+    1.2 [NodeJS](#id1.2)
+
+    1.3 [PostgreSQL](#id1.3)
+
+3. [Carga de datos a la Base de Datos](#id2)
+4. [Compilación Backend y Frontend](#id3)
+
+<div id='id1' />
+
+
 ## Instrucciones de Instalación
 Para que el software funcione de manera correcta, debe tener instaladas tres tecnologías que se muestran a continuación:
+
+<div id='id1.1' />
 1. Java versión 11
 
 
@@ -30,7 +49,7 @@ https://www.oracle.com/cl/java/technologies/javase/jdk11-archive-downloads.html
 #### 1.8 Selecciona Close y la instalación de Java 11 se encuentra realizada con éxito.
 <p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/java_09.PNG" width="600"></a></p>
 
-
+<div id='id1.2' />
 2. NodeJS, su instalación es necesaria para utilizar el comando npm en el frontend.
 
 Para su instalación de forma correcta debe seguir los siguientes pasos: 
@@ -88,6 +107,8 @@ https://nodejs.org/es/download/
 
 #### 2.18 Una vez seleccionado Aceptar, NodeJS se encontrará instalado de forma correcta en su sistema. Debe reiniciar el computador o PC y para que se actualicen de forma correcta las variables de entorno
 
+
+<div id='id1.3' />
 3. PostgreSQL
 
 Para su instalación de forma correcta debe seguir los siguientes pasos: 
@@ -139,9 +160,17 @@ https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
 
 #### Con estos pasos ya tendría instalado el gestor de la base de datos PostgreSQL.
 
+<div id='id2' />
 
-## Carga de datos a la base de datos y compilación del software
+
+## Carga de datos a la Base de Datos
 
 1. Puede utilizar la herramienta de base de datos que usted desee: pgAdmin4 , Dbeaver, Adminer ,etc. En este caso se va a enseñar la creación y cargado de la base de datos en pgAdmin 4.
 
 #### 1.1 Al tener descargado pgAdmin 4, debe crear la nueva base de datos de la siguiente manera:
+
+
+<div id='id3' />
+
+
+## Compilación Backend y Frontend
