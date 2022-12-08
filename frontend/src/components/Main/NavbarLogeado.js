@@ -74,7 +74,7 @@ class NavbarLogeado extends Component{
                         ¿Cómo usar?
                         <BiHelpCircle/> <span></span>
                       </Button>
-                      <Button className="botonAyudaLogeado"  href="/verPerfil" size="sm">
+                      <Button id="verPerfil" className="botonAyudaLogeado"  href="/verPerfil" size="sm">
                           Ver perfil
                           <CgProfile/> <span></span>
                       </Button>

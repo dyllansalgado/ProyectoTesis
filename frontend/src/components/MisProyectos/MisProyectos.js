@@ -218,7 +218,7 @@ class MisProyectos extends Component {
                               Ingresar a proyecto
                             </Button>
                             {usuario.id_rol === 1 && usuario.correo_usuario === proyectos.correoCreador && proyectos.estado_proyecto === false ?
-                              <Button className= "botonCerrar"
+                              <Button id="cerrarProyecto" className= "botonCerrar"
                                 variant="outline-danger" onClick={() => this.CerrarProyecto(proyectos.id_proyecto)}
                               >
                                 Cerrar Proyecto

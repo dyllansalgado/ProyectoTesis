@@ -111,7 +111,7 @@ class VerPerfil extends Component {
                     Tipo de usuario: {this.state.rol}
                   </label>
                 </div>
-                <Button className="botonVolverMain" onClick={() => this.handleModal()}>
+                <Button id="editarContraseña" className="botonVolverMain" onClick={() => this.handleModal()}>
                   {" "}
                   Editar contraseña
                 </Button>
@@ -136,8 +136,8 @@ class VerPerfil extends Component {
                       onChange={this.changeContrasena}
                     />
                     <Button
-                      id="crearGlosario"
-                      name="botonCrearGlosario"
+                      id="crearCambio"
+                      name="botonCrearCambio"
                       onClick={() => this.CambiarDatos(usuario.id_usuario)}
                     >
                       {" "}

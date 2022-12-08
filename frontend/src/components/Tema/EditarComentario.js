@@ -167,12 +167,14 @@ class EditarComentario extends Component {
                 <Modal.Footer>
                   <Button className="Botones"
                     variant="primary"
+                    id="volver"
                     href={`/comentarPregunta/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}/${pregunta.id_pregunta}`}
                   >
                     Volver
                   </Button>
                   <Button className="Botones"
                     variant="success"
+                    id="editarComentarioBoton"
                     onClick={() => this.CambiarDatos()}
                   >
                     Editar Comentario

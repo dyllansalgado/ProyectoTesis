@@ -202,7 +202,7 @@ class ComentarPregunta extends Component {
                         <div className="InformacionCentral">
                             {proyecto.estado_proyecto === false ?
                             <Button
-                                id="crearTermino"
+                                id="crearComentario"
                                 className="botonCrearProyecto"  
                                 onClick={() => this.handleModal()}
                                 size="lg">
@@ -264,14 +264,14 @@ class ComentarPregunta extends Component {
                                             <td> {comentario.nombre_creador_comentario}</td>
                                             <td> 
                                                 {proyecto.estado_proyecto === false && usuario.correo_usuario === comentario.correo_creador_comentario || usuario.id_rol === 1 ?
-                                                  <Button id="eliminarTermino" size="sm"
+                                                  <Button id="eliminarComentario" size="sm"
                                                     variant="danger"
                                                     onClick={() => this.deleteComentario(comentario.id_comentario)}
                                                   >
                                                   {" "}
                                                     Eliminar{" "}
                                                   </Button>:
-                                                  <Button className = "botones" id="eliminarTermino" size="sm"
+                                                  <Button className = "botones" id="eliminarComentario" size="sm"
                                                   variant="secondary"
                                                   disabled
                                                 >
@@ -282,7 +282,7 @@ class ComentarPregunta extends Component {
 
                                                 {proyecto.estado_proyecto === false && usuario.correo_usuario === comentario.correo_creador_comentario || usuario.id_rol === 1 ?
                                                   <Button className = "botones" size="sm"
-                                                    id="editarTermino"
+                                                    id="editarComentario"
                                                     variant="warning"
                                                     onClick={() => this.editarComentario(comentario.id_comentario)}
                                                     
@@ -291,7 +291,7 @@ class ComentarPregunta extends Component {
                                                     Editar{" "}
                                                   </Button>:
                                                   <Button className = "botones" size="sm"
-                                                  id="editarTermino"
+                                                  id="editarComentario"
                                                   variant="secondary"
                                                   disabled
                                                 >

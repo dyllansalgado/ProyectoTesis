@@ -162,7 +162,7 @@ class RequisitosAceptados extends Component {
           };
           doc.text(title, marginLeft, 40);
           doc.autoTable(content);
-          doc.save("Requisitos_Tema_"+this.state.tema.nombre_tema+".pdf")
+          doc.save("Requisitos_Aceptados_Tema_"+this.state.tema.nombre_tema+".pdf")
         }
       });
     };
@@ -213,7 +213,7 @@ class RequisitosAceptados extends Component {
                   </div>
               </Row>
               <div className="InformacionCentral">
-              <Button className="botonCrearProyecto"   onClick={() => this.exportPDF()} size="lg">
+              <Button id="descargar" className="botonCrearProyecto"   onClick={() => this.exportPDF()} size="lg">
                 Descargar
                 <BsDownload /> <span></span>
               </Button>

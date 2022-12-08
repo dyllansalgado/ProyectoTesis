@@ -198,7 +198,7 @@ class CrearRequisitoP extends Component {
                     <p>Descripción requisito* : </p>
                     <input
                         type="text"
-                        placeholder="Ingrese un breve descripción"
+                        placeholder="Ingrese una breve descripción"
                         className="form-control"
                         value={this.state.descripcion_requisito}
                         name="Respuesta"

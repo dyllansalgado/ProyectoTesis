@@ -192,12 +192,14 @@ class EditarRequisito extends Component {
                 <Modal.Footer>
                   <Button className="Botones"
                     variant="primary"
+                    id="volver"
                     href={`/requisitosCreados/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
                   >
                     Volver
                   </Button>
                   <Button className="Botones"
                     variant="success"
+                    id="editarRequisitoBoton"
                     onClick={() => this.CambiarDatos()}
                   >
                     Editar Requisito

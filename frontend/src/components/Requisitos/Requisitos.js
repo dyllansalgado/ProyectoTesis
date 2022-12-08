@@ -260,11 +260,11 @@ class Requisitos extends Component {
                   </div>
               </Row>
               <div className="InformacionCentral">
-              <Button className="botonCrearProyecto"   onClick={() => this.exportPDF()} size="lg">
+              <Button id="descargar" className="botonCrearProyecto"   onClick={() => this.exportPDF()} size="lg">
                 Descargar
                 <BsDownload /> <span></span>
               </Button>
-              <Button className="botonCrearProyecto"  
+              <Button id= "requisitosAceptados" className="botonCrearProyecto"  
                 href={`/requisitosAceptados/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
                 size="lg">
                 Req. Aceptados
@@ -322,6 +322,7 @@ class Requisitos extends Component {
                           {requisitos.estado_requisito === false ?
                             <Button className = "botonesRequisitos" size="sm"
                               variant="success"
+                              id="aceptarRequisito"
                               onClick={() => this.AceptarRequisito(requisitos.id_requisito)}
                             >
                             Aceptar
@@ -338,6 +339,7 @@ class Requisitos extends Component {
                           {requisitos.estado_requisito === false ?
                           <Button className = "botonesRequisitos" size="sm"
                           variant="danger"
+                          id="eliminarRequisito"
                           onClick={() => this.EliminarRequisito(requisitos.id_requisito)}
                           >
                             Rechazar
@@ -353,6 +355,7 @@ class Requisitos extends Component {
                           {requisitos.estado_requisito === false ?
                           <Button className = "botonesRequisitos" size="sm"
                             variant="warning"
+                            id="editarRequisito"
                             onClick={() => this.EditarRequisito(requisitos.id_requisito)}
                           >
                           Editar Requisito

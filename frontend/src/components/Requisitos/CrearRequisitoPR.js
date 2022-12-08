@@ -198,6 +198,7 @@ class CrearRequisitoPR extends Component {
                     <p>Nombre Requisito* : </p>
                     <input
                         type="text"
+                        id="nombreRequisito"
                         placeholder="Ingrese un nombre de requisito"
                         className="form-control"
                         value={this.state.nombre_requisito}
@@ -208,8 +209,9 @@ class CrearRequisitoPR extends Component {
                     <p>Descripción requisito* : </p>
                     <input
                         type="text"
-                        placeholder="Ingrese un breve descripción"
+                        placeholder="Ingrese una breve descripción"
                         className="form-control"
+                        id="descripcionRequisito"
                         value={this.state.descripcion_requisito}
                         name="Respuesta"
                         onChange={this.changeDescripcionR}
@@ -220,6 +222,7 @@ class CrearRequisitoPR extends Component {
                         type="number"
                         min="1"
                         max="5"
+                        id="prioridadRequisito"
                         placeholder="Ingrese un valor para prioridad (1 a 5)"
                         className="form-control"
                         value={this.state.prioridad}
@@ -229,6 +232,7 @@ class CrearRequisitoPR extends Component {
                     />
                     <p>Tipo de requisito* :</p>
                         <Form.Select
+                          id="tipoRequisito"
                           aria-label="Default select example"
                           name="id_tipo_requisito"
                           onChange={this.changeHandler}
@@ -245,12 +249,14 @@ class CrearRequisitoPR extends Component {
                 <Modal.Footer>
                   <Button className="Botones"
                     variant="primary"
+                    id="volver"
                     href={`/preguntasSeleccionadas/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
                   >
                     Volver
                   </Button>
                   <Button className="Botones"
                     variant="success"
+                    id="crearRequisitoBoton"
                     onClick={() => this.CrearRequisito()}
                   >
                     Crear Requisito
