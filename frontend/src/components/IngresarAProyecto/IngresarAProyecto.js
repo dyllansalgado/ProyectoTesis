@@ -8,7 +8,6 @@ import swal from "sweetalert";
 import "../Main/NavbarLogeado.css";
 import {BsArrowReturnLeft} from "react-icons/bs";
 
-
 class IngresarAProyecto extends Component {
   constructor(props) {
       super(props);
@@ -213,7 +212,7 @@ class IngresarAProyecto extends Component {
                                 Ingresar a reunión
                               </Button>
                               <div className="botonescenter">
-                              {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
+                              {usuario.id_rol === 1 && proyecto.estado_proyecto === false ?
                               <Button className = "botones" id="editarReunion" size="sm"
                                 variant="warning" onClick={() => this.EditarReunion(meet.id_reunion)}
                               >
@@ -221,7 +220,7 @@ class IngresarAProyecto extends Component {
                               </Button>:
                               ""
                               }
-                              {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
+                              {usuario.id_rol === 1 &&  proyecto.estado_proyecto === false ?
                               <Button id= "eliminarReunion" className = "botones" size="sm"
                                 variant="danger" onClick={() => this.deleteReunion(meet.id_reunion)}
                               >

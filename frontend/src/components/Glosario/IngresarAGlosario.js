@@ -356,7 +356,7 @@ class IngresarAGlosario extends Component {
                                             <td> {termino.nombre_termino} </td>
                                             <td> {termino.descripcion_termino}</td>
                                             <td> 
-                                                {proyecto.estado_proyecto === false && usuario.correo_usuario === termino.correoCreador ?
+                                                {(proyecto.estado_proyecto === false && usuario.correo_usuario === termino.correoCreador) || usuario.id_rol === 1?
                                                   <Button className = "botones" id="eliminarTermino" size="sm"
                                                     variant="danger"
                                                     onClick={() => this.deleteTermino(termino.id_termino)}
@@ -372,7 +372,7 @@ class IngresarAGlosario extends Component {
                                                   Eliminar{" "}
                                                 </Button>
                                                 }
-                                                {proyecto.estado_proyecto === false && usuario.correo_usuario === termino.correoCreador ?
+                                                {(proyecto.estado_proyecto === false && usuario.correo_usuario === termino.correoCreador) || usuario.id_rol === 1?
                                                   <Button className = "botones" size="sm"
                                                     id="editarTermino"
                                                     variant="warning"

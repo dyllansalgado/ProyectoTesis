@@ -1,5 +1,5 @@
 import React, { Component} from "react";
-import {Container, Col, Row, Table, Modal, Form, ModalHeader, ModalBody,} from "react-bootstrap";
+import {Container, Row, Table, Modal, Form, ModalHeader, ModalBody,} from "react-bootstrap";
 import NavbarLogeado from "../Main/NavbarLogeado.js";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
@@ -263,7 +263,7 @@ class ComentarPregunta extends Component {
                                             <td> {comentario.comentario} </td>
                                             <td> {comentario.nombre_creador_comentario}</td>
                                             <td> 
-                                                {proyecto.estado_proyecto === false && usuario.correo_usuario === comentario.correo_creador_comentario || usuario.id_rol === 1 ?
+                                                {(proyecto.estado_proyecto === false && usuario.correo_usuario === comentario.correo_creador_comentario) || usuario.id_rol === 1 ?
                                                   <Button id="eliminarComentario" size="sm"
                                                     variant="danger"
                                                     onClick={() => this.deleteComentario(comentario.id_comentario)}
@@ -280,7 +280,7 @@ class ComentarPregunta extends Component {
                                                 </Button>
                                                 }
 
-                                                {proyecto.estado_proyecto === false && usuario.correo_usuario === comentario.correo_creador_comentario || usuario.id_rol === 1 ?
+                                                {(proyecto.estado_proyecto === false && usuario.correo_usuario === comentario.correo_creador_comentario) || usuario.id_rol === 1 ?
                                                   <Button className = "botones" size="sm"
                                                     id="editarComentario"
                                                     variant="warning"

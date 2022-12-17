@@ -19,17 +19,17 @@ DROP TABLE IF EXISTS comentario CASCADE;
 
 CREATE TABLE rol(
     id_rol serial,
-    tipo_rol varchar(20),
+    tipo_rol varchar(64),
     PRIMARY KEY (id_rol),
     deleted boolean NOT NULL DEFAULT false
 ); 
 
 CREATE TABLE usuario(
     id_usuario serial,
-    nombre_usuario varchar(50),
-    apellido_usuario varchar(50),
-    contrasena_usuario varchar(50),
-    correo_usuario varchar(40),
+    nombre_usuario varchar(128),
+    apellido_usuario varchar(128),
+    contrasena_usuario varchar(64),
+    correo_usuario varchar(128),
     id_rol integer NOT NULL,
     token_usuario integer NOT NULL,
     PRIMARY KEY (id_usuario),
@@ -45,9 +45,9 @@ CREATE TABLE proyecto(
     fecha_inicio_proyecto date,
     estado_proyecto boolean,
     objetivo_proyecto text,
-    contrasena varchar(20),
-    creadorProyecto varchar(80),
-    correoCreador varchar(80),
+    contrasena varchar(64),
+    creadorProyecto varchar(128),
+    correoCreador varchar(128),
     PRIMARY KEY (id_proyecto),
     deleted boolean NOT NULL DEFAULT false
     
@@ -159,7 +159,7 @@ CREATE TABLE usuario_pregunta(
 CREATE TABLE tipo_requisito(
 
     id_tipo_requisito serial,
-    nombre_tipo_requisito varchar(80),
+    nombre_tipo_requisito varchar(128),
     descripcion_tipo_requisito text,
     PRIMARY KEY (id_tipo_requisito),
     deleted boolean NOT NULL DEFAULT false
@@ -186,7 +186,7 @@ CREATE TABLE resultado(
 CREATE TABLE requisito(
 
     id_requisito serial,
-    nombre_requisito varchar(258),
+    nombre_requisito varchar(256),
     estado_requisito boolean,
     descripcion_requisito text,
     prioridad integer,
@@ -205,7 +205,7 @@ CREATE TABLE requisito(
 CREATE TABLE preguntas_recomendadas(
 
     id_pregunta_recomendada serial,
-    pregunta_recomendada varchar(258),
+    pregunta_recomendada varchar(256),
     PRIMARY KEY (id_pregunta_recomendada),
     deleted boolean NOT NULL DEFAULT false
 

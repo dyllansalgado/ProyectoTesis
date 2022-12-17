@@ -124,7 +124,7 @@ class EditarRespuesta extends Component {
     }else {
       swal({
         title: "Atención",
-        text: "Error al editar la respuesta",
+        text: "Debe ingresar una respuesta nueva para poder editarla",
         icon: "warning",
         button: "Aceptar",
         timer: "2000",

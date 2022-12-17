@@ -121,7 +121,6 @@ class Respuesta extends Component {
         timer: "2000",
       }); 
     }
-
   }
 
   render() { 

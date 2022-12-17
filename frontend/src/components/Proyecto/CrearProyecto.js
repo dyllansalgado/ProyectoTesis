@@ -72,7 +72,7 @@ class CrearProyecto extends Component {
       else {
         swal({
           title: "Error al crear el proyecto",
-          text: "falla",
+          text: "Rellene todos los datos solicitados",
           icon: "warning",
         });
       }

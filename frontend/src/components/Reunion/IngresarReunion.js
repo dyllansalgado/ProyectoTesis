@@ -230,7 +230,7 @@ class IngresarReunion extends Component {
                   onHide={() => this.handleModal()}
               >
                   <ModalHeader closeButton>
-                      Creando tema de proyecto {proyecto.nombre_proyecto}
+                      Creando tema de proyecto: {proyecto.nombre_proyecto}
                   </ModalHeader>
                   <ModalBody>
                       <Form onSubmit={this.IngresarNuevoTema}>
@@ -303,7 +303,7 @@ class IngresarReunion extends Component {
                               Ingresar a tema
                             </Button>
                             <div className="botonescenter">
-                              {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
+                              {usuario.id_rol === 1 && proyecto.estado_proyecto === false ?
                               <Button className = "botones" id="editarTema" size="sm"
                                 variant="warning" onClick={() => this.EditarTema(temas.id_tema)}
                               >
@@ -311,7 +311,7 @@ class IngresarReunion extends Component {
                               </Button>:
                               ""
                               }
-                              {usuario.id_rol === 1 && usuario.correo_usuario === proyecto.correoCreador && proyecto.estado_proyecto === false ?
+                              {usuario.id_rol === 1 && proyecto.estado_proyecto === false ?
                               <Button className = "botones" id="eliminarTema" size="sm"
                                 variant="danger" onClick={() => this.deleteTema(temas.id_tema)}
                               >

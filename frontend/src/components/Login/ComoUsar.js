@@ -79,28 +79,54 @@ class ComoUsar extends Component {
                                 </div>
                                 <div className="text-center">
                                     <h2 className="FuncionalidadesAcercaDe">
-                                        Funcionalidades a proyectos
+                                        Funcionalidades a Proyectos
                                     </h2>
                                 </div>
                                 <div className="text-center">
                                     <h2 className="textoVersion">
-                                    Si usted tiene el rol de jefe de proyecto, y ha creado un proyecto, tendrá diferentes funcionalidades para estos proyectos, los cuales corresponden a Ingresar al proyecto, Cerrar el proyecto y Editar el Proyecto. Al Cerrar el proyecto, cambiará el estado del proyecto, pasando de estado Disponible a estado Cerrado, evitando que usuarios con rol usuario puedan seguir realizando funcionalidades una vez el proyecto ya se encuentre terminado, asimismo usted podrá editar el proyecto cambiando el nombre del proyecto, los objetivos y la fecha de inicio.
+                                        Si usted tiene el rol de jefe de proyecto, y ha creado un proyecto, tendrá diferentes funcionalidades para estos proyectos, los cuales corresponden a Ingresar al proyecto, Cerrar el proyecto y Editar el Proyecto. Al Cerrar el proyecto, cambiará el estado del proyecto, pasando de estado Disponible a estado Cerrado, evitando que usuarios con rol usuario puedan seguir realizando funcionalidades una vez el proyecto ya se encuentre terminado, asimismo usted podrá editar el proyecto cambiando el nombre del proyecto, los objetivos y la fecha de inicio.
                                     </h2>
                                     <h2 className="textoVersion">
-                                       Si tiene el rol de usuario, solo podrá ingresar a los proyectos que usted ha registrado.
+                                        Si tiene el rol de usuario, solo podrá ingresar a los proyectos que usted ha registrado.
                                     </h2>
                                 </div>
                                 <div className="text-center">
                                     <h2 className="FuncionalidadesAcercaDe">
-                                        Funcionalidades a reuniones
+                                        Funcionalidades a Reuniones
                                     </h2>
                                 </div>
                                 <div className="text-center">
                                     <h2 className="textoVersion">
-                                    Si usted tiene el rol de jefe de proyecto, y ha creado un proyecto, podrá crear reuniones a estas mismas, donde debe ingresar una fecha de reunión y el lugar de la reunión. Además, tendrá diferentes funcionalidades, los cuales corresponden a Ingresar a la reunión, Eliminar Reunión y Editar Reunión. Al eliminar una reunión provocará que esta reunión se elimine y no aparezca a ningún usuario, asimismo usted podrá editar la reunión cambiando la fecha de la reunión y el lugar de la reunión.
+                                        Si usted tiene el rol de jefe de proyecto, y ha creado un proyecto, podrá crear reuniones a estas mismas, donde debe ingresar una fecha de reunión y el lugar de la reunión. Además, tendrá diferentes funcionalidades, los cuales corresponden a Ingresar a la reunión, Eliminar Reunión y Editar Reunión. Al eliminar una reunión provocará que esta reunión se elimine y no aparezca a ningún usuario, asimismo usted podrá editar la reunión cambiando la fecha de la reunión y el lugar de la reunión.
                                     </h2>
                                     <h2 className="textoVersion">
-                                    Si tiene el rol de usuario, solo podrá ingresar a las reuniones que se encuentren disponibles en los proyectos registrados.
+                                     Si tiene el rol de usuario, solo podrá ingresar a las reuniones que se encuentren disponibles en los proyectos registrados.
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="FuncionalidadesAcercaDe">
+                                        Funcionalidades a Temas de Reuniones
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="textoVersion">
+                                        Si usted tiene el rol de jefe de proyecto, y ha creado una reunión, podrá crear temas de reuniones a estas mismas, donde debe ingresar un nombre de tema de reunión y una descripción de lo que se quiere tratar en ese tema. Además, tendrá diferentes funcionalidades, los cuales corresponden a Ingresar, Eliminar y Editar el tema. Al eliminar un tema provocará que este tema se elimine y no aparezca a ningún usuario, asimismo usted podrá editar el tema cambiando nombre de tema y la descripción del tema.
+                                    </h2>
+                                    <h2 className="textoVersion">
+                                        Si tiene el rol de usuario, solo podrá ingresar a los temas que se encuentren disponibles en los proyectos registrados.
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="FuncionalidadesAcercaDe">
+                                        Funcionalidades a Glosarios de Términos
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="textoVersion">
+                                        Si usted tiene el rol de jefe de proyecto, y ha creado un tema, podrá crear glosario de términos a estas mismas, donde debe ingresar un nombre de glosario  y una descripción breve del glosario. Además, tendrá diferentes funcionalidades, los cuales corresponden a Ingresar, Eliminar y Editar el glosario. Al eliminar un glosario provocará que este glosario se elimine y no aparezca a ningún usuario, asimismo usted podrá editar el glosario cambiando nombre de glosario y la descripción del glosario.
+                                    </h2>
+                                    <h2 className="textoVersion">
+                                        Si tiene el rol de usuario, solo podrá ingresar a los glosarios de términos que se encuentren disponibles en los proyectos registrados.
                                     </h2>
                                 </div>
                                 <div className="text-center">

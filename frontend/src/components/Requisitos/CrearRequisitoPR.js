@@ -136,7 +136,7 @@ class CrearRequisitoPR extends Component {
 
   CrearRequisito = (e) => {
     let idPath = window.location.pathname.split("/");
-    if (this.state.nombre_requisito !== "" && this.state.nombre_descripcion_requisito !== "" && this.state.prioridad > 0 && this.state.prioridad <= 5)
+    if (this.state.nombre_requisito !== "" && this.state.descripcion_requisito !== "" && this.state.prioridad > 0 && this.state.prioridad <= 5)
     {
       axios.post("http://localhost:8080/requisito/create/"+ idPath[5] + "/" + localStorage.getItem('usuario'), {
         nombre_requisito: this.state.nombre_requisito,

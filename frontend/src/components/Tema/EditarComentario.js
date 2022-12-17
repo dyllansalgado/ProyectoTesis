@@ -155,7 +155,7 @@ class EditarComentario extends Component {
                     <input
                       type="text"
                       value={comentario}
-                      placeholder="Ingrese un nombre comentario nuevo"
+                      placeholder="Ingrese un comentario"
                       className="form-control"
                       name="Comentario"
                       onChange={this.changeComentario}

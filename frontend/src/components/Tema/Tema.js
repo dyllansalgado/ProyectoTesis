@@ -344,7 +344,7 @@ class Tema extends Component {
                 onHide={() => this.handleModal()}
               >
                 <ModalHeader closeButton>
-                  Creando pregunta del tema {tema.nombre_tema}
+                  Creando pregunta del tema: {tema.nombre_tema}
                 </ModalHeader>
                 <ModalBody>
                   <Form onSubmit={this.IngresarNuevaPregunta}>
