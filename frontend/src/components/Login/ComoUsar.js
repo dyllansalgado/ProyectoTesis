@@ -130,6 +130,58 @@ class ComoUsar extends Component {
                                     </h2>
                                 </div>
                                 <div className="text-center">
+                                    <h2 className="FuncionalidadesAcercaDe">
+                                        Funcionalidades de Términos a glosarios
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="textoVersion">
+                                        Si usted tiene el rol de jefe de proyecto, podrá crear términos a los glosarios, donde debe ingresar un nombre de término y una descripción breve del término. Además, tendrá diferentes funcionalidades, los cuales corresponden a Eliminar, Editar y descargar todos los términos presentes en el glosario. Al eliminar un término provocará que este se elimine y no aparezca a ningún usuario, asimismo usted podrá editar el término cambiando el nombre y la descripción.
+                                    </h2>
+                                    <h2 className="textoVersion">
+                                        Si tiene el rol de usuario, solo podrá crear, editar y eliminar términos usted que haya creado. Asimismo usted puede descargar todos los términos presentes en el glosario.
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="FuncionalidadesAcercaDe">
+                                        Funcionalidades a Temas
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="textoVersion">
+                                        Si usted tiene el rol de jefe de proyecto, y ha creado una reunión, podrá crear temas a estas mismas, donde debe ingresar un nombre de tema y una breve descripción. Además, tendrá diferentes funcionalidades, los cuales corresponden a Ingresar al Tema, Eliminar Tema y Editar Tema. Al eliminar un Tema provocará que este se elimine y no aparezca a ningún usuario, asimismo usted podrá editar el Tema cambiando el nombre y su descripción.
+                                    </h2>
+                                    <h2 className="textoVersion">
+                                        Si tiene el rol de usuario, solo podrá ingresar a los temas que se encuentren disponibles en las reuniones creadas.
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="FuncionalidadesAcercaDe">
+                                        Funcionalidades dentro de un Tema
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="textoVersion">
+                                        Si usted tiene el rol de jefe de proyecto, y se encuentra dentro de un Tema, podrá crear preguntas a estas mismas, donde debe ingresar la pregunta deseada. Además, tendrá diferentes funcionalidades, los cuales corresponden a aceptar preguntas, eliminar preguntas, crear comentarios, barra de búsqueda de preguntas y utilizar el botón de preguntas recomendadas, donde al seleccionar una pregunta se guardará en el portapapeles, luego al querer utilizar esta pregunta debe dirigirse a crear preguntas selecciona pregunta... y apretar el botón del teclado "Ctrl + V" y su pregunta seleccionada se pegará. Al eliminar una Pregunta provocará que este se elimine y no aparezca a ningún usuario.
+                                    </h2>
+                                    <h2 className="textoVersion">
+                                        Si tiene el rol de usuario, podrá ingresar preguntas, donde debe ingresar la pregunta deseada. Además, tendrá diferentes funcionalidades, como eliminar preguntas que usted haya realizado, barra de búsqueda de preguntas, Votar una única vez a una pregunta que encuentre necesaria que se agregue al guión, usar el botón de preguntas recomendadas, donde al seleccionar una pregunta se guardará en el portapapeles, luego al querer utilizar esta pregunta debe dirigirse a crear preguntas selecciona pregunta... y apretar el botón del teclado "Ctrl + V" y su pregunta seleccionada se pegará y por último puede generar comentarios a las preguntas.
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="FuncionalidadesAcercaDe">
+                                        Funcionalidades Comentarios
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="textoVersion">
+                                        aaa
+                                    </h2>
+                                    <h2 className="textoVersion">
+                                        aaa
+                                    </h2>
+                                </div>
+                                <div className="text-center">
                                 { usuario.id_rol === 1 || usuario.id_rol === 2 ?
                                 <Button variant="secondary" className="botonVolver" href="/main" size="sm">Volver</Button>
                                 :
