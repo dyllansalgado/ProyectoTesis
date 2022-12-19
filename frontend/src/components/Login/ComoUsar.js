@@ -175,10 +175,62 @@ class ComoUsar extends Component {
                                 </div>
                                 <div className="text-center">
                                     <h2 className="textoVersion">
-                                        aaa
+                                        Si usted tiene el rol de jefe de proyecto, podrá crear comentarios a preguntas que no se encuentren aceptadas, donde debe ingresar el comentario que desea establecer. Además, tendrá diferentes funcionalidades, los cuales corresponden a Eliminar y Editar todos los comentarios presentes. Al eliminar un comentario provocará que este se elimine y no aparezca a ningún usuario.
                                     </h2>
                                     <h2 className="textoVersion">
-                                        aaa
+                                        Si tiene el rol de usuario, podrá ingresar comentarios, al igual que el jefe de proyecto. Además, podrá eliminar y editar solo comentarios que usted haya realizado.
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="FuncionalidadesAcercaDe">
+                                        Funcionalidades Preguntas Seleccionadas
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="textoVersion">
+                                        Si usted tiene el rol de jefe de proyecto, podrá crear respuestas a preguntas aceptadas que no tengan respuestas, donde debe seleccionar, responder e ingresar la respuesta que desea establecer. Una vez respondida la pregunta, se bloquea el botón responder y se habilita el botón editar en caso de que desee modificar la respuesta que acaba de establecer. Tendrá diferentes funcionalidades, los cuales corresponden a Editar todas las respuestas de las preguntas presentes, crear requisitos a preguntas con o sin respuesta, donde debe ingresar el nombre del requisito, una descripción del requisito creado, prioridad que va del 1 al 5 (donde 1 es prioridad alta y 5 prioridad baja) y seleccionar a que tipo de requisito pertenece, de igual modo puede descargar todas las preguntas aceptadas creadas y por último puede utilizar la barra de búsqueda para buscar preguntas en específico.                                    
+                                    </h2>
+                                    <h2 className="textoVersion">
+                                        Si tiene el rol usuario, tendrá diferentes funcionalidades, los cuales corresponden a crear requisitos a preguntas con o sin respuesta, donde debe ingresar el nombre del requisito, una descripción del requisito creado, prioridad que va del 1 al 5 (donde 1 es prioridad alta y 5 prioridad baja) y seleccionar a que tipo de requisito pertenece, de igual modo puede descargar todas las preguntas aceptadas creadas y por último puede utilizar la barra de búsqueda para buscar preguntas en específico.                                    
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="FuncionalidadesAcercaDe">
+                                        Funcionalidades Requisitos
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="textoVersion">
+                                        Si usted tiene el rol de jefe de proyecto, podrá editar todos los requisitos que se encuentren creados, donde debe ingresar el nombre de requisito, la descripción y la prioridad modificada. Además, tendrá diferentes funcionalidades, los cuales corresponden a Aceptar o Rechazar todos los requisitos que encuentre pertinentes que sean abordados en el proyecto, donde al aceptar el requisito se etiqueta y se añade a la ventana de requisitos aceptados, y al rechazar este se elimina de los requisitos originados. De igual modo puede descargar todos los requisitos generados y por último puede utilizar la barra de búsqueda para buscar requisitos en específico.                                    
+                                    </h2>
+                                    <h2 className="textoVersion">
+                                        Si tiene el rol usuario, podrá editar los requisitos que usted haya creado, donde debe ingresar el nombre de requisito, la descripción y la prioridad modificada. De igual modo puede descargar todos los requisitos generados y por último puede utilizar la barra de búsqueda para buscar requisitos en específico.                        
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="FuncionalidadesAcercaDe">
+                                        Funcionalidades Requisitos Aceptados
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="textoVersion">
+                                        Si usted tiene el rol de jefe de proyecto, puede descargar todos los requisitos aceptados y por último puede utilizar la barra de búsqueda para buscar requisitos en específico.                                    
+                                    </h2>
+                                    <h2 className="textoVersion">
+                                        Si tiene el rol usuario, puede descargar todos los requisitos aceptados y por último puede utilizar la barra de búsqueda para buscar requisitos en específico.                       
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="FuncionalidadesAcercaDe">
+                                        Funcionalidades Ver Perfil
+                                    </h2>
+                                </div>
+                                <div className="text-center">
+                                    <h2 className="textoVersion">
+                                        Si usted tiene el rol de jefe de proyecto, puede ingresar a su perfil y modificar la contraseña en caso de ser necesario, para esto debe seleccionar editar contraseña, se muestra su contraseña actual y se habilita la opción para ingresar una nueva contraseña.                               
+                                    </h2>
+                                    <h2 className="textoVersion">
+                                        Si tiene el rol usuario, puede ingresar a su perfil y modificar la contraseña en caso de ser necesario, para esto debe seleccionar editar contraseña, se muestra su contraseña actual y se habilita la opción para ingresar una nueva contraseña.                       
                                     </h2>
                                 </div>
                                 <div className="text-center">
