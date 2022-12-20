@@ -1,4 +1,4 @@
-import org.junit.jupiter.api.*;
+/*import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -34,7 +34,7 @@ public class SeleniumTest {
     @AfterEach
     public void afterSleep(){
         try{
-            Thread.sleep(2000);
+            Thread.sleep(3000);
         }
         catch(InterruptedException ie) {
         }
@@ -175,6 +175,11 @@ public class SeleniumTest {
         driver.findElement(By.xpath("//input[@class='pickers']")).sendKeys("24-12-2022");
         driver.findElement(By.xpath("//input[@placeholder='Objetivos del proyecto']")).sendKeys("Soy un objetivo del proyecto de selenium");
         driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1234");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         // Se verifica la redirección a la página de main.
         String expected = "http://localhost:3000/main/";
@@ -232,7 +237,7 @@ public class SeleniumTest {
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         // Se verifica la redirección a la página de main
         String expected = "http://localhost:3000/main";
-        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.urlToBe(expected));
         Assertions.assertTrue(url);
     }
     @Test
@@ -2458,7 +2463,7 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        driver.findElement(By.xpath("//input[@placeholder='Ingrese un nombre comentario nuevo']")).sendKeys("Soy comentario selenium");
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un comentario']")).sendKeys("Soy comentario selenium");
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -2686,4 +2691,4 @@ public class SeleniumTest {
         }
     }
 
-}
+}*/
