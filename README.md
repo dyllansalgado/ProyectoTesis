@@ -193,7 +193,7 @@ Debe seleccionar Query Tool para crear el algoritmo que ingrese las tablas y los
 Debe ir a las carpetas que se encuentran a continuación y copiar toda la información, donde debe ser pegada en el archivo de Query Tool
 https://github.com/dyllansalgado/ProyectoTesis/blob/main/database/createDB
 https://github.com/dyllansalgado/ProyectoTesis/blob/main/database/dump
-Es decir, copia la información de createDB la pega en el archivo creado de Query Tool y luego ingresa a la carpeta dump y nuevamente copia toda la información y la debe pegar a continuación de los datos ya copiados que se encuentran en Query Tool, quedando algo similar a:
+Es decir, copia la información de createDB la pega en el archivo creado de Query Tool y luego ingresa a la carpeta dump y nuevamente copia toda la información, quedando algo similar a:
 <p><a><img src="https://github.com/dyllansalgado/ProyectoTesis/blob/main/ImagenesREADME/baseDeDatos_05.PNG" width="600"></a></p>
 Luego selecciona el botón de play o run y la base de datos ya se encontraría creada y cargada con datos
 
