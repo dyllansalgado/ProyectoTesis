@@ -271,6 +271,7 @@ class Requisitos extends Component {
               </Button>
               <Button
                 className="botonCrearProyecto"  
+                id= "volver"
                 href={`/preguntasSeleccionadas/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
                 size="lg">
                 Volver
@@ -370,6 +371,7 @@ class Requisitos extends Component {
                         <td>
                           {proyecto.estado_proyecto === false && usuario.correo_usuario === requisitos.correo_creador && requisitos.estado_requisito === false ?
                           <Button className = "botonesRequisitos" size="sm"
+                            id="editarRequisito"
                             variant="warning"
                             onClick={() => this.EditarRequisito(requisitos.id_requisito)}
                             >

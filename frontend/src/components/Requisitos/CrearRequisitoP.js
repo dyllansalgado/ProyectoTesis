@@ -240,6 +240,7 @@ class CrearRequisitoP extends Component {
                     Volver
                   </Button>
                   <Button className="Botones"
+                    id="crearRequisitoBoton"
                     variant="success"
                     onClick={() => this.CrearRequisito()}
                   >

@@ -1,9 +1,10 @@
-/*import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import java.time.Duration;
@@ -16,8 +17,10 @@ public class SeleniumTest {
 
     @BeforeAll
     public static void setUp(){
-        System.setProperty("webdriver.chrome.driver","./src/main/resources/chromedriver/chromedriver.exe");
-        driver = new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver","./src/main/resources/chromedriver/chromedriver2.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.get("http://localhost:3000/");
     }
@@ -39,7 +42,7 @@ public class SeleniumTest {
         catch(InterruptedException ie) {
         }
     }
-    @Test
+    /*@Test
     @Order(1)
     public void pruebaRegister(){
         driver.get("http://localhost:3000/registrarse");
@@ -250,7 +253,7 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        // Se hace click crear proyecto
+        // Se hace click ver mas proyecto
         WebElement button = driver.findElement(By.id("verMasProyecto"));
         button.click();
         driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("contrasenafail");
@@ -271,7 +274,7 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        // Se hace click crear proyecto
+        // Se hace click ver mas proyecto
         WebElement button = driver.findElement(By.id("verMasProyecto"));
         button.click();
         driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1234");
@@ -794,7 +797,7 @@ public class SeleniumTest {
     @Test
     @Order(28)
     public void crearGlosario(){
-        // Se hace click en ir a glosarios
+        // Se hace click en crear glosario
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -819,7 +822,7 @@ public class SeleniumTest {
     @Test
     @Order(29)
     public void crearGlosarioFail(){
-        // Se hace click en ir a glosarios
+        // Se hace click en crear glosarios
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -827,7 +830,7 @@ public class SeleniumTest {
         }
         WebElement button = driver.findElement(By.id("crearGlosario"));
         button.click();
-        // Se hace click en ir a glosarios
+        // Se hace click en ir a glosario
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -860,7 +863,7 @@ public class SeleniumTest {
     @Test
     @Order(30)
     public void editarGlosario(){
-        // Se hace click en ir a glosarios
+        // Se hace click en editar glosario
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -898,7 +901,7 @@ public class SeleniumTest {
     @Test
     @Order(31)
     public void editGlosarioFail(){
-        // Se hace click en ir a glosarios
+        // Se hace click en editar glosario
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -945,7 +948,7 @@ public class SeleniumTest {
     @Test
     @Order(32)
     public void ingresarAGlosario(){
-        // Se hace click en ir a glosarios
+        // Se hace click en ir a glosario
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -1286,7 +1289,7 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        // Se hace click en No
+        // Se hace click en Si
         WebElement button2 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
         button2.click();
         try{
@@ -2130,7 +2133,7 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        // Se hace click en aceptar requisito
+        // Se hace click en editar requisito
         WebElement button2 = driver.findElement(By.id("editarRequisito"));
         button2.click();
         try{
@@ -2161,7 +2164,7 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        // Se selecciona boton editarRespuesta
+        // Se selecciona boton editar requisito
         WebElement button4 = driver.findElement(By.id("editarRequisitoBoton"));
         button4.click();
         String expected = "http://localhost:3000/requisitosCreados/2/2/3";
@@ -2298,7 +2301,7 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        // Se hace click en aceptar requisito
+        // Se hace click en requisitos aceptados
         WebElement button2 = driver.findElement(By.id("requisitosAceptados"));
         button2.click();
         try{
@@ -2306,7 +2309,7 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        // Se hace click en aceptar requisito
+        // Se hace click en descargar
         WebElement button3= driver.findElement(By.id("descargar"));
         button3.click();
         try{
@@ -2689,6 +2692,1461 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
+    }*/
+
+    // A continuación se efectuan las pruebas de integración, donde JF corresponden a las de jefe de proyecto y U a las de usuario.
+
+    // Crear usuario JF, inicio de sesión JF, creación de proyectos, ingresar a proyecto, creación de reunión, creación de tema y cerrar sesión.
+
+    @Test
+    @Order(69)
+    public void pruebaIntegración1(){
+        driver.get("http://localhost:3000/registrarse");
+        driver.navigate().refresh();
+        try{
+            Thread.sleep(3500);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Bajamos con el scroll para ver todo el form.
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+        driver.findElement(By.xpath("//input[@placeholder='Nombre de Usuario']")).sendKeys("admin2");
+        driver.findElement(By.xpath("//input[@placeholder='Apellido de Usuario']")).sendKeys("admin2");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        Select rol = new Select(driver.findElement(By.name("id_rol")));
+        rol.selectByValue("1");
+        try{
+            Thread.sleep(3500);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3500);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.get("http://localhost:3000/");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click crear proyecto
+        WebElement button = driver.findElement(By.id("crearProyecto"));
+        button.click();
+        driver.findElement(By.xpath("//input[@placeholder='Proyecto....']")).sendKeys("Soy un proyecto integración");
+        driver.findElement(By.xpath("//input[@class='pickers']")).sendKeys("24-05-2023");
+        driver.findElement(By.xpath("//input[@placeholder='Objetivos del proyecto']")).sendKeys("Soy un objetivo del proyecto de integración");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1234");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click crear proyecto
+        WebElement button2 = driver.findElement(By.id("misProyectos"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresar a proyecto
+        WebElement button3 = driver.findElement(By.id("ingresarAproyecto"));
+        button3.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en crear reunion
+        WebElement button4 = driver.findElement(By.id("crearReunion"));
+        button4.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@class='pickers']")).sendKeys("25-04-2022");
+        WebElement button5 = driver.findElement(By.id("nombreProyecto"));
+        button5.click();
+        try{
+            Thread.sleep(2000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un lugar de reunión']")).sendKeys("En selenium integración");
+        // Se hace click en crear reunion
+        WebElement button6 = driver.findElement(By.id("reunionCrear"));
+        button6.click();
+        try{
+            Thread.sleep(4000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresarReunion
+        WebElement button7 = driver.findElement(By.id("ingresarReunion"));
+        button7.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en crear tema
+        WebElement button8 = driver.findElement(By.id("crearTema"));
+        button8.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Nombre de tema...']")).sendKeys("Soy un tema de selenium integración");
+        driver.findElement(By.xpath("//input[@placeholder='Descripción']")).sendKeys("Soy descripcion selenium integración");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona crear
+        WebElement button9 = driver.findElement(By.id("crear"));
+        button9.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en cerrar sesion
+        WebElement button10 = driver.findElement(By.id("cerrarSesion"));
+        button10.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button11 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button11.click();
+        // Se verifica la redirección a la página de Login
+        String expected = "http://localhost:3000/";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+
+    }
+    // Crear usuario U, inicio de sesión U, registro de proyecto, ingresar a proyecto, ingresar a reunión, ingresar a tema y cerrar sesión.
+    @Test
+    @Order(70)
+    public void pruebaIntegración2(){
+        driver.get("http://localhost:3000/registrarse");
+        driver.navigate().refresh();
+        try{
+            Thread.sleep(4000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Bajamos con el scroll para ver todo el form.
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+        driver.findElement(By.xpath("//input[@placeholder='Nombre de Usuario']")).sendKeys("usuario2");
+        driver.findElement(By.xpath("//input[@placeholder='Apellido de Usuario']")).sendKeys("usuario2");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        Select rol = new Select(driver.findElement(By.name("id_rol")));
+        rol.selectByValue("2");
+        try{
+            Thread.sleep(3500);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3500);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.get("http://localhost:3000/");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.get("http://localhost:3000/verMasProyecto/2");
+        try{
+            Thread.sleep(3500);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1234");
+        WebElement button = driver.findElement(By.id("botonRegistrarProyecto"));
+        button.click();
+        try{
+            Thread.sleep(3500);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en mis proyectos
+        WebElement button2 = driver.findElement(By.id("misProyectos"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresar a proyecto
+        WebElement button3 = driver.findElement(By.id("ingresarAproyecto"));
+        button3.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresarReunion
+        WebElement button4 = driver.findElement(By.id("ingresarReunion"));
+        button4.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en cerrar sesion
+        WebElement button5 = driver.findElement(By.id("cerrarSesion"));
+        button5.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button6 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button6.click();
+        // Se verifica la redirección a la página de Login
+        String expected = "http://localhost:3000/";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+
     }
 
-}*/
+    // Inicio de sesión JF, ingresar a proyecto, ingresar a reunión, ingresar a glosarios, crear glosario, ingresar a glosario, crear término, descargar en pdf y cerrar sesión.
+
+    @Test
+    @Order(71)
+    public void pruebaIntegración3(){
+        driver.get("http://localhost:3000/");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en mis proyectos
+        WebElement button = driver.findElement(By.id("misProyectos"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresar a proyecto
+        WebElement button2 = driver.findElement(By.id("ingresarAproyecto"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresarReunion
+        WebElement button3 = driver.findElement(By.id("ingresarReunion"));
+        button3.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ir a glosarios
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button4 = driver.findElement(By.id("irGlosario"));
+        button4.click();
+        // Se hace click en ir a glosarios
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button5 = driver.findElement(By.id("crearGlosario"));
+        button5.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // se crea un glosario
+        driver.findElement(By.xpath("//input[@placeholder='Nombre de glosario...']")).sendKeys("glosario selenium integración");
+        driver.findElement(By.xpath("//input[@placeholder='Descripción']")).sendKeys("descripcion selenium integración");
+        WebElement button6 = driver.findElement(By.id("crear"));
+        button6.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button7 = driver.findElement(By.id("editarGlosario"));
+        button7.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button8 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button8.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un nombre de glosario nuevo']")).sendKeys("glosario edit selenium integración");
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese una descripción de glosario nuevo']")).sendKeys("descripcion edit selenium integración");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button9 = driver.findElement(By.id("editarGlosario"));
+        button9.click();
+        // Se hace click en ir a glosario
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button10 = driver.findElement(By.id("ingresarAglosario"));
+        button10.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en crear término
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button11 = driver.findElement(By.id("crearTermino"));
+        button11.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Nombre de término...']")).sendKeys("Término creado con selenium integración");
+        driver.findElement(By.xpath("//input[@placeholder='Descripción']")).sendKeys("Descripción término selenium integración");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button12 = driver.findElement(By.id("crear"));
+        button12.click();
+        // Se hace click en editar término
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button13 = driver.findElement(By.id("editarTermino"));
+        button13.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button14 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button14.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un nombre de término nuevo']")).sendKeys("Nombre término editado con selenium integración");
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese una descripción de término nuevo']")).sendKeys("Descripción término edito con selenium integración");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button15 = driver.findElement(By.id("editarTermino"));
+        button15.click();
+        // Se hace click en descargar
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button16 = driver.findElement(By.id("descargar"));
+        button16.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button17 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button17.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en eliminar término
+        WebElement button18 = driver.findElement(By.id("eliminarTermino"));
+        button18.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button19 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button19.click();
+        // Se hace click en volver
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button20 = driver.findElement(By.id("volver"));
+        button20.click();
+        // Se hace click en eliminar glosario
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button21 = driver.findElement(By.id("deleteGlosario"));
+        button21.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en Si
+        WebElement button22 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button22.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en volver
+        WebElement button23 = driver.findElement(By.id("volver"));
+        button23.click();
+        // Se hace click en ingresar tema
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button24 = driver.findElement(By.id("ingresarTema"));
+        button24.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en cerrar sesion
+        WebElement button25 = driver.findElement(By.id("cerrarSesion"));
+        button25.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button26 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button26.click();
+        // Se verifica la redirección a la página de Login
+        String expected = "http://localhost:3000/";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
+
+    // Inicio de sesión U, ingresar a proyecto, ingresar a reunión, ingresar a tema, crear pregunta, votar pregunta y cerrar sesión.
+
+    @Test
+    @Order(72)
+    public void pruebaIntegración4(){
+        driver.get("http://localhost:3000/");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en mis proyectos
+        WebElement button = driver.findElement(By.id("misProyectos"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresar a proyecto
+        WebElement button2 = driver.findElement(By.id("ingresarAproyecto"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresarReunion
+        WebElement button3 = driver.findElement(By.id("ingresarReunion"));
+        button3.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se ingresa a tema
+        WebElement button4 = driver.findElement(By.id("ingresarTema"));
+        button4.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en crear pregunta
+        WebElement button5 = driver.findElement(By.id("crearPregunta"));
+        button5.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Pregunta...']")).sendKeys("¿Pregunta selenium integración?");
+        // Se hace click en crear
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button6 = driver.findElement(By.id("crear"));
+        button6.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona boton votar
+        WebElement button7 = driver.findElement(By.id("votarPregunta"));
+        button7.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en Si
+        WebElement button8 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button8.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en cerrar sesion
+        WebElement button9 = driver.findElement(By.id("cerrarSesion"));
+        button9.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button10 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button10.click();
+        // Se verifica la redirección a la página de Login
+        String expected = "http://localhost:3000/";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
+    // Inicio de sesión JF, ingresar a proyecto, ingresar a reunión, ingresar a tema, aceptar pregunta, crear pregunta y cerrar sesión.
+
+    @Test
+    @Order(73)
+    public void pruebaIntegración5(){
+        driver.get("http://localhost:3000/");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en mis proyectos
+        WebElement button = driver.findElement(By.id("misProyectos"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresar a proyecto
+        WebElement button2 = driver.findElement(By.id("ingresarAproyecto"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresarReunion
+        WebElement button3 = driver.findElement(By.id("ingresarReunion"));
+        button3.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se ingresa a tema
+        WebElement button4 = driver.findElement(By.id("ingresarTema"));
+        button4.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona boton aceptar
+        WebElement button5 = driver.findElement(By.id("aceptarPregunta"));
+        button5.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en Si
+        WebElement button6 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button6.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en crear pregunta
+        WebElement button7 = driver.findElement(By.id("crearPregunta"));
+        button7.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Pregunta...']")).sendKeys("¿Pregunta 2 selenium integración?");
+        // Se hace click en crear
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button8 = driver.findElement(By.id("crear"));
+        button8.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en cerrar sesion
+        WebElement button9 = driver.findElement(By.id("cerrarSesion"));
+        button9.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button10 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button10.click();
+        // Se verifica la redirección a la página de Login
+        String expected = "http://localhost:3000/";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
+    // Inicio de sesión U, ingresar a proyecto, ingresar a reunión, ingresar a tema, crear comentario a pregunta, editar comentario, eliminar comentario, ingresar a preguntas seleccionadas, descargar preguntas seleccionadas, crear requisitos, editar requisito y cerrar sesión.
+    @Test
+    @Order(74)
+    public void pruebaIntegración6(){
+        driver.get("http://localhost:3000/");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en mis proyectos
+        WebElement button = driver.findElement(By.id("misProyectos"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresar a proyecto
+        WebElement button2 = driver.findElement(By.id("ingresarAproyecto"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresarReunion
+        WebElement button3 = driver.findElement(By.id("ingresarReunion"));
+        button3.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se ingresa a tema
+        WebElement button4 = driver.findElement(By.id("ingresarTema"));
+        button4.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en comentarPregunta
+        WebElement button5 = driver.findElement(By.id("comentarPregunta"));
+        button5.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en crearcomentario
+        WebElement button6 = driver.findElement(By.id("crearComentario"));
+        button6.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Ingresar comentario']")).sendKeys("Soy comentario integración selenium");
+        try{
+            Thread.sleep(3500);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en crear
+        WebElement button7 = driver.findElement(By.id("crear"));
+        button7.click();
+        try{
+            Thread.sleep(3500);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en editar
+        WebElement button8 = driver.findElement(By.id("editarComentario"));
+        button8.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button9 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button9.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un comentario']")).sendKeys("Soy comentario integracióne edit selenium");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en editarComentario
+        WebElement button10 = driver.findElement(By.id("editarComentarioBoton"));
+        button10.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en eliminar comentario
+        WebElement button11 = driver.findElement(By.id("eliminarComentario"));
+        button11.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button12 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button12.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en volver
+        WebElement button13 = driver.findElement(By.id("volver"));
+        button13.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona boton ingresar a preguntas seleccionadas
+        WebElement button14 = driver.findElement(By.id("preguntasSeleccionadas"));
+        button14.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona boton descargar
+        WebElement button15 = driver.findElement(By.id("descargar"));
+        button15.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button16 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button16.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en crearRequisito
+        WebElement button17 = driver.findElement(By.id("crearRequisito"));
+        button17.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button18 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button18.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un nombre de requisito']")).sendKeys("requisito integración selenium");
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese una breve descripción']")).sendKeys("descripcion integración selenium");
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un valor para prioridad (1 a 5)']")).sendKeys("2");
+        Select tipoRequisito = new Select(driver.findElement(By.name("id_tipo_requisito")));
+        tipoRequisito.selectByValue("1");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click crear requisito
+        WebElement button19 = driver.findElement(By.id("crearRequisitoBoton"));
+        button19.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ir a requisitos
+        WebElement button20 = driver.findElement(By.id("irRequisitos"));
+        button20.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en editar
+        WebElement button21 = driver.findElement(By.id("editarRequisito"));
+        button21.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button22 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button22.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un nombre de requisito nuevo']")).sendKeys("requisito edit integración 2 selenium");
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese una descripción nueva']")).sendKeys("descripcion integración 2 selenium");
+        driver.findElement(By.xpath("//input[@placeholder='1:Alta Prioridad / 5:Baja Prioridad']")).sendKeys("3");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona boton editarRespuesta
+        WebElement button23 = driver.findElement(By.id("editarRequisitoBoton"));
+        button23.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en cerrar sesion
+        WebElement button24 = driver.findElement(By.id("cerrarSesion"));
+        button24.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button25 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button25.click();
+        // Se verifica la redirección a la página de Login
+        String expected = "http://localhost:3000/";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
+
+    // Inicio de sesión JF, ingresar a proyecto, ingresar a reunión, ingresar a tema, ingresar a preguntas seleccionadas, crear respuesta a pregunta, editar la respuesta, ir a requisitos, aceptar requisito y cerrar sesión.
+
+    @Test
+    @Order(75)
+    public void pruebaIntegración7(){
+        driver.get("http://localhost:3000/");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en mis proyectos
+        WebElement button = driver.findElement(By.id("misProyectos"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresar a proyecto
+        WebElement button2 = driver.findElement(By.id("ingresarAproyecto"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresarReunion
+        WebElement button3 = driver.findElement(By.id("ingresarReunion"));
+        button3.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se ingresa a tema
+        WebElement button4 = driver.findElement(By.id("ingresarTema"));
+        button4.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona boton ingresar a preguntas seleccionadas
+        WebElement button5 = driver.findElement(By.id("preguntasSeleccionadas"));
+        button5.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona boton responder
+        WebElement button6 = driver.findElement(By.id("responderPregunta"));
+        button6.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button7 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button7.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese una respuesta']")).sendKeys("Soy respuesta integración selenium");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona boton responderPregunta
+        WebElement button8 = driver.findElement(By.id("responderPregunta"));
+        button8.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona boton editar
+        WebElement button9 = driver.findElement(By.id("editarRespuesta"));
+        button9.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button10 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button10.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese una respuesta']")).sendKeys("Soy respuesta edit integración selenium");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona boton editarRespuesta
+        WebElement button11 = driver.findElement(By.id("editarRespuesta"));
+        button11.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ir a requisitos
+        WebElement button12 = driver.findElement(By.id("irRequisitos"));
+        button12.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en aceptar requisito
+        WebElement button13 = driver.findElement(By.id("aceptarRequisito"));
+        button13.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button14 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button14.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en cerrar sesion
+        WebElement button15 = driver.findElement(By.id("cerrarSesion"));
+        button15.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button16 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button16.click();
+        // Se verifica la redirección a la página de Login
+        String expected = "http://localhost:3000/";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
+
+    // Inicio de sesión U , ingresar a proyecto, ingresar a reunión, ingresar a tema, ingresar a preguntas seleccionadas, ingresar a requisitos, ingresar a requisitos aceptados, descargar requisitos aceptados y cerrar sesión.
+    
+    @Test
+    @Order(76)
+    public void pruebaIntegración8(){
+        driver.get("http://localhost:3000/");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en mis proyectos
+        WebElement button = driver.findElement(By.id("misProyectos"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresar a proyecto
+        WebElement button2 = driver.findElement(By.id("ingresarAproyecto"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresarReunion
+        WebElement button3 = driver.findElement(By.id("ingresarReunion"));
+        button3.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se ingresa a tema
+        WebElement button4 = driver.findElement(By.id("ingresarTema"));
+        button4.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona boton ingresar a preguntas seleccionadas
+        WebElement button5 = driver.findElement(By.id("preguntasSeleccionadas"));
+        button5.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en crearRequisito
+        WebElement button6 = driver.findElement(By.id("crearRequisito"));
+        button6.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button7 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button7.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un nombre de requisito']")).sendKeys("requisito 2 integración selenium");
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese una breve descripción']")).sendKeys("descripcion 2 integración selenium");
+        driver.findElement(By.xpath("//input[@placeholder='Ingrese un valor para prioridad (1 a 5)']")).sendKeys("2");
+        Select tipoRequisito = new Select(driver.findElement(By.name("id_tipo_requisito")));
+        tipoRequisito.selectByValue("1");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click crear requisito
+        WebElement button8 = driver.findElement(By.id("crearRequisitoBoton"));
+        button8.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ir a requisitos
+        WebElement button9 = driver.findElement(By.id("irRequisitos"));
+        button9.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en requisitos aceptados
+        WebElement button10 = driver.findElement(By.id("requisitosAceptados"));
+        button10.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en descargar requisitos aceptados
+        WebElement button11= driver.findElement(By.id("descargar"));
+        button11.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button12 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button12.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en cerrar sesion
+        WebElement button13 = driver.findElement(By.id("cerrarSesion"));
+        button13.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button14 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button14.click();
+        // Se verifica la redirección a la página de Login
+        String expected = "http://localhost:3000/";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
+
+    // Inicio de sesión JF , ingresar a proyecto, ingresar a reunión, ingresar a tema, ingresar a preguntas seleccionadas, ingresar a requisitos, rechazar requisito, eliminar tema, eliminar reunion, cerrar proyecto, editar contraseña y cerrar sesión.
+
+    @Test
+    @Order(77)
+    public void pruebaIntegración9(){
+        driver.get("http://localhost:3000/");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en mis proyectos
+        WebElement button = driver.findElement(By.id("misProyectos"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresar a proyecto
+        WebElement button2 = driver.findElement(By.id("ingresarAproyecto"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ingresarReunion
+        WebElement button3 = driver.findElement(By.id("ingresarReunion"));
+        button3.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se ingresa a tema
+        WebElement button4 = driver.findElement(By.id("ingresarTema"));
+        button4.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se selecciona boton ingresar a preguntas seleccionadas
+        WebElement button5 = driver.findElement(By.id("preguntasSeleccionadas"));
+        button5.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en ir a requisitos
+        WebElement button6 = driver.findElement(By.id("irRequisitos"));
+        button6.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en rechazar requisito
+        WebElement button7 = driver.findElement(By.id("eliminarRequisito"));
+        button7.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button8 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button8.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        //Se selecciona volver
+        WebElement button9 = driver.findElement(By.id("volver"));
+        button9.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        //Se selecciona volver
+        WebElement button10 = driver.findElement(By.id("volver"));
+        button10.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        //Se selecciona volver
+        WebElement button11 = driver.findElement(By.id("volver"));
+        button11.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        //Se elimina el tema
+        WebElement button12 = driver.findElement(By.id("eliminarTema"));
+        button12.click();
+        try{
+            Thread.sleep(4000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button13 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button13.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        //Se selecciona volver
+        WebElement button14 = driver.findElement(By.id("volver"));
+        button14.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        //Se elimina la reunión
+        WebElement button15 = driver.findElement(By.id("eliminarReunion"));
+        button15.click();
+        try{
+            Thread.sleep(4000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button16 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button16.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        //Se selecciona volver
+        WebElement button17 = driver.findElement(By.id("volver"));
+        button17.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        //Se cierra el proyecto
+        WebElement button18 = driver.findElement(By.id("cerrarProyecto"));
+        button18.click();
+        try{
+            Thread.sleep(4000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button19 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button19.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        // Luego se edita el perfil
+        WebElement button20 = driver.findElement(By.id("verPerfil"));
+        button20.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button21 = driver.findElement(By.id("editarContraseña"));
+        button21.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//input[@placeholder='********']")).sendKeys("123");
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement button22 = driver.findElement(By.id("crearCambio"));
+        button22.click();
+        try{
+            Thread.sleep(4000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en cerrar sesion
+        WebElement button23 = driver.findElement(By.id("cerrarSesion"));
+        button23.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button24 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button24.click();
+        // Se verifica la redirección a la página de Login
+        String expected = "http://localhost:3000/";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
+}
