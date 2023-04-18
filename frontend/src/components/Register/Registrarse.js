@@ -12,7 +12,8 @@ class Registrarse extends Component {
     this.state = { nombre_usuario: "", 
     apellido_usuario: "", 
     correo_usuario: "",
-    contrasena_usuario: "", 
+    contrasena_usuario: "",
+    contrasena_usuario2: "",
     roles:[],
     id_rol:1,
     };
@@ -21,7 +22,6 @@ class Registrarse extends Component {
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
   RegistrarUsuario = (e) => {
     e.preventDefault();
     if (
@@ -29,7 +29,7 @@ class Registrarse extends Component {
       this.state.apellido_usuario !== "" &&
       this.state.correo_usuario !== "" &&
       this.state.contrasena_usuario !== "" &&
-      this.state.id_rol !== "")
+      this.state.id_rol !== "" && this.state.contrasena_usuario === this.state.contrasena_usuario2)
       {
         axios.post("http://localhost:8080/usuario/create", {
         nombre_usuario: this.state.nombre_usuario,
@@ -57,13 +57,20 @@ class Registrarse extends Component {
           }
         })
     }
+    else if (this.state.contrasena_usuario !== this.state.contrasena_usuario2) {
+      swal({
+        title: "Las contraseñas no son identicas",
+        text: "Las contraseñas deben ser identicas para crear el usuario",
+        icon: "warning",
+      });
+    }
     else {
     swal({
       title: "Error al crear el usuario",
-      text: "falla",
+      text: "Ingrese todos los datos de manera correcta",
       icon: "warning",
     });
-
+    
     }
   };
 
@@ -72,7 +79,7 @@ class Registrarse extends Component {
     .get("http://localhost:8080/roles/")
     .then((res) => {
       const roles = res.data;
-      this.setState({ roles: res.data });
+      this.setState({roles});
     })
     .catch((error) => {
       console.log(error);
@@ -84,6 +91,7 @@ class Registrarse extends Component {
     const apellido_usuario = this.state.apellido_usuario;
     const correo_usuario = this.state.correo_usuario;
     const contrasena_usuario = this.state.contrasena_usuario;
+    const contrasena_usuario2 = this.state.contrasena_usuario2;
     const roles = this.state.roles;
 
     return (
@@ -143,6 +151,19 @@ class Registrarse extends Component {
                       type="password"
                       value={contrasena_usuario}
                       name="contrasena_usuario"
+                      onChange={this.changeHandler}
+                      placeholder="*****"
+                      required
+                    />
+                  </label>
+                </div>
+                <div className="form-group">
+                  <label>
+                    Repetir Contraseña:
+                    <input
+                      type="password"
+                      value={contrasena_usuario2}
+                      name="contrasena_usuario2"
                       onChange={this.changeHandler}
                       placeholder="*****"
                       required
