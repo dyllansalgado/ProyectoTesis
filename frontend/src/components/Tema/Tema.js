@@ -8,6 +8,7 @@ import swal from "sweetalert";
 import Dropdown from 'react-bootstrap/Dropdown';
 import "./Tema.css";
 import {AiOutlineCheck} from "react-icons/ai";
+import {BiX} from "react-icons/bi";
 import {BsArrowReturnLeft} from "react-icons/bs";
 import {AiFillLike} from "react-icons/ai";
 import "../Main/NavbarLogeado.css";
@@ -251,19 +252,19 @@ class Tema extends Component {
         }
       });
     }
-    deletePregunta(id_pregunta) {
+    rechazarPregunta(id_pregunta) {
       let idPath = window.location.pathname.split("/");
       swal({
-        title: "Atención",
-        text: "¿Desea eliminar la pregunta seleccionada?",
+        title: "Atención si rechaza la pregunta se eliminará",
+        text: "¿Desea rechazar la pregunta seleccionada?",
         icon: "warning",
         buttons: ["No", "Si"],
       }).then((respuesta) => {
         if (respuesta) {
           axios.delete("http://localhost:8080/pregunta/" + id_pregunta).then((res) => {
             swal({
-              title: "Pregunta borrada",
-              text: "La pregunta ha sido borrada con éxito",
+              title: "Pregunta rechazada",
+              text: "La pregunta ha sido rechazada con éxito",
               icon: "success",
             });
             setTimeout(() => {
@@ -393,7 +394,7 @@ class Tema extends Component {
                       }
                       <th width="170">Estado</th>
                       <th width="100">Votos</th>
-                      <th width="50">Acción</th>
+                      <th width="50">Rechazar Pregunta</th>
                       <th width="50">Comentarios</th>
                     </tr>
                   </thead>
@@ -461,17 +462,20 @@ class Tema extends Component {
                             <Button
                               id="eliminarPregunta"
                               variant="danger"
-                              onClick={() => this.deletePregunta(pregunta.id_pregunta)}
+                              onClick={() => this.rechazarPregunta(pregunta.id_pregunta)}
                             >
+                            
                             {" "}
-                              Eliminar{" "}
+                              Rechazar{" "}
+                            <BiX/>
                             </Button>:
                             <Button
                             variant="secondary"
                             disabled
                           >
                           {" "}
-                            Eliminar{" "}
+                            Rechazar{" "}
+                          <BiX/>
                           </Button>
                             }
                         </td>:
@@ -480,17 +484,19 @@ class Tema extends Component {
                             <Button
                               id="eliminarPregunta"
                               variant="danger"
-                              onClick={() => this.deletePregunta(pregunta.id_pregunta)}
+                              onClick={() => this.rechazarPregunta(pregunta.id_pregunta)}
                             >
                             {" "}
-                              Eliminar{" "}
+                              Rechazar{" "}
+                            <BiX/>
                             </Button>:
                             <Button
                             variant="secondary"
                             disabled
                           >
                           {" "}
-                            Eliminar{" "}
+                            Rechazar{" "}
+                          <BiX/>
                           </Button>
                             }
                           </td> 
