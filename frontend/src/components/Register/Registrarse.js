@@ -4,6 +4,7 @@ import "./Registrarse.css";
 import swal from "sweetalert";
 import { Button, Container, Form} from "react-bootstrap";
 import NavbarInicio from "../Login/NavbarInicio.js";
+import PasswordChecklist from "react-password-checklist"
 
 
 class Registrarse extends Component {
@@ -151,6 +152,8 @@ class Registrarse extends Component {
                       type="password"
                       value={contrasena_usuario}
                       name="contrasena_usuario"
+                      rules={["minLength","specialChar","number","capital","match"]}
+				              minLength={4}
                       onChange={this.changeHandler}
                       placeholder="*****"
                       required
@@ -169,7 +172,21 @@ class Registrarse extends Component {
                       required
                     />
                   </label>
+                  
                 </div>
+                <PasswordChecklist
+				            rules={["minLength","specialChar","number","capital","match"]}
+				            minLength={5}
+				            value={contrasena_usuario}
+                    valueAgain={contrasena_usuario2}
+                    messages={{
+                      minLength: "La contraseña tiene más de 5 caracteres.",
+                      specialChar: "La contraseña tiene caracteres especiales.",
+                      number: "La contraseña tiene un número.",
+                      capital: "La contraseña tiene una letra mayúscula.",
+                      match: "Las contraseñas coinciden."
+                    }}
+			              />
                 <div className="form-group">
                   <label>
                     Tipo de usuario:
