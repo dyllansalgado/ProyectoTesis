@@ -63,6 +63,20 @@ class Login extends Component {
           window.location.replace("http://localhost:3000/main");
         }, 2000);
         }
+        else if(response.data.token_usuario === 1 && response.data.contrasena_usuario === this.state.contrasena_usuario && response.data.id_rol === 3) {
+          localStorage.setItem('usuario', response.data.id_usuario);
+          localStorage.setItem('id_rol', response.data.id_rol);
+          localStorage.setItem('nombreUsuario', response.data.nombre_usuario);
+          localStorage.setItem('token', response.data.nombre_usuario);
+          swal({
+          title: "Ingreso Exitoso",
+          text: "Bienvenido Administrador",
+          icon: "success",
+        });
+        setTimeout(() => {
+          window.location.replace("http://localhost:3000/main");
+        }, 2000);
+        }
         else {
           swal({
             title: "Atención",

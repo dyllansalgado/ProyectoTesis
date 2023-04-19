@@ -61,9 +61,13 @@ public class UsuarioService {
             if(ok.getApellido_usuario() != null){
                 usuarioCreado.setApellido_usuario(ok.getApellido_usuario());
             }
+            if(ok.getId_rol() != null){
+                usuarioCreado.setId_rol(ok.getId_rol());
+            }
             if(ok.getContrasena_usuario() != null){
                 usuarioCreado.setContrasena_usuario(ok.getContrasena_usuario());
             }
+
             usuarioCreado = usuarioRepository.updateUsuario(usuarioCreado, id_usuario);
             return new ResponseEntity<>(gson.toJson(usuarioCreado),HttpStatus.OK);
         }

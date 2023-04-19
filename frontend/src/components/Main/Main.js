@@ -3,6 +3,7 @@ import {Container, Col, Row, Card } from "react-bootstrap";
 import NavbarLogeado from "./NavbarLogeado.js";
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
+import swal from "sweetalert";
 import "./NavbarLogeado.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -87,11 +88,32 @@ class Main extends Component {
     });
   };
 
+  eliminarProyecto(id_proyecto) {
+    let idPath = window.location.pathname.split("/");
+    swal({
+      title: "Atención si selecciona sí el proyecto se eliminará",
+      text: "¿Desea eliminar el proyecto seleccionado?",
+      icon: "warning",
+      buttons: ["No", "Si"],
+    }).then((respuesta) => {
+      if (respuesta) {
+        axios.delete("http://localhost:8080/proyecto/" + id_proyecto).then((res) => {
+          swal({
+            title: "Proyecto eliminado",
+            text: "El proyecto ha sido eliminado con éxito",
+            icon: "success",
+          });
+          setTimeout(() => {
+            window.location.replace("http://localhost:3000/main");
+          }, 2000);
+        });
+      }
+    });
+  }
+
   render() {
     const {usuario} = this.state;
     const {proyectos} = this.state;
-
-
     return (
       <div>
         <div>
@@ -99,6 +121,13 @@ class Main extends Component {
         </div>
         <div>
         <Container fluid>
+            {usuario.id_rol === 3 ?
+            <div>
+                <Col>
+                  <h3 className="titulo"> Bienvenido administrador: {usuario.nombre_usuario}</h3>
+                </Col>
+            </div>
+            :
             <Row>
             {usuario.id_rol === 1 ?
             <div className="center">
@@ -113,6 +142,29 @@ class Main extends Component {
             </div>
             }
             </Row>
+            }
+            {usuario.id_rol === 3 ?
+              <div className="InformacionCentral">
+                <h3 className="centerTitulo"> Proyectos disponibles</h3>
+                <Button id="UsuarioRegistrados" className="botonCrearProyectoUsuario"  href="/usuarios" size="lg">
+                Usuarios
+                </Button>
+                <Col>
+                <div className="filterResponsive">
+                    <div className="filterBlockUsuario">
+                      <input
+                        type="text"
+                        onClick={this.onChange}
+                        onChange={this.onUserChange}
+                        placeholder="Buscar Proyecto..."
+                        ref={this.node}
+                      />
+                    </div>
+                  </div>
+                </Col>
+
+            </div> 
+            :
             <div className="InformacionCentral">
                 {usuario.id_rol === 1 ?
                 <Button id="crearProyecto" className="botonCrearProyecto"  href="/crearProyecto" size="lg">
@@ -157,6 +209,7 @@ class Main extends Component {
                 </Col>
                 }
             </div> 
+            }
             <div>
             <Container fluid>
             <Row className="ProyectosList">
@@ -175,6 +228,17 @@ class Main extends Component {
                         <p>
                           Creador: {proyecto.creadorProyecto} 
                         </p>
+                        {usuario.id_rol === 3 ?
+                        <div className="center">
+                        <Button id= "EliminarProyecto"
+                           variant="danger"
+                          onClick={() => this.eliminarProyecto(proyecto.id_proyecto)}
+                        >
+                          Eliminar Proyecto
+                        </Button>
+                        </div>
+                
+                        :
                         <div className="center">
                           <Button id= "verMasProyecto"
                             variant="outline-primary" href={`/verMasProyecto/${proyecto.id_proyecto}`}
@@ -182,6 +246,7 @@ class Main extends Component {
                             Ver más
                           </Button>
                         </div>
+                        }
                       </Card.Body>
                     </Card>
                 </Col>

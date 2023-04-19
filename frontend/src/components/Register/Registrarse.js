@@ -81,6 +81,8 @@ class Registrarse extends Component {
     .then((res) => {
       const roles = res.data;
       this.setState({roles});
+      roles.pop();
+      console.log(roles);
     })
     .catch((error) => {
       console.log(error);

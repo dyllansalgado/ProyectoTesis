@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
 import Login from "./components/Login/Login";
 import AcercaDe from "./components/Login/AcercaDe";
+import UsuariosAdmin from "./components/Main/UsuariosAdmin";
+import ModificarRol from "./components/Main/ModificarRol";
 import ComoUsar from "./components/Login/ComoUsar";
 import Main from "./components/Main/Main";
 import MisProyectos from "./components/MisProyectos/MisProyectos";
@@ -41,6 +43,8 @@ function App() {
         <Route path="/acercaDe" element={<AcercaDe />} />
         <Route path="/comoUsar" element={<ComoUsar />} />
         <Route path="/main" element={<Main />} />
+        <Route path="/usuarios" element={<UsuariosAdmin/>} />
+        <Route path="/editarRol/:idU" element={<ModificarRol/>} />
         <Route path="/registrarse" element={<Registrarse />} />
         <Route path="/verPerfil" element={<VerPerfil />} />
         <Route path="/crearProyecto" element={<CrearProyecto />} />

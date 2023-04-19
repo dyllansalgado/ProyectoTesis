@@ -75,13 +75,14 @@ public class UsuarioRepositoryImp implements UsuarioRepository {
 
     @Override 
     public Usuario updateUsuario(Usuario usuario, Long id_usuario){
-        String query = "update usuario set nombre_usuario = :nombre_usuario, apellido_usuario = :apellido_usuario, contrasena_usuario = :contrasena_usuario, token_usuario = :token_usuario where id_usuario = :id_usuario and deleted = false";
+        String query = "update usuario set nombre_usuario = :nombre_usuario, apellido_usuario = :apellido_usuario, contrasena_usuario = :contrasena_usuario, id_rol = :id_rol, token_usuario = :token_usuario where id_usuario = :id_usuario and deleted = false";
         try(Connection conn = sql2o.open()){
             Long id = (Long) conn.createQuery(query,true)
                 .addParameter("id_usuario", id_usuario)
                 .addParameter("nombre_usuario", usuario.getNombre_usuario())
                 .addParameter("apellido_usuario", usuario.getApellido_usuario())
                 .addParameter("contrasena_usuario", usuario.getContrasena_usuario())
+                .addParameter("id_rol", usuario.getId_rol())
                 .addParameter("token_usuario", usuario.getToken_usuario())
                 .executeUpdate().getKey(Long.class);
             usuario.setId_usuario(id);
