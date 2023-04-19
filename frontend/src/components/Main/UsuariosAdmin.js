@@ -53,9 +53,8 @@ class UsuariosAdmin extends Component {
     });
   };
   onUserChange = async (e) => {
-    const id = localStorage.getItem('usuario');
     await axios
-      .get("http://localhost:8080/usuario/"+id)
+      .get("http://localhost:8080/usuarios/")
       .then((res) => {
         this.setState({
           usuariosFiltro: res.data,
@@ -70,6 +69,7 @@ class UsuariosAdmin extends Component {
 
         let dataFilter = e.nombre_usuario.toLowerCase();
         let dataCorreo = e.correo_usuario.toLowerCase();
+        let dataApellido = e.apellido_usuario.toLowerCase();
         return (
           dataFilter
             .normalize("NFD")
@@ -78,20 +78,22 @@ class UsuariosAdmin extends Component {
           dataCorreo
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
+            .indexOf(filter) !== -1 ||
+          dataApellido
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
             .indexOf(filter) !== -1
           );
       });
-
     this.setState({
       usuarios: filtroUsuarios,
     });
   };
 
   editarRol(id_usuario){
-    let idPath = window.location.pathname.split("/");
     swal({
       title: "Atención",
-      text: "¿Desea modificar el comentario seleccionado?",
+      text: "¿Desea modificar el rol del usuario seleccionado?",
       icon: "warning",
       buttons: ["No", "Si"],
     }).then((respuesta) => {
@@ -144,6 +146,7 @@ class UsuariosAdmin extends Component {
                       <th width="350">Nombre usuario</th>
                       <th width="350">Apellido usuario</th>
                       <th width="350">Correo usuario</th>
+                      <th width="350">Rol actual</th>
                       <th width="350">Cambiar rol</th>
                     </tr>
                   </thead>
@@ -154,6 +157,18 @@ class UsuariosAdmin extends Component {
                         <td> {users.nombre_usuario} </td>
                         <td> {users.apellido_usuario} </td>
                         <td> {users.correo_usuario} </td>
+                        {users.id_rol === 1 ?
+                          <td> Jefe de Proyecto </td>
+                        :
+                        ""}
+                        {users.id_rol === 2 ?
+                          <td> Usuario </td>
+                        :
+                        ""}
+                        {users.id_rol === 3 ?
+                          <td> Administrador </td>
+                        :
+                        ""}
                         <td>
                         <Button
                               id="modificarRol"

@@ -28,7 +28,7 @@ class ComoUsar extends Component {
         return (
             <div>
                 <div>
-                { usuario.id_rol === 1 || usuario.id_rol === 2 ?
+                { usuario.id_rol === 1 || usuario.id_rol === 2 || usuario.id_rol === 3 ?
                 <NavbarLogeado />:
                 <NavbarInicio />
                 }
@@ -234,7 +234,7 @@ class ComoUsar extends Component {
                                     </h2>
                                 </div>
                                 <div className="text-center">
-                                { usuario.id_rol === 1 || usuario.id_rol === 2 ?
+                                { usuario.id_rol === 1 || usuario.id_rol === 2 || usuario.id_rol === 3?
                                 <Button variant="secondary" className="botonVolver" href="/main" size="sm">Volver</Button>
                                 :
                                 <Button variant="secondary" className="botonVolver" href="/" size="sm">Volver</Button>

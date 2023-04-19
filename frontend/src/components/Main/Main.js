@@ -89,7 +89,6 @@ class Main extends Component {
   };
 
   eliminarProyecto(id_proyecto) {
-    let idPath = window.location.pathname.split("/");
     swal({
       title: "Atención si selecciona sí el proyecto se eliminará",
       text: "¿Desea eliminar el proyecto seleccionado?",

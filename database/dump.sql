@@ -1,9 +1,11 @@
 INSERT INTO rol(id_rol,tipo_rol)
 VALUES(1,'Jefe de Proyecto'),
-(2,'Usuario');
+(2,'Usuario'),
+(3,'Administrador');
 
 INSERT INTO usuario(id_usuario,nombre_usuario,apellido_usuario,contrasena_usuario,correo_usuario,id_rol,token_usuario)
-VALUES(1,'hola','salgado perez','123','juan_a@gmail.com',1,1);
+VALUES(1,'hola','salgado perez','123','juan_a@gmail.com',1,1),
+(2,'admin','admin','contrasenaAdmin','admin@admin.com',3,1);
 
 INSERT INTO proyecto(id_proyecto,nombre_proyecto,fecha_inicio_proyecto,estado_proyecto,objetivo_proyecto,contrasena,creadorProyecto, correoCreador)
 VALUES(1,'Toma de requisitos para empresa Home Canter','2022/09/20',false,'Se solicita que se reunan para comnezar el proyecto','contrasena_123','hola','juan_a@gmail.com');

@@ -42,6 +42,9 @@ class VerPerfil extends Component {
         }else if(usuario.id_rol === 2){
           const rol = "Usuario";
           this.setState({rol});
+        }else if(usuario.id_rol === 3){
+          const rol = "Administrador";
+          this.setState({rol})
         }
       });
     }

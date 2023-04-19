@@ -274,6 +274,28 @@ class Tema extends Component {
         }
       });
     }
+    eliminarPregunta(id_pregunta) {
+      let idPath = window.location.pathname.split("/");
+      swal({
+        title: "Atención si selecciona sí la pregunta se eliminará",
+        text: "¿Desea eliminar la pregunta seleccionada?",
+        icon: "warning",
+        buttons: ["No", "Si"],
+      }).then((respuesta) => {
+        if (respuesta) {
+          axios.delete("http://localhost:8080/pregunta/" + id_pregunta).then((res) => {
+            swal({
+              title: "Pregunta eliminada",
+              text: "La pregunta ha sido eliminada con éxito",
+              icon: "success",
+            });
+            setTimeout(() => {
+              window.location.replace("http://localhost:3000/temaReunion/"+ idPath[2] + "/" + idPath[3]+ "/" + idPath[4]);
+            }, 2000);
+          });
+        }
+      });
+    }
     render() {
       const {proyecto} = this.state;
       const {tema} = this.state;
@@ -394,7 +416,10 @@ class Tema extends Component {
                       }
                       <th width="170">Estado</th>
                       <th width="100">Votos</th>
-                      <th width="50">Rechazar Pregunta</th>
+                      {usuario.id_rol === 1 ?
+                      <th width="50">Rechazar Pregunta</th>:
+                      <th width="50">Eliminar Pregunta</th> 
+                      }
                       <th width="50">Comentarios</th>
                     </tr>
                   </thead>
@@ -484,10 +509,10 @@ class Tema extends Component {
                             <Button
                               id="eliminarPregunta"
                               variant="danger"
-                              onClick={() => this.rechazarPregunta(pregunta.id_pregunta)}
+                              onClick={() => this.eliminarPregunta(pregunta.id_pregunta)}
                             >
                             {" "}
-                              Rechazar{" "}
+                              Eliminar{" "}
                             <BiX/>
                             </Button>:
                             <Button
@@ -495,7 +520,7 @@ class Tema extends Component {
                             disabled
                           >
                           {" "}
-                            Rechazar{" "}
+                            Eliminar{" "}
                           <BiX/>
                           </Button>
                             }

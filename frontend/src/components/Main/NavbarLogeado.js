@@ -47,7 +47,7 @@ class NavbarLogeado extends Component{
             });
             setTimeout(() => {
               window.location.replace("http://localhost:3000/");
-            }, 2000);
+            }, 5000);
           }
         });
     }
