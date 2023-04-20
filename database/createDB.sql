@@ -70,6 +70,7 @@ CREATE TABLE reunion(
     id_reunion serial,
     fecha_reunion date,
     lugar_reunion varchar(256),
+    hora_reunion varchar(256),
     id_proyecto integer NOT NULL,
     PRIMARY KEY (id_reunion),
     deleted boolean NOT NULL DEFAULT false,

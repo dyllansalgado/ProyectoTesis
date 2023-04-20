@@ -204,6 +204,7 @@ class IngresarAProyecto extends Component {
                         <Card.Body>
                             <Card.Title>Fecha de reunión: {meet.fecha_reunion}</Card.Title>
                             <Card.Subtitle>Lugar: {meet.lugar_reunion}</Card.Subtitle>
+                            <Card.Subtitle>Comienzo de la reunión: {meet.hora_reunion}</Card.Subtitle>
                             Estado Proyecto: {proyecto.estado_proyecto === false ? "Disponible" : "Terminado"}
                             <div className="center">
                               <Button id="ingresarReunion"

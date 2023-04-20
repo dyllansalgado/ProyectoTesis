@@ -18,6 +18,7 @@ class CrearReunion extends Component {
         this.state = { fecha_reunion: "", 
         lugar_reunion: "", 
         proyecto: [],
+        hora_reunion:"",
         fecha: new Date("2018", "06", "22"),
         };
     }
@@ -36,11 +37,13 @@ class CrearReunion extends Component {
       e.preventDefault();
       if (
         this.state.fecha_reunion !== "" &&
-        this.state.lugar_reunion !== "" )
+        this.state.lugar_reunion !== "" &&
+        this.state.hora_reunion !== "")
         {
           axios.post("http://localhost:8080/reunion/create", {
           fecha_reunion: this.state.fecha_reunion,
           lugar_reunion: this.state.lugar_reunion,
+          hora_reunion: this.state.hora_reunion,
           id_proyecto: idPath[2]
           });
   
@@ -100,6 +103,7 @@ class CrearReunion extends Component {
     render() {
       const fecha_reunion = this.state.fecha_reunion;
       const lugar_reunion = this.state.lugar_reunion;
+      const hora_reunion = this.state.hora_reunion;
       const {proyecto} = this.state;
       return (
         <div>
@@ -134,6 +138,19 @@ class CrearReunion extends Component {
                           name="lugar_reunion"
                           onChange={this.changeHandler}
                           placeholder="Ingrese un lugar de reunión"
+                          required
+                        />
+                      </label>
+                    </div>
+                    <div className="form-group">
+                      <label>
+                        Hora de reunión:
+                        <input
+                          className="inputRegister"
+                          type="time"
+                          value={hora_reunion}
+                          name="hora_reunion"
+                          onChange={this.changeHandler}
                           required
                         />
                       </label>

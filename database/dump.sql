@@ -10,8 +10,8 @@ VALUES(1,'hola','salgado perez','123','juan_a@gmail.com',1,1),
 INSERT INTO proyecto(id_proyecto,nombre_proyecto,fecha_inicio_proyecto,estado_proyecto,objetivo_proyecto,contrasena,creadorProyecto, correoCreador)
 VALUES(1,'Toma de requisitos para empresa Home Canter','2022/09/20',false,'Se solicita que se reunan para comnezar el proyecto','contrasena_123','hola','juan_a@gmail.com');
 
-INSERT INTO reunion(id_reunion,fecha_reunion,lugar_reunion,id_proyecto)
-VALUES(1,'2022/09/20','zoom',1);
+INSERT INTO reunion(id_reunion,fecha_reunion,hora_reunion,lugar_reunion,id_proyecto)
+VALUES(1,'2022/09/20','22:00','zoom',1);
 
 INSERT INTO glosario(id_glosario,nombre_glosario,descripcion_glosario,id_reunion)
 VALUES(1,'Glosario para toma de requisitos Home Canter','Este glosario muestra algunos terminos que se deberian saber antes de comenzar las reuniones',1);

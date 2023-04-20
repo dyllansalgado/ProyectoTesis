@@ -322,25 +322,11 @@ class Tema extends Component {
                 </div>
               </Row>
               <div className="col-md-12 school-options-dropdown text-center">
-              <Dropdown>
               <Button id="preguntasSeleccionadas" className="botonSeleccionadas"
                 variant="primary" href={`/preguntasSeleccionadas/${proyecto.id_proyecto}/${reunion.id_reunion}/${tema.id_tema}`}
                 >
                 Ingresar a preguntas seleccionadas
               </Button>
-              <Dropdown.Toggle id="dropdown-basic-button">
-                Preguntas Recomendadas
-              </Dropdown.Toggle>
-                <Dropdown.Menu  className="dropdownTamaño">
-                  <Dropdown>* Debes seleccionar la pregunta y se guardará en el portapapeles *</Dropdown>
-                  <Dropdown.Divider />
-                  {preguntasRecomendadas.map((preguntasReco) => (
-                     <Dropdown.Item onClick={() => navigator.clipboard.writeText(preguntasReco.pregunta_recomendada)} >
-                      {preguntasReco.pregunta_recomendada}
-                      </Dropdown.Item>
-                    ))}
-                </Dropdown.Menu>
-              </Dropdown>
               </div>
               <div className="InformacionCentral_2">
               {proyecto.estado_proyecto === false ?
@@ -369,6 +355,22 @@ class Tema extends Component {
                 <ModalHeader closeButton>
                   Creando pregunta del tema: {tema.nombre_tema}
                 </ModalHeader>
+                <div className="col-md-12 school-options-dropdown text-center"> 
+                  <Dropdown>
+                    <Dropdown.Toggle id="dropdown-basic-button">
+                      Preguntas Recomendadas
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu  className="dropdownTamaño">
+                      <Dropdown>* Debes seleccionar la pregunta y se guardará en el portapapeles *</Dropdown>
+                      <Dropdown.Divider />
+                      {preguntasRecomendadas.map((preguntasReco) => (
+                         <Dropdown.Item onClick={() => navigator.clipboard.writeText(preguntasReco.pregunta_recomendada)} >
+                          {preguntasReco.pregunta_recomendada}
+                          </Dropdown.Item>
+                        ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
                 <ModalBody>
                   <Form onSubmit={this.IngresarNuevaPregunta}>
                       <p> Pregunta </p>
@@ -409,7 +411,10 @@ class Tema extends Component {
                   <thead>
                     <tr>
                       <th width="900">Pregunta</th>
-                      <th width="250">Creador</th>
+                      {usuario.id_rol === 1 ?
+                      <th width="250">Creador</th>:
+                      ""
+                      }
                       {usuario.id_rol === 1 ?
                       <th width="170">Aceptar Pregunta</th>:
                       <th width="170">Votar Pregunta</th>
@@ -428,7 +433,11 @@ class Tema extends Component {
                     preguntas.map((pregunta) => (
                       <tr key={pregunta.id_pregunta} >
                         <td> {pregunta.pregunta} </td>
+                        {usuario.id_rol === 1 ?
                         <td> {pregunta.creador} </td>
+                        :
+                        ""
+                        }
                         {usuario.id_rol === 1 ?
                         <td>
                           {" "}

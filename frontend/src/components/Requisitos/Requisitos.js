@@ -300,7 +300,10 @@ class Requisitos extends Component {
                       <th width="700">Tipo de requisito</th>
                       <th width="700">Pregunta</th>
                       <th width="900">Respuesta</th>
+                      {usuario.id_rol === 1 ?
                       <th width="150">Creador</th>
+                      :
+                      ""}
                       <th width="100">Prioridad</th>
                       <th width="500">Acciones</th>
                       <th width="100">Estado</th>
@@ -316,7 +319,9 @@ class Requisitos extends Component {
                         <td> {requisitos.nombre_tipo_requisito} </td>
                         <td> {requisitos.pregunta} </td>
                         <td> {requisitos.respuesta} </td>
-                        <td> {requisitos.creador_requisito}</td>
+                        {usuario.id_rol === 1 ?
+                        <td> {requisitos.creador_requisito}</td>:
+                        ""}
                         <td> {requisitos.prioridad}</td>
                         {usuario.id_rol === 1 ?
                         <td>

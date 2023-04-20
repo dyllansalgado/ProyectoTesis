@@ -20,14 +20,19 @@ class EditarReunion extends Component {
         reunion:[],
         lugar_reunion:"",
         fecha_reunion:"",
+        hora_reunion:"",
         fecha: new Date("2018", "06", "22"),
     };
     this.changeLugar = this.changeLugar.bind(this);
+    this.changeHora = this.changeHora.bind(this);
     }
 
     changeLugar(event) {
         this.setState({ lugar_reunion: event.target.value });
     }
+    changeHora(event) {
+      this.setState({ hora_reunion: event.target.value });
+  }
 
     onChange=fecha=>{
         this.setState({fecha_reunion: fecha});
@@ -82,10 +87,12 @@ class EditarReunion extends Component {
     }
     CambiarDatos(){
         let idPath = window.location.pathname.split("/");
-        if(this.state.lugar_reunion !== "" && this.state.fecha_reunion !== "") {
+        if(this.state.lugar_reunion !== "" && this.state.fecha_reunion !== ""
+        && this.state.hora_reunion !== "") {
         axios.put("http://localhost:8080/reunion/" + idPath[3] ,{
           lugar_reunion: this.state.lugar_reunion,
           fecha_reunion: this.state.fecha_reunion,
+          hora_reunion: this.state.hora_reunion,
           });
           swal({
             title: "Información de reunión modificada con éxito",
@@ -110,6 +117,7 @@ class EditarReunion extends Component {
     const {usuario} = this.state;
     const {reunion} = this.state;
     const lugar_reunion = this.state.lugar_reunion;
+    const hora_reunion = this.state.hora_reunion;
     return(
      <div>
         <div>
@@ -149,6 +157,18 @@ class EditarReunion extends Component {
                         />
                         </div>
                     </div>
+                    <p>Hora Reunion* : {reunion.hora_reunion} </p>
+                      <label>
+                        Hora de reunión:
+                        <input
+                          className="inputRegister"
+                          type="time"
+                          value={hora_reunion}
+                          name="hora_reunion"
+                          onChange={this.changeHandler}
+                          required
+                        />
+                      </label>
                   </Col>
                 </Row>
                 <p>(*) Campos obligatorios</p>

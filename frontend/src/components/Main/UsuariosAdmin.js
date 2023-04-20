@@ -131,7 +131,7 @@ class UsuariosAdmin extends Component {
                       type="text"
                       onClick={this.onChange}
                       onChange={this.onUserChange}
-                      placeholder="Buscar Proyecto..."
+                      placeholder="Buscar Usuario..."
                       ref={this.node}
                     />
                   </div>

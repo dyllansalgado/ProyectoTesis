@@ -6,9 +6,16 @@ public class Reunion {
     private Long id_proyecto;
     private Date fecha_reunion;
     private String lugar_reunion;
+    private String hora_reunion;
     private boolean deleted;
         
     //Getter and Setter
+    public String getHora_reunion() {
+        return hora_reunion;
+    }
+    public void setHora_reunion(String hora_reunion) {
+        this.hora_reunion = hora_reunion;
+    }
     public Long getId_reunion() {
         return id_reunion;
     }

@@ -64,6 +64,9 @@ public class ReunionService {
             if(ok.getLugar_reunion() != null){
                 reunionCreado.setLugar_reunion(ok.getLugar_reunion());
             }
+            if(ok.getHora_reunion() != null){
+                reunionCreado.setHora_reunion(ok.getHora_reunion());
+            }
             reunionCreado = reunionRepository.updateReunion(reunionCreado, id_reunion);
             return new ResponseEntity<>(gson.toJson(reunionCreado),HttpStatus.OK);
         }
