@@ -64,8 +64,6 @@ class VerMasProyecto extends Component {
           contrasena: this.state.contrasena
         })
         .then((response) => {
-            console.log(response.data);
-            console.log(this.state.contrasena);
             if (response.data === true) {
               swal({
                 title: "Contraseña correcta",
