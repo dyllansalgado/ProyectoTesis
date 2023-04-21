@@ -6,6 +6,7 @@ import NavbarLogeado from "../Main/NavbarLogeado.js";
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import "./CrearProyecto.css";
+import PasswordChecklist from "react-password-checklist"
 import es from "date-fns/locale/es"
 registerLocale("es",es);
 
@@ -16,6 +17,7 @@ class CrearProyecto extends Component {
       fecha_inicio_proyecto: "", 
       objetivo_proyecto: "",
       contrasena: "",
+      contrasena2:"",
       usuario: [],
       id: null,
       estado_proyecto: false,
@@ -37,7 +39,8 @@ class CrearProyecto extends Component {
         this.state.nombre_proyecto !== "" &&
         this.state.fecha_inicio_proyecto !== "" &&
         this.state.objetivo_proyecto !== "" &&
-        this.state.contrasena !== "")
+        this.state.contrasena !== "" &&
+        this.state.contrasena === this.state.contrasena2)
         {
           axios.all([
             axios.post("http://localhost:8080/proyecto/create/"+localStorage.getItem('usuario'), {
@@ -82,6 +85,7 @@ class CrearProyecto extends Component {
       const nombre_proyecto = this.state.nombre_proyecto;
       const objetivo_proyecto = this.state.objetivo_proyecto;
       const contrasena = this.state.contrasena;
+      const contrasena2 = this.state.contrasena2;
   
       return (
         <div>
@@ -148,6 +152,32 @@ class CrearProyecto extends Component {
                       />
                     </label>
                   </div>
+                  <div className="form-group">
+                  <label>
+                    Repetir Contraseña:
+                    <input
+                      type="password"
+                      value={contrasena2}
+                      name="contrasena2"
+                      onChange={this.changeHandler}
+                      placeholder="*****"
+                      required
+                    />
+                  </label>
+                  </div>
+                  <PasswordChecklist
+				            rules={["minLength","specialChar","number","capital","match"]}
+				            minLength={5}
+				            value={contrasena}
+                    valueAgain={contrasena2}
+                    messages={{
+                      minLength: "La contraseña tiene más de 5 caracteres.",
+                      specialChar: "La contraseña tiene caracteres especiales.",
+                      number: "La contraseña tiene un número.",
+                      capital: "La contraseña tiene una letra mayúscula.",
+                      match: "Las contraseñas coinciden."
+                    }}
+			            />
                   <div className="text-center">
                   <Button className="botonIngresar" type ="submit" value="Submit" size="sm">
                     {" "}
