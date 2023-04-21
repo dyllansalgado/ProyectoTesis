@@ -116,7 +116,7 @@ public class ProyectoRepositoryImp implements ProyectoRepository {
     @Override
     public  List<Proyecto> getListUsuarioProyectos(Long id_usuario) {
         String query = "select p.* from usuario_proyecto up, usuario u , proyecto p"+
-        " where u.id_usuario=:id_usuario and u.id_usuario = up.id_usuario and up.id_proyecto = p.id_proyecto";
+        " where u.id_usuario=:id_usuario and u.id_usuario = up.id_usuario and up.id_proyecto = p.id_proyecto and p.deleted = false";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(query).addParameter("id_usuario", id_usuario).executeAndFetch(Proyecto.class);
         }
