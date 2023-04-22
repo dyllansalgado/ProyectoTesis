@@ -333,7 +333,7 @@ class IngresarAGlosario extends Component {
                                           type="text"
                                           onClick={this.onChange}
                                           onChange={this.onUserChange}
-                                          placeholder="Buscar Termino..."
+                                          placeholder="Buscar Término..."
                                           ref={this.node}
                                         />
                                     </div>
