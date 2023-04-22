@@ -194,7 +194,7 @@ class ComentarPregunta extends Component {
                           <div className="container-fluid cew-9">
                               <div className="row">
                                   <div className="subtitulo">
-                                      Fecha de reunion: {reunion.fecha_reunion} / Lugar de reunion : {reunion.lugar_reunion}
+                                      Fecha de reunión: {reunion.fecha_reunion} / Hora de reunión: {reunion.hora_reunion} / Lugar de reunión: {reunion.lugar_reunion}
                                   </div>
                               </div>
                           </div>

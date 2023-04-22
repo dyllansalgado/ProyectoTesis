@@ -231,7 +231,7 @@ class RequisitosAceptados extends Component {
                         type="text"
                         onClick={this.onChange}
                         onChange={this.onUserChange}
-                        placeholder="Buscar pregunta..."
+                        placeholder="Buscar requisito..."
                         ref={this.node}
                       />
                   </div>
