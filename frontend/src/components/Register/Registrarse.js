@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./Registrarse.css";
 import swal from "sweetalert";
-import { Button, Container, Form} from "react-bootstrap";
+import { Button, Container} from "react-bootstrap";
 import NavbarInicio from "../Login/NavbarInicio.js";
 import PasswordChecklist from "react-password-checklist"
 
@@ -16,7 +16,7 @@ class Registrarse extends Component {
     contrasena_usuario: "",
     contrasena_usuario2: "",
     roles:[],
-    id_rol:1,
+    id_rol:2,
     };
   }
 
@@ -29,15 +29,15 @@ class Registrarse extends Component {
       this.state.nombre_usuario !== "" &&
       this.state.apellido_usuario !== "" &&
       this.state.correo_usuario !== "" &&
-      this.state.contrasena_usuario !== "" &&
-      this.state.id_rol !== "" && this.state.contrasena_usuario === this.state.contrasena_usuario2)
+      this.state.contrasena_usuario !== "" && 
+      this.state.contrasena_usuario === this.state.contrasena_usuario2)
       {
         axios.post("http://localhost:8080/usuario/create", {
         nombre_usuario: this.state.nombre_usuario,
         apellido_usuario: this.state.apellido_usuario,
         correo_usuario: this.state.correo_usuario,
         contrasena_usuario: this.state.contrasena_usuario,
-        id_rol: this.state.id_rol,
+        id_rol: 2 ,
         }).then(response => {
           if(response.data){
             swal({
@@ -95,7 +95,6 @@ class Registrarse extends Component {
     const correo_usuario = this.state.correo_usuario;
     const contrasena_usuario = this.state.contrasena_usuario;
     const contrasena_usuario2 = this.state.contrasena_usuario2;
-    const roles = this.state.roles;
 
     return (
       <div>
@@ -155,7 +154,7 @@ class Registrarse extends Component {
                       value={contrasena_usuario}
                       name="contrasena_usuario"
                       rules={["minLength","specialChar","number","capital","match"]}
-				              minLength={4}
+				              minLength={8}
                       onChange={this.changeHandler}
                       placeholder="*****"
                       required
@@ -178,34 +177,17 @@ class Registrarse extends Component {
                 </div>
                 <PasswordChecklist
 				            rules={["minLength","specialChar","number","capital","match"]}
-				            minLength={5}
+				            minLength={8}
 				            value={contrasena_usuario}
                     valueAgain={contrasena_usuario2}
                     messages={{
-                      minLength: "La contraseña tiene más de 5 caracteres.",
+                      minLength: "La contraseña tiene más de 8 caracteres.",
                       specialChar: "La contraseña tiene caracteres especiales.",
                       number: "La contraseña tiene un número.",
                       capital: "La contraseña tiene una letra mayúscula.",
                       match: "Las contraseñas coinciden."
                     }}
 			              />
-                <div className="form-group">
-                  <label>
-                    Tipo de usuario:
-                    <Form.Select
-                      aria-label="Select id_rol"
-                      name="id_rol"
-                      onChange={this.changeHandler}
-                      required
-                    >
-                    {roles.map((rol) => (
-                      <option key={rol.id_rol} type="text" value={rol.id_rol} >
-                        {rol.tipo_rol}
-                      </option>
-                    ))}
-                    </Form.Select>
-                  </label>
-                </div>
                 <div className="text-center">
                 <Button title = "registerButton" variant="secondary" className="botonIngresar" type="submit" value="Submit" size="sm">
                   {" "}

@@ -145,6 +145,7 @@ class CrearProyecto extends Component {
                         className="inputRegister"
                         type="password"
                         value={contrasena}
+                        minLength={8}
                         name="contrasena"
                         onChange={this.changeHandler}
                         placeholder="*****"
@@ -167,11 +168,11 @@ class CrearProyecto extends Component {
                   </div>
                   <PasswordChecklist
 				            rules={["minLength","specialChar","number","capital","match"]}
-				            minLength={5}
+				            minLength={8}
 				            value={contrasena}
                     valueAgain={contrasena2}
                     messages={{
-                      minLength: "La contraseña tiene más de 5 caracteres.",
+                      minLength: "La contraseña tiene más de 8 caracteres.",
                       specialChar: "La contraseña tiene caracteres especiales.",
                       number: "La contraseña tiene un número.",
                       capital: "La contraseña tiene una letra mayúscula.",
