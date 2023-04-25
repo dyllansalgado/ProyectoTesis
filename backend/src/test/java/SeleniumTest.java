@@ -55,12 +55,11 @@ public class SeleniumTest {
         // Bajamos con el scroll para ver todo el form.
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
-        driver.findElement(By.xpath("//input[@placeholder='Nombre de Usuario']")).sendKeys("admin");
-        driver.findElement(By.xpath("//input[@placeholder='Apellido de Usuario']")).sendKeys("admin");
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
-        Select rol = new Select(driver.findElement(By.name("id_rol")));
-        rol.selectByValue("1");
+        driver.findElement(By.xpath("//input[@placeholder='Nombre de Usuario']")).sendKeys("usuario");
+        driver.findElement(By.xpath("//input[@placeholder='Apellido de Usuario']")).sendKeys("usuario");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='Contraseña']")).sendKeys("Contrasena_1");
+        driver.findElement(By.xpath("//input[@placeholder='Repetir Contraseña']")).sendKeys("Contrasena_1");
         try{
             Thread.sleep(3500);
         }catch (InterruptedException e){
@@ -111,8 +110,9 @@ public class SeleniumTest {
         js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
         driver.findElement(By.xpath("//input[@placeholder='Nombre de Usuario']")).sendKeys("pepito");
         driver.findElement(By.xpath("//input[@placeholder='Apellido de Usuario']")).sendKeys("perez");
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("123");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='Contraseña']")).sendKeys("Contrasena_1");
+        driver.findElement(By.xpath("//input[@placeholder='Repetir Contraseña']")).sendKeys("Contrasena_1");
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -152,8 +152,8 @@ public class SeleniumTest {
     @Order(6)
     public void pruebaLoginExito(){
         driver.navigate().refresh();
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("dyllan_s@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("123");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         // Se verifica la redirección a la página de creación de cuenta
         String expected = "http://localhost:3000/main";
@@ -177,7 +177,8 @@ public class SeleniumTest {
         driver.findElement(By.xpath("//input[@placeholder='Proyecto....']")).sendKeys("Soy un proyecto de selenium");
         driver.findElement(By.xpath("//input[@class='pickers']")).sendKeys("24-12-2022");
         driver.findElement(By.xpath("//input[@placeholder='Objetivos del proyecto']")).sendKeys("Soy un objetivo del proyecto de selenium");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1234");
+        driver.findElement(By.xpath("//input[@placeholder='Contraseña']")).sendKeys("Contrasena_proyecto");
+        driver.findElement(By.xpath("//input[@placeholder='Repetir Contraseña']")).sendKeys("Contrasena_proyecto");
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -235,8 +236,8 @@ public class SeleniumTest {
     @Order(10)
     public void pruebaLoginExito2(){
         driver.navigate().refresh();
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("juan_a@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("123");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("Contrasena_1");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         // Se verifica la redirección a la página de main
         String expected = "http://localhost:3000/main";
@@ -277,7 +278,7 @@ public class SeleniumTest {
         // Se hace click ver mas proyecto
         WebElement button = driver.findElement(By.id("verMasProyecto"));
         button.click();
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1234");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("Contrasena_proyecto");
         WebElement button2 = driver.findElement(By.id("botonRegistrarProyecto"));
         button2.click();
         // Se verifica la redirección a la página de main.
@@ -310,8 +311,8 @@ public class SeleniumTest {
     @Order(14)
     public void pruebaLoginExito3(){
         driver.navigate().refresh();
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("dyllan_s@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("123");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         // Se verifica la redirección a la página de creación de cuenta
         String expected = "http://localhost:3000/main";
@@ -451,6 +452,8 @@ public class SeleniumTest {
             e.printStackTrace();
         }
         driver.findElement(By.xpath("//input[@placeholder='Ingrese un lugar de reunión']")).sendKeys("En selenium");
+        WebElement hora = driver.findElement(By.id("hora_reunion"));
+        hora.sendKeys("10:30");
         // Se hace click en crear reunion
         WebElement button3 = driver.findElement(By.id("reunionCrear"));
         button3.click();
@@ -526,6 +529,8 @@ public class SeleniumTest {
         }
         driver.findElement(By.xpath("//input[@placeholder='Ingrese un nombre de lugar de reunion nuevo']")).sendKeys("edit selenium lugar de reunion");
         driver.findElement(By.xpath("//input[@class='pickers']")).sendKeys("30-12-2022");
+        WebElement hora = driver.findElement(By.id("hora_reunion"));
+        hora.sendKeys("12:30");
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -1406,13 +1411,11 @@ public class SeleniumTest {
         WebElement button2 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
         button2.click();
         driver.get("http://localhost:3000/registrarse");
-        driver.findElement(By.xpath("//input[@placeholder='Nombre de Usuario']")).sendKeys("usuario");
-        driver.findElement(By.xpath("//input[@placeholder='Apellido de Usuario']")).sendKeys("usuario");
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
-        // Se selecciona el tema como servicio al cliente
-        Select rol = new Select(driver.findElement(By.name("id_rol")));
-        rol.selectByValue("2");
+        driver.findElement(By.xpath("//input[@placeholder='Nombre de Usuario']")).sendKeys("usuario2");
+        driver.findElement(By.xpath("//input[@placeholder='Apellido de Usuario']")).sendKeys("usuario2");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='Contraseña']")).sendKeys("Contrasena_1");
+        driver.findElement(By.xpath("//input[@placeholder='Repetir Contraseña']")).sendKeys("Contrasena_1");
         // Bajamos con el scroll para ver todo el form.
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
@@ -1427,8 +1430,8 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("Contrasena_1");
         try{
             Thread.sleep(3500);
         }catch (InterruptedException e){
@@ -1446,7 +1449,7 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1234");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("Contrasena_proyecto");
         WebElement button3 = driver.findElement(By.id("botonRegistrarProyecto"));
         button3.click();
         try{
@@ -1553,8 +1556,8 @@ public class SeleniumTest {
             e.printStackTrace();
         }
         driver.navigate().refresh();
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("dyllan_s@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("123");
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -1848,8 +1851,8 @@ public class SeleniumTest {
     @Order(55)
     public void CrearRequisito(){
         driver.navigate().refresh();
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("Contrasena_1");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         // Se verifica la redirección a la página de creación de cuenta
         // Se hace click en mis proyectos
@@ -2050,8 +2053,8 @@ public class SeleniumTest {
             e.printStackTrace();
         }
         driver.navigate().refresh();
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("dyllan_s@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("123");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         // Se verifica la redirección a la página de creación de cuenta
         // Se hace click en mis proyectos
@@ -2350,8 +2353,8 @@ public class SeleniumTest {
     @Order(64)
     public void CrearComentario(){
         driver.navigate().refresh();
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario2@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("Contrasena_1");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         // Se verifica la redirección a la página de creación de cuenta
         // Se hace click en mis proyectos
@@ -2529,8 +2532,8 @@ public class SeleniumTest {
     @Order(67)
     public void eliminarTemaReunionYcerrarProyecto(){        
         driver.navigate().refresh();
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("dyllan_s@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("123");
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -2692,14 +2695,117 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-    }*/
+    }
+    
+    @Test
+    @Order(69)
+    public void pruebaCambiarRol(){
+        driver.navigate().refresh();
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin@admin.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("contrasenaAdmin");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en usuarios registrados
+        WebElement button = driver.findElement(By.id("UsuarioRegistrados"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en modificar roles
+        WebElement button2 = driver.findElement(By.id("modificarRol"));
+        button2.click();
+        try{
+            Thread.sleep(3500);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button3 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button3.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en usuarios modificar rol
+        WebElement button4 = driver.findElement(By.id("editarRolBoton"));
+        button4.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button5 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button5.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en cerrar sesion
+        WebElement button6 = driver.findElement(By.id("cerrarSesion"));
+        button6.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button7 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button7.click();
+        // Se verifica la redirección a la página de Login
+        String expected = "http://localhost:3000/";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    }
+    @Test
+    @Order(70)
+    public void pruebaEliminarProyecto(){
+        driver.navigate().refresh();
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin@admin.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("contrasenaAdmin");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en eliminar proyecto
+        WebElement button = driver.findElement(By.id("EliminarProyecto"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    
+        // Se hace click en si
+        WebElement button2 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button2.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        String expected = "http://localhost:3000/main";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+    } */
+
 
     // A continuación se efectuan las pruebas de integración, donde JF corresponden a las de jefe de proyecto y U a las de usuario.
 
     // Crear usuario JF, inicio de sesión JF, creación de proyectos, ingresar a proyecto, creación de reunión, creación de tema y cerrar sesión.
 
     @Test
-    @Order(69)
+    @Order(71)
     public void pruebaIntegración1(){
         driver.get("http://localhost:3000/registrarse");
         driver.navigate().refresh();
@@ -2711,12 +2817,11 @@ public class SeleniumTest {
         // Bajamos con el scroll para ver todo el form.
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
-        driver.findElement(By.xpath("//input[@placeholder='Nombre de Usuario']")).sendKeys("admin2");
-        driver.findElement(By.xpath("//input[@placeholder='Apellido de Usuario']")).sendKeys("admin2");
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin2@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
-        Select rol = new Select(driver.findElement(By.name("id_rol")));
-        rol.selectByValue("1");
+        driver.findElement(By.xpath("//input[@placeholder='Nombre de Usuario']")).sendKeys("Pedrito");
+        driver.findElement(By.xpath("//input[@placeholder='Apellido de Usuario']")).sendKeys("Perez");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("Pedrito@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='Contraseña']")).sendKeys("Contrasena_1");
+        driver.findElement(By.xpath("//input[@placeholder='Repetir Contraseña']")).sendKeys("Contrasena_1");
         try{
             Thread.sleep(3500);
         }catch (InterruptedException e){
@@ -2729,8 +2834,8 @@ public class SeleniumTest {
             e.printStackTrace();
         }
         driver.get("http://localhost:3000/");
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin2@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("dyllan_s@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("123");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         try{
             Thread.sleep(3000);
@@ -2743,7 +2848,8 @@ public class SeleniumTest {
         driver.findElement(By.xpath("//input[@placeholder='Proyecto....']")).sendKeys("Soy un proyecto integración");
         driver.findElement(By.xpath("//input[@class='pickers']")).sendKeys("24-05-2023");
         driver.findElement(By.xpath("//input[@placeholder='Objetivos del proyecto']")).sendKeys("Soy un objetivo del proyecto de integración");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1234");
+        driver.findElement(By.xpath("//input[@placeholder='Contraseña']")).sendKeys("Contrasena_proyecto1");
+        driver.findElement(By.xpath("//input[@placeholder='Repetir Contraseña']")).sendKeys("Contrasena_proyecto1");
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -2814,6 +2920,13 @@ public class SeleniumTest {
             e.printStackTrace();
         }
         driver.findElement(By.xpath("//input[@placeholder='Ingrese un lugar de reunión']")).sendKeys("En selenium integración");
+        try{
+            Thread.sleep(2000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        WebElement hora = driver.findElement(By.id("hora_reunion"));
+        hora.sendKeys("08:30");
         // Se hace click en crear reunion
         WebElement button9 = driver.findElement(By.id("reunionCrear"));
         button9.click();
@@ -2840,6 +2953,8 @@ public class SeleniumTest {
         }
         driver.findElement(By.xpath("//input[@placeholder='Ingrese un nombre de lugar de reunion nuevo']")).sendKeys("edit integración selenium lugar de reunion");
         driver.findElement(By.xpath("//input[@class='pickers']")).sendKeys("30-04-2023");
+        WebElement hora2 = driver.findElement(By.id("hora_reunion"));
+        hora2.sendKeys("10:30");
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -2928,7 +3043,7 @@ public class SeleniumTest {
     }
     // Crear usuario U, inicio de sesión U, registro de proyecto, ingresar a proyecto, ingresar a reunión, ingresar a tema y cerrar sesión.
     @Test
-    @Order(70)
+    @Order(72)
     public void pruebaIntegración2(){
         driver.get("http://localhost:3000/registrarse");
         driver.navigate().refresh();
@@ -2937,29 +3052,9 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        // Bajamos con el scroll para ver todo el form.
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
-        driver.findElement(By.xpath("//input[@placeholder='Nombre de Usuario']")).sendKeys("usuario2");
-        driver.findElement(By.xpath("//input[@placeholder='Apellido de Usuario']")).sendKeys("usuario2");
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario2@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
-        Select rol = new Select(driver.findElement(By.name("id_rol")));
-        rol.selectByValue("2");
-        try{
-            Thread.sleep(3500);
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
-        try{
-            Thread.sleep(3500);
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
         driver.get("http://localhost:3000/");
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario2@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("Pedrito@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("Contrasena_1");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         try{
             Thread.sleep(3000);
@@ -2972,7 +3067,7 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1234");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("Contrasena_proyecto1");
         WebElement button = driver.findElement(By.id("botonRegistrarProyecto"));
         button.click();
         try{
@@ -3025,11 +3120,11 @@ public class SeleniumTest {
     // Inicio de sesión JF, ingresar a proyecto, ingresar a reunión, ingresar a glosarios, crear glosario, ingresar a glosario, crear término, descargar en pdf y cerrar sesión.
 
     @Test
-    @Order(71)
+    @Order(73)
     public void pruebaIntegración3(){
         driver.get("http://localhost:3000/");
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin2@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("dyllan_s@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("123");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         try{
             Thread.sleep(3000);
@@ -3277,11 +3372,11 @@ public class SeleniumTest {
     // Inicio de sesión U, ingresar a proyecto, ingresar a reunión, ingresar a tema, crear pregunta, votar pregunta y cerrar sesión.
 
     @Test
-    @Order(72)
+    @Order(74)
     public void pruebaIntegración4(){
         driver.get("http://localhost:3000/");
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario2@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("Pedrito@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("Contrasena_1");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         try{
             Thread.sleep(3000);
@@ -3377,11 +3472,11 @@ public class SeleniumTest {
     // Inicio de sesión JF, ingresar a proyecto, ingresar a reunión, ingresar a tema, aceptar pregunta, crear pregunta y cerrar sesión.
 
     @Test
-    @Order(73)
+    @Order(75)
     public void pruebaIntegración5(){
         driver.get("http://localhost:3000/");
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin2@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("dyllan_s@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("123");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         try{
             Thread.sleep(3000);
@@ -3476,11 +3571,11 @@ public class SeleniumTest {
     }
     // Inicio de sesión U, ingresar a proyecto, ingresar a reunión, ingresar a tema, crear comentario a pregunta, editar comentario, eliminar comentario, ingresar a preguntas seleccionadas, descargar preguntas seleccionadas, crear requisitos, editar requisito y cerrar sesión.
     @Test
-    @Order(74)
+    @Order(76)
     public void pruebaIntegración6(){
         driver.get("http://localhost:3000/");
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario2@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("Pedrito@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("Contrasena_1");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         try{
             Thread.sleep(3000);
@@ -3729,11 +3824,11 @@ public class SeleniumTest {
     // Inicio de sesión JF, ingresar a proyecto, ingresar a reunión, ingresar a tema, ingresar a preguntas seleccionadas, crear respuesta a pregunta, editar la respuesta, ir a requisitos, aceptar requisito y cerrar sesión.
 
     @Test
-    @Order(75)
+    @Order(77)
     public void pruebaIntegración7(){
         driver.get("http://localhost:3000/");
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin2@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("dyllan_s@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("123");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         try{
             Thread.sleep(3000);
@@ -3884,11 +3979,11 @@ public class SeleniumTest {
     // Inicio de sesión U , ingresar a proyecto, ingresar a reunión, ingresar a tema, ingresar a preguntas seleccionadas, ingresar a requisitos, ingresar a requisitos aceptados, descargar requisitos aceptados y cerrar sesión.
     
     @Test
-    @Order(76)
+    @Order(78)
     public void pruebaIntegración8(){
         driver.get("http://localhost:3000/");
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("usuario2@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("Pedrito@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("Contrasena_1");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         try{
             Thread.sleep(3000);
@@ -4023,11 +4118,11 @@ public class SeleniumTest {
     // Inicio de sesión JF , ingresar a proyecto, ingresar a reunión, ingresar a tema, ingresar a preguntas seleccionadas, ingresar a requisitos, rechazar requisito, eliminar tema, eliminar reunion, cerrar proyecto, editar contraseña y cerrar sesión.
 
     @Test
-    @Order(77)
+    @Order(79)
     public void pruebaIntegración9(){
         driver.get("http://localhost:3000/");
-        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin2@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("1");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("dyllan_s@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("123");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
         try{
             Thread.sleep(3000);
@@ -4202,7 +4297,7 @@ public class SeleniumTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        driver.findElement(By.xpath("//input[@placeholder='********']")).sendKeys("123");
+        driver.findElement(By.xpath("//input[@placeholder='********']")).sendKeys("1234");
         try{
             Thread.sleep(3000);
         }catch (InterruptedException e){
@@ -4230,5 +4325,100 @@ public class SeleniumTest {
         String expected = "http://localhost:3000/";
         Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
         Assertions.assertTrue(url);
+    }
+
+    // Login usuario admin, cambio  de rol a usuario, eliminar proyecto y cerrar sesión
+    @Test
+    @Order(80)
+    public void pruebaIntegración10(){
+        driver.get("http://localhost:3000/");
+        driver.findElement(By.xpath("//input[@placeholder='ejemplo@gmail.com']")).sendKeys("admin@admin.com");
+        driver.findElement(By.xpath("//input[@placeholder='*****']")).sendKeys("contrasenaAdmin");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en usuarios registrados
+        WebElement button = driver.findElement(By.id("UsuarioRegistrados"));
+        button.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en modificar roles
+        WebElement button2 = driver.findElement(By.id("modificarRol"));
+        button2.click();
+        try{
+            Thread.sleep(3500);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button3 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button3.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en usuarios modificar rol
+        WebElement button4 = driver.findElement(By.id("editarRolBoton"));
+        button4.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button5 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button5.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en uvolver
+        WebElement button6 = driver.findElement(By.id("Volver"));
+        button6.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en eliminar proyecto
+        WebElement button7 = driver.findElement(By.id("EliminarProyecto"));
+        button7.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button8 = driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button8.click();
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        // Se hace click en cerrar sesion
+        WebElement button9 = driver.findElement(By.id("cerrarSesion"));
+        button9.click();
+        try{
+           Thread.sleep(3000);
+        }catch (InterruptedException e){
+           e.printStackTrace();
+        }
+        // Se hace click en si
+        WebElement button10= driver.findElement(By.xpath("//div['swal-overlay swal-overlay--show-modal']//div['swal-modal']//div['swal-footer']//div['swal-button-container']//button[@class='swal-button swal-button--confirm']"));
+        button10.click();
+        // Se verifica la redirección a la página de Login
+        String expected = "http://localhost:3000/";
+        Boolean url = new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(expected));
+        Assertions.assertTrue(url);
+
     }
 }

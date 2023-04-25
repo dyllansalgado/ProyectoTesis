@@ -121,7 +121,7 @@ class UsuariosAdmin extends Component {
             </div>
             <div className="InformacionCentral">
               <h3 className="centerTitulo"> Usuarios registrados</h3>
-              <Button id="UsuarioRegistrados" className="botonCrearProyectoUsuario"  href="/main" size="lg">
+              <Button id="Volver" className="botonCrearProyectoUsuario"  href="/main" size="lg">
               Volver
               </Button>
               <Col>

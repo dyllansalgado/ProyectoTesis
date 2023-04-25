@@ -148,7 +148,7 @@ class CrearProyecto extends Component {
                         minLength={8}
                         name="contrasena"
                         onChange={this.changeHandler}
-                        placeholder="*****"
+                        placeholder="Contraseña"
                         required
                       />
                     </label>
@@ -161,7 +161,7 @@ class CrearProyecto extends Component {
                       value={contrasena2}
                       name="contrasena2"
                       onChange={this.changeHandler}
-                      placeholder="*****"
+                      placeholder="Repetir Contraseña"
                       required
                     />
                   </label>

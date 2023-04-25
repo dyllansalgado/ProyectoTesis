@@ -78,7 +78,7 @@ class ModificarRol extends Component {
               id_rol: this.state.id_rol,
               });
               swal({
-                title: "Información de rol modificado con exito",
+                title: "Información de rol modificado con éxito",
                 text: "El rol ha sido modificado correctamente",
                 icon: "success",
               });

@@ -4,11 +4,12 @@ VALUES(1,'Jefe de Proyecto'),
 (3,'Administrador');
 
 INSERT INTO usuario(id_usuario,nombre_usuario,apellido_usuario,contrasena_usuario,correo_usuario,id_rol,token_usuario)
-VALUES(1,'hola','salgado perez','123','juan_a@gmail.com',1,1),
-(2,'admin','admin','contrasenaAdmin','admin@admin.com',3,1);
+VALUES(1,'Roberto','Espinoza','123','Roberto_s@gmail.com',1,1),
+(2,'Dyllan','Salgado','123','dyllan_s@gmail.com',1,1),
+(3,'admin','admin','contrasenaAdmin','admin@admin.com',3,1);
 
 INSERT INTO proyecto(id_proyecto,nombre_proyecto,fecha_inicio_proyecto,estado_proyecto,objetivo_proyecto,contrasena,creadorProyecto, correoCreador)
-VALUES(1,'Toma de requisitos para empresa Home Canter','2022/09/20',false,'Se solicita que se reunan para comnezar el proyecto','contrasena_123','hola','juan_a@gmail.com');
+VALUES(1,'Toma de requisitos para empresa Home Canter','2022/09/20',false,'Se solicita que se reunan para comnezar el proyecto','contrasena_123','hola','Roberto_s@gmail.com');
 
 INSERT INTO reunion(id_reunion,fecha_reunion,hora_reunion,lugar_reunion,id_proyecto)
 VALUES(1,'2022/09/20','22:00','zoom',1);
@@ -20,7 +21,7 @@ INSERT INTO glosario(id_glosario,nombre_glosario,descripcion_glosario,id_reunion
 VALUES(2,'Soy un segundo glosario para reunion 1','a',1);
 
 INSERT INTO termino(id_termino,nombre_termino,descripcion_termino,id_glosario,correoCreador)
-VALUES(1,'Electro-Domesticos','Esta descripcion es god',1,'juan_a@gmail.com');
+VALUES(1,'Electro-Domesticos','Esta descripcion es god',1,'Roberto_s@gmail.com');
 
 INSERT INTO tema(id_tema,nombre_tema,descripcion_tema,id_reunion)
 VALUES(1,'Revision preguntas x','soy descripcion',1);
@@ -29,7 +30,7 @@ INSERT INTO tema(id_tema,nombre_tema,descripcion_tema,id_reunion)
 VALUES(2,'tema nuevo id_reunion 1','soy descripcion',1);
 
 INSERT INTO pregunta(id_pregunta,pregunta,estado,id_tema,creador,correoCreador)
-VALUES(1,'¿Hola?',false,1,'hola','juan_a@gmail.com');
+VALUES(1,'¿Hola?',false,1,'hola','Roberto_s@gmail.com');
 
 INSERT INTO respuesta(id_respuesta,respuesta,id_pregunta)
 VALUES(1,'Soy una respuesta para pregunta 1',1);
@@ -89,4 +90,4 @@ INSERT INTO preguntas_recomendadas(id_pregunta_recomendada,pregunta_recomendada)
 VALUES(16,'¿Existen métodos para evadir el sistema?, ¿Por qué se presentan?');
 
 INSERT INTO comentario(id_comentario,comentario,nombre_creador_comentario,correo_creador_comentario,id_pregunta)
-VALUES(1,'soy un comentario para pregunta','Hola','juan_a@gmail.com',1);
+VALUES(1,'soy un comentario para pregunta','Hola','Roberto_s@gmail.com',1);

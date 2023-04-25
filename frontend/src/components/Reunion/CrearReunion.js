@@ -148,6 +148,7 @@ class CrearReunion extends Component {
                         <input
                           className="inputRegister"
                           type="time"
+                          id="hora_reunion"
                           value={hora_reunion}
                           name="hora_reunion"
                           onChange={this.changeHandler}

@@ -156,7 +156,7 @@ class Registrarse extends Component {
                       rules={["minLength","specialChar","number","capital","match"]}
 				              minLength={8}
                       onChange={this.changeHandler}
-                      placeholder="*****"
+                      placeholder="Contraseña"
                       required
                     />
                   </label>
@@ -169,7 +169,7 @@ class Registrarse extends Component {
                       value={contrasena_usuario2}
                       name="contrasena_usuario2"
                       onChange={this.changeHandler}
-                      placeholder="*****"
+                      placeholder="Repetir Contraseña"
                       required
                     />
                   </label>
