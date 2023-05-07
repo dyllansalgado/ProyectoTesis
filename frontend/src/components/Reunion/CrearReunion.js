@@ -48,7 +48,7 @@ class CrearReunion extends Component {
           });
   
           swal({
-            title: "Reunion creada con éxito",
+            title: "Reunión creada con éxito",
             text: "Se ha creado correctamente la reunión",
             icon: "success",
           });

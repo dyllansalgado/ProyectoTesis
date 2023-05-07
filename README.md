@@ -232,3 +232,15 @@ Cabe destacar que al momento de ingresar los comandos, no puede cerrar la consol
 Al momento de seguir el siguiente manual de instalación y uso, ha ocurrido solo un error. Al momento de ejecutar el comando `npm run start` o `npm start` en la consola dentro de la carpeta del Frontend aparece este error: `react-scripts: command not found error`.
 La solución consiste en ingresar el siguiente comando `npm install react-scripts --save` en la consola dentro de la carpeta del Frontend, esperar su instalación y volver a ingresar el comando `npm run start` o `npm start`. Con esto ya se encuentra solucionado el error.
 
+En el caso de compilar el frontend y aparezcan errores, estos pueden ser provocados al no estar instaladas algunas dependencias de uso. A continuación, se adjuntan todos los comandos que se deben instalar en el archivo del frontend para su correcto funcionamiento:
+
+    npm i axios
+    npm i sweetalert
+    npm install react-bootstrap bootstrap
+    npm install react-scripts
+    npm install jspdf --save
+    npm install jspdf jspdf-autotable
+    npm install react-icons --save
+    npm install --save react-password-checklist
+
+
